@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M1CREATIVE. — Exceptional Web Design & Creative Agency</title>
+    <meta name="description"
+        content="M1CREATIVE. is a premium web design and creative agency crafting stunning digital experiences. Let us build your next website.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">M1<span>CREATIVE.</span></div>
+            <div class="loader-bar-container">
+                <div class="loader-bar"></div>
+            </div>
+            <div class="loader-text">Loading experience...</div>
+        </div>
+    </div>
+
+    <!-- Three.js Canvas -->
+    <canvas id="three-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-logo">M1<span>CREATIVE.</span></div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#work">Work</a>
+            <a href="#contact" class="nav-cta">Get Started</a>
+        </div>
+        <div class="nav-hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#services" class="mobile-link">Services</a>
+        <a href="#work" class="mobile-link">Work</a>
+        <a href="#contact" class="mobile-link nav-cta">Get Started</a>
+    </div>
+
+    <!-- Scroll Container -->
+    <div id="scroll-container">
+
+        <!-- Section 1: Hero -->
+        <section id="hero" class="section">
+            <div class="hero-content">
+                <div class="hero-badge">WEB DESIGN & CREATIVE AGENCY</div>
+                <h1 class="hero-title">
+                    <span class="line line-1">We craft</span>
+                    <span class="line line-2"><em>digital</em></span>
+                    <span class="line line-3">experiences.</span>
+                </h1>
+                <p class="hero-sub">Transforming visions into stunning, high-performance websites that captivate and
+                    convert.</p>
+                <div class="scroll-indicator">
+                    <div class="scroll-arrow"></div>
+                    <span>Scroll to explore</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: About -->
+        <section id="about" class="section">
+            <div class="section-content">
+                <div class="section-tag">WHO WE ARE</div>
+                <h2 class="big-text animate-text">
+                    <span class="word">exceptional</span>
+                    <span class="word"><em>by design</em></span>
+                </h2>
+                <div class="about-grid">
+                    <div class="about-left">
+                        <p class="about-description">We craft distinct, memorable brand identities and websites that set
+                            your business apart and elevate your market presence.</p>
+                    </div>
+                    <div class="about-right">
+                        <div class="stat-card">
+                            <div class="stat-number" data-count="150">0</div>
+                            <div class="stat-label">Projects Delivered</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-count="98">0</div>
+                            <div class="stat-label">% Client Satisfaction</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-count="5">0</div>
+                            <div class="stat-label">Years of Excellence</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Services -->
+        <section id="services" class="section">
+            <div class="section-content">
+                <div class="section-tag">WHAT WE DO</div>
+                <h2 class="big-text animate-text">
+                    <span class="word">powerful</span>
+                    <span class="word"><em>experiences</em></span>
+                </h2>
+                <div class="services-grid">
+                    <div class="service-card" data-service="01">
+                        <div class="service-number">01</div>
+                        <h3>Website Design</h3>
+                        <p>Custom, responsive websites that look stunning on every device. From landing pages to
+                            full-scale platforms.</p>
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="3" width="20" height="14" rx="2" />
+                                <line x1="8" y1="21" x2="16" y2="21" />
+                                <line x1="12" y1="17" x2="12" y2="21" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="service-card" data-service="02">
+                        <div class="service-number">02</div>
+                        <h3>E-Commerce</h3>
+                        <p>High-converting online stores built to scale. Seamless shopping experiences that drive
+                            revenue growth.</p>
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="9" cy="21" r="1" />
+                                <circle cx="20" cy="21" r="1" />
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="service-card" data-service="03">
+                        <div class="service-number">03</div>
+                        <h3>Brand Identity</h3>
+                        <p>Memorable visual identities that tell your story. Logos, color palettes, and complete brand
+                            systems.</p>
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                <path d="M2 17l10 5 10-5" />
+                                <path d="M2 12l10 5 10-5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="service-card" data-service="04">
+                        <div class="service-number">04</div>
+                        <h3>SEO & Growth</h3>
+                        <p>Data-driven strategies to boost your visibility and drive organic traffic. Rank higher, grow
+                            faster.</p>
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                                <polyline points="17 6 23 6 23 12" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Work/Portfolio -->
+        <section id="work" class="section">
+            <div class="section-content">
+                <div class="section-tag">OUR WORK</div>
+                <h2 class="big-text animate-text">
+                    <span class="word">crafted with</span>
+                    <span class="word"><em>precision</em></span>
+                </h2>
+                <div class="work-showcase">
+                    <div class="work-item">
+                        <div class="work-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <div class="work-overlay">
+                                <span class="work-category">E-Commerce</span>
+                                <h3>Luxury Fashion Store</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-item">
+                        <div class="work-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <div class="work-overlay">
+                                <span class="work-category">Website Design</span>
+                                <h3>Tech Startup Platform</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-item">
+                        <div class="work-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <div class="work-overlay">
+                                <span class="work-category">Brand Identity</span>
+                                <h3>Restaurant Chain Rebrand</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Contact / Lead Capture -->
+        <section id="contact" class="section section-light">
+            <div class="section-content">
+                <div class="section-tag dark">LET'S TALK</div>
+                <h2 class="big-text animate-text dark-text">
+                    <span class="word">what do you</span>
+                    <span class="word"><em>need?</em></span>
+                </h2>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-services">
+                        <label class="form-service-option">
+                            <input type="checkbox" name="service" value="website-creation">
+                            <span class="service-pill">Website Creation</span>
+                        </label>
+                        <label class="form-service-option">
+                            <input type="checkbox" name="service" value="website-redesign">
+                            <span class="service-pill">Website Redesign</span>
+                        </label>
+                        <label class="form-service-option">
+                            <input type="checkbox" name="service" value="ecommerce">
+                            <span class="service-pill">E-Commerce</span>
+                        </label>
+                        <label class="form-service-option">
+                            <input type="checkbox" name="service" value="seo-growth">
+                            <span class="service-pill">Growth / SEO</span>
+                        </label>
+                        <label class="form-service-option">
+                            <input type="checkbox" name="service" value="other">
+                            <span class="service-pill">Other</span>
+                        </label>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required placeholder=" ">
+                            <label for="name">Your Name</label>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="company" name="company" placeholder=" ">
+                            <label for="company">Company</label>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required placeholder=" ">
+                            <label for="email">Email Address</label>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder=" ">
+                            <label for="phone">Phone Number</label>
+                            <div class="form-line"></div>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <textarea id="message" name="message" rows="4" placeholder=" "></textarea>
+                        <label for="message">Tell us about your project</label>
+                        <div class="form-line"></div>
+                    </div>
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        <span class="btn-text">Send Message</span>
+                        <span class="btn-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                                <polyline points="12 5 19 12 12 19" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="form-success" id="formSuccess">
+                        <div class="success-icon">✓</div>
+                        <h3>Message Sent!</h3>
+                        <p>We'll get back to you within 24 hours.</p>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">M1<span>CREATIVE.</span></div>
+                    <p>Crafting exceptional digital experiences.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Navigation</h4>
+                        <a href="#hero">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#services">Services</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Services</h4>
+                        <a href="#services">Web Design</a>
+                        <a href="#services">E-Commerce</a>
+                        <a href="#services">Brand Identity</a>
+                        <a href="#services">SEO & Growth</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Connect</h4>
+                        <a href="mailto:hello@m1creative.com">hello@m1creative.com</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 M1CREATIVE. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP for scroll animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
