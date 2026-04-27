@@ -421,6 +421,14 @@ function animateOnScroll() {
         }
     });
 
+    // Animate pricing cards
+    document.querySelectorAll('.pricing-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
+            card.classList.add('visible');
+        }
+    });
+
     // Animate counters
     document.querySelectorAll('.stat-number').forEach(num => {
         const rect = num.getBoundingClientRect();
@@ -539,6 +547,94 @@ function initForm() {
     });
 }
 
+// ======= CHECKOUT SYSTEM =======
+function initCheckout() {
+    const overlay = document.getElementById('checkoutOverlay');
+    const closeBtn = document.getElementById('checkoutClose');
+    const checkoutForm = document.getElementById('checkout-form');
+    const checkoutSuccess = document.getElementById('checkoutSuccess');
+
+    const packageNames = {
+        Bronze: 'Starter Presence',
+        Silver: 'Growth Package',
+        Gold: 'Premium Authority'
+    };
+
+    // Open checkout from pricing CTA buttons
+    document.querySelectorAll('.pricing-cta').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const pkg = btn.dataset.package;
+            const setup = btn.dataset.setup;
+            const monthly = btn.dataset.monthly;
+            const tier = pkg.toLowerCase();
+
+            // Update modal content
+            const badge = document.getElementById('checkoutBadge');
+            badge.textContent = pkg.toUpperCase();
+            badge.setAttribute('data-tier', tier);
+
+            document.getElementById('checkoutPackageName').textContent = packageNames[pkg] || pkg;
+            document.getElementById('checkoutSetup').textContent = `R${Number(setup).toLocaleString()}`;
+            document.getElementById('checkoutMonthly').textContent = `R${Number(monthly).toLocaleString()}/mo`;
+            document.getElementById('checkoutTotal').textContent = `R${Number(setup).toLocaleString()}`;
+
+            // Set hidden fields
+            document.getElementById('checkout-package').value = pkg;
+            document.getElementById('checkout-setup-amount').value = setup;
+            document.getElementById('checkout-monthly-amount').value = monthly;
+
+            // Reset form state
+            checkoutForm.reset();
+            checkoutSuccess.classList.remove('show');
+
+            // Open modal
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // Close checkout
+    function closeCheckout() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeCheckout);
+
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeCheckout();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            closeCheckout();
+        }
+    });
+
+    // Handle checkout form submission
+    checkoutForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(checkoutForm);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        console.log('Checkout submission:', data);
+
+        // Show success
+        checkoutSuccess.classList.add('show');
+
+        // Close after delay
+        setTimeout(() => {
+            closeCheckout();
+            checkoutForm.reset();
+            checkoutSuccess.classList.remove('show');
+        }, 4000);
+    });
+}
+
 // ======= WINDOW RESIZE =======
 function handleResize() {
     if (camera && renderer) {
@@ -619,6 +715,7 @@ document.addEventListener('DOMContentLoaded', () => {
     animate();
     initNavigation();
     initForm();
+    initCheckout();
     initCursorGlow();
     initTiltEffects();
 
