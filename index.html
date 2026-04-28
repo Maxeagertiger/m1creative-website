@@ -310,13 +310,24 @@
                         <textarea id="checkout-notes" name="notes" rows="3" placeholder=" "></textarea>
                         <label for="checkout-notes">Tell us about your project (optional)</label>
                     </div>
+                    <div class="checkout-error" id="checkoutError" style="display:none;"></div>
                     <button type="submit" class="checkout-submit" id="checkout-submit-btn">
-                        <span class="btn-text">Confirm &amp; Send Request</span>
+                        <span class="btn-text">Proceed to Payment</span>
+                        <span class="btn-loading" style="display:none;">
+                            <svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="31.4" stroke-dashoffset="10" stroke-linecap="round"/></svg>
+                            Processing...
+                        </span>
                         <span class="btn-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                                <line x1="1" y1="10" x2="23" y2="10"/>
+                            </svg>
                         </span>
                     </button>
-                    <p class="checkout-note">We'll reach out within 24 hours to get you started. No payment required now.</p>
+                    <p class="checkout-note">
+                        <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" style="vertical-align:-2px;margin-right:4px;opacity:0.6;"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
+                        You'll be securely redirected to Yoco to complete payment.
+                    </p>
                 </form>
                 <div class="checkout-success" id="checkoutSuccess">
                     <div class="success-icon">✓</div>

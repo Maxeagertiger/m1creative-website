@@ -1745,3 +1745,376 @@ body {
         transition: opacity 0.3s ease;
     }
 }
+
+/* ===========================
+   Checkout — Loading & Error States
+   =========================== */
+.checkout-submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.checkout-submit:disabled::before {
+    display: none;
+}
+
+.checkout-submit .btn-loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+}
+
+.checkout-submit .btn-loading .spinner {
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.checkout-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+    color: #ef4444;
+    line-height: 1.5;
+    animation: shakeError 0.4s ease;
+}
+
+@keyframes shakeError {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+}
+
+/* ===========================
+   Payment Result Pages (Success / Cancel)
+   =========================== */
+.result-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-dark);
+    padding: 20px;
+}
+
+.result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 520px;
+    animation: resultFadeIn 0.8s ease;
+}
+
+@keyframes resultFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 48px 40px;
+    width: 100%;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.result-brand .nav-logo {
+    text-align: center;
+    opacity: 0.4;
+    font-size: 1.2rem;
+}
+
+/* Animated Checkmark */
+.result-icon-wrapper {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 24px;
+}
+
+.result-checkmark,
+.result-xmark {
+    width: 72px;
+    height: 72px;
+}
+
+.checkmark-circle {
+    stroke: #22c55e;
+    stroke-width: 2;
+    stroke-dasharray: 157;
+    stroke-dashoffset: 157;
+    animation: drawCircle 0.6s ease forwards;
+}
+
+.checkmark-check {
+    stroke: #22c55e;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: drawCheck 0.4s ease 0.5s forwards;
+}
+
+@keyframes drawCircle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes drawCheck {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Animated X mark */
+.xmark-circle {
+    stroke: #ef4444;
+    stroke-width: 2;
+    stroke-dasharray: 157;
+    stroke-dashoffset: 157;
+    animation: drawCircle 0.6s ease forwards;
+}
+
+.xmark-x {
+    stroke: #ef4444;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 30;
+    stroke-dashoffset: 30;
+    animation: drawCheck 0.3s ease 0.5s forwards;
+}
+
+.xmark-x:nth-child(3) {
+    animation-delay: 0.65s;
+}
+
+/* Result page typography */
+.result-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    color: var(--text-white);
+    margin-bottom: 8px;
+}
+
+.result-subtitle {
+    font-size: 1rem;
+    color: var(--accent);
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.result-description {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+.result-description strong {
+    color: var(--text-white);
+}
+
+/* Result details */
+.result-details {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+}
+
+.result-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.result-detail-row:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detail-label {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.detail-value {
+    font-size: 0.9rem;
+    color: var(--text-white);
+    font-weight: 600;
+}
+
+.success-value {
+    color: #22c55e;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Next steps */
+.result-next-steps {
+    text-align: left;
+    margin-bottom: 32px;
+}
+
+.result-next-steps h3 {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.next-step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.next-step:last-child {
+    border-bottom: none;
+}
+
+.step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(200, 255, 0, 0.1);
+    border: 1px solid rgba(200, 255, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.next-step p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* Result buttons */
+.result-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    text-decoration: none;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.success-btn {
+    background: var(--accent);
+    color: var(--bg-dark);
+}
+
+.success-btn:hover {
+    background: #d4ff33;
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(200, 255, 0, 0.3);
+}
+
+.result-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.retry-btn {
+    background: var(--accent);
+    color: var(--bg-dark);
+}
+
+.retry-btn:hover {
+    background: #d4ff33;
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(200, 255, 0, 0.3);
+}
+
+.contact-btn {
+    background: transparent;
+    color: var(--text-white);
+    border: 1px solid var(--glass-border);
+}
+
+.contact-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: scale(1.05);
+}
+
+.result-help {
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.result-help p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    opacity: 0.6;
+}
+
+.result-help a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.result-help a:hover {
+    opacity: 0.8;
+}
+
+/* Result page responsive */
+@media (max-width: 600px) {
+    .result-card {
+        padding: 36px 24px;
+    }
+
+    .result-actions {
+        flex-direction: column;
+    }
+
+    .result-btn {
+        width: 100%;
+    }
+}

@@ -611,27 +611,77 @@ function initCheckout() {
         }
     });
 
-    // Handle checkout form submission
-    checkoutForm.addEventListener('submit', (e) => {
+    // Handle checkout form submission — Yoco Payment Integration
+    checkoutForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const formData = new FormData(checkoutForm);
-        const data = {};
-        formData.forEach((value, key) => {
-            data[key] = value;
-        });
+        const submitBtn = document.getElementById('checkout-submit-btn');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnLoading = submitBtn.querySelector('.btn-loading');
+        const btnIcon = submitBtn.querySelector('.btn-icon');
+        const errorEl = document.getElementById('checkoutError');
 
-        console.log('Checkout submission:', data);
+        // Collect form data
+        const packageName = document.getElementById('checkout-package').value;
+        const setupAmount = document.getElementById('checkout-setup-amount').value;
+        const customerName = document.getElementById('checkout-name').value;
+        const customerEmail = document.getElementById('checkout-email').value;
+        const customerPhone = document.getElementById('checkout-phone').value;
+        const businessName = document.getElementById('checkout-business').value;
+        const notes = document.getElementById('checkout-notes').value;
 
-        // Show success
-        checkoutSuccess.classList.add('show');
+        // Show loading state
+        submitBtn.disabled = true;
+        btnText.style.display = 'none';
+        btnIcon.style.display = 'none';
+        btnLoading.style.display = 'inline-flex';
+        errorEl.style.display = 'none';
 
-        // Close after delay
-        setTimeout(() => {
-            closeCheckout();
-            checkoutForm.reset();
-            checkoutSuccess.classList.remove('show');
-        }, 4000);
+        try {
+            // Call our serverless API to create a Yoco checkout session
+            const response = await fetch('/api/create-checkout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    amount: parseInt(setupAmount, 10) * 100, // Convert Rands to cents
+                    currency: 'ZAR',
+                    packageName: packageName,
+                    customerName: customerName,
+                    customerEmail: customerEmail,
+                    customerPhone: customerPhone,
+                    businessName: businessName,
+                    notes: notes
+                })
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Failed to create payment session');
+            }
+
+            if (result.redirectUrl) {
+                // Redirect to Yoco's hosted payment page
+                window.location.href = result.redirectUrl;
+            } else {
+                throw new Error('No payment URL received. Please try again.');
+            }
+
+        } catch (error) {
+            console.error('Payment error:', error);
+
+            // Show error message
+            errorEl.textContent = error.message || 'Something went wrong. Please try again.';
+            errorEl.style.display = 'block';
+
+            // Reset button state
+            submitBtn.disabled = false;
+            btnText.style.display = 'inline';
+            btnIcon.style.display = 'inline-flex';
+            btnLoading.style.display = 'none';
+        }
     });
 }
 

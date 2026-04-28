@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled — M1CREATIVE.</title>
+    <meta name="description" content="Your payment was not completed. You can try again or contact us for help.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="result-page">
+    <div class="result-container">
+        <div class="result-card cancel-card">
+            <!-- Animated X icon -->
+            <div class="result-icon-wrapper cancel-icon-wrapper">
+                <svg class="result-xmark" viewBox="0 0 52 52">
+                    <circle class="xmark-circle" cx="26" cy="26" r="25" fill="none" />
+                    <path class="xmark-x" fill="none" d="M16 16 36 36" />
+                    <path class="xmark-x" fill="none" d="M36 16 16 36" />
+                </svg>
+            </div>
+
+            <h1 class="result-title" id="resultTitle">Payment Not Completed</h1>
+            <p class="result-subtitle">Don't worry — no charges were made.</p>
+            <p class="result-description" id="resultDescription">
+                Your payment was cancelled or could not be processed. You can try again or reach out to us directly if
+                you need assistance.
+            </p>
+
+            <div class="result-actions">
+                <a href="/#pricing" class="result-btn retry-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                    <span>Try Again</span>
+                </a>
+                <a href="/#contact" class="result-btn contact-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span>Contact Us</span>
+                </a>
+            </div>
+
+            <div class="result-help">
+                <p>Need help? Reach us at <a href="mailto:hello@m1creative.com">hello@m1creative.com</a></p>
+            </div>
+        </div>
+
+        <div class="result-brand">
+            <div class="nav-logo">M1<span>CREATIVE.</span></div>
+        </div>
+    </div>
+
+    <script>
+        // Check if this was a failure vs cancellation
+        const params = new URLSearchParams(window.location.search);
+        const reason = params.get('reason');
+        if (reason === 'failed') {
+            document.getElementById('resultTitle').textContent = 'Payment Failed';
+            document.getElementById('resultDescription').textContent =
+                'Unfortunately your payment could not be processed. Please check your card details and try again, or use a different payment method.';
+        }
+    </script>
+</body>
+
+</html>
