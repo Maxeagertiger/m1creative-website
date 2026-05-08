@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savoria — Fine Dining & Culinary Excellence</title>
+    <meta name="description" content="Savoria — A culinary journey through contemporary African-inspired fine dining.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0f0d0a; --surface: #1a1712; --warm: #c4956a; --warm-light: #dbb896;
+            --olive: #8a9a6c; --cream: #f2ece4; --text: #e0d8ce; --text-muted: #8a8278;
+            --red: #b54b3a;
+            --font-display: 'Cormorant Garamond', serif; --font-body: 'Inter', sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        a { text-decoration: none; color: inherit; }
+
+        /* NAV */
+        nav { position: fixed; top: 0; width: 100%; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(15,13,10,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(196,149,106,0.1); }
+        .logo { font-family: var(--font-display); font-size: 2rem; font-weight: 700; letter-spacing: 4px; color: var(--warm); font-style: italic; }
+        .nav-links { display: flex; gap: 36px; align-items: center; }
+        .nav-links a { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); transition: color 0.3s; font-weight: 500; }
+        .nav-links a:hover { color: var(--warm); }
+        .nav-reserve { background: transparent; border: 1px solid var(--warm); color: var(--warm) !important; padding: 10px 24px; transition: all 0.3s !important; cursor: pointer; font-family: var(--font-body); }
+        .nav-reserve:hover { background: var(--warm); color: var(--bg) !important; }
+
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; background: linear-gradient(180deg, #1a1510 0%, #0f0d0a 50%, #151008 100%); }
+        .hero-bg::before { content: ''; position: absolute; top: 20%; left: 50%; transform: translateX(-50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(196,149,106,0.08) 0%, transparent 70%); }
+        .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 24px; max-width: 800px; }
+        .hero-tag { font-size: 0.7rem; letter-spacing: 8px; text-transform: uppercase; color: var(--warm); margin-bottom: 32px; }
+        .hero-divider { width: 60px; height: 1px; background: var(--warm); margin: 0 auto 32px; opacity: 0.5; }
+        .hero h1 { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 300; line-height: 1.05; margin-bottom: 28px; color: var(--cream); }
+        .hero h1 em { font-style: italic; color: var(--warm); }
+        .hero-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 500px; margin: 0 auto 48px; line-height: 1.8; font-weight: 300; }
+        .btn-primary { display: inline-block; padding: 16px 48px; border: 1px solid var(--warm); color: var(--warm); font-size: 0.75rem; letter-spacing: 5px; text-transform: uppercase; transition: all 0.4s; position: relative; overflow: hidden; background: transparent; cursor: pointer; font-family: var(--font-body); }
+        .btn-primary::before { content: ''; position: absolute; inset: 0; background: var(--warm); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; z-index: -1; }
+        .btn-primary:hover::before { transform: scaleX(1); }
+        .btn-primary:hover { color: var(--bg); }
+
+        /* PHILOSOPHY */
+        .philosophy { padding: 120px 48px; max-width: 900px; margin: 0 auto; text-align: center; }
+        .philosophy .section-tag { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; color: var(--warm); margin-bottom: 24px; }
+        .philosophy h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--cream); margin-bottom: 24px; line-height: 1.3; }
+        .philosophy p { color: var(--text-muted); line-height: 1.9; font-size: 1rem; max-width: 600px; margin: 0 auto; }
+
+        /* MENU HIGHLIGHTS */
+        .menu-section { padding: 0 48px 120px; max-width: 1200px; margin: 0 auto; }
+        .menu-section .section-tag { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; color: var(--warm); margin-bottom: 16px; text-align: center; }
+        .menu-section h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--cream); margin-bottom: 60px; text-align: center; }
+        .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .menu-card { background: var(--surface); border: 1px solid rgba(196,149,106,0.1); border-radius: 4px; overflow: hidden; transition: all 0.4s; }
+        .menu-card:hover { transform: translateY(-6px); border-color: rgba(196,149,106,0.25); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .menu-card-img { aspect-ratio: 4/3; position: relative; }
+        .menu-card-img .img-inner { width: 100%; height: 100%; }
+        .m1 .img-inner { background: linear-gradient(135deg, #2a1f15, #1a1510, #251a10); }
+        .m2 .img-inner { background: linear-gradient(135deg, #1a1a12, #15150e, #201a0e); }
+        .m3 .img-inner { background: linear-gradient(135deg, #201810, #18120c, #251c12); }
+        .menu-card-body { padding: 28px; }
+        .menu-dish { font-family: var(--font-display); font-size: 1.4rem; color: var(--cream); margin-bottom: 8px; font-weight: 600; }
+        .menu-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; }
+        .menu-price { font-family: var(--font-display); font-size: 1.1rem; color: var(--warm); font-weight: 600; }
+
+        /* AMBIENCE */
+        .ambience { padding: 0 48px 120px; max-width: 1200px; margin: 0 auto; }
+        .ambience-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 250px 250px; gap: 16px; }
+        .amb-item { border-radius: 4px; overflow: hidden; position: relative; }
+        .amb-item .amb-inner { width: 100%; height: 100%; transition: transform 0.6s; }
+        .amb-item:hover .amb-inner { transform: scale(1.05); }
+        .a1 { grid-row: 1 / 3; }
+        .a1 .amb-inner { background: linear-gradient(135deg, #1a1510, #0f0d0a, #1a1208); }
+        .a2 .amb-inner { background: linear-gradient(135deg, #181510, #12100a); }
+        .a3 .amb-inner { background: linear-gradient(135deg, #151210, #0e0c08); }
+        .a4 .amb-inner { background: linear-gradient(135deg, #1a1610, #10100a); }
+        .a5 .amb-inner { background: linear-gradient(135deg, #18140e, #0f0d08); }
+        .amb-label { position: absolute; bottom: 16px; left: 16px; font-family: var(--font-display); font-size: 1rem; color: var(--cream); font-style: italic; background: rgba(15,13,10,0.7); padding: 6px 14px; border-radius: 2px; }
+
+        /* RESERVATION */
+        .reservation { padding: 100px 48px; background: var(--surface); text-align: center; border-top: 1px solid rgba(196,149,106,0.1); }
+        .reservation .section-tag { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; color: var(--warm); margin-bottom: 16px; }
+        .reservation h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--cream); margin-bottom: 12px; }
+        .reservation p { color: var(--text-muted); margin-bottom: 36px; font-size: 0.95rem; }
+        .res-form { display: flex; gap: 0; max-width: 600px; margin: 0 auto; flex-wrap: wrap; }
+        .res-form input, .res-form select { flex: 1; min-width: 140px; padding: 16px 20px; background: var(--bg); border: 1px solid rgba(196,149,106,0.2); color: var(--text); font-family: var(--font-body); font-size: 0.9rem; outline: none; }
+        .res-form input::placeholder { color: var(--text-muted); }
+        .res-form select { color: var(--text-muted); appearance: none; }
+        .res-form option { background: var(--bg); }
+        .res-form button { padding: 16px 36px; background: var(--warm); color: var(--bg); border: none; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; font-family: var(--font-body); font-weight: 600; transition: all 0.3s; width: 100%; margin-top: -1px; }
+        .res-form button:hover { background: var(--warm-light); }
+
+        /* HOURS */
+        .hours { padding: 80px 48px; max-width: 600px; margin: 0 auto; text-align: center; }
+        .hours h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--cream); margin-bottom: 28px; font-weight: 400; }
+        .hours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .hours-item { padding: 16px; border: 1px solid rgba(196,149,106,0.1); border-radius: 4px; }
+        .hours-day { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--warm); margin-bottom: 4px; }
+        .hours-time { font-family: var(--font-display); font-size: 1.1rem; color: var(--cream); }
+
+        /* FOOTER */
+        footer { padding: 60px 48px 30px; border-top: 1px solid rgba(196,149,106,0.1); }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+        .footer-left .logo { margin-bottom: 8px; display: block; }
+        .footer-left p { font-size: 0.8rem; color: var(--text-muted); }
+        .footer-right { display: flex; gap: 32px; }
+        .footer-right a { font-size: 0.8rem; color: var(--text-muted); transition: color 0.3s; }
+        .footer-right a:hover { color: var(--warm); }
+        .footer-bottom { max-width: 1200px; margin: 30px auto 0; padding-top: 20px; border-top: 1px solid rgba(196,149,106,0.06); display: flex; justify-content: space-between; }
+        .footer-bottom p { font-size: 0.7rem; color: var(--text-muted); opacity: 0.5; }
+        .m1-credit a { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); opacity: 0.4; transition: all 0.3s; }
+        .m1-credit a:hover { color: var(--warm); opacity: 1; }
+
+        @media (max-width: 1024px) { .menu-grid { grid-template-columns: 1fr 1fr; } .ambience-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; } .a1 { grid-row: auto; } }
+        @media (max-width: 768px) {
+            nav { padding: 16px 24px; } .nav-links { gap: 16px; } .nav-links a { letter-spacing: 1px; }
+            .philosophy, .menu-section, .ambience { padding-left: 24px; padding-right: 24px; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .ambience-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .amb-item { min-height: 200px; }
+            .hours-grid { grid-template-columns: 1fr; }
+            .reservation { padding: 60px 24px; }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-right { flex-direction: column; gap: 12px; }
+            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Savoria</div>
+        <div class="nav-links">
+            <a href="#menu">Menu</a>
+            <a href="#ambience">Gallery</a>
+            <a href="#reserve" class="nav-reserve">Reserve a Table</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-tag">Contemporary African Fine Dining</div>
+            <div class="hero-divider"></div>
+            <h1>Where Flavour<br>Meets <em>Artistry</em></h1>
+            <p class="hero-sub">An immersive culinary experience celebrating the rich, diverse flavours of Africa through a contemporary fine-dining lens.</p>
+            <a href="#reserve" class="btn-primary">Reserve Your Table</a>
+        </div>
+    </section>
+
+    <section class="philosophy">
+        <div class="section-tag">Our Philosophy</div>
+        <h2>From soil to plate, every ingredient tells a story</h2>
+        <p>We source locally, honour tradition, and push boundaries. Our kitchen bridges generations of culinary heritage with modern technique, creating dishes that are both deeply rooted and boldly original.</p>
+    </section>
+
+    <section class="menu-section" id="menu">
+        <div class="section-tag">Seasonal Highlights</div>
+        <h2>From Our Kitchen</h2>
+        <div class="menu-grid">
+            <div class="menu-card m1">
+                <div class="menu-card-img"><div class="img-inner"></div></div>
+                <div class="menu-card-body">
+                    <div class="menu-dish">Seared Springbok Loin</div>
+                    <div class="menu-desc">Wild mushroom jus, roasted root vegetables, herb oil, pickled onion petals.</div>
+                    <div class="menu-price">R385</div>
+                </div>
+            </div>
+            <div class="menu-card m2">
+                <div class="menu-card-img"><div class="img-inner"></div></div>
+                <div class="menu-card-body">
+                    <div class="menu-dish">Cape Malay Prawn Curry</div>
+                    <div class="menu-desc">Coconut foam, saffron rice, charred lime, micro herbs, toasted cashews.</div>
+                    <div class="menu-price">R295</div>
+                </div>
+            </div>
+            <div class="menu-card m3">
+                <div class="menu-card-img"><div class="img-inner"></div></div>
+                <div class="menu-card-body">
+                    <div class="menu-dish">Chocolate & Rooibos Fondant</div>
+                    <div class="menu-desc">Honeybush ice cream, caramelised figs, almond praline, edible flowers.</div>
+                    <div class="menu-price">R175</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ambience" id="ambience">
+        <div class="ambience-grid">
+            <div class="amb-item a1"><div class="amb-inner"></div><div class="amb-label">Main Dining Room</div></div>
+            <div class="amb-item a2"><div class="amb-inner"></div><div class="amb-label">The Bar</div></div>
+            <div class="amb-item a3"><div class="amb-inner"></div><div class="amb-label">Private Dining</div></div>
+            <div class="amb-item a4"><div class="amb-inner"></div><div class="amb-label">Terrace</div></div>
+            <div class="amb-item a5"><div class="amb-inner"></div><div class="amb-label">Chef's Table</div></div>
+        </div>
+    </section>
+
+    <section class="reservation" id="reserve">
+        <div class="section-tag">Book a Table</div>
+        <h2>Make a Reservation</h2>
+        <p>Join us for an unforgettable evening of flavour, ambience, and hospitality.</p>
+        <form class="res-form">
+            <input type="text" placeholder="Full Name">
+            <input type="date">
+            <select><option>2 Guests</option><option>3 Guests</option><option>4 Guests</option><option>5 Guests</option><option>6+ Guests</option></select>
+            <button type="button">Reserve Now</button>
+        </form>
+    </section>
+
+    <section class="hours">
+        <h3>Opening Hours</h3>
+        <div class="hours-grid">
+            <div class="hours-item"><div class="hours-day">Tue – Thu</div><div class="hours-time">18:00 – 22:00</div></div>
+            <div class="hours-item"><div class="hours-day">Fri – Sat</div><div class="hours-time">18:00 – 23:00</div></div>
+            <div class="hours-item"><div class="hours-day">Sunday</div><div class="hours-time">12:00 – 16:00</div></div>
+            <div class="hours-item"><div class="hours-day">Monday</div><div class="hours-time">Closed</div></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="logo">Savoria</span>
+                <p>42 Kloof Street, Cape Town, 8001</p>
+            </div>
+            <div class="footer-right">
+                <a href="#">Instagram</a><a href="#">Facebook</a><a href="#">TripAdvisor</a><a href="tel:+27214567890">+27 21 456 7890</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Savoria. All rights reserved.</p>
+            <div class="m1-credit"><a href="/">Designed by M1CREATIVE.</a></div>
+        </div>
+    </footer>
+</body>
+</html>

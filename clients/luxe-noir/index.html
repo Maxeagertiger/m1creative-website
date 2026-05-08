@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE NOIR — Premium Fashion House</title>
+    <meta name="description" content="LUXE NOIR — Curated luxury fashion for the modern connoisseur.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0c0a09; --surface: #1a1714; --gold: #c9a96e; --gold-light: #e8d5a8;
+            --cream: #f5f0e8; --text: #e8e2d8; --text-muted: #8a8278;
+            --font-display: 'Playfair Display', serif; --font-body: 'Inter', sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        a { text-decoration: none; color: inherit; }
+
+        /* NAV */
+        nav { position: fixed; top: 0; width: 100%; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(12,10,9,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,169,110,0.1); }
+        .logo { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; letter-spacing: 6px; color: var(--gold); }
+        .nav-links { display: flex; gap: 36px; align-items: center; }
+        .nav-links a { font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); transition: color 0.3s; font-weight: 500; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-bag { position: relative; cursor: pointer; }
+        .nav-bag svg { width: 20px; height: 20px; stroke: var(--text-muted); transition: stroke 0.3s; }
+        .nav-bag:hover svg { stroke: var(--gold); }
+        .bag-count { position: absolute; top: -6px; right: -8px; width: 16px; height: 16px; background: var(--gold); color: var(--bg); font-size: 0.6rem; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #1a1510 0%, #0c0a09 40%, #1a1208 100%); }
+        .hero-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(201,169,110,0.08) 0%, transparent 60%); }
+        .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 24px; animation: fadeUp 1.2s ease forwards; }
+        .hero-tag { font-size: 0.7rem; letter-spacing: 8px; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; opacity: 0.8; }
+        .hero h1 { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 7rem); font-weight: 400; line-height: 1.05; margin-bottom: 28px; color: var(--cream); }
+        .hero h1 em { font-style: italic; color: var(--gold); }
+        .hero-sub { font-size: 1.1rem; color: var(--text-muted); max-width: 480px; margin: 0 auto 48px; line-height: 1.7; font-weight: 300; }
+        .btn-primary { display: inline-block; padding: 16px 48px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.75rem; letter-spacing: 5px; text-transform: uppercase; transition: all 0.4s ease; position: relative; overflow: hidden; background: transparent; cursor: pointer; font-family: var(--font-body); }
+        .btn-primary::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; z-index: -1; }
+        .btn-primary:hover::before { transform: scaleX(1); }
+        .btn-primary:hover { color: var(--bg); }
+        .hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .hero-scroll span { font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; color: var(--text-muted); }
+        .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease infinite; }
+        @keyframes scrollPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* MARQUEE */
+        .marquee-section { padding: 40px 0; border-top: 1px solid rgba(201,169,110,0.1); border-bottom: 1px solid rgba(201,169,110,0.1); overflow: hidden; }
+        .marquee { display: flex; gap: 60px; animation: marqueeScroll 20s linear infinite; white-space: nowrap; }
+        .marquee span { font-family: var(--font-display); font-size: 1.1rem; color: var(--text-muted); letter-spacing: 4px; text-transform: uppercase; opacity: 0.5; }
+        .marquee span::after { content: '✦'; margin-left: 60px; color: var(--gold); opacity: 0.4; }
+        @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* COLLECTION */
+        .collection { padding: 120px 48px; max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 80px; }
+        .section-tag { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; opacity: 0.8; }
+        .section-title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; color: var(--cream); }
+        .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+        .product-card { cursor: pointer; }
+        .product-img { aspect-ratio: 3/4; border-radius: 4px; overflow: hidden; position: relative; margin-bottom: 20px; }
+        .product-img-inner { width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+        .product-card:hover .product-img-inner { transform: scale(1.08); }
+        .product-overlay { position: absolute; inset: 0; background: rgba(12,10,9,0.4); opacity: 0; transition: opacity 0.4s; display: flex; align-items: center; justify-content: center; }
+        .product-card:hover .product-overlay { opacity: 1; }
+        .overlay-btn { padding: 12px 28px; border: 1px solid white; color: white; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; transition: all 0.3s; background: transparent; cursor: pointer; font-family: var(--font-body); }
+        .overlay-btn:hover { background: white; color: var(--bg); }
+        .product-info { display: flex; justify-content: space-between; align-items: baseline; }
+        .product-name { font-family: var(--font-display); font-size: 1rem; color: var(--cream); }
+        .product-price { font-size: 0.85rem; color: var(--gold); font-weight: 500; }
+        .product-cat { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+        .p1 .product-img-inner { background: linear-gradient(145deg, #2a2018, #1a1510, #2a1f15); }
+        .p2 .product-img-inner { background: linear-gradient(145deg, #1a1a20, #12121a, #1f1a28); }
+        .p3 .product-img-inner { background: linear-gradient(145deg, #1a1810, #151208, #201a10); }
+        .p4 .product-img-inner { background: linear-gradient(145deg, #181a1a, #101215, #1a1c20); }
+
+        /* EDITORIAL BANNER */
+        .editorial { padding: 0 48px; max-width: 1400px; margin: 0 auto 120px; }
+        .editorial-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; border-radius: 4px; overflow: hidden; }
+        .editorial-img { background: linear-gradient(135deg, #1f1a14, #2a2218, #18140e); position: relative; }
+        .editorial-img::after { content: 'SS26'; position: absolute; bottom: 40px; left: 40px; font-family: var(--font-display); font-size: 6rem; color: rgba(201,169,110,0.08); font-weight: 900; }
+        .editorial-text { background: var(--surface); padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; }
+        .editorial-text .section-tag { text-align: left; margin-bottom: 20px; }
+        .editorial-text h2 { font-family: var(--font-display); font-size: 2.4rem; font-weight: 400; color: var(--cream); margin-bottom: 20px; line-height: 1.3; }
+        .editorial-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 36px; font-size: 0.95rem; }
+
+        /* NEWSLETTER */
+        .newsletter { padding: 100px 48px; text-align: center; border-top: 1px solid rgba(201,169,110,0.1); }
+        .newsletter h2 { font-family: var(--font-display); font-size: 2rem; color: var(--cream); margin-bottom: 12px; font-weight: 400; }
+        .newsletter p { color: var(--text-muted); margin-bottom: 36px; font-size: 0.95rem; }
+        .newsletter-form { display: flex; gap: 0; max-width: 480px; margin: 0 auto; }
+        .newsletter-form input { flex: 1; padding: 16px 24px; background: var(--surface); border: 1px solid rgba(201,169,110,0.2); color: var(--text); font-family: var(--font-body); font-size: 0.9rem; outline: none; border-right: none; }
+        .newsletter-form input::placeholder { color: var(--text-muted); }
+        .newsletter-form button { padding: 16px 32px; background: var(--gold); color: var(--bg); border: 1px solid var(--gold); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; font-family: var(--font-body); font-weight: 600; transition: all 0.3s; }
+        .newsletter-form button:hover { background: var(--gold-light); }
+
+        /* FOOTER */
+        footer { padding: 60px 48px 30px; border-top: 1px solid rgba(201,169,110,0.1); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .footer-brand .logo { margin-bottom: 16px; display: block; }
+        .footer-brand p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.7; max-width: 280px; }
+        .footer-col h4 { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+        .footer-col a { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--gold); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(201,169,110,0.08); }
+        .footer-bottom p { font-size: 0.75rem; color: var(--text-muted); opacity: 0.6; }
+        .m1-credit { text-align: center; margin-top: 16px; }
+        .m1-credit a { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); opacity: 0.5; transition: all 0.3s; }
+        .m1-credit a:hover { color: var(--gold); opacity: 1; }
+
+        @media (max-width: 1024px) { .products-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 768px) {
+            nav { padding: 16px 24px; } .nav-links { gap: 20px; } .nav-links a { font-size: 0.7rem; letter-spacing: 2px; }
+            .collection, .editorial { padding-left: 24px; padding-right: 24px; }
+            .products-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+            .editorial-inner { grid-template-columns: 1fr; } .editorial-img { min-height: 300px; }
+            .editorial-text { padding: 48px 32px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .newsletter { padding: 60px 24px; } .newsletter-form { flex-direction: column; }
+            .newsletter-form input { border-right: 1px solid rgba(201,169,110,0.2); }
+        }
+        @media (max-width: 480px) { .products-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">LUXE NOIR</div>
+        <div class="nav-links">
+            <a href="#collection">Collection</a>
+            <a href="#editorial">Editorial</a>
+            <a href="#about">About</a>
+            <div class="nav-bag">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <span class="bag-count">2</span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-tag">Summer / Spring 2026</div>
+            <h1>The Art of<br><em>Refined</em> Elegance</h1>
+            <p class="hero-sub">Curated luxury fashion for those who understand that true style is an expression of self.</p>
+            <a href="#collection" class="btn-primary">Explore Collection</a>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <div class="marquee-section">
+        <div class="marquee">
+            <span>Handcrafted</span><span>Italian Leather</span><span>Sustainable</span><span>Limited Edition</span><span>Bespoke</span><span>Artisan</span>
+            <span>Handcrafted</span><span>Italian Leather</span><span>Sustainable</span><span>Limited Edition</span><span>Bespoke</span><span>Artisan</span>
+        </div>
+    </div>
+
+    <section class="collection" id="collection">
+        <div class="section-header">
+            <div class="section-tag">New Arrivals</div>
+            <h2 class="section-title">The SS26 Collection</h2>
+        </div>
+        <div class="products-grid">
+            <div class="product-card p1">
+                <div class="product-img"><div class="product-img-inner"></div><div class="product-overlay"><button class="overlay-btn">Quick View</button></div></div>
+                <div class="product-info"><span class="product-name">Noir Blazer</span><span class="product-price">R4,890</span></div>
+                <div class="product-cat">Outerwear</div>
+            </div>
+            <div class="product-card p2">
+                <div class="product-img"><div class="product-img-inner"></div><div class="product-overlay"><button class="overlay-btn">Quick View</button></div></div>
+                <div class="product-info"><span class="product-name">Silk Evening Gown</span><span class="product-price">R8,450</span></div>
+                <div class="product-cat">Eveningwear</div>
+            </div>
+            <div class="product-card p3">
+                <div class="product-img"><div class="product-img-inner"></div><div class="product-overlay"><button class="overlay-btn">Quick View</button></div></div>
+                <div class="product-info"><span class="product-name">Camel Overcoat</span><span class="product-price">R6,200</span></div>
+                <div class="product-cat">Outerwear</div>
+            </div>
+            <div class="product-card p4">
+                <div class="product-img"><div class="product-img-inner"></div><div class="product-overlay"><button class="overlay-btn">Quick View</button></div></div>
+                <div class="product-info"><span class="product-name">Leather Tote</span><span class="product-price">R3,750</span></div>
+                <div class="product-cat">Accessories</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="editorial" id="editorial">
+        <div class="editorial-inner">
+            <div class="editorial-img"></div>
+            <div class="editorial-text">
+                <div class="section-tag">The Editorial</div>
+                <h2>Where Fashion Meets Architecture</h2>
+                <p>Our SS26 collection draws inspiration from the clean lines and bold forms of brutalist architecture — reinterpreted through the lens of contemporary luxury fashion.</p>
+                <a href="#" class="btn-primary">Read the Story</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <h2>Join the Inner Circle</h2>
+        <p>Exclusive previews, early access, and curated style guides.</p>
+        <div class="newsletter-form">
+            <input type="email" placeholder="Enter your email address">
+            <button>Subscribe</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="logo">LUXE NOIR</span>
+                <p>Redefining luxury fashion through timeless craftsmanship and modern design sensibility.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <a href="#">New Arrivals</a><a href="#">Womenswear</a><a href="#">Menswear</a><a href="#">Accessories</a>
+            </div>
+            <div class="footer-col">
+                <h4>About</h4>
+                <a href="#">Our Story</a><a href="#">Sustainability</a><a href="#">Careers</a><a href="#">Press</a>
+            </div>
+            <div class="footer-col">
+                <h4>Help</h4>
+                <a href="#">Contact Us</a><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Size Guide</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LUXE NOIR. All rights reserved.</p>
+        </div>
+        <div class="m1-credit">
+            <a href="/">Designed by M1CREATIVE.</a>
+        </div>
+    </footer>
+</body>
+</html>
