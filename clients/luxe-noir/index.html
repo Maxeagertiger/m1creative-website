@@ -3,240 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUXE NOIR — Premium Fashion House</title>
-    <meta name="description" content="LUXE NOIR — Curated luxury fashion for the modern connoisseur.">
+    <title>AURĒLIA — Haute Couture House</title>
+    <meta name="description" content="AURĒLIA — Where timeless elegance meets avant-garde fashion. Haute couture for the modern muse.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg: #0c0a09; --surface: #1a1714; --gold: #c9a96e; --gold-light: #e8d5a8;
-            --cream: #f5f0e8; --text: #e8e2d8; --text-muted: #8a8278;
-            --font-display: 'Playfair Display', serif; --font-body: 'Inter', sans-serif;
-        }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--font-body); background: var(--bg); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-        a { text-decoration: none; color: inherit; }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#08070a;--surface:#111016;--accent:#b8964e;--accent-light:#d4b876;--cream:#f0ece4;--text:#ccc8c0;--muted:#6b6660;--display:'Cormorant Garamond',serif;--body:'Inter',sans-serif}
+        html{scroll-behavior:smooth}
+        body{font-family:var(--body);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+        a{text-decoration:none;color:inherit}
+        .reveal{opacity:0;transform:translateY(60px);transition:all 1.2s cubic-bezier(.16,1,.3,1)}
+        .reveal.active{opacity:1;transform:translateY(0)}
+
+        /* LOADER */
+        #loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .8s}
+        #loader.done{opacity:0;pointer-events:none}
+        .loader-name{font-family:var(--display);font-size:clamp(2rem,6vw,4rem);color:var(--accent);letter-spacing:12px;font-weight:300;animation:loaderPulse 1.5s ease infinite}
+        @keyframes loaderPulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+        /* CANVAS */
+        #particles{position:fixed;inset:0;z-index:0;pointer-events:none}
 
         /* NAV */
-        nav { position: fixed; top: 0; width: 100%; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(12,10,9,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,169,110,0.1); }
-        .logo { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; letter-spacing: 6px; color: var(--gold); }
-        .nav-links { display: flex; gap: 36px; align-items: center; }
-        .nav-links a { font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); transition: color 0.3s; font-weight: 500; }
-        .nav-links a:hover { color: var(--gold); }
-        .nav-bag { position: relative; cursor: pointer; }
-        .nav-bag svg { width: 20px; height: 20px; stroke: var(--text-muted); transition: stroke 0.3s; }
-        .nav-bag:hover svg { stroke: var(--gold); }
-        .bag-count { position: absolute; top: -6px; right: -8px; width: 16px; height: 16px; background: var(--gold); color: var(--bg); font-size: 0.6rem; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        nav{position:fixed;top:0;width:100%;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;z-index:100;background:rgba(8,7,10,.7);backdrop-filter:blur(20px);border-bottom:1px solid rgba(184,150,78,.08);transition:transform .4s}
+        nav.hidden{transform:translateY(-100%)}
+        .logo{font-family:var(--display);font-size:1.5rem;font-weight:300;letter-spacing:8px;color:var(--accent)}
+        .nav-links{display:flex;gap:32px;align-items:center}
+        .nav-links a{font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);transition:color .3s;font-weight:400;position:relative}
+        .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
+        .nav-links a:hover{color:var(--accent)}
+        .nav-links a:hover::after{width:100%}
 
         /* HERO */
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #1a1510 0%, #0c0a09 40%, #1a1208 100%); }
-        .hero-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(201,169,110,0.08) 0%, transparent 60%); }
-        .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 24px; animation: fadeUp 1.2s ease forwards; }
-        .hero-tag { font-size: 0.7rem; letter-spacing: 8px; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; opacity: 0.8; }
-        .hero h1 { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 7rem); font-weight: 400; line-height: 1.05; margin-bottom: 28px; color: var(--cream); }
-        .hero h1 em { font-style: italic; color: var(--gold); }
-        .hero-sub { font-size: 1.1rem; color: var(--text-muted); max-width: 480px; margin: 0 auto 48px; line-height: 1.7; font-weight: 300; }
-        .btn-primary { display: inline-block; padding: 16px 48px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.75rem; letter-spacing: 5px; text-transform: uppercase; transition: all 0.4s ease; position: relative; overflow: hidden; background: transparent; cursor: pointer; font-family: var(--font-body); }
-        .btn-primary::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; z-index: -1; }
-        .btn-primary:hover::before { transform: scaleX(1); }
-        .btn-primary:hover { color: var(--bg); }
-        .hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; }
-        .hero-scroll span { font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; color: var(--text-muted); }
-        .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease infinite; }
-        @keyframes scrollPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+        .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(184,150,78,.06) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(100,60,30,.05) 0%,transparent 50%),var(--bg)}
+        .hero-content{position:relative;z-index:2;text-align:center;padding:0 24px}
+        .hero-tag{font-size:.65rem;letter-spacing:10px;text-transform:uppercase;color:var(--accent);margin-bottom:28px;opacity:0;animation:fadeIn 1s .5s forwards}
+        .hero-line{width:40px;height:1px;background:var(--accent);margin:0 auto 28px;opacity:0;animation:expandLine 1s .8s forwards}
+        @keyframes expandLine{to{opacity:.5;width:80px}}
+        .hero h1{font-family:var(--display);font-size:clamp(3rem,9vw,8rem);font-weight:300;line-height:1;margin-bottom:24px;color:var(--cream);opacity:0;animation:fadeUp 1.2s .6s forwards}
+        .hero h1 em{font-style:italic;color:var(--accent);font-weight:300}
+        .hero-sub{font-size:1rem;color:var(--muted);max-width:440px;margin:0 auto 40px;line-height:1.8;font-weight:300;opacity:0;animation:fadeUp 1.2s .9s forwards}
+        .btn{display:inline-block;padding:14px 44px;border:1px solid var(--accent);color:var(--accent);font-size:.7rem;letter-spacing:5px;text-transform:uppercase;transition:all .5s;position:relative;overflow:hidden;background:transparent;cursor:pointer;font-family:var(--body);opacity:0;animation:fadeUp 1.2s 1.1s forwards}
+        .btn::before{content:'';position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .5s;z-index:-1}
+        .btn:hover::before{transform:scaleX(1)}
+        .btn:hover{color:var(--bg)}
+        .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1s 1.5s forwards}
+        .scroll-hint span{font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted)}
+        .scroll-dot{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollAnim 2s ease infinite}
+        @keyframes scrollAnim{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.3;transform:scaleY(.5)}}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes fadeIn{to{opacity:1}}
 
         /* MARQUEE */
-        .marquee-section { padding: 40px 0; border-top: 1px solid rgba(201,169,110,0.1); border-bottom: 1px solid rgba(201,169,110,0.1); overflow: hidden; }
-        .marquee { display: flex; gap: 60px; animation: marqueeScroll 20s linear infinite; white-space: nowrap; }
-        .marquee span { font-family: var(--font-display); font-size: 1.1rem; color: var(--text-muted); letter-spacing: 4px; text-transform: uppercase; opacity: 0.5; }
-        .marquee span::after { content: '✦'; margin-left: 60px; color: var(--gold); opacity: 0.4; }
-        @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        .marquee-wrap{padding:28px 0;border-top:1px solid rgba(184,150,78,.08);border-bottom:1px solid rgba(184,150,78,.08);overflow:hidden}
+        .marquee{display:flex;gap:48px;animation:scroll 25s linear infinite;white-space:nowrap}
+        .marquee span{font-family:var(--display);font-size:.95rem;color:var(--muted);letter-spacing:5px;text-transform:uppercase;opacity:.4}
+        .marquee span::after{content:'◆';margin-left:48px;font-size:.5rem;color:var(--accent);opacity:.3;vertical-align:middle}
+        @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-        /* COLLECTION */
-        .collection { padding: 120px 48px; max-width: 1400px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 80px; }
-        .section-tag { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; opacity: 0.8; }
-        .section-title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; color: var(--cream); }
-        .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
-        .product-card { cursor: pointer; }
-        .product-img { aspect-ratio: 3/4; border-radius: 4px; overflow: hidden; position: relative; margin-bottom: 20px; }
-        .product-img-inner { width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.16,1,0.3,1); }
-        .product-card:hover .product-img-inner { transform: scale(1.08); }
-        .product-overlay { position: absolute; inset: 0; background: rgba(12,10,9,0.4); opacity: 0; transition: opacity 0.4s; display: flex; align-items: center; justify-content: center; }
-        .product-card:hover .product-overlay { opacity: 1; }
-        .overlay-btn { padding: 12px 28px; border: 1px solid white; color: white; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; transition: all 0.3s; background: transparent; cursor: pointer; font-family: var(--font-body); }
-        .overlay-btn:hover { background: white; color: var(--bg); }
-        .product-info { display: flex; justify-content: space-between; align-items: baseline; }
-        .product-name { font-family: var(--font-display); font-size: 1rem; color: var(--cream); }
-        .product-price { font-size: 0.85rem; color: var(--gold); font-weight: 500; }
-        .product-cat { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
-        .p1 .product-img-inner { background: linear-gradient(145deg, #2a2018, #1a1510, #2a1f15); }
-        .p2 .product-img-inner { background: linear-gradient(145deg, #1a1a20, #12121a, #1f1a28); }
-        .p3 .product-img-inner { background: linear-gradient(145deg, #1a1810, #151208, #201a10); }
-        .p4 .product-img-inner { background: linear-gradient(145deg, #181a1a, #101215, #1a1c20); }
+        /* SECTIONS */
+        section{position:relative;z-index:1}
+        .section-pad{padding:120px 48px;max-width:1300px;margin:0 auto}
+        .stag{font-size:.65rem;letter-spacing:7px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;opacity:.8}
+        .stitle{font-family:var(--display);font-size:clamp(2rem,5vw,3.5rem);font-weight:300;color:var(--cream);margin-bottom:48px;line-height:1.2}
+        .stitle em{color:var(--accent);font-weight:300}
 
-        /* EDITORIAL BANNER */
-        .editorial { padding: 0 48px; max-width: 1400px; margin: 0 auto 120px; }
-        .editorial-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; border-radius: 4px; overflow: hidden; }
-        .editorial-img { background: linear-gradient(135deg, #1f1a14, #2a2218, #18140e); position: relative; }
-        .editorial-img::after { content: 'SS26'; position: absolute; bottom: 40px; left: 40px; font-family: var(--font-display); font-size: 6rem; color: rgba(201,169,110,0.08); font-weight: 900; }
-        .editorial-text { background: var(--surface); padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; }
-        .editorial-text .section-tag { text-align: left; margin-bottom: 20px; }
-        .editorial-text h2 { font-family: var(--font-display); font-size: 2.4rem; font-weight: 400; color: var(--cream); margin-bottom: 20px; line-height: 1.3; }
-        .editorial-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 36px; font-size: 0.95rem; }
+        /* COLLECTION GRID */
+        .cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+        .ccard{position:relative;cursor:pointer;overflow:hidden;border-radius:4px}
+        .ccard-img{aspect-ratio:3/4;overflow:hidden;position:relative}
+        .ccard-bg{width:100%;height:100%;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+        .ccard:hover .ccard-bg{transform:scale(1.1)}
+        .c1 .ccard-bg{background:linear-gradient(135deg,#1e1a14,#14110d,#2a2018)}
+        .c2 .ccard-bg{background:linear-gradient(135deg,#16141e,#0e0d14,#1e1828)}
+        .c3 .ccard-bg{background:linear-gradient(135deg,#1a1810,#110f08,#221c10)}
+        .c4 .ccard-bg{background:linear-gradient(135deg,#14161a,#0c0e12,#181c22)}
+        .ccard-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,7,10,.9) 0%,transparent 50%);opacity:0;transition:opacity .5s;display:flex;align-items:flex-end;padding:24px}
+        .ccard:hover .ccard-overlay{opacity:1}
+        .ccard-name{font-family:var(--display);font-size:1.2rem;color:var(--cream)}
+        .ccard-price{font-size:.8rem;color:var(--accent);margin-top:4px}
+        .ccard-tag{position:absolute;top:16px;left:16px;font-size:.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);background:rgba(8,7,10,.7);padding:6px 12px;border-radius:2px;backdrop-filter:blur(10px);opacity:0;transform:translateY(-10px);transition:all .4s}
+        .ccard:hover .ccard-tag{opacity:1;transform:translateY(0)}
+
+        /* EDITORIAL SPLIT */
+        .editorial{display:grid;grid-template-columns:1fr 1fr;min-height:600px;overflow:hidden}
+        .edit-img{position:relative;overflow:hidden}
+        .edit-img-inner{width:100%;height:100%;background:linear-gradient(135deg,#1a1610,#0c0a08,#201810);transition:transform 1.2s}
+        .editorial:hover .edit-img-inner{transform:scale(1.05)}
+        .edit-img::after{content:'AW26';position:absolute;bottom:40px;right:40px;font-family:var(--display);font-size:5rem;color:rgba(184,150,78,.06);font-weight:700}
+        .edit-text{background:var(--surface);padding:80px 60px;display:flex;flex-direction:column;justify-content:center}
+        .edit-text p{color:var(--muted);line-height:1.9;margin-bottom:32px;font-size:.95rem}
+
+        /* PARALLAX QUOTE */
+        .pquote{padding:160px 48px;text-align:center;position:relative;overflow:hidden}
+        .pquote-bg{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(184,150,78,.04) 0%,transparent 70%)}
+        .pquote blockquote{font-family:var(--display);font-size:clamp(1.5rem,4vw,3rem);font-weight:300;color:var(--cream);max-width:800px;margin:0 auto;line-height:1.4;font-style:italic;position:relative;z-index:1}
+        .pquote cite{display:block;margin-top:24px;font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent);font-style:normal}
 
         /* NEWSLETTER */
-        .newsletter { padding: 100px 48px; text-align: center; border-top: 1px solid rgba(201,169,110,0.1); }
-        .newsletter h2 { font-family: var(--font-display); font-size: 2rem; color: var(--cream); margin-bottom: 12px; font-weight: 400; }
-        .newsletter p { color: var(--text-muted); margin-bottom: 36px; font-size: 0.95rem; }
-        .newsletter-form { display: flex; gap: 0; max-width: 480px; margin: 0 auto; }
-        .newsletter-form input { flex: 1; padding: 16px 24px; background: var(--surface); border: 1px solid rgba(201,169,110,0.2); color: var(--text); font-family: var(--font-body); font-size: 0.9rem; outline: none; border-right: none; }
-        .newsletter-form input::placeholder { color: var(--text-muted); }
-        .newsletter-form button { padding: 16px 32px; background: var(--gold); color: var(--bg); border: 1px solid var(--gold); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; font-family: var(--font-body); font-weight: 600; transition: all 0.3s; }
-        .newsletter-form button:hover { background: var(--gold-light); }
+        .newsletter{padding:100px 48px;text-align:center;border-top:1px solid rgba(184,150,78,.08)}
+        .newsletter h2{font-family:var(--display);font-size:2rem;color:var(--cream);margin-bottom:12px;font-weight:300}
+        .newsletter p{color:var(--muted);margin-bottom:32px;font-size:.9rem}
+        .nl-form{display:flex;max-width:460px;margin:0 auto}
+        .nl-form input{flex:1;padding:14px 20px;background:var(--surface);border:1px solid rgba(184,150,78,.15);border-right:none;color:var(--text);font-family:var(--body);font-size:.85rem;outline:none}
+        .nl-form input::placeholder{color:var(--muted)}
+        .nl-form button{padding:14px 28px;background:var(--accent);color:var(--bg);border:1px solid var(--accent);font-size:.65rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-family:var(--body);font-weight:500;transition:background .3s}
+        .nl-form button:hover{background:var(--accent-light)}
 
         /* FOOTER */
-        footer { padding: 60px 48px 30px; border-top: 1px solid rgba(201,169,110,0.1); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-        .footer-brand .logo { margin-bottom: 16px; display: block; }
-        .footer-brand p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.7; max-width: 280px; }
-        .footer-col h4 { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
-        .footer-col a { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; transition: color 0.3s; }
-        .footer-col a:hover { color: var(--gold); }
-        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(201,169,110,0.08); }
-        .footer-bottom p { font-size: 0.75rem; color: var(--text-muted); opacity: 0.6; }
-        .m1-credit { text-align: center; margin-top: 16px; }
-        .m1-credit a { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); opacity: 0.5; transition: all 0.3s; }
-        .m1-credit a:hover { color: var(--gold); opacity: 1; }
+        footer{padding:48px;border-top:1px solid rgba(184,150,78,.08)}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;max-width:1300px;margin-left:auto;margin-right:auto}
+        .footer-brand .logo{margin-bottom:12px;display:block}
+        .footer-brand p{color:var(--muted);font-size:.8rem;line-height:1.7;max-width:260px}
+        .fcol h4{font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+        .fcol a{display:block;font-size:.8rem;color:var(--muted);margin-bottom:10px;transition:color .3s}
+        .fcol a:hover{color:var(--accent)}
+        .footer-bottom{text-align:center;padding-top:24px;border-top:1px solid rgba(184,150,78,.06);max-width:1300px;margin:0 auto}
+        .footer-bottom p{font-size:.7rem;color:var(--muted);opacity:.5}
+        .m1-credit{margin-top:12px}
+        .m1-credit a{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);opacity:.4;transition:all .3s}
+        .m1-credit a:hover{color:var(--accent);opacity:1}
 
-        @media (max-width: 1024px) { .products-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 768px) {
-            nav { padding: 16px 24px; } .nav-links { gap: 20px; } .nav-links a { font-size: 0.7rem; letter-spacing: 2px; }
-            .collection, .editorial { padding-left: 24px; padding-right: 24px; }
-            .products-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-            .editorial-inner { grid-template-columns: 1fr; } .editorial-img { min-height: 300px; }
-            .editorial-text { padding: 48px 32px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-            .newsletter { padding: 60px 24px; } .newsletter-form { flex-direction: column; }
-            .newsletter-form input { border-right: 1px solid rgba(201,169,110,0.2); }
+        /* RESPONSIVE */
+        @media(max-width:1024px){.cgrid{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}}
+        @media(max-width:768px){
+            nav{padding:14px 20px}.nav-links{gap:16px}.nav-links a{font-size:.65rem;letter-spacing:2px}
+            .section-pad{padding:80px 20px}.editorial{grid-template-columns:1fr}.edit-img{min-height:300px}
+            .edit-text{padding:48px 28px}.cgrid{grid-template-columns:1fr 1fr;gap:12px}
+            .footer-grid{grid-template-columns:1fr;gap:24px}.nl-form{flex-direction:column}
+            .nl-form input{border-right:1px solid rgba(184,150,78,.15)}
         }
-        @media (max-width: 480px) { .products-grid { grid-template-columns: 1fr; } }
+        @media(max-width:480px){.cgrid{grid-template-columns:1fr}}
     </style>
 </head>
 <body>
+    <div id="loader"><div class="loader-name">AURĒLIA</div></div>
+    <canvas id="particles"></canvas>
+
     <nav>
-        <div class="logo">LUXE NOIR</div>
+        <div class="logo">AURĒLIA</div>
         <div class="nav-links">
             <a href="#collection">Collection</a>
             <a href="#editorial">Editorial</a>
-            <a href="#about">About</a>
-            <div class="nav-bag">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                <span class="bag-count">2</span>
-            </div>
+            <a href="#about">Atelier</a>
         </div>
     </nav>
 
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            <div class="hero-tag">Summer / Spring 2026</div>
-            <h1>The Art of<br><em>Refined</em> Elegance</h1>
-            <p class="hero-sub">Curated luxury fashion for those who understand that true style is an expression of self.</p>
-            <a href="#collection" class="btn-primary">Explore Collection</a>
+            <div class="hero-tag">Autumn / Winter 2026</div>
+            <div class="hero-line"></div>
+            <h1>The Essence<br>of <em>Elegance</em></h1>
+            <p class="hero-sub">Haute couture sculpted from shadows and light — for those who wear art, not fashion.</p>
+            <a href="#collection" class="btn">View Collection</a>
         </div>
-        <div class="hero-scroll">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
-        </div>
+        <div class="scroll-hint"><span>Scroll</span><div class="scroll-dot"></div></div>
     </section>
 
-    <div class="marquee-section">
+    <div class="marquee-wrap">
         <div class="marquee">
-            <span>Handcrafted</span><span>Italian Leather</span><span>Sustainable</span><span>Limited Edition</span><span>Bespoke</span><span>Artisan</span>
-            <span>Handcrafted</span><span>Italian Leather</span><span>Sustainable</span><span>Limited Edition</span><span>Bespoke</span><span>Artisan</span>
+            <span>Haute Couture</span><span>Atelier Made</span><span>Sustainable Silk</span><span>Limited Edition</span><span>Hand-Stitched</span><span>Artisan Craft</span>
+            <span>Haute Couture</span><span>Atelier Made</span><span>Sustainable Silk</span><span>Limited Edition</span><span>Hand-Stitched</span><span>Artisan Craft</span>
         </div>
     </div>
 
-    <section class="collection" id="collection">
-        <div class="section-header">
-            <div class="section-tag">New Arrivals</div>
-            <h2 class="section-title">The SS26 Collection</h2>
-        </div>
-        <div class="products-grid">
-            <div class="product-card p1">
-                <div class="product-img"><div class="product-img-inner"></div><div class="product-overlay"><button class="overlay-btn">Quick View</button></div></div>
-                <div class="product-info"><span class="product-name">Noir Blazer</span><span class="product-price">R4,890</span></div>
-                <div class="product-cat">Outerwear</div>
-            </div>
-            <div class="product-card p2">
-                <div class="product-img"><div class="product-img-inner"></div><div class="product-overlay"><button class="overlay-btn">Quick View</button></div></div>
-                <div class="product-info"><span class="product-name">Silk Evening Gown</span><span class="product-price">R8,450</span></div>
-                <div class="product-cat">Eveningwear</div>
-            </div>
-            <div class="product-card p3">
-                <div class="product-img"><div class="product-img-inner"></div><div class="product-overlay"><button class="overlay-btn">Quick View</button></div></div>
-                <div class="product-info"><span class="product-name">Camel Overcoat</span><span class="product-price">R6,200</span></div>
-                <div class="product-cat">Outerwear</div>
-            </div>
-            <div class="product-card p4">
-                <div class="product-img"><div class="product-img-inner"></div><div class="product-overlay"><button class="overlay-btn">Quick View</button></div></div>
-                <div class="product-info"><span class="product-name">Leather Tote</span><span class="product-price">R3,750</span></div>
-                <div class="product-cat">Accessories</div>
+    <section id="collection">
+        <div class="section-pad">
+            <div class="reveal"><div class="stag">New Season</div></div>
+            <div class="reveal"><h2 class="stitle">The AW26 <em>Collection</em></h2></div>
+            <div class="cgrid">
+                <div class="ccard c1 reveal"><div class="ccard-img"><div class="ccard-bg"></div><div class="ccard-tag">New</div><div class="ccard-overlay"><div><div class="ccard-name">Midnight Velvet Coat</div><div class="ccard-price">R12,800</div></div></div></div></div>
+                <div class="ccard c2 reveal"><div class="ccard-img"><div class="ccard-bg"></div><div class="ccard-tag">Exclusive</div><div class="ccard-overlay"><div><div class="ccard-name">Silk Drape Gown</div><div class="ccard-price">R18,500</div></div></div></div></div>
+                <div class="ccard c3 reveal"><div class="ccard-img"><div class="ccard-bg"></div><div class="ccard-tag">Limited</div><div class="ccard-overlay"><div><div class="ccard-name">Cashmere Blazer</div><div class="ccard-price">R9,400</div></div></div></div></div>
+                <div class="ccard c4 reveal"><div class="ccard-img"><div class="ccard-bg"></div><div class="ccard-tag">Atelier</div><div class="ccard-overlay"><div><div class="ccard-name">Structured Leather Tote</div><div class="ccard-price">R6,200</div></div></div></div></div>
             </div>
         </div>
     </section>
 
-    <section class="editorial" id="editorial">
-        <div class="editorial-inner">
-            <div class="editorial-img"></div>
-            <div class="editorial-text">
-                <div class="section-tag">The Editorial</div>
-                <h2>Where Fashion Meets Architecture</h2>
-                <p>Our SS26 collection draws inspiration from the clean lines and bold forms of brutalist architecture — reinterpreted through the lens of contemporary luxury fashion.</p>
-                <a href="#" class="btn-primary">Read the Story</a>
+    <section class="pquote reveal">
+        <div class="pquote-bg"></div>
+        <blockquote>"Fashion fades, but elegance is eternal — we design for the woman who knows the difference."</blockquote>
+        <cite>— Aurēlia Founding Atelier</cite>
+    </section>
+
+    <section id="editorial">
+        <div class="section-pad" style="padding-bottom:0">
+            <div class="editorial reveal">
+                <div class="edit-img"><div class="edit-img-inner"></div></div>
+                <div class="edit-text">
+                    <div class="stag">The Editorial</div>
+                    <h2 class="stitle">Silhouettes of <em>Power</em></h2>
+                    <p>Our AW26 editorial explores the intersection of feminine strength and sculptural design. Each piece is hand-crafted in our Cape Town atelier using ethically sourced fabrics from across the continent.</p>
+                    <a href="#" class="btn">Discover the Story</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="newsletter">
-        <h2>Join the Inner Circle</h2>
-        <p>Exclusive previews, early access, and curated style guides.</p>
-        <div class="newsletter-form">
-            <input type="email" placeholder="Enter your email address">
+    <section id="about">
+        <div class="section-pad">
+            <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto">
+                <div class="stag" style="text-align:center">The Atelier</div>
+                <h2 class="stitle" style="text-align:center">Crafted in <em>Cape Town</em></h2>
+                <p style="color:var(--muted);line-height:1.9;font-size:.95rem">Every AURĒLIA garment is born in our Woodstock atelier, where a team of 12 artisans bring fabric to life. We believe luxury should be intentional — each stitch considered, each silhouette purposeful, each piece a conversation between heritage and modernity.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter reveal">
+        <h2>The Inner Circle</h2>
+        <p>Exclusive previews, atelier insights, and early access to new collections.</p>
+        <div class="nl-form">
+            <input type="email" placeholder="Your email address">
             <button>Subscribe</button>
         </div>
     </section>
 
     <footer>
         <div class="footer-grid">
-            <div class="footer-brand">
-                <span class="logo">LUXE NOIR</span>
-                <p>Redefining luxury fashion through timeless craftsmanship and modern design sensibility.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Shop</h4>
-                <a href="#">New Arrivals</a><a href="#">Womenswear</a><a href="#">Menswear</a><a href="#">Accessories</a>
-            </div>
-            <div class="footer-col">
-                <h4>About</h4>
-                <a href="#">Our Story</a><a href="#">Sustainability</a><a href="#">Careers</a><a href="#">Press</a>
-            </div>
-            <div class="footer-col">
-                <h4>Help</h4>
-                <a href="#">Contact Us</a><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Size Guide</a>
-            </div>
+            <div class="footer-brand"><span class="logo">AURĒLIA</span><p>Redefining South African haute couture through intentional design and artisan craftsmanship.</p></div>
+            <div class="fcol"><h4>Shop</h4><a href="#">New Arrivals</a><a href="#">Womenswear</a><a href="#">Menswear</a><a href="#">Accessories</a></div>
+            <div class="fcol"><h4>House</h4><a href="#">Our Story</a><a href="#">Sustainability</a><a href="#">Atelier</a><a href="#">Press</a></div>
+            <div class="fcol"><h4>Help</h4><a href="#">Contact</a><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Size Guide</a></div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 LUXE NOIR. All rights reserved.</p>
-        </div>
-        <div class="m1-credit">
-            <a href="/">Designed by M1CREATIVE.</a>
+            <p>&copy; 2026 AURĒLIA. All rights reserved.</p>
+            <div class="m1-credit"><a href="/">Designed by M1CREATIVE.</a></div>
         </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+    // Loader
+    window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').classList.add('done')},1200)});
+
+    // Particles
+    (function(){
+        const c=document.getElementById('particles'),ctx=c.getContext('2d');
+        let w,h,pts=[];
+        function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
+        resize();window.addEventListener('resize',resize);
+        for(let i=0;i<60;i++)pts.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.5+.5,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,a:Math.random()*.3+.1});
+        function draw(){
+            ctx.clearRect(0,0,w,h);
+            pts.forEach(p=>{
+                p.x+=p.vx;p.y+=p.vy;
+                if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;
+                ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+                ctx.fillStyle=`rgba(184,150,78,${p.a})`;ctx.fill();
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+    })();
+
+    // Nav hide on scroll
+    let lastScroll=0;
+    window.addEventListener('scroll',()=>{
+        const st=window.scrollY;
+        document.querySelector('nav').classList.toggle('hidden',st>lastScroll&&st>100);
+        lastScroll=st;
+    });
+
+    // Reveal on scroll
+    const observer=new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');observer.unobserve(e.target)}})
+    },{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // GSAP parallax
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to('.pquote blockquote',{scrollTrigger:{trigger:'.pquote',start:'top bottom',end:'bottom top',scrub:1},y:-40});
+    gsap.to('.hero-content',{scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1},y:100,opacity:0});
+    document.querySelectorAll('.ccard').forEach((card,i)=>{
+        gsap.from(card,{scrollTrigger:{trigger:card,start:'top 85%',toggleActions:'play none none none'},y:60,opacity:0,duration:1,delay:i*.15,ease:'power3.out'});
+    });
+    gsap.from('.editorial .edit-img-inner',{scrollTrigger:{trigger:'.editorial',start:'top 70%'},scale:1.2,duration:1.5,ease:'power3.out'});
+    gsap.from('.editorial .edit-text',{scrollTrigger:{trigger:'.editorial',start:'top 70%'},x:60,opacity:0,duration:1.2,ease:'power3.out'});
+    </script>
 </body>
 </html>
