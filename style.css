@@ -95,8 +95,8 @@ body {
 }
 
 @keyframes introZoomOut {
-    0% { opacity: 1; transform: scale(1); filter: blur(0); }
-    100% { opacity: 0; transform: scale(3); filter: blur(8px); }
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(2.5); }
 }
 
 .intro-logo {

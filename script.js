@@ -13,47 +13,62 @@ const clock = new THREE.Clock();
 function initIntro() {
     const canvas = document.getElementById('intro-canvas');
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: false });
 
-    let w = canvas.width = window.innerWidth;
-    let h = canvas.height = window.innerHeight;
-    const cx = w / 2, cy = h / 2;
+    // Cap canvas resolution for performance
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    let w, h, cx, cy;
+    function sizeCanvas() {
+        w = canvas.width = window.innerWidth * dpr;
+        h = canvas.height = window.innerHeight * dpr;
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        cx = w / 2;
+        cy = h / 2;
+    }
+    sizeCanvas();
 
-    // Star warp particles
-    const STAR_COUNT = 800;
+    // Pre-compute star colors as rgba base strings (avoids per-frame string ops)
+    const STAR_COUNT = 400;
     const stars = [];
     for (let i = 0; i < STAR_COUNT; i++) {
+        let r, g, b;
+        const roll = Math.random();
+        if (roll > 0.85) {
+            // Accent green-ish
+            r = 180 + Math.random() * 40 | 0;
+            g = 255;
+            b = 50 + Math.random() * 30 | 0;
+        } else if (roll > 0.7) {
+            // Blue-white
+            r = 160 + Math.random() * 40 | 0;
+            g = 200 + Math.random() * 30 | 0;
+            b = 255;
+        } else {
+            // White
+            const v = 200 + Math.random() * 55 | 0;
+            r = v; g = v; b = v;
+        }
         stars.push({
             x: (Math.random() - 0.5) * w * 3,
             y: (Math.random() - 0.5) * h * 3,
             z: Math.random() * 2000,
             size: Math.random() * 1.5 + 0.5,
-            color: Math.random() > 0.85 ? `hsl(${75 + Math.random() * 20}, 100%, 70%)` :
-                   Math.random() > 0.7 ? `hsl(210, 60%, ${70 + Math.random() * 30}%)` :
-                   `hsl(0, 0%, ${70 + Math.random() * 30}%)`
+            r, g, b
         });
     }
 
     let speed = 2;
     let targetSpeed = 2;
-    let warpPhase = 0; // 0=drift, 1=accelerate, 2=warp, 3=decelerate
     let introFrame;
     let startTime = performance.now();
 
     function drawStars() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+        // Trail fade
+        ctx.fillStyle = 'rgba(0,0,0,0.18)';
         ctx.fillRect(0, 0, w, h);
 
-        // Radial glow at center during warp
-        if (speed > 15) {
-            const glowIntensity = Math.min((speed - 15) / 40, 0.12);
-            const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w, h) * 0.4);
-            grd.addColorStop(0, `rgba(200, 255, 0, ${glowIntensity})`);
-            grd.addColorStop(0.5, `rgba(160, 212, 255, ${glowIntensity * 0.3})`);
-            grd.addColorStop(1, 'rgba(0, 0, 0, 0)');
-            ctx.fillStyle = grd;
-            ctx.fillRect(0, 0, w, h);
-        }
+        const isWarping = speed > 10;
 
         for (let i = 0; i < STAR_COUNT; i++) {
             const s = stars[i];
@@ -69,53 +84,44 @@ function initIntro() {
             const sx = s.x * factor + cx;
             const sy = s.y * factor + cy;
 
-            if (sx < -50 || sx > w + 50 || sy < -50 || sy > h + 50) continue;
+            if (sx < -20 || sx > w + 20 || sy < -20 || sy > h + 20) continue;
 
             const size = s.size * factor * 0.5;
             const alpha = Math.min(1, (2000 - s.z) / 600);
 
-            // Streak effect during warp
-            if (speed > 10) {
-                const streakLength = Math.min(speed * factor * 0.15, 60);
+            // Streak during warp — single line, no beginPath per star
+            if (isWarping) {
                 const prevFactor = 600 / (s.z + speed);
                 const px = s.x * prevFactor + cx;
                 const py = s.y * prevFactor + cy;
-
                 ctx.beginPath();
                 ctx.moveTo(px, py);
                 ctx.lineTo(sx, sy);
-                ctx.strokeStyle = s.color.replace(')', `, ${alpha * 0.7})`).replace('hsl', 'hsla');
-                ctx.lineWidth = size * 0.8;
+                ctx.strokeStyle = `rgba(${s.r},${s.g},${s.b},${(alpha * 0.6).toFixed(2)})`;
+                ctx.lineWidth = size * 0.7;
                 ctx.stroke();
             }
 
-            // Star dot
-            ctx.beginPath();
-            ctx.arc(sx, sy, Math.max(size, 0.5), 0, Math.PI * 2);
-            ctx.fillStyle = s.color.replace(')', `, ${alpha})`).replace('hsl', 'hsla');
-            ctx.fill();
+            // Star dot — use fillRect instead of arc for speed
+            const dotSize = Math.max(size, 0.8);
+            ctx.fillStyle = `rgba(${s.r},${s.g},${s.b},${alpha.toFixed(2)})`;
+            ctx.fillRect(sx - dotSize * 0.5, sy - dotSize * 0.5, dotSize, dotSize);
         }
 
-        // Smooth speed transitions
-        speed += (targetSpeed - speed) * 0.04;
+        speed += (targetSpeed - speed) * 0.05;
     }
 
     function introLoop() {
         const elapsed = performance.now() - startTime;
 
-        // Phase control
-        if (elapsed < 500) {
-            // Phase 0: Gentle drift
+        if (elapsed < 400) {
             targetSpeed = 3;
-        } else if (elapsed < 1200) {
-            // Phase 1: Accelerate
-            targetSpeed = 50;
-        } else if (elapsed < 2200) {
-            // Phase 2: Full warp
-            targetSpeed = 60;
-        } else if (elapsed < 2800) {
-            // Phase 3: Decelerate
-            targetSpeed = 5;
+        } else if (elapsed < 1000) {
+            targetSpeed = 45;
+        } else if (elapsed < 2000) {
+            targetSpeed = 55;
+        } else if (elapsed < 2600) {
+            targetSpeed = 4;
         } else {
             targetSpeed = 2;
         }
@@ -124,10 +130,9 @@ function initIntro() {
         introFrame = requestAnimationFrame(introLoop);
     }
 
-    // Start the animation
     introLoop();
 
-    // Choreograph the UI reveals
+    // Choreograph UI reveals
     const introContent = document.querySelector('.intro-content');
     const introM = document.querySelector('.intro-m');
     const introOne = document.querySelector('.intro-one');
@@ -138,48 +143,43 @@ function initIntro() {
     const introFlash = document.querySelector('.intro-flash');
     const loader = document.getElementById('loader');
 
-    // t=800ms: Show content container
-    setTimeout(() => {
-        introContent.classList.add('show');
-    }, 800);
+    setTimeout(() => introContent.classList.add('show'), 700);
 
-    // t=1000ms: Reveal letters
     setTimeout(() => {
         introM.classList.add('show');
         introOne.classList.add('show');
         introCreative.classList.add('show');
-    }, 1000);
+    }, 900);
 
-    // t=1600ms: Glow + tagline + line
     setTimeout(() => {
         introLogo.classList.add('glow');
         introTagline.classList.add('show');
         introLine.classList.add('show');
-    }, 1600);
+    }, 1500);
 
-    // t=3500ms: Flash + zoom out
+    // Flash + zoom out
     setTimeout(() => {
         introFlash.classList.add('fire');
         introContent.classList.remove('show');
         introContent.classList.add('zoom-out');
-    }, 3500);
+    }, 3200);
 
-    // t=4200ms: Exit loader
+    // Stop canvas & start Three.js
     setTimeout(() => {
         cancelAnimationFrame(introFrame);
+        ctx.clearRect(0, 0, w, h);
         loader.classList.add('exit');
-    }, 4200);
+        // Now init the heavy 3D scene
+        initThreeJS();
+        animate();
+    }, 3900);
 
-    // t=5200ms: Remove loader from DOM
     setTimeout(() => {
         loader.style.display = 'none';
-    }, 5200);
+        canvas.remove();
+    }, 4900);
 
-    // Handle resize
-    window.addEventListener('resize', () => {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-    });
+    window.addEventListener('resize', sizeCanvas);
 }
 
 // ======= THREE.JS SCENE SETUP =======
@@ -927,9 +927,8 @@ function initTiltEffects() {
 
 // ======= INIT =======
 document.addEventListener('DOMContentLoaded', () => {
+    // Start intro first — Three.js is deferred until intro finishes
     initIntro();
-    initThreeJS();
-    animate();
     initNavigation();
     initForm();
     initCheckout();
