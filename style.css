@@ -76,6 +76,11 @@ body {
     color: var(--accent);
 }
 
+.logo-one {
+    font-family: var(--font-body);
+    font-weight: 900;
+}
+
 .loader-bar-container {
     width: 200px;
     height: 3px;
