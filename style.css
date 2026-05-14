@@ -78,6 +78,7 @@ body {
 
 .logo-one {
     font-family: var(--font-display);
+    color: var(--text-white) !important;
 }
 
 .loader-bar-container {
