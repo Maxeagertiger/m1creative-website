@@ -77,8 +77,7 @@ body {
 }
 
 .logo-one {
-    font-family: var(--font-body);
-    font-weight: 900;
+    font-family: var(--font-display);
 }
 
 .loader-bar-container {
