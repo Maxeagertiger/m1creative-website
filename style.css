@@ -15,7 +15,7 @@
     --text-white: #ffffff;
     --text-light: #c0c0c0;
     --text-dark: #1a1a1a;
-    --accent: #c8ff00;
+    --accent: #a6ff00;
     --accent-secondary: #a0d4ff;
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
@@ -105,6 +105,8 @@ body {
     letter-spacing: 4px;
     position: relative;
     display: inline-block;
+    font-style: italic;
+    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.1);
 }
 
 .intro-m, .intro-one {
@@ -156,8 +158,8 @@ body {
 
 .intro-logo.glow {
     text-shadow:
-        0 0 20px rgba(200, 255, 0, 0.15),
-        0 0 60px rgba(200, 255, 0, 0.05);
+        0 0 20px rgba(166, 255, 0, 0.15),
+        0 0 60px rgba(166, 255, 0, 0.05);
 }
 
 .intro-tagline {
@@ -182,7 +184,7 @@ body {
 .intro-line {
     width: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(200, 255, 0, 0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgba(166, 255, 0, 0.4), transparent);
     margin: 20px auto 0;
     transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -197,7 +199,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, rgba(200, 255, 0, 0.3), transparent 70%);
+    background: radial-gradient(circle at center, rgba(166, 255, 0, 0.3), transparent 70%);
     opacity: 0;
     z-index: 3;
     pointer-events: none;
@@ -257,6 +259,7 @@ body {
     color: var(--text-white);
     letter-spacing: 1px;
     cursor: pointer;
+    font-style: italic;
 }
 
 .nav-logo span {
@@ -319,7 +322,7 @@ body {
 
 .nav-cta:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(200, 255, 0, 0.3);
+    box-shadow: 0 0 30px rgba(166, 255, 0, 0.3);
     color: var(--bg-dark) !important;
 }
 
@@ -707,7 +710,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(200, 255, 0, 0.05), transparent);
+    background: linear-gradient(135deg, rgba(166, 255, 0, 0.05), transparent);
     opacity: 0;
     transition: opacity 0.5s ease;
 }
@@ -717,9 +720,9 @@ body {
 }
 
 .service-card:hover {
-    border-color: rgba(200, 255, 0, 0.3);
+    border-color: rgba(166, 255, 0, 0.3);
     transform: translateY(-5px);
-    box-shadow: 0 20px 60px rgba(200, 255, 0, 0.08);
+    box-shadow: 0 20px 60px rgba(166, 255, 0, 0.08);
 }
 
 .service-number {
@@ -1189,8 +1192,8 @@ body {
 
 /* Featured Card (Silver) */
 .pricing-card.featured {
-    border-color: rgba(200, 255, 0, 0.25);
-    background: rgba(200, 255, 0, 0.03);
+    border-color: rgba(166, 255, 0, 0.25);
+    background: rgba(166, 255, 0, 0.03);
     transform: scale(1.04);
 }
 
@@ -1200,7 +1203,7 @@ body {
 
 .pricing-card.featured:hover {
     transform: scale(1.06) translateY(-5px);
-    box-shadow: 0 30px 80px rgba(200, 255, 0, 0.1);
+    box-shadow: 0 30px 80px rgba(166, 255, 0, 0.1);
 }
 
 .pricing-badge {
@@ -1218,8 +1221,8 @@ body {
 }
 
 @keyframes badgePulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(200, 255, 0, 0.4); }
-    50% { box-shadow: 0 0 0 8px rgba(200, 255, 0, 0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(166, 255, 0, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(166, 255, 0, 0); }
 }
 
 .pricing-tier-icon {
@@ -1374,7 +1377,7 @@ body {
 .pricing-cta:hover {
     border-color: var(--accent);
     color: var(--accent);
-    box-shadow: 0 0 30px rgba(200, 255, 0, 0.1);
+    box-shadow: 0 0 30px rgba(166, 255, 0, 0.1);
     transform: scale(1.02);
 }
 
@@ -1388,7 +1391,7 @@ body {
 .pricing-cta.featured-cta:hover {
     background: #d4ff33;
     color: var(--bg-dark);
-    box-shadow: 0 0 40px rgba(200, 255, 0, 0.3);
+    box-shadow: 0 0 40px rgba(166, 255, 0, 0.3);
     transform: scale(1.04);
 }
 
@@ -1582,8 +1585,8 @@ body {
 .checkout-form-group input:focus,
 .checkout-form-group textarea:focus {
     border-color: var(--accent);
-    background: rgba(200, 255, 0, 0.03);
-    box-shadow: 0 0 0 3px rgba(200, 255, 0, 0.06);
+    background: rgba(166, 255, 0, 0.03);
+    box-shadow: 0 0 0 3px rgba(166, 255, 0, 0.06);
 }
 
 .checkout-form-group label {
@@ -1652,7 +1655,7 @@ body {
 .checkout-submit:hover {
     background: #d4ff33;
     transform: scale(1.02);
-    box-shadow: 0 8px 30px rgba(200, 255, 0, 0.3);
+    box-shadow: 0 8px 30px rgba(166, 255, 0, 0.3);
 }
 
 .checkout-submit .btn-icon svg {
@@ -1734,6 +1737,7 @@ body {
     font-size: 2rem;
     color: var(--text-white);
     margin-bottom: 10px;
+    font-style: italic;
 }
 
 .footer-logo span {
@@ -1902,7 +1906,7 @@ body {
         width: 300px;
         height: 300px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(200, 255, 0, 0.06), transparent 70%);
+        background: radial-gradient(circle, rgba(166, 255, 0, 0.06), transparent 70%);
         pointer-events: none;
         z-index: 9999;
         transform: translate(-50%, -50%);
@@ -2172,8 +2176,8 @@ body {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: rgba(200, 255, 0, 0.1);
-    border: 1px solid rgba(200, 255, 0, 0.2);
+    background: rgba(166, 255, 0, 0.1);
+    border: 1px solid rgba(166, 255, 0, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2213,7 +2217,7 @@ body {
 .success-btn:hover {
     background: #d4ff33;
     transform: scale(1.05);
-    box-shadow: 0 8px 30px rgba(200, 255, 0, 0.3);
+    box-shadow: 0 8px 30px rgba(166, 255, 0, 0.3);
 }
 
 .result-actions {
@@ -2232,7 +2236,7 @@ body {
 .retry-btn:hover {
     background: #d4ff33;
     transform: scale(1.05);
-    box-shadow: 0 8px 30px rgba(200, 255, 0, 0.3);
+    box-shadow: 0 8px 30px rgba(166, 255, 0, 0.3);
 }
 
 .contact-btn {

@@ -205,7 +205,7 @@ function initThreeJS() {
     const ambientLight = new THREE.AmbientLight(0x404060, 0.5);
     scene.add(ambientLight);
 
-    const pointLight1 = new THREE.PointLight(0xc8ff00, 2, 2000);
+    const pointLight1 = new THREE.PointLight(0xa6ff00, 2, 2000);
     pointLight1.position.set(200, 200, 400);
     scene.add(pointLight1);
 
@@ -272,7 +272,7 @@ function createStarField() {
 function createNebula() {
     nebula = new THREE.Group();
 
-    const nebulaColors = [0xc8ff00, 0xa0d4ff, 0x8b5cf6, 0xff6b6b];
+    const nebulaColors = [0xa6ff00, 0xa0d4ff, 0x8b5cf6, 0xff6b6b];
 
     for (let i = 0; i < 12; i++) {
         const geometry = new THREE.PlaneGeometry(600 + Math.random() * 400, 600 + Math.random() * 400);
@@ -377,7 +377,7 @@ function createPlanet() {
     // Atmosphere glow
     const atmosGeo = new THREE.SphereGeometry(125, 64, 64);
     const atmosMat = new THREE.MeshBasicMaterial({
-        color: 0xc8ff00,
+        color: 0xa6ff00,
         transparent: true,
         opacity: 0.05,
         side: THREE.BackSide
@@ -401,7 +401,7 @@ function createFloatingGeometries() {
     ];
 
     const materials = [
-        new THREE.MeshStandardMaterial({ color: 0xc8ff00, wireframe: true, transparent: true, opacity: 0.4 }),
+        new THREE.MeshStandardMaterial({ color: 0xa6ff00, wireframe: true, transparent: true, opacity: 0.4 }),
         new THREE.MeshStandardMaterial({ color: 0xa0d4ff, wireframe: true, transparent: true, opacity: 0.3 }),
         new THREE.MeshStandardMaterial({ color: 0x8b5cf6, wireframe: true, transparent: true, opacity: 0.35 }),
     ];
