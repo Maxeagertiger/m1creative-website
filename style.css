@@ -19,7 +19,7 @@
     --accent-secondary: #a0d4ff;
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
-    --font-display: 'Permanent Marker', cursive;
+    --font-display: 'Knewave', system-ui;
     --font-body: 'Inter', -apple-system, sans-serif;
     --section-pad: clamp(60px, 10vh, 120px);
 }
@@ -114,11 +114,6 @@ body {
     display: inline-block;
     opacity: 0;
     transform: translateY(40px);
-}
-
-.intro-one {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    font-weight: 800;
 }
 
 .intro-m.show {
@@ -272,8 +267,6 @@ body {
 }
 
 .logo-one {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    font-weight: 800;
     color: var(--text-white) !important;
 }
 
