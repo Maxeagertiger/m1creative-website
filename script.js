@@ -730,9 +730,18 @@ function initCheckout() {
     document.querySelectorAll('.pricing-cta').forEach(btn => {
         btn.addEventListener('click', () => {
             const pkg = btn.dataset.package;
+
+            const fullPackageName = `${pkg} ${packageNames[pkg]}`;
+            const message = `Hi M1 Creative, I’m interested in your ${fullPackageName} for my business. Please send me the next steps to get started in 2-5 days!`;
+            window.open(`https://wa.me/27828722365?text=${encodeURIComponent(message)}`, '_blank');
+            return;
+
             const setup = btn.dataset.setup;
             const monthly = btn.dataset.monthly;
             const tier = pkg.toLowerCase();
+
+            const setupNumber = Number(setup);
+            const dueToday = setupNumber / 2;
 
             // Update modal content
             const badge = document.getElementById('checkoutBadge');
@@ -740,9 +749,9 @@ function initCheckout() {
             badge.setAttribute('data-tier', tier);
 
             document.getElementById('checkoutPackageName').textContent = packageNames[pkg] || pkg;
-            document.getElementById('checkoutSetup').textContent = `R${Number(setup).toLocaleString()}`;
+            document.getElementById('checkoutSetup').textContent = `R${setupNumber.toLocaleString()} (50% upfront: R${dueToday.toLocaleString()})`;
             document.getElementById('checkoutMonthly').textContent = `R${Number(monthly).toLocaleString()}/mo`;
-            document.getElementById('checkoutTotal').textContent = `R${Number(setup).toLocaleString()}`;
+            document.getElementById('checkoutTotal').textContent = `R${dueToday.toLocaleString()}`;
 
             // Set hidden fields
             document.getElementById('checkout-package').value = pkg;
