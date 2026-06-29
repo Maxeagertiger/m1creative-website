@@ -732,7 +732,7 @@ function initCheckout() {
             const pkg = btn.dataset.package;
 
             const fullPackageName = `${pkg} ${packageNames[pkg]}`;
-            const message = `Hi M1 Creative, I’m interested in your ${fullPackageName} for my business. Please send me the next steps to get started in 2-5 days!`;
+            const message = `Hi M1Creative, I’m interested in your ${fullPackageName} for my business. Please send me the next steps to get started in 2-5 days!`;
             window.open(`https://wa.me/27828722365?text=${encodeURIComponent(message)}`, '_blank');
             return;
 
