@@ -808,6 +808,11 @@ body {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
+.work-image:hover img {
+    transform: scale(1.08);
+    opacity: 1;
+}
+
 .work-preview-badge {
     position: absolute;
     top: 50%;
