@@ -77,10 +77,10 @@
         .ccard-img{aspect-ratio:3/4;overflow:hidden;position:relative}
         .ccard-bg{width:100%;height:100%;transition:transform .8s cubic-bezier(.16,1,.3,1)}
         .ccard:hover .ccard-bg{transform:scale(1.1)}
-        .c1 .ccard-bg{background:linear-gradient(135deg,#1e1a14,#14110d,#2a2018)}
-        .c2 .ccard-bg{background:linear-gradient(135deg,#16141e,#0e0d14,#1e1828)}
-        .c3 .ccard-bg{background:linear-gradient(135deg,#1a1810,#110f08,#221c10)}
-        .c4 .ccard-bg{background:linear-gradient(135deg,#14161a,#0c0e12,#181c22)}
+        .c1 .ccard-bg{background:url('https://loremflickr.com/600/800/luxury,fashion,model/all?lock=1') center/cover no-repeat}
+        .c2 .ccard-bg{background:url('https://loremflickr.com/600/800/luxury,fashion,model/all?lock=2') center/cover no-repeat}
+        .c3 .ccard-bg{background:url('https://loremflickr.com/600/800/luxury,fashion,model/all?lock=3') center/cover no-repeat}
+        .c4 .ccard-bg{background:url('https://loremflickr.com/600/800/luxury,fashion,model/all?lock=4') center/cover no-repeat}
         .ccard-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,7,10,.9) 0%,transparent 50%);opacity:0;transition:opacity .5s;display:flex;align-items:flex-end;padding:24px}
         .ccard:hover .ccard-overlay{opacity:1}
         .ccard-name{font-family:var(--display);font-size:1.2rem;color:var(--cream)}
@@ -91,7 +91,7 @@
         /* EDITORIAL SPLIT */
         .editorial{display:grid;grid-template-columns:1fr 1fr;min-height:600px;overflow:hidden}
         .edit-img{position:relative;overflow:hidden}
-        .edit-img-inner{width:100%;height:100%;background:linear-gradient(135deg,#1a1610,#0c0a08,#201810);transition:transform 1.2s}
+        .edit-img-inner{width:100%;height:100%;background:url('https://loremflickr.com/800/1200/couture,editorial/all?lock=5') center/cover no-repeat;transition:transform 1.2s}
         .editorial:hover .edit-img-inner{transform:scale(1.05)}
         .edit-img::after{content:'AW26';position:absolute;bottom:40px;right:40px;font-family:var(--display);font-size:5rem;color:rgba(184,150,78,.06);font-weight:700}
         .edit-text{background:var(--surface);padding:80px 60px;display:flex;flex-direction:column;justify-content:center}

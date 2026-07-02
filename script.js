@@ -934,6 +934,24 @@ function initTiltEffects() {
     });
 }
 
+// ======= FAQ ACCORDION =======
+function initFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            // Close others
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            // Toggle current
+            item.classList.toggle('active');
+        });
+    });
+}
+
 // ======= INIT =======
 document.addEventListener('DOMContentLoaded', () => {
     // Start intro first — Three.js is deferred until intro finishes
@@ -943,6 +961,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCheckout();
     initCursorGlow();
     initTiltEffects();
+    initFAQ();
 
     // Delay GSAP init to ensure DOM is ready
     setTimeout(() => {
