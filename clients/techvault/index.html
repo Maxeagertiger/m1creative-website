@@ -32,7 +32,7 @@
 
         /* HERO */
         .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 120px 48px 80px; }
-        .hero-bg { position: absolute; inset: 0; }
+        .hero-bg { position: absolute; inset: 0; background: linear-gradient(rgba(10,15,28,0.6), rgba(10,15,28,0.9)), url('images/hero-bg.png') center/cover no-repeat; }
         .hero-bg::before { content: ''; position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%); filter: blur(80px); }
         .hero-bg::after { content: ''; position: absolute; bottom: -10%; left: 10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(34,211,238,0.1) 0%, transparent 70%); filter: blur(80px); }
         .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1300px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }

@@ -41,7 +41,7 @@
 
         /* HERO */
         .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-        .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 40% 60%,rgba(212,118,58,.06) 0%,transparent 50%),radial-gradient(ellipse at 70% 30%,rgba(139,109,74,.04) 0%,transparent 50%),var(--bg)}
+        .hero-bg{position:absolute;inset:0;background:linear-gradient(rgba(18,18,18,0.5),rgba(18,18,18,0.9)),url('images/hero-bg.png') center/cover no-repeat;}
         .hero-glow{position:absolute;bottom:-200px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(212,118,58,.08) 0%,transparent 70%);animation:glowPulse 4s ease infinite}
         @keyframes glowPulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
         .hc{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:800px}
