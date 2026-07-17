@@ -113,31 +113,33 @@ body {
     color: var(--text-white);
     display: inline-block;
     opacity: 0;
-    transform: translateY(40px);
+    transform: scale(0.85) translateY(20px);
+    filter: blur(15px);
 }
 
 .intro-m.show {
-    animation: letterReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: letterReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .intro-one.show {
-    animation: letterReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    animation: letterReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
 }
 
 .intro-creative {
     color: var(--accent);
     display: inline-block;
     opacity: 0;
-    transform: translateY(40px);
+    transform: scale(0.85) translateY(20px);
+    filter: blur(15px);
 }
 
 .intro-creative.show {
-    animation: letterReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+    animation: letterReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
 }
 
 @keyframes letterReveal {
-    0% { opacity: 0; transform: translateY(40px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% { opacity: 0; transform: scale(0.7) translateY(20px); filter: blur(15px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
 }
 
 .intro-logo::after {
@@ -199,20 +201,20 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, rgba(166, 255, 0, 0.3), transparent 70%);
+    background: radial-gradient(circle at center, #ffffff 10%, var(--accent) 50%, transparent 80%);
     opacity: 0;
     z-index: 3;
     pointer-events: none;
 }
 
 .intro-flash.fire {
-    animation: flashBurst 0.8s ease-out forwards;
+    animation: flashBurst 1s cubic-bezier(0.1, 0.8, 0.1, 1) forwards;
 }
 
 @keyframes flashBurst {
-    0% { opacity: 0; transform: scale(0.5); }
-    30% { opacity: 1; }
-    100% { opacity: 0; transform: scale(3); }
+    0% { opacity: 0; transform: scale(0.3); }
+    15% { opacity: 1; }
+    100% { opacity: 0; transform: scale(4.5); filter: blur(10px); }
 }
 
 /* ===========================
@@ -1165,7 +1167,7 @@ body {
     font-size: 0.9rem;
     font-weight: 500;
     color: var(--text-dark);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     user-select: none;
 }
 
@@ -1177,6 +1179,14 @@ body {
     background: var(--text-dark);
     color: var(--text-white);
     border-color: var(--text-dark);
+    transform: scale(1.04);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.form-service-option input:checked+.service-pill::before {
+    content: '✓ ';
+    color: var(--accent);
+    font-weight: 700;
 }
 
 .form-grid {
@@ -1219,7 +1229,7 @@ body {
     font-size: 1rem;
     color: #999;
     pointer-events: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .form-group input:focus~label,
@@ -1229,22 +1239,59 @@ body {
     top: -10px;
     font-size: 0.75rem;
     color: var(--text-dark);
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .form-line {
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
     width: 0;
     height: 2px;
     background: var(--text-dark);
-    transition: width 0.4s ease;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .form-group input:focus~.form-line,
 .form-group textarea:focus~.form-line {
     width: 100%;
+    left: 0;
+}
+
+/* Form Validation States */
+.form-group.is-valid .form-line {
+    background: #2e7d32;
+    width: 100% !important;
+    left: 0 !important;
+}
+
+.form-group.is-invalid .form-line {
+    background: #c62828;
+    width: 100% !important;
+    left: 0 !important;
+}
+
+.form-group.is-valid::after {
+    content: '✓';
+    position: absolute;
+    right: 5px;
+    top: 12px;
+    color: #2e7d32;
+    font-weight: bold;
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+
+.form-group.is-invalid::after {
+    content: '!';
+    position: absolute;
+    right: 5px;
+    top: 12px;
+    color: #c62828;
+    font-weight: bold;
+    font-size: 1.1rem;
+    pointer-events: none;
 }
 
 .submit-btn {
@@ -1266,8 +1313,9 @@ body {
 }
 
 .submit-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 20px rgba(166, 255, 0, 0.3);
+    background: #000;
 }
 
 .submit-btn::before {

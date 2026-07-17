@@ -60,6 +60,7 @@ function initIntro() {
 
     let speed = 2;
     let targetSpeed = 2;
+    let rotationAngle = 0;
     let introFrame;
     let startTime = performance.now();
 
@@ -69,6 +70,9 @@ function initIntro() {
         ctx.fillRect(0, 0, w, h);
 
         const isWarping = speed > 10;
+        
+        // Increase rotation based on speed to create a swirling spin effect
+        rotationAngle += speed * 0.0003;
 
         for (let i = 0; i < STAR_COUNT; i++) {
             const s = stars[i];
@@ -81,8 +85,16 @@ function initIntro() {
             }
 
             const factor = 600 / s.z;
-            const sx = s.x * factor + cx;
-            const sy = s.y * factor + cy;
+            
+            // Calculate spiral coordinate rotation
+            const rx = s.x * factor;
+            const ry = s.y * factor;
+            const starAngle = rotationAngle + (2000 - s.z) * 0.0008;
+            const cos = Math.cos(starAngle);
+            const sin = Math.sin(starAngle);
+            
+            const sx = (rx * cos - ry * sin) + cx;
+            const sy = (rx * sin + ry * cos) + cy;
 
             if (sx < -20 || sx > w + 20 || sy < -20 || sy > h + 20) continue;
 
@@ -92,8 +104,15 @@ function initIntro() {
             // Streak during warp — single line, no beginPath per star
             if (isWarping) {
                 const prevFactor = 600 / (s.z + speed);
-                const px = s.x * prevFactor + cx;
-                const py = s.y * prevFactor + cy;
+                const prevRx = s.x * prevFactor;
+                const prevRy = s.y * prevFactor;
+                const prevStarAngle = (rotationAngle - speed * 0.0003) + (2000 - (s.z + speed)) * 0.0008;
+                const prevCos = Math.cos(prevStarAngle);
+                const prevSin = Math.sin(prevStarAngle);
+                
+                const px = (prevRx * prevCos - prevRy * prevSin) + cx;
+                const py = (prevRx * prevSin + prevRy * prevCos) + cy;
+                
                 ctx.beginPath();
                 ctx.moveTo(px, py);
                 ctx.lineTo(sx, sy);
@@ -641,9 +660,66 @@ function initNavigation() {
 function initForm() {
     const form = document.getElementById('contact-form');
     const successEl = document.getElementById('formSuccess');
+    if (!form) return;
+
+    const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea');
+
+    function validateInput(input) {
+        const group = input.closest('.form-group');
+        if (!group) return;
+
+        const val = input.value.trim();
+        const isRequired = input.hasAttribute('required');
+
+        if (val === '') {
+            if (isRequired) {
+                group.classList.remove('is-valid');
+                group.classList.add('is-invalid');
+            } else {
+                group.classList.remove('is-valid', 'is-invalid');
+            }
+            return;
+        }
+
+        let isValid = true;
+        if (input.type === 'email') {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            isValid = emailRegex.test(val);
+        } else if (input.type === 'tel') {
+            const telRegex = /^\+?[0-9\s\-]{7,15}$/;
+            isValid = telRegex.test(val);
+        }
+
+        if (isValid) {
+            group.classList.add('is-valid');
+            group.classList.remove('is-invalid');
+        } else {
+            group.classList.remove('is-valid');
+            group.classList.add('is-invalid');
+        }
+    }
+
+    inputs.forEach(input => {
+        input.addEventListener('blur', () => validateInput(input));
+        input.addEventListener('input', () => {
+            if (input.closest('.form-group').classList.contains('is-invalid') || input.closest('.form-group').classList.contains('is-valid')) {
+                validateInput(input);
+            }
+        });
+    });
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+
+        let allValid = true;
+        inputs.forEach(input => {
+            validateInput(input);
+            if (input.closest('.form-group') && input.closest('.form-group').classList.contains('is-invalid')) {
+                allValid = false;
+            }
+        });
+
+        if (!allValid) return;
 
         // Collect form data
         const formData = new FormData(form);
@@ -669,6 +745,10 @@ function initForm() {
         setTimeout(() => {
             form.reset();
             successEl.classList.remove('show');
+            inputs.forEach(input => {
+                const group = input.closest('.form-group');
+                if (group) group.classList.remove('is-valid', 'is-invalid');
+            });
         }, 4000);
     });
 }
