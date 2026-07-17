@@ -952,6 +952,19 @@ function initFAQ() {
     });
 }
 
+// ======= REVIEWS INFINITE SCROLL =======
+function initReviews() {
+    const track = document.querySelector('.reviews-track');
+    if (!track) return;
+
+    // Clone all review cards to create a seamless loop
+    const cards = track.querySelectorAll('.review-card');
+    cards.forEach(card => {
+        const clone = card.cloneNode(true);
+        track.appendChild(clone);
+    });
+}
+
 // ======= INIT =======
 document.addEventListener('DOMContentLoaded', () => {
     // Start intro first — Three.js is deferred until intro finishes
@@ -962,6 +975,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initCursorGlow();
     initTiltEffects();
     initFAQ();
+    initReviews();
+
 
     // Delay GSAP init to ensure DOM is ready
     setTimeout(() => {
