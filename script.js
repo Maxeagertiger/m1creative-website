@@ -965,6 +965,43 @@ function initReviews() {
     });
 }
 
+// ======= PORTFOLIO FILTERS =======
+function initPortfolioFilters() {
+    const pills = document.querySelectorAll('.niche-pill');
+    const items = document.querySelectorAll('.work-item');
+    if (!pills.length || !items.length) return;
+
+    pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            pills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+
+            const filter = pill.getAttribute('data-filter');
+
+            items.forEach(item => {
+                const niche = item.getAttribute('data-niche');
+                
+                if (filter === 'all' || niche === filter) {
+                    item.style.display = '';
+                    // Force reflow
+                    item.offsetHeight;
+                    item.style.opacity = '';
+                    item.style.transform = '';
+                    item.classList.add('visible');
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(30px) scale(0.95)';
+                    setTimeout(() => {
+                        if (item.style.opacity === '0') {
+                            item.style.display = 'none';
+                        }
+                    }, 400);
+                }
+            });
+        });
+    });
+}
+
 // ======= INIT =======
 document.addEventListener('DOMContentLoaded', () => {
     // Start intro first — Three.js is deferred until intro finishes
@@ -976,6 +1013,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTiltEffects();
     initFAQ();
     initReviews();
+    initPortfolioFilters();
 
 
     // Delay GSAP init to ensure DOM is ready
@@ -988,3 +1026,4 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('resize', handleResize);
 });
+
