@@ -555,46 +555,6 @@ function animateOnScroll() {
         }
     });
 
-    // Animate about description
-    document.querySelectorAll('.about-description').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.85) {
-            el.classList.add('visible');
-        }
-    });
-
-    // Animate stat cards
-    document.querySelectorAll('.stat-card').forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.85) {
-            card.classList.add('visible');
-        }
-    });
-
-    // Animate service cards
-    document.querySelectorAll('.service-card').forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.85) {
-            card.classList.add('visible');
-        }
-    });
-
-    // Animate work items
-    document.querySelectorAll('.work-item').forEach(item => {
-        const rect = item.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.85) {
-            item.classList.add('visible');
-        }
-    });
-
-    // Animate pricing cards
-    document.querySelectorAll('.pricing-card').forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.85) {
-            card.classList.add('visible');
-        }
-    });
-
     // Animate counters
     document.querySelectorAll('.stat-number').forEach(num => {
         const rect = num.getBoundingClientRect();
@@ -873,6 +833,9 @@ function handleResize() {
 function initGSAPAnimations() {
     gsap.registerPlugin(ScrollTrigger);
 
+    // Clear CSS transitions on these elements so GSAP animates them smoothly without clashing
+    gsap.set('.service-card, .work-item, .pricing-card, .stat-card, .process-step', { transition: 'none' });
+
     // Hero parallax
     gsap.to('.hero-content', {
         scrollTrigger: {
@@ -881,9 +844,9 @@ function initGSAPAnimations() {
             end: 'bottom top',
             scrub: 1
         },
-        y: -150,
+        y: -120,
         opacity: 0,
-        scale: 0.9
+        scale: 0.95
     });
 
     // Section tags slide in
@@ -901,6 +864,123 @@ function initGSAPAnimations() {
         });
     });
 
+    // About description fade & slide in
+    gsap.fromTo('.about-description', 
+        { opacity: 0, y: 30 },
+        {
+            scrollTrigger: {
+                trigger: '.about-description',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out'
+        }
+    );
+
+    // Staggered About stat cards
+    gsap.fromTo('.stat-card',
+        { opacity: 0, x: 50 },
+        {
+            scrollTrigger: {
+                trigger: '.about-right',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out'
+        }
+    );
+
+    // Staggered Service cards
+    gsap.fromTo('.service-card',
+        { opacity: 0, y: 50 },
+        {
+            scrollTrigger: {
+                trigger: '.services-grid',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out'
+        }
+    );
+
+    // Staggered Work items
+    gsap.fromTo('.work-item',
+        { opacity: 0, y: 50 },
+        {
+            scrollTrigger: {
+                trigger: '.work-showcase',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out'
+        }
+    );
+
+    // Staggered Pricing cards
+    gsap.fromTo('.pricing-card',
+        { opacity: 0, y: 50 },
+        {
+            scrollTrigger: {
+                trigger: '.pricing-grid',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out'
+        }
+    );
+
+    // Staggered Process timeline steps in Contact Section
+    gsap.fromTo('.process-step',
+        { opacity: 0, x: -30 },
+        {
+            scrollTrigger: {
+                trigger: '.process-timeline',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: 'power3.out'
+        }
+    );
+
+    // Contact form slide in
+    gsap.fromTo('.contact-form',
+        { opacity: 0, y: 40 },
+        {
+            scrollTrigger: {
+                trigger: '.contact-form',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+        }
+    );
+
     // Light section transition
     gsap.from('#contact', {
         scrollTrigger: {
@@ -912,6 +992,22 @@ function initGSAPAnimations() {
         clipPath: 'inset(10% 5% 10% 5% round 30px)',
     });
 }
+
+// ======= HERO CTA SCROLL =======
+function initHeroScroll() {
+    const ctas = document.querySelectorAll('.hero-btn');
+    ctas.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = btn.getAttribute('href');
+            const target = document.querySelector(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+}
+
 
 // ======= TILT EFFECT ON SERVICE CARDS =======
 function initTiltEffects() {
@@ -1014,6 +1110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFAQ();
     initReviews();
     initPortfolioFilters();
+    initHeroScroll();
 
 
     // Delay GSAP init to ensure DOM is ready
