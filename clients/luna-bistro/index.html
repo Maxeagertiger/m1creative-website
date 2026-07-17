@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ============================================================
+       LUNA BISTRO - Home Page
+       Modern upscale restaurant with bold flavors
+       ============================================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Luna Bistro | Bold Flavors, Unforgettable Nights</title>
+  <meta name="description" content="Luna Bistro - A modern upscale restaurant serving handcrafted dishes, signature cocktails, and unforgettable dining experiences. Perfect for date nights, celebrations, and casual fine dining.">
+  <meta name="keywords" content="Luna Bistro, restaurant, fine dining, cocktails, date night, upscale dining, handcrafted dishes">
+  <meta name="author" content="Luna Bistro">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Luna Bistro | Bold Flavors, Unforgettable Nights">
+  <meta property="og:description" content="Experience handcrafted dishes and signature cocktails in a stylish atmosphere. Perfect for date nights and celebrations.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lunabistro.com">
+  <meta property="og:image" content="https://picsum.photos/1200/630?random=og">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="loading">
+  
+  <!-- ============================================================
+       PRELOADER
+       Loading animation before content reveals
+       ============================================================ -->
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader-logo">Luna<span class="text-accent">.</span></div>
+    <div class="preloader-spinner"></div>
+    <p class="preloader-text">Preparing your experience</p>
+  </div>
+  
+  <!-- ============================================================
+       NAVIGATION
+       Fixed top navigation bar
+       ============================================================ -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo">Luna<span>.</span></a>
+    
+    <!-- Desktop Navigation -->
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link active">Home</a></li>
+      <li><a href="menu.html" class="nav-link">Menu</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+      <li><a href="reservations.html" class="nav-cta">Reserve a Table</a></li>
+    </ul>
+    
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+  
+  <!-- Mobile Navigation Menu -->
+  <div class="nav-mobile" aria-hidden="true">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="menu.html" class="nav-link">Menu</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="gallery.html" class="nav-link">Gallery</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <a href="reservations.html" class="btn btn-primary">Reserve a Table</a>
+  </div>
+  
+  <!-- ============================================================
+       HERO SECTION
+       Full-screen parallax hero with gradient overlay
+       ============================================================ -->
+  <header class="hero" role="banner">
+    <div class="hero-background" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80');"></div>
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content">
+      <span class="hero-tagline">Welcome to Luna Bistro</span>
+      <h1 class="hero-title">Bold Flavors,<br>Unforgettable Nights</h1>
+      <p class="hero-subtitle">Experience handcrafted dishes and signature cocktails in a stylish atmosphere. Perfect for date nights, celebrations, and casual fine dining.</p>
+      
+      <div class="hero-buttons">
+        <a href="reservations.html" class="btn btn-primary">Reserve Your Table</a>
+        <a href="menu.html" class="btn btn-secondary">View Our Menu</a>
+      </div>
+    </div>
+    
+    <div class="hero-scroll">
+      <span>Scroll to explore</span>
+      <div class="hero-scroll-icon"></div>
+    </div>
+  </header>
+  
+  <!-- ============================================================
+       ABOUT PREVIEW SECTION
+       Brief introduction with image
+       ============================================================ -->
+  <section class="section" id="about-preview">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image fade-in-left">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Elegant plated dish at Luna Bistro" loading="lazy">
+        </div>
+        
+        <div class="about-content fade-in-right">
+          <span class="section-label">Our Story</span>
+          <h2 class="section-title">Where Culinary Art<br>Meets Atmosphere</h2>
+          <p>At Luna Bistro, we believe dining is more than just eating—it&apos;s an experience that engages all the senses. Our chefs craft each dish with passion, using locally-sourced ingredients and time-honored techniques with a modern twist.</p>
+          <p>From the moment you step through our doors, you&apos;ll be transported to a world where exceptional food meets impeccable service in an ambiance designed for memorable moments.</p>
+          
+          <div class="about-stats">
+            <div class="stat">
+              <div class="stat-number">15+</div>
+              <div class="stat-label">Years of Excellence</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">50K+</div>
+              <div class="stat-label">Happy Guests</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">4.9</div>
+              <div class="stat-label">Star Rating</div>
+            </div>
+          </div>
+          
+          <a href="about.html" class="btn btn-primary mt-xl">Discover Our Story</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       FEATURED DISHES SECTION
+       Highlight signature menu items
+       ============================================================ -->
+  <section class="section section-dark" id="featured-dishes">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Culinary Excellence</span>
+        <h2 class="section-title">Signature Creations</h2>
+        <p class="section-description">Discover our chef&apos;s most celebrated dishes, each one a masterpiece of flavor and presentation that tells a unique story.</p>
+      </div>
+      
+      <div class="menu-grid">
+        <!-- Featured Dish 1 -->
+        <article class="menu-card fade-in delay-1" data-category="mains">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Seared Wagyu Beef with truffle reduction" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Seared Wagyu Beef</h3>
+              <span class="menu-card-price">$68</span>
+            </div>
+            <p class="menu-card-description">A5 Japanese wagyu, black truffle reduction, bone marrow butter, roasted garlic confit, and seasonal microgreens.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Signature</span>
+              <span class="menu-tag">Gluten-Free</span>
+            </div>
+          </div>
+        </article>
+        
+        <!-- Featured Dish 2 -->
+        <article class="menu-card fade-in delay-2" data-category="seafood">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="Pan-seared Chilean Sea Bass" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Chilean Sea Bass</h3>
+              <span class="menu-card-price">$54</span>
+            </div>
+            <p class="menu-card-description">Miso-glazed sea bass, sake reduction, baby bok choy, shiitake mushrooms, and pickled ginger foam.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Chef&apos;s Choice</span>
+              <span class="menu-tag">Pescatarian</span>
+            </div>
+          </div>
+        </article>
+        
+        <!-- Featured Dish 3 -->
+        <article class="menu-card fade-in delay-3" data-category="vegetarian">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80" alt="Wild Mushroom Risotto" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Wild Mushroom Risotto</h3>
+              <span class="menu-card-price">$38</span>
+            </div>
+            <p class="menu-card-description">Arborio rice, foraged wild mushrooms, aged parmesan, white truffle oil, and fresh herbs.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Vegetarian</span>
+              <span class="menu-tag">Popular</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      
+      <div class="text-center mt-xl fade-in">
+        <a href="menu.html" class="btn btn-secondary">Explore Full Menu</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       SPECIALS SECTION
+       Current promotions and special offers
+       ============================================================ -->
+  <section class="section" id="specials">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Limited Time</span>
+        <h2 class="section-title">This Week&apos;s Specials</h2>
+        <p class="section-description">Exclusive seasonal offerings crafted with the finest ingredients available this week.</p>
+      </div>
+      
+      <div class="specials-grid">
+        <article class="special-card fade-in-left">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80" alt="Weekend Tasting Menu special" loading="lazy">
+          <div class="special-overlay">
+            <span class="special-badge">Weekend Only</span>
+            <div class="special-content">
+              <h3>Chef&apos;s Tasting Menu</h3>
+              <p>Seven courses of culinary artistry paired with sommelier-selected wines. A journey through seasonal flavors.</p>
+            </div>
+          </div>
+        </article>
+        
+        <article class="special-card fade-in-right">
+          <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=800&q=80" alt="Sunset Happy Hour cocktails" loading="lazy">
+          <div class="special-overlay">
+            <span class="special-badge">Daily 5-7PM</span>
+            <div class="special-content">
+              <h3>Sunset Happy Hour</h3>
+              <p>Signature cocktails at sunset prices. Half-off select appetizers and craft cocktails every evening.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       TESTIMONIALS SECTION
+       Customer reviews carousel
+       ============================================================ -->
+  <section class="section section-dark" id="testimonials">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Guest Experiences</span>
+        <h2 class="section-title">What Our Guests Say</h2>
+        <p class="section-description">Discover why Luna Bistro has become a beloved destination for food enthusiasts.</p>
+      </div>
+      
+      <div class="testimonials-slider fade-in">
+        <button class="testimonials-nav testimonials-prev" aria-label="Previous testimonial">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        
+        <div class="testimonials-track">
+          <!-- Testimonial 1 -->
+          <div class="testimonial-slide">
+            <div class="testimonial-card">
+              <p class="testimonial-quote">An absolutely magical evening. The Wagyu beef was cooked to perfection, and the ambiance made our anniversary truly special. We&apos;ll be back for every celebration.</p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Sarah Mitchell" class="testimonial-avatar">
+                <div class="testimonial-info">
+                  <h4>Sarah Mitchell</h4>
+                  <p>Food Critic, The Daily Gazette</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Testimonial 2 -->
+          <div class="testimonial-slide">
+            <div class="testimonial-card">
+              <p class="testimonial-quote">Luna Bistro sets the standard for fine dining in the city. Every dish tells a story, and the service is impeccable. This is where memories are made.</p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="James Rodriguez" class="testimonial-avatar">
+                <div class="testimonial-info">
+                  <h4>James Rodriguez</h4>
+                  <p>Restaurant Reviewer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Testimonial 3 -->
+          <div class="testimonial-slide">
+            <div class="testimonial-card">
+              <p class="testimonial-quote">From the moment we walked in, we knew it would be special. The tasting menu was a culinary journey we&apos;ll never forget. Truly exceptional in every way.</p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Emily Chen" class="testimonial-avatar">
+                <div class="testimonial-info">
+                  <h4>Emily Chen</h4>
+                  <p>Lifestyle Blogger</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <button class="testimonials-nav testimonials-next" aria-label="Next testimonial">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        
+        <div class="testimonials-dots">
+          <button class="testimonial-dot active" aria-label="Go to testimonial 1"></button>
+          <button class="testimonial-dot" aria-label="Go to testimonial 2"></button>
+          <button class="testimonial-dot" aria-label="Go to testimonial 3"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       GALLERY PREVIEW SECTION
+       Sample images from gallery
+       ============================================================ -->
+  <section class="section" id="gallery-preview">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Visual Journey</span>
+        <h2 class="section-title">A Glimpse Inside</h2>
+        <p class="section-description">Take a visual tour of our space, dishes, and the moments that make Luna Bistro special.</p>
+      </div>
+      
+      <div class="gallery-grid fade-in">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=800&q=80" alt="Luna Bistro interior dining area" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80" alt="Artfully plated appetizer" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400&q=80" alt="Chef preparing dish in kitchen" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80" alt="Signature cocktail at the bar" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80" alt="Elegantly plated seafood dish" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-xl fade-in">
+        <a href="gallery.html" class="btn btn-secondary">View Full Gallery</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       NEWSLETTER SECTION
+       Email subscription form
+       ============================================================ -->
+  <section class="section section-dark" id="newsletter">
+    <div class="container">
+      <div class="newsletter fade-in">
+        <div class="newsletter-content">
+          <h2>Stay in the Loop</h2>
+          <p>Subscribe to receive exclusive offers, seasonal menu updates, and invitations to special events at Luna Bistro.</p>
+          
+          <form class="newsletter-form" action="#" method="POST">
+            <input type="email" class="newsletter-input" placeholder="Enter your email address" aria-label="Email address" required>
+            <button type="submit" class="btn btn-primary newsletter-submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       CTA SECTION
+       Reservation call-to-action
+       ============================================================ -->
+  <section class="section" id="cta" style="background-image: url('https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed; position: relative;">
+    <div style="position: absolute; inset: 0; background: var(--gradient-hero);"></div>
+    <div class="container" style="position: relative; z-index: 1;">
+      <div class="section-header fade-in" style="max-width: 800px;">
+        <span class="section-label">Reserve Your Experience</span>
+        <h2 class="section-title">Ready for an Unforgettable Evening?</h2>
+        <p class="section-description">Whether it&apos;s a romantic dinner, business gathering, or celebration, we&apos;re ready to create the perfect experience for you.</p>
+        <div class="hero-buttons" style="margin-top: var(--spacing-xl);">
+          <a href="reservations.html" class="btn btn-gold">Book Your Table</a>
+          <a href="tel:+15551234567" class="btn btn-secondary">Call (555) 123-4567</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       FOOTER
+       Fat footer with newsletter, links, and contact info
+       ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <div class="footer-logo">Luna<span>.</span></div>
+          <p>A modern upscale restaurant serving handcrafted dishes, signature cocktails, and unforgettable dining experiences in a stylish atmosphere.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="TripAdvisor">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="menu.html" class="footer-link">Our Menu</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="gallery.html" class="footer-link">Gallery</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+            <a href="reservations.html" class="footer-link">Reservations</a>
+          </nav>
+        </div>
+        
+        <!-- Contact Info -->
+        <div class="footer-column">
+          <h4>Contact Us</h4>
+          <div class="footer-links">
+            <p class="footer-link">123 Gourmet Avenue</p>
+            <p class="footer-link">Downtown District</p>
+            <p class="footer-link">New York, NY 10001</p>
+            <a href="tel:+15551234567" class="footer-link">(555) 123-4567</a>
+            <a href="mailto:hello@lunabistro.com" class="footer-link">hello@lunabistro.com</a>
+          </div>
+        </div>
+        
+        <!-- Opening Hours -->
+        <div class="footer-column">
+          <h4>Opening Hours</h4>
+          <div class="footer-hours">
+            <div class="footer-hour">
+              <span>Mon - Thu</span>
+              <span>5:00 PM - 10:00 PM</span>
+            </div>
+            <div class="footer-hour">
+              <span>Fri - Sat</span>
+              <span>5:00 PM - 11:30 PM</span>
+            </div>
+            <div class="footer-hour">
+              <span>Sunday</span>
+              <span>4:00 PM - 9:00 PM</span>
+            </div>
+            <div class="footer-hour">
+              <span>Happy Hour</span>
+              <span>Daily 5:00 - 7:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; <span class="current-year">2024</span> Luna Bistro. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- ============================================================
+       LIGHTBOX
+       Full-screen image viewer
+       ============================================================ -->
+  <div class="lightbox" aria-hidden="true" role="dialog" aria-label="Image lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+      <button class="lightbox-nav lightbox-prev" aria-label="Previous image">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <img src="" alt="Gallery image">
+      <button class="lightbox-nav lightbox-next" aria-label="Next image">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>

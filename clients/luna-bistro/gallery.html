@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ============================================================
+       LUNA BISTRO - Gallery Page
+       Photo gallery with lightbox
+       ============================================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Gallery | Luna Bistro - Bold Flavors, Unforgettable Nights</title>
+  <meta name="description" content="Browse our photo gallery showcasing Luna Bistro's elegant atmosphere, artfully plated dishes, signature cocktails, and memorable dining moments.">
+  <meta name="keywords" content="Luna Bistro gallery, restaurant photos, food photography, dining atmosphere, interior design">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="loading">
+  
+  <!-- Preloader -->
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader-logo">Luna<span class="text-accent">.</span></div>
+    <div class="preloader-spinner"></div>
+    <p class="preloader-text">Preparing your experience</p>
+  </div>
+  
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo">Luna<span>.</span></a>
+    
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="menu.html" class="nav-link">Menu</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+      <li><a href="reservations.html" class="nav-cta">Reserve a Table</a></li>
+    </ul>
+    
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+  
+  <!-- Mobile Navigation -->
+  <div class="nav-mobile" aria-hidden="true">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="menu.html" class="nav-link">Menu</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="gallery.html" class="nav-link">Gallery</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <a href="reservations.html" class="btn btn-primary">Reserve a Table</a>
+  </div>
+  
+  <!-- ============================================================
+       PAGE HEADER
+       ============================================================ -->
+  <header class="page-header">
+    <div class="page-header-background" style="background-image: url('https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1920&q=80');"></div>
+    <div class="page-header-overlay"></div>
+    <div class="page-header-content">
+      <h1>Our Gallery</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Gallery</span>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- ============================================================
+       GALLERY SECTION
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Visual Journey</span>
+        <h2 class="section-title">A Taste Through the Lens</h2>
+        <p class="section-description">Explore our space, dishes, and the moments that make Luna Bistro a destination for food lovers.</p>
+      </div>
+      
+      <!-- Gallery Tabs -->
+      <div class="menu-tabs fade-in">
+        <button class="menu-tab active" data-category="all">All Photos</button>
+        <button class="menu-tab" data-category="interior">Interior</button>
+        <button class="menu-tab" data-category="dishes">Dishes</button>
+        <button class="menu-tab" data-category="drinks">Drinks</button>
+        <button class="menu-tab" data-category="events">Events</button>
+      </div>
+      
+      <!-- Gallery Grid -->
+      <div class="gallery-grid fade-in">
+        <!-- Interior Photos -->
+        <div class="gallery-item" data-category="interior">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Luna Bistro main dining room with elegant lighting" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="dishes">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400&q=80" alt="Seared Wagyu Beef with truffle reduction" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="drinks">
+          <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80" alt="Signature cocktail Luna Eclipse" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="interior">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80" alt="Private dining room setup" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="dishes">
+          <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80" alt="Fresh seasonal salad" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="interior">
+          <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=600&q=80" alt="Bar area with mood lighting" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="dishes">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="Artfully plated main course" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="drinks">
+          <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400&q=80" alt="Old fashioned cocktail" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="events">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=80" alt="Private event setup" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="dishes">
+          <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400&q=80" alt="Chef plating in kitchen" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="interior">
+          <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400&q=80" alt="Outdoor terrace seating" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="dishes">
+          <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&q=80" alt="Chocolate fondant dessert" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="drinks">
+          <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=400&q=80" alt="Craft cocktail preparation" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="events">
+          <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&q=80" alt="Celebration dinner" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="dishes">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80" alt="Wood-fired pizza" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="interior">
+          <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&q=80" alt="Restaurant entrance" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       INSTAGRAM FEED SECTION
+       ============================================================ -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">@LunaBistroNYC</span>
+        <h2 class="section-title">Follow Our Journey</h2>
+        <p class="section-description">Join our community on Instagram for daily inspiration, behind-the-scenes moments, and special announcements.</p>
+      </div>
+      
+      <div class="features-grid fade-in">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+          </div>
+          <h4>25K+ Followers</h4>
+          <p>Join our growing community of food enthusiasts and culinary adventurers.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+          </div>
+          <h4>Daily Posts</h4>
+          <p>Fresh content every day featuring dishes, drinks, and behind-the-scenes moments.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+          </div>
+          <h4>Exclusive Content</h4>
+          <p>Stories and reels with special offers only available to our followers.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <h4>Tag Us!</h4>
+          <p>Share your Luna Bistro experience with #LunaBistro for a chance to be featured.</p>
+        </div>
+      </div>
+      
+      <div class="text-center mt-xl fade-in">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+          </svg>
+          Follow @LunaBistroNYC
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="section" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed; position: relative;">
+    <div style="position: absolute; inset: 0; background: var(--gradient-hero);"></div>
+    <div class="container" style="position: relative; z-index: 1;">
+      <div class="section-header fade-in" style="max-width: 800px;">
+        <span class="section-label">Create Your Moment</span>
+        <h2 class="section-title">Ready to Experience It Yourself?</h2>
+        <p class="section-description">Pictures tell a story, but nothing compares to being there. Reserve your table and create your own Luna Bistro memories.</p>
+        <div class="hero-buttons" style="margin-top: var(--spacing-xl);">
+          <a href="reservations.html" class="btn btn-gold">Book Your Table</a>
+          <a href="menu.html" class="btn btn-secondary">View Our Menu</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">Luna<span>.</span></div>
+          <p>A modern upscale restaurant serving handcrafted dishes, signature cocktails, and unforgettable dining experiences in a stylish atmosphere.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="TripAdvisor">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="menu.html" class="footer-link">Our Menu</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="gallery.html" class="footer-link">Gallery</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+            <a href="reservations.html" class="footer-link">Reservations</a>
+          </nav>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Contact Us</h4>
+          <div class="footer-links">
+            <p class="footer-link">123 Gourmet Avenue</p>
+            <p class="footer-link">Downtown District</p>
+            <p class="footer-link">New York, NY 10001</p>
+            <a href="tel:+15551234567" class="footer-link">(555) 123-4567</a>
+            <a href="mailto:hello@lunabistro.com" class="footer-link">hello@lunabistro.com</a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Opening Hours</h4>
+          <div class="footer-hours">
+            <div class="footer-hour">
+              <span>Mon - Thu</span>
+              <span>5:00 PM - 10:00 PM</span>
+            </div>
+            <div class="footer-hour">
+              <span>Fri - Sat</span>
+              <span>5:00 PM - 11:30 PM</span>
+            </div>
+            <div class="footer-hour">
+              <span>Sunday</span>
+              <span>4:00 PM - 9:00 PM</span>
+            </div>
+            <div class="footer-hour">
+              <span>Happy Hour</span>
+              <span>Daily 5:00 - 7:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; <span class="current-year">2024</span> Luna Bistro. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Lightbox -->
+  <div class="lightbox" aria-hidden="true" role="dialog" aria-label="Image lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+      <button class="lightbox-nav lightbox-prev" aria-label="Previous image">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <img src="" alt="Gallery image">
+      <button class="lightbox-nav lightbox-next" aria-label="Next image">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>

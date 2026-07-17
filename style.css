@@ -788,6 +788,14 @@ body {
     transition-delay: 0.3s;
 }
 
+.work-item:nth-child(4).visible {
+    transition-delay: 0.45s;
+}
+
+.work-item:nth-child(5).visible {
+    transition-delay: 0.6s;
+}
+
 .work-link {
     text-decoration: none;
     color: inherit;

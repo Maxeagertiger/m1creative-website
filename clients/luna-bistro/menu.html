@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ============================================================
+       LUNA BISTRO - Menu Page
+       Full menu with categories and pricing
+       ============================================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Our Menu | Luna Bistro - Bold Flavors, Unforgettable Nights</title>
+  <meta name="description" content="Explore Luna Bistro's menu featuring handcrafted appetizers, signature mains, fresh seafood, and decadent desserts. Discover bold flavors in every dish.">
+  <meta name="keywords" content="Luna Bistro menu, fine dining menu, signature dishes, cocktails, appetizers, desserts">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="loading">
+  
+  <!-- Preloader -->
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader-logo">Luna<span class="text-accent">.</span></div>
+    <div class="preloader-spinner"></div>
+    <p class="preloader-text">Preparing your experience</p>
+  </div>
+  
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo">Luna<span>.</span></a>
+    
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="menu.html" class="nav-link active">Menu</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+      <li><a href="reservations.html" class="nav-cta">Reserve a Table</a></li>
+    </ul>
+    
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+  
+  <!-- Mobile Navigation -->
+  <div class="nav-mobile" aria-hidden="true">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="menu.html" class="nav-link">Menu</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="gallery.html" class="nav-link">Gallery</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <a href="reservations.html" class="btn btn-primary">Reserve a Table</a>
+  </div>
+  
+  <!-- ============================================================
+       PAGE HEADER
+       Menu page hero section
+       ============================================================ -->
+  <header class="page-header">
+    <div class="page-header-background" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80');"></div>
+    <div class="page-header-overlay"></div>
+    <div class="page-header-content">
+      <h1>Our Menu</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Menu</span>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- ============================================================
+       MENU INTRODUCTION
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Culinary Excellence</span>
+        <h2 class="section-title">A Symphony of Flavors</h2>
+        <p class="section-description">Our menu celebrates the finest seasonal ingredients, prepared with passion and precision. Each dish tells a story of culinary artistry and bold flavors.</p>
+      </div>
+      
+      <!-- Menu Category Tabs -->
+      <div class="menu-tabs fade-in">
+        <button class="menu-tab active" data-category="all">All Dishes</button>
+        <button class="menu-tab" data-category="starters">Starters</button>
+        <button class="menu-tab" data-category="mains">Main Courses</button>
+        <button class="menu-tab" data-category="seafood">Seafood</button>
+        <button class="menu-tab" data-category="vegetarian">Vegetarian</button>
+        <button class="menu-tab" data-category="desserts">Desserts</button>
+      </div>
+      
+      <!-- Menu Grid -->
+      <div class="menu-grid">
+        <!-- STARTERS -->
+        <article class="menu-card fade-in delay-1" data-category="starters">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1541014741259-de529411b96a?w=600&q=80" alt="Burrata Caprese with heirloom tomatoes" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Burrata Caprese</h3>
+              <span class="menu-card-price">$18</span>
+            </div>
+            <p class="menu-card-description">Creamy burrata, heirloom tomatoes, fresh basil, aged balsamic reduction, and extra virgin olive oil.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Vegetarian</span>
+              <span class="menu-tag">Gluten-Free</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="menu-card fade-in delay-2" data-category="starters">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1626200419199-391ae4be7a41?w=600&q=80" alt="Tuna Tartare with avocado" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Tuna Tartare</h3>
+              <span class="menu-card-price">$24</span>
+            </div>
+            <p class="menu-card-description">Sushi-grade ahi tuna, avocado mousse, sesame, ponzu, and crispy wonton chips.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Signature</span>
+              <span class="menu-tag">Raw</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="menu-card fade-in delay-3" data-category="starters">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1608039829572-97e9e0aa5b97?w=600&q=80" alt="Crispy Calamari with spicy aioli" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Crispy Calamari</h3>
+              <span class="menu-card-price">$19</span>
+            </div>
+            <p class="menu-card-description">Lightly fried calamari, cherry peppers, lemon, and house-made spicy aioli.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Popular</span>
+            </div>
+          </div>
+        </article>
+        
+        <!-- MAIN COURSES -->
+        <article class="menu-card fade-in delay-1" data-category="mains">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Seared Wagyu Beef with truffle" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Seared Wagyu Beef</h3>
+              <span class="menu-card-price">$68</span>
+            </div>
+            <p class="menu-card-description">A5 Japanese wagyu, black truffle reduction, bone marrow butter, and roasted garlic confit.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Signature</span>
+              <span class="menu-tag">Gluten-Free</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="menu-card fade-in delay-2" data-category="mains">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=600&q=80" alt="Herb-Crusted Lamb Rack" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Herb-Crusted Lamb Rack</h3>
+              <span class="menu-card-price">$52</span>
+            </div>
+            <p class="menu-card-description">New Zealand lamb, rosemary crust, mint pesto, roasted fingerling potatoes, and glazed carrots.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Chef&apos;s Choice</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="menu-card fade-in delay-3" data-category="mains">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=600&q=80" alt="Duck Breast with cherry glaze" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Pan-Roasted Duck Breast</h3>
+              <span class="menu-card-price">$46</span>
+            </div>
+            <p class="menu-card-description">Crispy skin duck, tart cherry glaze, wild rice pilaf, and sautéed seasonal greens.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Gluten-Free</span>
+            </div>
+          </div>
+        </article>
+        
+        <!-- SEAFOOD -->
+        <article class="menu-card fade-in delay-1" data-category="seafood">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="Chilean Sea Bass with miso glaze" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Chilean Sea Bass</h3>
+              <span class="menu-card-price">$54</span>
+            </div>
+            <p class="menu-card-description">Miso-glazed sea bass, sake reduction, baby bok choy, shiitake mushrooms, and ginger foam.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Chef&apos;s Choice</span>
+              <span class="menu-tag">Pescatarian</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="menu-card fade-in delay-2" data-category="seafood">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1553247407-23251ce81f59?w=600&q=80" alt="Maine Lobster Tail" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Maine Lobster Tail</h3>
+              <span class="menu-card-price">$72</span>
+            </div>
+            <p class="menu-card-description">Butter-poached lobster tail, champagne beurre blanc, asparagus tips, and saffron risotto.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Premium</span>
+              <span class="menu-tag">Gluten-Free</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="menu-card fade-in delay-3" data-category="seafood">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6571?w=600&q=80" alt="Seared Scallops with cauliflower puree" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Seared Scallops</h3>
+              <span class="menu-card-price">$42</span>
+            </div>
+            <p class="menu-card-description">Day-boat scallops, cauliflower purée, crispy pancetta, brown butter, and capers.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Popular</span>
+              <span class="menu-tag">Gluten-Free</span>
+            </div>
+          </div>
+        </article>
+        
+        <!-- VEGETARIAN -->
+        <article class="menu-card fade-in delay-1" data-category="vegetarian">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80" alt="Wild Mushroom Risotto" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Wild Mushroom Risotto</h3>
+              <span class="menu-card-price">$38</span>
+            </div>
+            <p class="menu-card-description">Arborio rice, foraged wild mushrooms, aged parmesan, white truffle oil, and fresh herbs.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Vegetarian</span>
+              <span class="menu-tag">Popular</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="menu-card fade-in delay-2" data-category="vegetarian">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?w=600&q=80" alt="Eggplant Parmesan" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Eggplant Parmesan</h3>
+              <span class="menu-card-price">$32</span>
+            </div>
+            <p class="menu-card-description">Layers of breaded eggplant, San Marzano tomato sauce, fresh mozzarella, and basil.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Vegetarian</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="menu-card fade-in delay-3" data-category="vegetarian">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=600&q=80" alt="Roasted Cauliflower Steak" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Cauliflower Steak</h3>
+              <span class="menu-card-price">$28</span>
+            </div>
+            <p class="menu-card-description">Roasted cauliflower, romesco sauce, toasted almonds, golden raisins, and fresh herbs.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Vegan</span>
+              <span class="menu-tag">Gluten-Free</span>
+            </div>
+          </div>
+        </article>
+        
+        <!-- DESSERTS -->
+        <article class="menu-card fade-in delay-1" data-category="desserts">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&q=80" alt="Chocolate Fondant" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Chocolate Fondant</h3>
+              <span class="menu-card-price">$16</span>
+            </div>
+            <p class="menu-card-description">Warm chocolate lava cake, vanilla bean ice cream, raspberry coulis, and candied hazelnuts.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Signature</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="menu-card fade-in delay-2" data-category="desserts">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80" alt="Crème Brûlée" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Crème Brûlée</h3>
+              <span class="menu-card-price">$14</span>
+            </div>
+            <p class="menu-card-description">Classic vanilla custard, caramelized sugar crust, fresh berries, and whipped cream.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Classic</span>
+              <span class="menu-tag">Gluten-Free</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="menu-card fade-in delay-3" data-category="desserts">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=80" alt="Tiramisu" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Tiramisu</h3>
+              <span class="menu-card-price">$15</span>
+            </div>
+            <p class="menu-card-description">Espresso-soaked ladyfingers, mascarpone cream, cocoa, and chocolate shavings.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Popular</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       DRINKS & COCKTAILS
+       ============================================================ -->
+  <section class="section section-dark" id="drinks">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Libations</span>
+        <h2 class="section-title">Signature Cocktails</h2>
+        <p class="section-description">Our mixologists craft each cocktail with premium spirits, fresh ingredients, and creative flair.</p>
+      </div>
+      
+      <div class="menu-grid">
+        <article class="menu-card fade-in delay-1">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600&q=80" alt="Luna Eclipse cocktail" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Luna Eclipse</h3>
+              <span class="menu-card-price">$18</span>
+            </div>
+            <p class="menu-card-description">Elderflower gin, butterfly pea flower, lemon, and champagne top. A color-changing spectacle.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">House Special</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="menu-card fade-in delay-2">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=600&q=80" alt="Midnight Garden cocktail" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Midnight Garden</h3>
+              <span class="menu-card-price">$17</span>
+            </div>
+            <p class="menu-card-description">Vodka, cucumber, fresh mint, lime, and a touch of black pepper. Refreshingly complex.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Refreshing</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="menu-card fade-in delay-3">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600&q=80" alt="Smoky Celestial Old Fashioned" loading="lazy">
+          </div>
+          <div class="menu-card-content">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Smoky Celestial</h3>
+              <span class="menu-card-price">$19</span>
+            </div>
+            <p class="menu-card-description">Mezcal, bourbon, maple syrup, and orange bitters. Presented under a smoke dome.</p>
+            <div class="menu-card-tags">
+              <span class="menu-tag">Bold</span>
+              <span class="menu-tag">Theatrical</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       TASTING MENU / PRICING
+       ============================================================ -->
+  <section class="section" id="tasting-menus">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Special Experiences</span>
+        <h2 class="section-title">Tasting Menus</h2>
+        <p class="section-description">Let our chefs take you on a culinary journey with our carefully curated tasting experiences.</p>
+      </div>
+      
+      <div class="pricing-grid">
+        <!-- Tasting Menu 1 -->
+        <div class="pricing-card fade-in delay-1">
+          <h3 class="pricing-name">Discovery Menu</h3>
+          <div class="pricing-price">$85<span>/person</span></div>
+          <p class="pricing-description">A perfect introduction to our culinary philosophy</p>
+          <ul class="pricing-features">
+            <li class="pricing-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              5-Course Tasting Menu
+            </li>
+            <li class="pricing-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              Amuse-Bouche
+            </li>
+            <li class="pricing-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              Artisan Bread Service
+            </li>
+            <li class="pricing-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              Coffee or Tea
+            </li>
+          </ul>
+          <a href="reservations.html" class="btn btn-secondary" style="width: 100%;">Reserve Now</a>
+        </div>
+        
+        <!-- Tasting Menu 2 - Featured -->
+        <div class="pricing-card featured fade-in delay-2">
+          <h3 class="pricing-name">Chef&apos;s Table</h3>
+          <div class="pricing-price">$145<span>/person</span></div>
+          <p class="pricing-description">The ultimate Luna Bistro experience</p>
+          <ul class="pricing-features">
+            <li class="pricing-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              7-Course Tasting Menu
+            </li>
+            <li class="pricing-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              Wine Pairing Included
+            </li>
+            <li class="pricing-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              Kitchen Tour
+            </li>
+            <li class="pricing-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              Signed Menu Keepsake
+            </li>
+            <li class="pricing-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              Priority Seating
+            </li>
+          </ul>
+          <a href="reservations.html" class="btn btn-primary" style="width: 100%;">Reserve Now</a>
+        </div>
+        
+        <!-- Tasting Menu 3 -->
+        <div class="pricing-card fade-in delay-3">
+          <h3 class="pricing-name">Vegetarian Journey</h3>
+          <div class="pricing-price">$75<span>/person</span></div>
+          <p class="pricing-description">Plant-based excellence from garden to table</p>
+          <ul class="pricing-features">
+            <li class="pricing-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              5-Course Vegetarian Menu
+            </li>
+            <li class="pricing-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              Locally Sourced Produce
+            </li>
+            <li class="pricing-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              Vegan Options Available
+            </li>
+            <li class="pricing-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              Herbal Tea Selection
+            </li>
+          </ul>
+          <a href="reservations.html" class="btn btn-secondary" style="width: 100%;">Reserve Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       DIETARY INFO
+       ============================================================ -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Your Comfort</span>
+        <h2 class="section-title">Dietary Accommodations</h2>
+        <p class="section-description">We&apos;re committed to accommodating all dietary needs. Please inform your server of any allergies or restrictions.</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card fade-in delay-1">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h4>Gluten-Free</h4>
+          <p>Many dishes can be prepared gluten-free. Look for the GF tag or ask your server.</p>
+        </div>
+        
+        <div class="feature-card fade-in delay-2">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 8a3 3 0 100-6 3 3 0 000 6zM20 21v-2a4 4 0 00-3-3.87M4 21v-2a4 4 0 013-3.87"/>
+            </svg>
+          </div>
+          <h4>Vegetarian & Vegan</h4>
+          <p>Extensive plant-based options crafted with the same care as all our dishes.</p>
+        </div>
+        
+        <div class="feature-card fade-in delay-3">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h4>Allergy Aware</h4>
+          <p>Our kitchen takes allergies seriously. We can modify dishes to accommodate most restrictions.</p>
+        </div>
+        
+        <div class="feature-card fade-in delay-4">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/>
+            </svg>
+          </div>
+          <h4>Kosher & Halal</h4>
+          <p>Select dishes available upon request. Please notify us when making your reservation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="section" style="background-image: url('https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed; position: relative;">
+    <div style="position: absolute; inset: 0; background: var(--gradient-hero);"></div>
+    <div class="container" style="position: relative; z-index: 1;">
+      <div class="section-header fade-in" style="max-width: 800px;">
+        <span class="section-label">Ready to Dine?</span>
+        <h2 class="section-title">Experience These Flavors Tonight</h2>
+        <p class="section-description">Reserve your table and let us create an unforgettable dining experience for you.</p>
+        <div class="hero-buttons" style="margin-top: var(--spacing-xl);">
+          <a href="reservations.html" class="btn btn-gold">Book Your Table</a>
+          <a href="tel:+15551234567" class="btn btn-secondary">Call (555) 123-4567</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">Luna<span>.</span></div>
+          <p>A modern upscale restaurant serving handcrafted dishes, signature cocktails, and unforgettable dining experiences in a stylish atmosphere.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="TripAdvisor">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="menu.html" class="footer-link">Our Menu</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="gallery.html" class="footer-link">Gallery</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+            <a href="reservations.html" class="footer-link">Reservations</a>
+          </nav>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Contact Us</h4>
+          <div class="footer-links">
+            <p class="footer-link">123 Gourmet Avenue</p>
+            <p class="footer-link">Downtown District</p>
+            <p class="footer-link">New York, NY 10001</p>
+            <a href="tel:+15551234567" class="footer-link">(555) 123-4567</a>
+            <a href="mailto:hello@lunabistro.com" class="footer-link">hello@lunabistro.com</a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Opening Hours</h4>
+          <div class="footer-hours">
+            <div class="footer-hour">
+              <span>Mon - Thu</span>
+              <span>5:00 PM - 10:00 PM</span>
+            </div>
+            <div class="footer-hour">
+              <span>Fri - Sat</span>
+              <span>5:00 PM - 11:30 PM</span>
+            </div>
+            <div class="footer-hour">
+              <span>Sunday</span>
+              <span>4:00 PM - 9:00 PM</span>
+            </div>
+            <div class="footer-hour">
+              <span>Happy Hour</span>
+              <span>Daily 5:00 - 7:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; <span class="current-year">2024</span> Luna Bistro. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>

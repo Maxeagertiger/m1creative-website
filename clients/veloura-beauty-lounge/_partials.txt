@@ -1,0 +1,1 @@
+Reference only — actual markup is inlined in each HTML page so the static files can be opened directly without a server.
