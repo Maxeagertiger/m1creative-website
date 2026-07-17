@@ -2312,16 +2312,16 @@ body {
 }
 
 .faq-item {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.3s ease;
 }
 
 .faq-item:hover {
-    border-color: rgba(0, 0, 0, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .faq-question {
@@ -2335,19 +2335,19 @@ body {
 }
 
 .faq-question:hover {
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(255, 255, 255, 0.03);
 }
 
 .faq-question h3 {
     font-size: 1.1rem;
     font-weight: 600;
-    color: var(--text-dark);
+    color: var(--text-primary);
     margin: 0;
 }
 
 .faq-icon {
     font-size: 1.5rem;
-    color: var(--text-dark);
+    color: var(--text-primary);
     font-weight: 300;
     transition: transform 0.4s ease;
     display: inline-block;
@@ -2358,7 +2358,7 @@ body {
 }
 
 .faq-item.active {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
     border-color: var(--accent);
 }
 
@@ -2371,13 +2371,14 @@ body {
 }
 
 .faq-item.active .faq-answer {
-    max-height: 500px; /* arbitrary large value */
+    max-height: 500px;
     padding: 0 32px 32px;
 }
 
 .faq-answer p {
     margin: 0;
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.65);
     line-height: 1.7;
     font-size: 0.95rem;
 }
+
