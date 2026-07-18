@@ -6,12 +6,24 @@
   "use strict";
 
   /* ---------- Preloader Trigger ---------- */
-  window.addEventListener('load', () => {
+  function dismissPreloader() {
     setTimeout(() => {
       document.getElementById('preloader')?.classList.add('done');
       document.body.classList.add('intro-done');
     }, 800);
-  });
+  }
+
+  if (document.readyState === 'complete') {
+    dismissPreloader();
+  } else {
+    window.addEventListener('load', dismissPreloader);
+    setTimeout(() => {
+      if (!document.body.classList.contains('intro-done')) {
+        document.getElementById('preloader')?.classList.add('done');
+        document.body.classList.add('intro-done');
+      }
+    }, 4000);
+  }
 
   /* ---------- Mobile nav toggle ---------- */
   const toggle = document.querySelector(".nav-toggle");

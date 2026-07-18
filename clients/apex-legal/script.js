@@ -3,12 +3,24 @@
   'use strict';
 
   // ---------- Preloader ----------
-  window.addEventListener('load', () => {
+  function dismissPreloader() {
     setTimeout(() => {
       document.getElementById('preloader')?.classList.add('done');
       document.body.classList.add('intro-done');
     }, 2400);
-  });
+  }
+
+  if (document.readyState === 'complete') {
+    dismissPreloader();
+  } else {
+    window.addEventListener('load', dismissPreloader);
+    setTimeout(() => {
+      if (!document.body.classList.contains('intro-done')) {
+        document.getElementById('preloader')?.classList.add('done');
+        document.body.classList.add('intro-done');
+      }
+    }, 5000);
+  }
 
   // ---------- Theme toggle ----------
   const themeBtn = document.getElementById('themeToggle');

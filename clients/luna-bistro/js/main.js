@@ -22,13 +22,24 @@ document.addEventListener('DOMContentLoaded', function() {
   const preloader = document.querySelector('.preloader');
   
   if (preloader) {
-    // Hide preloader after content loads
-    window.addEventListener('load', function() {
+    function hidePreloader() {
       setTimeout(function() {
         preloader.classList.add('hidden');
         document.body.classList.remove('loading');
       }, 2400); // 2.4 second minimum display time
-    });
+    }
+
+    if (document.readyState === 'complete') {
+      hidePreloader();
+    } else {
+      window.addEventListener('load', hidePreloader);
+      setTimeout(function() {
+        if (!preloader.classList.contains('hidden')) {
+          preloader.classList.add('hidden');
+          document.body.classList.remove('loading');
+        }
+      }, 5000);
+    }
   }
   
   /* ============================================================
