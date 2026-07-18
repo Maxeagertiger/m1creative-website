@@ -18,19 +18,29 @@
 <body>
     <!-- Cinematic Space Intro -->
     <div id="loader">
-        <canvas id="intro-canvas"></canvas>
-        <div class="intro-content">
-            <div class="intro-logo">
+        <!-- The Three.js canvas fills the loader during intro -->
+        <canvas id="three-canvas"></canvas>
+
+        <!-- Logo & Scroll CTA -->
+        <div class="intro-content" id="introContent">
+            <div class="intro-logo" id="introLogo">
                 <span class="intro-m">M</span><span class="intro-one logo-one">1</span><span class="intro-creative">CREATIVE.</span>
             </div>
-            <div class="intro-tagline">CRAFTING DIGITAL EXPERIENCES</div>
-            <div class="intro-line"></div>
+            <div class="intro-tagline" id="introTagline">CRAFTING DIGITAL EXPERIENCES</div>
+            <div class="intro-line" id="introLine"></div>
+            <div class="intro-scroll-hint" id="introScrollHint">
+                <span>scroll to enter</span>
+                <div class="intro-scroll-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
+                        <path d="M12 5v14M5 12l7 7 7-7"/>
+                    </svg>
+                </div>
+            </div>
         </div>
-        <div class="intro-flash"></div>
-    </div>
 
-    <!-- Three.js Canvas -->
-    <canvas id="three-canvas"></canvas>
+        <!-- Flash overlay for warp transition -->
+        <div class="intro-flash" id="introFlash"></div>
+    </div>
 
     <!-- Navigation -->
     <nav id="navbar">

@@ -9,197 +9,235 @@ let mouseX = 0, mouseY = 0;
 let scrollProgress = 0;
 const clock = new THREE.Clock();
 
+
 // ======= CINEMATIC SPACE INTRO =======
+let introPhase = 'loading'; // 'loading' | 'idle' | 'warping' | 'done'
+let introScrollY = 0;
+let introCameraZ = 1800;
+let introWarpProgress = 0;
+let introScrollLocked = true;
+let introScrollTimeout;
+
 function initIntro() {
-    const canvas = document.getElementById('intro-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d', { alpha: false });
-
-    // Cap canvas resolution for performance
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    let w, h, cx, cy;
-    function sizeCanvas() {
-        w = canvas.width = window.innerWidth * dpr;
-        h = canvas.height = window.innerHeight * dpr;
-        canvas.style.width = window.innerWidth + 'px';
-        canvas.style.height = window.innerHeight + 'px';
-        cx = w / 2;
-        cy = h / 2;
-    }
-    sizeCanvas();
-
-    // Pre-compute star colors as rgba base strings (avoids per-frame string ops)
-    const STAR_COUNT = 400;
-    const stars = [];
-    for (let i = 0; i < STAR_COUNT; i++) {
-        let r, g, b;
-        const roll = Math.random();
-        if (roll > 0.85) {
-            // Accent green-ish
-            r = 180 + Math.random() * 40 | 0;
-            g = 255;
-            b = 50 + Math.random() * 30 | 0;
-        } else if (roll > 0.7) {
-            // Blue-white
-            r = 160 + Math.random() * 40 | 0;
-            g = 200 + Math.random() * 30 | 0;
-            b = 255;
-        } else {
-            // White
-            const v = 200 + Math.random() * 55 | 0;
-            r = v; g = v; b = v;
-        }
-        stars.push({
-            x: (Math.random() - 0.5) * w * 3,
-            y: (Math.random() - 0.5) * h * 3,
-            z: Math.random() * 2000,
-            size: Math.random() * 1.5 + 0.5,
-            r, g, b
-        });
-    }
-
-    let speed = 2;
-    let targetSpeed = 2;
-    let rotationAngle = 0;
-    let introFrame;
-    let startTime = performance.now();
-
-    function drawStars() {
-        // Trail fade
-        ctx.fillStyle = 'rgba(0,0,0,0.18)';
-        ctx.fillRect(0, 0, w, h);
-
-        const isWarping = speed > 10;
-        
-        // Increase rotation based on speed to create a swirling spin effect
-        rotationAngle += speed * 0.0003;
-
-        for (let i = 0; i < STAR_COUNT; i++) {
-            const s = stars[i];
-            s.z -= speed;
-
-            if (s.z <= 0) {
-                s.z = 2000;
-                s.x = (Math.random() - 0.5) * w * 3;
-                s.y = (Math.random() - 0.5) * h * 3;
-            }
-
-            const factor = 600 / s.z;
-            
-            // Calculate spiral coordinate rotation
-            const rx = s.x * factor;
-            const ry = s.y * factor;
-            const starAngle = rotationAngle + (2000 - s.z) * 0.0008;
-            const cos = Math.cos(starAngle);
-            const sin = Math.sin(starAngle);
-            
-            const sx = (rx * cos - ry * sin) + cx;
-            const sy = (rx * sin + ry * cos) + cy;
-
-            if (sx < -20 || sx > w + 20 || sy < -20 || sy > h + 20) continue;
-
-            const size = s.size * factor * 0.5;
-            const alpha = Math.min(1, (2000 - s.z) / 600);
-
-            // Streak during warp — single line, no beginPath per star
-            if (isWarping) {
-                const prevFactor = 600 / (s.z + speed);
-                const prevRx = s.x * prevFactor;
-                const prevRy = s.y * prevFactor;
-                const prevStarAngle = (rotationAngle - speed * 0.0003) + (2000 - (s.z + speed)) * 0.0008;
-                const prevCos = Math.cos(prevStarAngle);
-                const prevSin = Math.sin(prevStarAngle);
-                
-                const px = (prevRx * prevCos - prevRy * prevSin) + cx;
-                const py = (prevRx * prevSin + prevRy * prevCos) + cy;
-                
-                ctx.beginPath();
-                ctx.moveTo(px, py);
-                ctx.lineTo(sx, sy);
-                ctx.strokeStyle = `rgba(${s.r},${s.g},${s.b},${(alpha * 0.6).toFixed(2)})`;
-                ctx.lineWidth = size * 0.7;
-                ctx.stroke();
-            }
-
-            // Star dot — use fillRect instead of arc for speed
-            const dotSize = Math.max(size, 0.8);
-            ctx.fillStyle = `rgba(${s.r},${s.g},${s.b},${alpha.toFixed(2)})`;
-            ctx.fillRect(sx - dotSize * 0.5, sy - dotSize * 0.5, dotSize, dotSize);
-        }
-
-        speed += (targetSpeed - speed) * 0.05;
-    }
-
-    function introLoop() {
-        const elapsed = performance.now() - startTime;
-
-        if (elapsed < 400) {
-            targetSpeed = 3;
-        } else if (elapsed < 1000) {
-            targetSpeed = 45;
-        } else if (elapsed < 2000) {
-            targetSpeed = 55;
-        } else if (elapsed < 2600) {
-            targetSpeed = 4;
-        } else {
-            targetSpeed = 2;
-        }
-
-        drawStars();
-        introFrame = requestAnimationFrame(introLoop);
-    }
-
-    introLoop();
-
-    // Choreograph UI reveals
-    const introContent = document.querySelector('.intro-content');
-    const introM = document.querySelector('.intro-m');
-    const introOne = document.querySelector('.intro-one');
-    const introCreative = document.querySelector('.intro-creative');
-    const introLogo = document.querySelector('.intro-logo');
-    const introTagline = document.querySelector('.intro-tagline');
-    const introLine = document.querySelector('.intro-line');
-    const introFlash = document.querySelector('.intro-flash');
     const loader = document.getElementById('loader');
+    const introContent = document.getElementById('introContent');
+    const introLogo = document.getElementById('introLogo');
+    const introTagline = document.getElementById('introTagline');
+    const introLine = document.getElementById('introLine');
+    const introScrollHint = document.getElementById('introScrollHint');
+    const introFlash = document.getElementById('introFlash');
 
-    setTimeout(() => introContent.classList.add('show'), 700);
+    // Prevent body from scrolling until intro is done
+    document.body.style.overflow = 'hidden';
 
+    // ── Build the Three.js scene immediately for the intro ──
+    // The canvas is INSIDE the loader div at this point
+    initThreeJS();
+
+    // Position camera for cinematic pull-back opening
+    camera.position.set(0, 30, introCameraZ);
+    camera.lookAt(0, 0, 0);
+
+    // Override the planet to be closer and more visible during intro
+    if (planet) {
+        planet.position.set(-180, -60, -600);
+        planet.children[0].scale.set(1.4, 1.4, 1.4);
+    }
+
+    // Add a second planet for depth
+    createSecondPlanet();
+
+    // Start the render loop
+    animate();
+
+    // ── Choreograph the UI ──
+    // Phase 1: Logo letters reveal (0.6s)
     setTimeout(() => {
-        introM.classList.add('show');
-        introOne.classList.add('show');
-        introCreative.classList.add('show');
-    }, 900);
+        introContent.classList.add('show');
+        document.querySelector('.intro-m').classList.add('show');
+        document.querySelector('.intro-one').classList.add('show');
+        document.querySelector('.intro-creative').classList.add('show');
+    }, 600);
 
+    // Phase 2: Tagline + glow line (1.4s)
     setTimeout(() => {
         introLogo.classList.add('glow');
         introTagline.classList.add('show');
         introLine.classList.add('show');
-    }, 1500);
+    }, 1400);
 
-    // Flash + zoom out
+    // Phase 3: Scroll hint appears (2.2s)
     setTimeout(() => {
-        introFlash.classList.add('fire');
-        introContent.classList.remove('show');
-        introContent.classList.add('zoom-out');
-    }, 3200);
+        introScrollHint.classList.add('show');
+        introPhase = 'idle';
+        introScrollLocked = false;
+    }, 2200);
 
-    // Stop canvas & start Three.js
-    setTimeout(() => {
-        cancelAnimationFrame(introFrame);
-        ctx.clearRect(0, 0, w, h);
+    // ── Scroll-to-enter listener ──
+    function onIntroScroll(e) {
+        if (introScrollLocked || introPhase !== 'idle') return;
+
+        // Get scroll delta
+        let delta = 0;
+        if (e.type === 'wheel') {
+            delta = e.deltaY;
+        } else if (e.type === 'touchmove') {
+            const touch = e.touches[0];
+            delta = (onIntroScroll._lastY || touch.clientY) - touch.clientY;
+            onIntroScroll._lastY = touch.clientY;
+        }
+
+        if (delta <= 0) return;
+
+        // Trigger warp
+        introPhase = 'warping';
+        triggerWarp();
+
+        // Remove listeners
+        window.removeEventListener('wheel', onIntroScroll, { passive: false });
+        window.removeEventListener('touchmove', onIntroScroll, { passive: false });
+    }
+
+    window.addEventListener('wheel', onIntroScroll, { passive: false });
+    window.addEventListener('touchmove', onIntroScroll, { passive: false });
+
+    function triggerWarp() {
+        // Exit the logo UI
+        introContent.classList.add('exit');
+
+        // Animate camera rushing forward (handled in animate() via introWarpProgress)
+        introWarpProgress = 0;
+
+        const warpStart = performance.now();
+        const warpDuration = 900; // ms
+
+        function warpLoop(now) {
+            introWarpProgress = Math.min((now - warpStart) / warpDuration, 1);
+
+            // Ease-in cubic: accelerate toward 0
+            const eased = introWarpProgress * introWarpProgress * introWarpProgress;
+            introCameraZ = 1800 - eased * 2200; // rushes from 1800 to -400
+
+            if (introWarpProgress < 1) {
+                requestAnimationFrame(warpLoop);
+            } else {
+                // Fire the flash burst
+                introFlash.classList.add('fire');
+
+                // After flash, move canvas out of loader, show site
+                setTimeout(() => {
+                    finishIntro();
+                }, 550);
+            }
+        }
+
+        requestAnimationFrame(warpLoop);
+    }
+
+    function finishIntro() {
+        introPhase = 'done';
+
+        // Move canvas out of the loader to be a persistent background
+        const canvas = document.getElementById('three-canvas');
+        document.body.appendChild(canvas);
+
+        // Fade out and remove loader
         loader.classList.add('exit');
-        // Now init the heavy 3D scene
-        initThreeJS();
-        animate();
-    }, 3900);
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 1200);
 
-    setTimeout(() => {
-        loader.style.display = 'none';
-        canvas.remove();
-    }, 4900);
+        // Re-enable body scroll
+        document.body.style.overflow = '';
 
-    window.addEventListener('resize', sizeCanvas);
+        // Reset camera Z for normal site parallax
+        introCameraZ = 800;
+        camera.position.z = 800;
+
+        // Init GSAP after intro
+        setTimeout(() => { initGSAPAnimations(); }, 100);
+    }
 }
+
+// ── Second planet for intro depth ──
+let planet2;
+function createSecondPlanet() {
+    planet2 = new THREE.Group();
+
+    // Icy blue-white planet
+    const geo = new THREE.SphereGeometry(80, 48, 48);
+    const canv = document.createElement('canvas');
+    canv.width = 512; canv.height = 256;
+    const pCtx = canv.getContext('2d');
+
+    // Base: icy blue
+    const bg = pCtx.createLinearGradient(0, 0, 512, 256);
+    bg.addColorStop(0, '#0d1a2e');
+    bg.addColorStop(0.4, '#1a3550');
+    bg.addColorStop(0.7, '#0f2a42');
+    bg.addColorStop(1, '#0a1520');
+    pCtx.fillStyle = bg;
+    pCtx.fillRect(0, 0, 512, 256);
+
+    // Ice bands
+    for (let i = 0; i < 18; i++) {
+        const y = Math.random() * 256;
+        pCtx.fillStyle = `rgba(${140 + Math.random() * 80}, ${200 + Math.random() * 40}, 255, ${Math.random() * 0.3 + 0.05})`;
+        pCtx.fillRect(0, y, 512, Math.random() * 14 + 3);
+    }
+    // Polar ice caps
+    const capGrad = pCtx.createLinearGradient(0, 0, 0, 50);
+    capGrad.addColorStop(0, 'rgba(220,240,255,0.7)');
+    capGrad.addColorStop(1, 'rgba(220,240,255,0)');
+    pCtx.fillStyle = capGrad;
+    pCtx.fillRect(0, 0, 512, 50);
+    const capGrad2 = pCtx.createLinearGradient(0, 206, 0, 256);
+    capGrad2.addColorStop(0, 'rgba(220,240,255,0)');
+    capGrad2.addColorStop(1, 'rgba(220,240,255,0.6)');
+    pCtx.fillStyle = capGrad2;
+    pCtx.fillRect(0, 206, 512, 50);
+
+    const tex = new THREE.CanvasTexture(canv);
+    const mat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.6, metalness: 0.2 });
+    const mesh = new THREE.Mesh(geo, mat);
+    planet2.add(mesh);
+
+    // Rings around it
+    const ringGeo = new THREE.RingGeometry(100, 160, 64);
+    // Fix ring UVs
+    const pos = ringGeo.attributes.position;
+    const uv = ringGeo.attributes.uv;
+    const v3 = new THREE.Vector3();
+    for (let i = 0; i < pos.count; i++) {
+        v3.fromBufferAttribute(pos, i);
+        uv.setXY(i, v3.length() < 130 ? 0 : 1, 1);
+    }
+    const ringMat = new THREE.MeshBasicMaterial({
+        color: 0xa0d4ff,
+        transparent: true,
+        opacity: 0.18,
+        side: THREE.DoubleSide,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
+    });
+    const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+    ringMesh.rotation.x = Math.PI * 0.4;
+    planet2.add(ringMesh);
+
+    // Atmosphere glow
+    const atmosGeo = new THREE.SphereGeometry(86, 32, 32);
+    const atmosMat = new THREE.MeshBasicMaterial({
+        color: 0xa0d4ff,
+        transparent: true,
+        opacity: 0.07,
+        side: THREE.BackSide
+    });
+    planet2.add(new THREE.Mesh(atmosGeo, atmosMat));
+
+    planet2.position.set(300, 80, -900);
+    scene.add(planet2);
+}
+
 
 // ======= THREE.JS SCENE SETUP =======
 function initThreeJS() {
@@ -519,7 +557,21 @@ function animate() {
     // Planet rotation
     if (planet) {
         planet.children[0].rotation.y += 0.001;
-        planet.position.y = -100 + Math.sin(time * 0.3) * 20;
+        if (introPhase === 'done') {
+            planet.position.y = -100 + Math.sin(time * 0.3) * 20;
+        } else {
+            planet.position.y = -60 + Math.sin(time * 0.25) * 15;
+        }
+    }
+
+    // Second intro planet
+    if (planet2) {
+        planet2.children[0].rotation.y += 0.0007;
+        planet2.children[0].rotation.x += 0.0002;
+        planet2.position.y = 80 + Math.sin(time * 0.2) * 12;
+        if (planet2.children[1]) {
+            planet2.children[1].rotation.z += 0.0004; // ring drift
+        }
     }
 
     // Floating geometries
@@ -534,13 +586,24 @@ function animate() {
         ring.rotation.z += 0.001;
     }
 
-    // Camera parallax from mouse
-    camera.position.x += (mouseX * 0.05 - camera.position.x) * 0.02;
-    camera.position.y += (-mouseY * 0.05 - camera.position.y) * 0.02;
-
-    // Camera zoom based on scroll
-    const targetZ = 800 - scrollProgress * 600;
-    camera.position.z += (targetZ - camera.position.z) * 0.03;
+    // ── Camera control ──
+    if (introPhase !== 'done') {
+        // During intro: camera controlled by introCameraZ
+        // Add a very slow drift-in toward planets
+        if (introPhase === 'idle') {
+            introCameraZ -= 0.3; // slow creep forward
+        }
+        camera.position.z = introCameraZ;
+        // Gentle horizontal drift
+        camera.position.x += (Math.sin(time * 0.08) * 15 - camera.position.x) * 0.01;
+        camera.position.y += (Math.cos(time * 0.05) * 8 + 30 - camera.position.y) * 0.01;
+    } else {
+        // After intro: normal parallax scroll camera
+        camera.position.x += (mouseX * 0.05 - camera.position.x) * 0.02;
+        camera.position.y += (-mouseY * 0.05 - camera.position.y) * 0.02;
+        const targetZ = 800 - scrollProgress * 600;
+        camera.position.z += (targetZ - camera.position.z) * 0.03;
+    }
 
     camera.lookAt(scene.position);
     renderer.render(scene, camera);
@@ -1327,8 +1390,7 @@ function initCaseStudies() {
 
 // ======= INIT =======
 document.addEventListener('DOMContentLoaded', () => {
-    // Start intro first — Three.js is deferred until intro finishes
-    initIntro();
+    // Init UI interactions immediately (they don't need Three.js)
     initNavigation();
     initForm();
     initCheckout();
@@ -1340,15 +1402,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroScroll();
     initCaseStudies();
 
-
-    // Delay GSAP init to ensure DOM is ready
-    setTimeout(() => {
-        initGSAPAnimations();
-    }, 100);
+    // Start intro — Three.js scene + GSAP both start inside initIntro
+    initIntro();
 
     // Event listeners
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('resize', handleResize);
 });
-
