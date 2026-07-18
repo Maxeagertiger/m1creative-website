@@ -480,60 +480,55 @@ form.contact-form {
 .page-hero p { max-width: 56ch; margin: 0 auto; }
 
 /* =========================================================
-   Luxury Preloader & Entrance Animations
+   Luxury Preloader & Entrance Animations (Circular Wipe)
    ========================================================= */
 #preloader {
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0;
   background: radial-gradient(circle at center, #FAF7F5 0%, #ede5df 100%);
   z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.8s ease, visibility 0.8s;
+  display: flex; align-items: center; justify-content: center;
+  clip-path: circle(100% at center);
+  transition: clip-path 1.4s cubic-bezier(0.85, 0, 0.15, 1);
   pointer-events: none;
 }
 #preloader.done {
-  transform: translateY(-100%);
-  opacity: 0.95;
+  clip-path: circle(0% at center);
 }
 .preloader-content {
   text-align: center;
 }
-.preloader-logo {
+.preloader-word-wrap {
+  position: relative;
+  height: 60px;
+  display: flex; align-items: center; justify-content: center;
+  min-width: 280px;
+}
+.preloader-word {
+  position: absolute;
   font-family: var(--font-display);
-  font-size: 3.5rem;
+  font-size: 2.2rem;
+  color: var(--dim-grey);
+  letter-spacing: 0.15em;
+  font-style: italic;
+  opacity: 0;
+  transform: translateY(12px);
+  filter: blur(6px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+}
+.preloader-word.brand-word {
+  font-size: 3.2rem;
+  font-style: normal;
   color: var(--charcoal);
   letter-spacing: 0.35em;
-  margin-bottom: 20px;
+  font-weight: 500;
   text-transform: uppercase;
-  animation: logoReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  text-shadow: 0 0 15px rgba(166, 128, 140, 0.1);
 }
-@keyframes logoReveal {
-  0% { letter-spacing: 0.05em; opacity: 0; filter: blur(10px); transform: scale(0.92); }
-  60% { opacity: 1; filter: blur(0); transform: scale(1.03); }
-  100% { letter-spacing: 0.35em; opacity: 1; filter: blur(0); transform: scale(1); }
+.preloader-word.active {
+  opacity: 1; transform: translateY(0); filter: blur(0);
 }
-.preloader-line {
-  width: 120px;
-  height: 1px;
-  background: rgba(166, 128, 140, 0.2);
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
-}
-.preloader-line::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--accent);
-  transform: translateX(-100%);
-  animation: lineLoad 1.8s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
-}
-@keyframes lineLoad {
-  0% { transform: translateX(-100%); }
-  50% { transform: translateX(0); }
-  100% { transform: translateX(100%); }
+.preloader-word.exit {
+  opacity: 0; transform: translateY(-12px); filter: blur(6px);
 }
 
 /* Page entrance animations */

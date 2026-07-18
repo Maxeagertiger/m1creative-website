@@ -7,7 +7,7 @@
     setTimeout(() => {
       document.getElementById('preloader')?.classList.add('done');
       document.body.classList.add('intro-done');
-    }, 800);
+    }, 2400);
   });
 
   // ---------- Theme toggle ----------
