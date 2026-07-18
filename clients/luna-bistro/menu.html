@@ -27,10 +27,19 @@
 <body class="loading">
   
   <!-- Preloader -->
-  <div class="preloader" aria-hidden="true">
-    <div class="preloader-logo">Luna<span class="text-accent">.</span></div>
-    <div class="preloader-spinner"></div>
-    <p class="preloader-text">Preparing your experience</p>
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-panel panel-top"></div>
+    <div class="preloader-panel panel-bottom"></div>
+    <div class="preloader-content">
+      <div class="preloader-moon-wrap">
+        <svg class="preloader-moon-svg" viewBox="0 0 100 100">
+          <path class="moon-path" d="M40,20 A30,30 0 1,0 80,60 A24,24 0 1,1 40,20 Z" />
+          <polygon class="star-path" points="68,30 71,36 78,37 73,42 74,49 68,45 62,49 63,42 58,37 65,36" />
+        </svg>
+      </div>
+      <div class="preloader-logo">Luna<span class="text-accent">.</span></div>
+      <p class="preloader-text">Preparing your experience</p>
+    </div>
   </div>
   
   <!-- Navigation -->

@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(function() {
         preloader.classList.add('hidden');
         document.body.classList.remove('loading');
-      }, 1500); // 1.5 second minimum display time
+      }, 2400); // 2.4 second minimum display time
     });
   }
   
