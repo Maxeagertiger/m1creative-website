@@ -1180,6 +1180,142 @@ function initPortfolioFilters() {
     });
 }
 
+// ======= CASE STUDY MODAL =======
+function initCaseStudies() {
+    const overlay = document.getElementById('caseStudyOverlay');
+    const closeBtn = document.getElementById('caseStudyClose');
+    const badge = document.getElementById('caseStudyBadge');
+    const title = document.getElementById('caseStudyTitle');
+    const problem = document.getElementById('caseStudyProblem');
+    const solution = document.getElementById('caseStudySolution');
+    const featuresList = document.getElementById('caseStudyFeatures');
+    const tech = document.getElementById('caseStudyTech');
+    const launchBtn = document.getElementById('caseStudyLaunchBtn');
+    
+    if (!overlay || !closeBtn) return;
+    
+    const caseStudies = {
+        veloura: {
+            title: "VELOURA — Beauty Lounge",
+            category: "Beauty & Wellness",
+            problem: "Veloura struggled to attract high-end, premium salon bookings online. Their previous website was slow, felt generic, and lacked the visual refinement required to appeal to luxury spa customers looking for an elite wellness experience.",
+            solution: "We designed and engineered an elegant dark-mauve landing page centered around custom typography, responsive galleries, and seamless page loading. An upscale vertical-slide preloader was created to mirror the calming transition from a busy day to a luxury spa treatment.",
+            features: [
+                "Luxury visual design system (mauve HSL tokens)",
+                "Bespoke curtain slide-up entrance preloader",
+                "Custom service menu filters with instant transition styling",
+                "Fully responsive, touch-first booking layout"
+            ],
+            tech: "HTML5, CSS Custom Variables, Modern ES6 JS, Intersection Observer API",
+            url: "clients/veloura-beauty-lounge/index.html"
+        },
+        apex: {
+            title: "Apex Legal — Corporate Law",
+            category: "Legal & Corporate",
+            problem: "Corporate law firms often feel impersonal, hard to navigate, and intimidating to prospective clients. Apex faced low conversion rates on consultations due to cluttered site design, a lack of clear navigation hierarchies, and generic branding.",
+            solution: "We engineered a commanding, sophisticated digital home in gold and navy. An interactive preloader draws a precise vector gold crest on startup to build instant authority. Navigation was streamlined to guide clients directly to booking a consultation, paired with a custom FAQ accordion.",
+            features: [
+                "Self-drawing gold vector emblem preloader",
+                "Responsive lawyer profiles with interactive tilt effects",
+                "Fully accessible client FAQ accordion panel system",
+                "Consultation request forms with direct validation feedback"
+            ],
+            tech: "HTML5, CSS Flexbox & Grid, ES6 JS, SVG Path Animations",
+            url: "clients/apex-legal/index.html"
+        },
+        luna: {
+            title: "Luna Bistro — Fine Dining",
+            category: "Food & Dining",
+            problem: "Luna Bistro needed to showcase their atmosphere and premium dishes to convert digital visitors into table reservations. Their previous mobile layout crashed when viewing menus, and a lack of unified branding led to high customer drop-offs.",
+            solution: "We built a theatrical split-curtain preloader featuring a self-drawing gold crescent moon and stars. Created fully responsive tabbed gallery and menu filtering systems to explore dishes and interiors, integrated Google Maps, and built a custom table booking form validation pipeline.",
+            features: [
+                "Theatrical top/bottom curtain panels with SVG moon drawing preloader",
+                "Deduplicated tabbed category filters for both menus and photo galleries",
+                "Fluid full-screen lightbox modal for culinary exploration",
+                "Automated reservation forms with custom success animations"
+            ],
+            tech: "HTML5, Vanilla CSS, Vanilla ES6 JS, SVG Animations, Leaflet Map integration",
+            url: "clients/luna-bistro/index.html"
+        },
+        stellar: {
+            title: "Stellar Flight — Space Dashboard",
+            category: "Technology",
+            problem: "Space travel concepts require building intense visual excitement and showing engineering excellence. Standard corporate website templates fail to convey the scale, high performance, and awe of future cosmic tourism.",
+            solution: "We designed a futuristic space booking dashboard. Implemented a fully interactive WebGL space field that shifts and revolves dynamically based on the visitor's scroll, paired with glassmorphic cards, telemetry dashboards, and neon borders.",
+            features: [
+                "Dynamic WebGL Three.js space particle simulation",
+                "Futuristic glassmorphic panels displaying orbital telemetry",
+                "Neon glow design token styling with sci-fi layouts",
+                "Orbit simulation loader paths and interactive forms"
+            ],
+            tech: "HTML5, CSS Grid, Three.js WebGL, ES6 JS, GSAP Animations",
+            url: "clients/stellar-flight/index.html"
+        },
+        prisma: {
+            title: "Prisma — Cinematic Studio",
+            category: "Film & Creative",
+            problem: "Avant-garde filmmakers need a digital canvas that reflects their creative authority without distracting from their videos. A standard grid template felt too plain and failed to capture their artistic voice.",
+            solution: "We created a minimalist, high-contrast creative studio centered on a rotating WebGL 3D glass prism. Built fluid scroll-tied animation triggers, fullscreen video lightboxes, and a sleek layout showing their award-winning documentaries.",
+            features: [
+                "Custom 3D WebGL rotating glass prism lens rendering",
+                "High-contrast, brutalist design token typography",
+                "Seamless fullscreen HTML5 video lightbox overlay",
+                "Fluid page transitions with scroll-tied reveal triggers"
+            ],
+            tech: "HTML5, Custom CSS, WebGL, Three.js, ES6 JS, Parallax layouts",
+            url: "clients/warm-clean-visions/index.html"
+        }
+    };
+    
+    document.querySelectorAll('.work-item').forEach(item => {
+        const link = item.querySelector('.work-link');
+        const projectKey = item.getAttribute('data-project');
+        
+        if (link && projectKey && caseStudies[projectKey]) {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const data = caseStudies[projectKey];
+                
+                // Populate data
+                badge.textContent = data.category;
+                title.textContent = data.title;
+                problem.textContent = data.problem;
+                solution.textContent = data.solution;
+                tech.textContent = data.tech;
+                launchBtn.setAttribute('href', data.url);
+                
+                // Populate features
+                featuresList.innerHTML = '';
+                data.features.forEach(f => {
+                    const li = document.createElement('li');
+                    li.textContent = f;
+                    featuresList.appendChild(li);
+                });
+                
+                // Open overlay
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+    });
+    
+    // Close functions
+    function closeCaseStudy() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    closeBtn.addEventListener('click', closeCaseStudy);
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeCaseStudy();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            closeCaseStudy();
+        }
+    });
+}
+
 // ======= INIT =======
 document.addEventListener('DOMContentLoaded', () => {
     // Start intro first — Three.js is deferred until intro finishes
@@ -1193,6 +1329,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initReviews();
     initPortfolioFilters();
     initHeroScroll();
+    initCaseStudies();
 
 
     // Delay GSAP init to ensure DOM is ready
