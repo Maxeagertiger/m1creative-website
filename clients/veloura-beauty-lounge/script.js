@@ -7,41 +7,10 @@
 
   /* ---------- Preloader Trigger ---------- */
   window.addEventListener('load', () => {
-    const words = document.querySelectorAll('.preloader-word');
-    if (words.length > 0) {
-      // Step 1: Show "unwind."
-      setTimeout(() => {
-        words[0].classList.add('active');
-      }, 100);
-      
-      // Step 2: Exit "unwind.", Show "glow."
-      setTimeout(() => {
-        words[0].classList.remove('active');
-        words[0].classList.add('exit');
-        words[1].classList.add('active');
-      }, 1000);
-      
-      // Step 3: Exit "glow.", Show "VELOURA"
-      setTimeout(() => {
-        words[1].classList.remove('active');
-        words[1].classList.add('exit');
-        words[2].classList.add('active');
-      }, 1900);
-      
-      // Step 4: Wipe preloader open, exit "VELOURA"
-      setTimeout(() => {
-        words[2].classList.remove('active');
-        words[2].classList.add('exit');
-        document.getElementById('preloader')?.classList.add('done');
-        document.body.classList.add('intro-done');
-      }, 2900);
-    } else {
-      // Fallback
-      setTimeout(() => {
-        document.getElementById('preloader')?.classList.add('done');
-        document.body.classList.add('intro-done');
-      }, 800);
-    }
+    setTimeout(() => {
+      document.getElementById('preloader')?.classList.add('done');
+      document.body.classList.add('intro-done');
+    }, 800);
   });
 
   /* ---------- Mobile nav toggle ---------- */
