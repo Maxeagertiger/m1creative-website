@@ -1268,12 +1268,14 @@ function initCaseStudies() {
     };
     
     document.querySelectorAll('.work-item').forEach(item => {
-        const card = item.querySelector('.work-image');
         const liveLink = item.querySelector('.live-site-link');
+        const triggerBtn = item.querySelector('.case-study-trigger');
         const projectKey = item.getAttribute('data-project');
         
-        if (card && projectKey && caseStudies[projectKey]) {
-            card.addEventListener('click', (e) => {
+        // Bind case study to the dedicated Case Study button
+        if (triggerBtn && projectKey && caseStudies[projectKey]) {
+            triggerBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const data = caseStudies[projectKey];
                 
                 // Populate data
@@ -1298,6 +1300,7 @@ function initCaseStudies() {
             });
         }
         
+        // Live site link — just opens in new tab, no modal
         if (liveLink) {
             liveLink.addEventListener('click', (e) => {
                 e.stopPropagation();
