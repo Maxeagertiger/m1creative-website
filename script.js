@@ -1268,13 +1268,12 @@ function initCaseStudies() {
     };
     
     document.querySelectorAll('.work-item').forEach(item => {
-        const trigger = item.querySelector('.case-study-trigger');
+        const card = item.querySelector('.work-image');
+        const liveLink = item.querySelector('.live-site-link');
         const projectKey = item.getAttribute('data-project');
         
-        if (trigger && projectKey && caseStudies[projectKey]) {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
+        if (card && projectKey && caseStudies[projectKey]) {
+            card.addEventListener('click', (e) => {
                 const data = caseStudies[projectKey];
                 
                 // Populate data
@@ -1296,6 +1295,12 @@ function initCaseStudies() {
                 // Open overlay
                 overlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
+            });
+        }
+        
+        if (liveLink) {
+            liveLink.addEventListener('click', (e) => {
+                e.stopPropagation();
             });
         }
     });

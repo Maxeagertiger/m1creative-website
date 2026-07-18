@@ -1028,14 +1028,6 @@ body {
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--accent);
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.4s ease 0.2s;
-}
-
-.work-image:hover .work-cta {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 /* ===========================
@@ -3085,6 +3077,15 @@ body {
     gap: 12px;
     margin-top: 15px;
     width: 100%;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+    pointer-events: none;
+}
+.work-image:hover .work-actions {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 .work-actions .work-cta {
     margin-top: 0 !important;
