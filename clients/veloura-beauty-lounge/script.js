@@ -5,6 +5,14 @@
 (function () {
   "use strict";
 
+  /* ---------- Preloader Trigger ---------- */
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('preloader')?.classList.add('done');
+      document.body.classList.add('intro-done');
+    }, 800);
+  });
+
   /* ---------- Mobile nav toggle ---------- */
   const toggle = document.querySelector(".nav-toggle");
   const navList = document.querySelector(".nav-list");

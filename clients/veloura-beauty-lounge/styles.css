@@ -478,3 +478,76 @@ form.contact-form {
 }
 .page-hero h1 { margin-bottom: .5rem; }
 .page-hero p { max-width: 56ch; margin: 0 auto; }
+
+/* =========================================================
+   Luxury Preloader & Entrance Animations
+   ========================================================= */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #FAF7F5 0%, #ede5df 100%);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.8s ease, visibility 0.8s;
+  pointer-events: none;
+}
+#preloader.done {
+  transform: translateY(-100%);
+  opacity: 0.95;
+}
+.preloader-content {
+  text-align: center;
+}
+.preloader-logo {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  color: var(--charcoal);
+  letter-spacing: 0.35em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  animation: logoReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes logoReveal {
+  0% { letter-spacing: 0.05em; opacity: 0; filter: blur(10px); transform: scale(0.92); }
+  60% { opacity: 1; filter: blur(0); transform: scale(1.03); }
+  100% { letter-spacing: 0.35em; opacity: 1; filter: blur(0); transform: scale(1); }
+}
+.preloader-line {
+  width: 120px;
+  height: 1px;
+  background: rgba(166, 128, 140, 0.2);
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+.preloader-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: translateX(-100%);
+  animation: lineLoad 1.8s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+}
+@keyframes lineLoad {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+/* Page entrance animations */
+.hero .container, .page-hero .container {
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.8s ease;
+}
+body:not(.intro-done) .hero .container, 
+body:not(.intro-done) .page-hero .container {
+  transform: translateY(30px) scale(0.96);
+  opacity: 0;
+}
+body.intro-done .hero .container, 
+body.intro-done .page-hero .container {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+

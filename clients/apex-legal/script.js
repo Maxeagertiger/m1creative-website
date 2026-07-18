@@ -4,7 +4,10 @@
 
   // ---------- Preloader ----------
   window.addEventListener('load', () => {
-    setTimeout(() => document.getElementById('preloader')?.classList.add('done'), 600);
+    setTimeout(() => {
+      document.getElementById('preloader')?.classList.add('done');
+      document.body.classList.add('intro-done');
+    }, 800);
   });
 
   // ---------- Theme toggle ----------
