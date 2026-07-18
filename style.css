@@ -1011,14 +1011,6 @@ body {
     color: var(--text-light);
     line-height: 1.6;
     margin-bottom: 12px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.4s ease 0.1s;
-}
-
-.work-image:hover .work-desc {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .work-cta {
@@ -1701,11 +1693,13 @@ body {
     visibility: hidden;
     transition: all 0.4s ease;
     padding: 20px;
+    pointer-events: none;
 }
 
 .checkout-overlay.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 .checkout-modal {
@@ -2874,11 +2868,13 @@ body {
     visibility: hidden;
     transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     padding: 20px;
+    pointer-events: none;
 }
 
 .case-study-overlay.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 .case-study-modal {
@@ -3077,15 +3073,32 @@ body {
     gap: 12px;
     margin-top: 15px;
     width: 100%;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
-    pointer-events: none;
-}
-.work-image:hover .work-actions {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
     pointer-events: auto;
+}
+
+@media (hover: hover) {
+    .work-actions {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+        pointer-events: none;
+    }
+    .work-image:hover .work-actions {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+    .work-desc {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.4s ease 0.1s;
+    }
+    .work-image:hover .work-desc {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 .work-actions .work-cta {
     margin-top: 0 !important;
