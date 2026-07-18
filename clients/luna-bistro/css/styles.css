@@ -179,25 +179,26 @@ p {
 }
 
 /* ============================================================
-   PRELOADER
-   Elegant loading animation before content reveals
+   PRELOADER (Cinematic Luxury)
    ============================================================ */
 .preloader {
   position: fixed; inset: 0;
   z-index: var(--z-preloader);
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
+  pointer-events: auto;
 }
 .preloader-panel {
   position: absolute; left: 0; width: 100%; height: 50%;
-  background: #0d0f12; transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1);
+  background: #08090b; /* Onyx night */
+  transition: transform 1.4s cubic-bezier(0.85, 0, 0.15, 1);
   z-index: 1;
 }
 .panel-top {
-  top: 0; border-bottom: 1px solid rgba(74, 154, 142, 0.08);
+  top: 0; border-bottom: 1px solid rgba(74, 154, 142, 0.05);
 }
 .panel-bottom {
-  bottom: 0; border-top: 1px solid rgba(74, 154, 142, 0.08);
+  bottom: 0; border-top: 1px solid rgba(74, 154, 142, 0.05);
 }
 .preloader.hidden .panel-top {
   transform: translateY(-100%);
@@ -207,57 +208,99 @@ p {
 }
 .preloader.hidden {
   visibility: hidden;
-  transition: visibility 0s 1.2s;
+  transition: visibility 0s 1.4s;
+  pointer-events: none;
 }
 .preloader-content {
   position: relative; z-index: 2; text-align: center;
-  transition: opacity 0.8s cubic-bezier(0.85, 0, 0.15, 1), transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+  transition: opacity 1s cubic-bezier(0.85, 0, 0.15, 1), transform 1s cubic-bezier(0.85, 0, 0.15, 1);
 }
 .preloader.hidden .preloader-content {
-  opacity: 0; transform: scale(0.95);
+  opacity: 0; transform: translateY(-30px) scale(0.95);
 }
 .preloader-moon-wrap {
-  display: flex; justify-content: center; margin-bottom: var(--spacing-md);
+  display: flex; justify-content: center; margin-bottom: var(--spacing-lg);
 }
 .preloader-moon-svg {
-  width: 80px; height: 80px;
+  width: 90px; height: 90px;
+  filter: drop-shadow(0 0 15px rgba(74, 154, 142, 0.1));
 }
 .moon-path {
-  fill: none; stroke: var(--color-accent); stroke-width: 2.5;
+  fill: none; stroke: var(--color-accent); stroke-width: 2.2;
   stroke-dasharray: 200; stroke-dashoffset: 200;
-  animation: drawMoon 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: drawMoon 2s cubic-bezier(0.4, 0, 0.2, 1) forwards, moonPulse 3s ease-in-out 2s infinite alternate;
 }
 .star-path {
   fill: none; stroke: var(--color-accent); stroke-width: 1.5;
   stroke-dasharray: 50; stroke-dashoffset: 50;
-  animation: drawStar 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+  animation: drawStar 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards, starPulse 2.5s ease-in-out 1.8s infinite alternate;
 }
+
 @keyframes drawMoon {
   to {
     stroke-dashoffset: 0;
-    fill: rgba(74, 154, 142, 0.04);
-    filter: drop-shadow(0 0 8px rgba(74, 154, 142, 0.25));
+    fill: rgba(74, 154, 142, 0.03);
+    filter: drop-shadow(0 0 10px rgba(74, 154, 142, 0.4));
   }
 }
 @keyframes drawStar {
   to {
     stroke-dashoffset: 0;
     fill: var(--color-accent);
-    filter: drop-shadow(0 0 6px var(--color-accent));
+    filter: drop-shadow(0 0 8px var(--color-accent));
   }
 }
+@keyframes moonPulse {
+  0% { filter: drop-shadow(0 0 10px rgba(74, 154, 142, 0.3)); }
+  100% { filter: drop-shadow(0 0 20px rgba(74, 154, 142, 0.6)); }
+}
+@keyframes starPulse {
+  0% { filter: drop-shadow(0 0 6px rgba(74, 154, 142, 0.5)); opacity: 0.8; }
+  100% { filter: drop-shadow(0 0 12px rgba(74, 154, 142, 0.9)); opacity: 1; }
+}
+
 .preloader-logo {
-  font-family: var(--font-heading); font-size: 2.6rem; color: var(--color-text-primary);
-  margin-bottom: var(--spacing-xs); letter-spacing: 0.12em;
-  opacity: 0; animation: textReveal 1.6s ease-out 0.8s forwards;
+  font-family: var(--font-heading); font-size: 3rem; color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm); letter-spacing: 0.12em;
+  opacity: 0;
+  animation: cinematicTextReveal 2.2s cubic-bezier(0.25, 1, 0.5, 1) 0.6s forwards;
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
 }
+
+.preloader-divider {
+  width: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  margin: var(--spacing-sm) auto;
+  animation: drawDivider 1.8s cubic-bezier(0.25, 1, 0.5, 1) 1.2s forwards;
+}
+
 .preloader-text {
-  font-family: var(--font-body); font-size: 0.8rem; color: var(--color-text-muted);
-  letter-spacing: 0.2em; text-transform: uppercase;
-  opacity: 0; animation: textReveal 1.6s ease-out 1.1s forwards;
+  font-family: var(--font-body); font-size: 0.75rem; color: var(--color-text-muted);
+  letter-spacing: 0.25em; text-transform: uppercase;
+  opacity: 0; animation: fadeInText 1.8s ease-out 1.4s forwards;
 }
-@keyframes textReveal {
-  from { opacity: 0; transform: translateY(10px); }
+
+@keyframes cinematicTextReveal {
+  from {
+    opacity: 0;
+    letter-spacing: 0.08em;
+    transform: translateY(15px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    letter-spacing: 0.22em;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes drawDivider {
+  to { width: 160px; }
+}
+
+@keyframes fadeInText {
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -428,6 +471,11 @@ p {
   background-position: center;
   background-attachment: fixed;
   z-index: -2;
+  transition: transform 3.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1);
+}
+body.loading .hero-background {
+  transform: scale(1.15);
 }
 
 .hero-overlay {
@@ -1770,6 +1818,11 @@ p {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  transition: transform 3.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1);
+}
+body.loading .page-header-background {
+  transform: scale(1.15);
 }
 
 .page-header-overlay {
@@ -2049,4 +2102,19 @@ p {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
