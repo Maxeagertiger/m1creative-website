@@ -1268,12 +1268,13 @@ function initCaseStudies() {
     };
     
     document.querySelectorAll('.work-item').forEach(item => {
-        const link = item.querySelector('.work-link');
+        const trigger = item.querySelector('.case-study-trigger');
         const projectKey = item.getAttribute('data-project');
         
-        if (link && projectKey && caseStudies[projectKey]) {
-            link.addEventListener('click', (e) => {
+        if (trigger && projectKey && caseStudies[projectKey]) {
+            trigger.addEventListener('click', (e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 const data = caseStudies[projectKey];
                 
                 // Populate data
