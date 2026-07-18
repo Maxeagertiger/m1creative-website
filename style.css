@@ -49,28 +49,17 @@ body {
     z-index: 10000;
     overflow: hidden;
     cursor: default;
+    background: #000;
 }
 
-/* The Three.js canvas lives inside #loader during intro */
-#loader #three-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* After intro, canvas moves to fixed background */
+/* The Three.js canvas — inline styles set by Three.js take precedence for size */
 #three-canvas {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
     z-index: 0;
     pointer-events: none;
+    display: block;
 }
 
 /* Loader exit — fade + scale */
@@ -278,18 +267,6 @@ body {
 
 
 
-/* ===========================
-   Three.js Canvas
-   =========================== */
-#three-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-}
 
 /* ===========================
    Navigation

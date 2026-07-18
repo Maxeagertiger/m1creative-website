@@ -29,19 +29,25 @@ function initIntro() {
 
     // Prevent body from scrolling until intro is done
     document.body.style.overflow = 'hidden';
-
     // ── Build the Three.js scene immediately for the intro ──
-    // The canvas is INSIDE the loader div at this point
     initThreeJS();
+
+    // Position canvas absolutely inside loader during intro
+    const canvas = document.getElementById('three-canvas');
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
 
     // Position camera for cinematic pull-back opening
     camera.position.set(0, 30, introCameraZ);
     camera.lookAt(0, 0, 0);
 
-    // Override the planet to be closer and more visible during intro
+    // Override the planet to be more visible during intro
     if (planet) {
-        planet.position.set(-180, -60, -600);
-        planet.children[0].scale.set(1.4, 1.4, 1.4);
+        planet.position.set(-200, -80, -600);
+        // Scale the mesh (children[0]) but keep it safe
+        const pMesh = planet.children[0];
+        if (pMesh) pMesh.scale.set(1.5, 1.5, 1.5);
     }
 
     // Add a second planet for depth
@@ -138,8 +144,12 @@ function initIntro() {
         introPhase = 'done';
 
         // Move canvas out of the loader to be a persistent background
-        const canvas = document.getElementById('three-canvas');
-        document.body.appendChild(canvas);
+        const cvs = document.getElementById('three-canvas');
+        // Clear the intro inline styles — CSS position:fixed will take over
+        cvs.style.position = '';
+        cvs.style.top = '';
+        cvs.style.left = '';
+        document.body.insertBefore(cvs, document.body.firstChild);
 
         // Fade out and remove loader
         loader.classList.add('exit');
@@ -153,6 +163,9 @@ function initIntro() {
         // Reset camera Z for normal site parallax
         introCameraZ = 800;
         camera.position.z = 800;
+
+        // Resize renderer now that context has changed
+        if (renderer) renderer.setSize(window.innerWidth, window.innerHeight);
 
         // Init GSAP after intro
         setTimeout(() => { initGSAPAnimations(); }, 100);
@@ -251,8 +264,9 @@ function initThreeJS() {
     renderer = new THREE.WebGLRenderer({
         canvas,
         antialias: true,
-        alpha: true
+        alpha: false
     });
+    renderer.setClearColor(0x000000, 1);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
