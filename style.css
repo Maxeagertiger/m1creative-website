@@ -659,6 +659,10 @@ body {
     background-clip: text;
 }
 
+.dark-text {
+    color: var(--text-dark);
+}
+
 .dark-text .word {
     color: var(--text-dark);
 }
