@@ -2686,6 +2686,7 @@ body {
     color: #fff;
     letter-spacing: 1px;
     flex-shrink: 0;
+    object-fit: cover;
 }
 
 .review-info {
