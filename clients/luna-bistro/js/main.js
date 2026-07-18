@@ -347,6 +347,7 @@ document.addEventListener('DOMContentLoaded', function() {
      ============================================================ */
   const menuTabs = document.querySelectorAll('.menu-tab');
   const menuCards = document.querySelectorAll('.menu-card');
+  const galleryItems = document.querySelectorAll('.gallery-item');
   
   if (menuTabs.length > 0) {
     menuTabs.forEach(function(tab) {
@@ -359,22 +360,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         this.classList.add('active');
         
-        // Filter menu items
-        menuCards.forEach(function(card) {
-          if (category === 'all' || card.dataset.category === category) {
-            card.style.display = 'block';
-            setTimeout(function() {
-              card.style.opacity = '1';
-              card.style.transform = 'translateY(0)';
-            }, 50);
-          } else {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            setTimeout(function() {
-              card.style.display = 'none';
-            }, 300);
-          }
-        });
+        // Filter menu items if present
+        if (menuCards.length > 0) {
+          menuCards.forEach(function(card) {
+            if (category === 'all' || card.dataset.category === category) {
+              card.style.display = 'block';
+              setTimeout(function() {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, 50);
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(function() {
+                card.style.display = 'none';
+              }, 300);
+            }
+          });
+        }
+
+        // Filter gallery items if present
+        if (galleryItems.length > 0) {
+          galleryItems.forEach(function(item) {
+            if (category === 'all' || item.dataset.category === category) {
+              item.style.display = 'block';
+              setTimeout(function() {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0) scale(1)';
+              }, 50);
+            } else {
+              item.style.opacity = '0';
+              item.style.transform = 'translateY(20px) scale(0.95)';
+              setTimeout(function() {
+                item.style.display = 'none';
+              }, 300);
+            }
+          });
+        }
       });
     });
   }

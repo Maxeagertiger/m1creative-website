@@ -1157,6 +1157,10 @@ function initPortfolioFilters() {
             items.forEach(item => {
                 const niche = item.getAttribute('data-niche');
                 
+                if (item._fadeTimeout) {
+                    clearTimeout(item._fadeTimeout);
+                }
+                
                 if (filter === 'all' || niche === filter) {
                     item.style.display = '';
                     // Force reflow
@@ -1167,10 +1171,8 @@ function initPortfolioFilters() {
                 } else {
                     item.style.opacity = '0';
                     item.style.transform = 'translateY(30px) scale(0.95)';
-                    setTimeout(() => {
-                        if (item.style.opacity === '0') {
-                            item.style.display = 'none';
-                        }
+                    item._fadeTimeout = setTimeout(() => {
+                        item.style.display = 'none';
                     }, 400);
                 }
             });
