@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
      ============================================================ */
   const menuTabs = document.querySelectorAll('.menu-tab');
   const menuCards = document.querySelectorAll('.menu-card');
-  const galleryItems = document.querySelectorAll('.gallery-item');
+  const galleryPhotoItems = document.querySelectorAll('.gallery-item');
   
   if (menuTabs.length > 0) {
     menuTabs.forEach(function(tab) {
@@ -391,8 +391,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Filter gallery items if present
-        if (galleryItems.length > 0) {
-          galleryItems.forEach(function(item) {
+        if (galleryPhotoItems.length > 0) {
+          galleryPhotoItems.forEach(function(item) {
             if (category === 'all' || item.dataset.category === category) {
               item.style.display = 'block';
               setTimeout(function() {
