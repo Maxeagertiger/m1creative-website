@@ -15,6 +15,7 @@ const shakeDecay = 0.92;
 let explosionParticles = [];
 let trailParticles = [];
 let earthChunks = [];
+let galaxy = null;
 
 // ======= ROCKET CRASH SEQUENCE =======
 function createRocket() {
@@ -118,7 +119,7 @@ function launchRocket() {
     const pathObj = { progress: 0 };
     gsap.to(pathObj, {
         progress: 1,
-        duration: 3.3, // slowed down slightly so it's fully trackable
+        duration: 1.5, // fast, punchy impact flight path
         ease: 'power2.in',
         onUpdate: () => {
             const t = pathObj.progress;
@@ -422,13 +423,13 @@ function initIntro() {
     // Launch rocket after logo fades in
     setTimeout(() => {
         launchRocket();
-    }, 1200);
+    }, 500);
 
     // Release scroll block and show scroll instructions AFTER the crash
     setTimeout(() => {
         introScrollHint.classList.add('show');
         introPhase = 'active';
-    }, 4200);
+    }, 2600);
 
 
     // ── Scroll-driven camera ──
@@ -769,6 +770,7 @@ function initThreeJS() {
 
     createStarField();
     createNebula();
+    createGalaxy();
     createPlanet();
     createFloatingGeometries();
     createParticleRing();
@@ -816,6 +818,71 @@ function createStarField() {
 
     stars = new THREE.Points(geometry, material);
     scene.add(stars);
+}
+
+// ======= GALAXY / MILKY WAY SYSTEM =======
+function createGalaxy() {
+    const particleCount = 2500;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+    
+    // Core (bright gold) fading out to beautiful violet/magenta arms
+    const colorInside = new THREE.Color('#ffb347');
+    const colorOutside = new THREE.Color('#a855f7');
+    
+    for (let i = 0; i < particleCount; i++) {
+        // Radius mapping
+        const r = Math.random() * 900;
+        const spin = 4.0;
+        const branchAngle = ((i % 3) * Math.PI * 2) / 3; // 3 elegant spiral branches
+        const angle = branchAngle + (r / 900) * spin;
+        
+        // Random exponential dispersion around the arms
+        const randomX = Math.pow(Math.random(), 3) * (Math.random() < 0.5 ? 1 : -1) * 45;
+        const randomY = Math.pow(Math.random(), 3) * (Math.random() < 0.5 ? 1 : -1) * 45;
+        const randomZ = Math.pow(Math.random(), 3) * (Math.random() < 0.5 ? 1 : -1) * 45;
+
+        positions[i * 3]     = Math.cos(angle) * r + randomX;
+        positions[i * 3 + 1] = randomY; 
+        positions[i * 3 + 2] = Math.sin(angle) * r + randomZ;
+        
+        // Interpolate colors based on distance from core
+        const mixedColor = colorInside.clone().lerp(colorOutside, Math.min(r / 800, 1));
+        colors[i * 3]     = mixedColor.r;
+        colors[i * 3 + 1] = mixedColor.g;
+        colors[i * 3 + 2] = mixedColor.b;
+    }
+    
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    
+    // Canvas glow particle texture
+    const canvas = document.createElement('canvas');
+    canvas.width = 16;
+    canvas.height = 16;
+    const ctx = canvas.getContext('2d');
+    const grad = ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
+    grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+    grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 16, 16);
+    const texture = new THREE.CanvasTexture(canvas);
+    
+    const material = new THREE.PointsMaterial({
+        size: 6.5,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+        map: texture
+    });
+    
+    galaxy = new THREE.Points(geometry, material);
+    galaxy.position.set(0, -50, -850); // Centered behind Earth
+    galaxy.rotation.x = Math.PI * 0.22; // Angled galaxy plane
+    scene.add(galaxy);
 }
 
 // ======= NEBULA CLOUDS =======
@@ -1041,6 +1108,12 @@ function animate() {
         stars.rotation.y += 0.00008;
         stars.rotation.x += 0.00003;
     }
+
+    // Rotate galaxy slowly
+    if (galaxy) {
+        galaxy.rotation.y += 0.0006;
+    }
+
 
     // Nebula floating
     if (nebula) {
