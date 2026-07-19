@@ -9,6 +9,7 @@ let mouseX = 0, mouseY = 0;
 let scrollProgress = 0;
 const clock = new THREE.Clock();
 let introSunLight = null;
+let lenis = null;
 
 // ======= SCROLL-DRIVEN SPACE INTRO =======
 let introPhase = 'loading'; // 'loading' | 'active' | 'warping' | 'done'
@@ -173,6 +174,8 @@ function initIntro() {
 
         // Unlock scroll
         document.body.style.overflow = '';
+        if (lenis) lenis.start();
+
 
         // Seamless camera starting position — it will smoothly slide/lerp to homepage Z in animate()
         introCameraZ = INTRO_Z_END;
@@ -850,13 +853,18 @@ function initNavigation() {
         });
     });
 
-    // Smooth scroll for anchor links
+    // Smooth scroll for anchor links using Lenis
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
             e.preventDefault();
-            const target = document.querySelector(anchor.getAttribute('href'));
+            const targetId = anchor.getAttribute('href');
+            const target = document.querySelector(targetId);
             if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (lenis) {
+                    lenis.scrollTo(target, { offset: 0, duration: 1.2 });
+                } else {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }
         });
     });
@@ -1122,7 +1130,20 @@ function initGSAPAnimations() {
     // Clear CSS transitions on these elements so GSAP animates them smoothly without clashing
     gsap.set('.service-card, .work-item, .pricing-card, .stat-card, .process-step', { transition: 'none' });
 
-    // Hero parallax
+    // ── Hero Section Entrance (Fades & rises on page reveal) ──
+    gsap.fromTo('.hero-content > *',
+        { opacity: 0, y: 60 },
+        {
+            opacity: 1,
+            y: 0,
+            duration: 1.4,
+            stagger: 0.18,
+            ease: 'power4.out',
+            clearProps: 'all'
+        }
+    );
+
+    // Hero parallax on scroll
     gsap.to('.hero-content', {
         scrollTrigger: {
             trigger: '#hero',
@@ -1130,29 +1151,31 @@ function initGSAPAnimations() {
             end: 'bottom top',
             scrub: 1
         },
-        y: -120,
+        y: -150,
         opacity: 0,
-        scale: 0.95
+        scale: 0.93
     });
 
-    // Section tags slide in
-    gsap.utils.toArray('.section-tag').forEach(tag => {
-        gsap.from(tag, {
+    // ── Unified Section Headers Reveal (Sleek slide up & scale) ──
+    gsap.utils.toArray('.section-header').forEach(header => {
+        gsap.from(header.children, {
             scrollTrigger: {
-                trigger: tag,
+                trigger: header,
                 start: 'top 85%',
                 toggleActions: 'play none none reverse'
             },
-            x: -30,
             opacity: 0,
-            duration: 0.8,
-            ease: 'power2.out'
+            y: 40,
+            scale: 0.98,
+            duration: 1.2,
+            stagger: 0.12,
+            ease: 'power4.out'
         });
     });
 
-    // About description fade & slide in
+    // ── About Section Description ──
     gsap.fromTo('.about-description', 
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 40 },
         {
             scrollTrigger: {
                 trigger: '.about-description',
@@ -1161,14 +1184,14 @@ function initGSAPAnimations() {
             },
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            ease: 'power2.out'
+            duration: 1.0,
+            ease: 'power3.out'
         }
     );
 
-    // Staggered About stat cards
+    // Staggered About stat cards (flips flat from side)
     gsap.fromTo('.stat-card',
-        { opacity: 0, x: 50 },
+        { opacity: 0, x: 60, rotationY: -15 },
         {
             scrollTrigger: {
                 trigger: '.about-right',
@@ -1177,15 +1200,16 @@ function initGSAPAnimations() {
             },
             opacity: 1,
             x: 0,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: 'power3.out'
+            rotationY: 0,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: 'power4.out'
         }
     );
 
-    // Staggered Service cards
+    // Staggered Service cards (3D rotationX + scale)
     gsap.fromTo('.service-card',
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 90, rotationX: -12, scale: 0.93 },
         {
             scrollTrigger: {
                 trigger: '.services-grid',
@@ -1194,15 +1218,18 @@ function initGSAPAnimations() {
             },
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: 'power3.out'
+            rotationX: 0,
+            scale: 1,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: 'power4.out',
+            transformOrigin: 'top center'
         }
     );
 
-    // Staggered Work items
+    // Staggered Work showcase items
     gsap.fromTo('.work-item',
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 100, scale: 0.95 },
         {
             scrollTrigger: {
                 trigger: '.work-showcase',
@@ -1211,15 +1238,16 @@ function initGSAPAnimations() {
             },
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            stagger: 0.15,
+            scale: 1,
+            duration: 1.2,
+            stagger: 0.12,
             ease: 'power3.out'
         }
     );
 
     // Staggered Pricing cards
     gsap.fromTo('.pricing-card',
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 90, rotationY: 10, scale: 0.95 },
         {
             scrollTrigger: {
                 trigger: '.pricing-grid',
@@ -1228,15 +1256,17 @@ function initGSAPAnimations() {
             },
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: 'power3.out'
+            rotationY: 0,
+            scale: 1,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: 'power4.out'
         }
     );
 
     // Staggered Process timeline steps in Contact Section
     gsap.fromTo('.process-step',
-        { opacity: 0, x: -30 },
+        { opacity: 0, x: -40, scale: 0.98 },
         {
             scrollTrigger: {
                 trigger: '.process-timeline',
@@ -1245,15 +1275,16 @@ function initGSAPAnimations() {
             },
             opacity: 1,
             x: 0,
-            duration: 0.8,
-            stagger: 0.2,
+            scale: 1,
+            duration: 1.0,
+            stagger: 0.15,
             ease: 'power3.out'
         }
     );
 
     // Contact form slide in
     gsap.fromTo('.contact-form',
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 50, scale: 0.98 },
         {
             scrollTrigger: {
                 trigger: '.contact-form',
@@ -1262,7 +1293,8 @@ function initGSAPAnimations() {
             },
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            scale: 1,
+            duration: 1.1,
             ease: 'power3.out'
         }
     );
@@ -1288,7 +1320,11 @@ function initHeroScroll() {
             const targetId = btn.getAttribute('href');
             const target = document.querySelector(targetId);
             if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
+                if (lenis) {
+                    lenis.scrollTo(target, { offset: 0, duration: 1.2 });
+                } else {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         });
     });
@@ -1544,6 +1580,31 @@ document.addEventListener('DOMContentLoaded', () => {
     initPortfolioFilters();
     initHeroScroll();
     initCaseStudies();
+
+    // Init Lenis smooth scrolling
+    lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Fast start, slow end
+        smooth: true,
+        mouseMultiplier: 0.95,
+        smoothTouch: false,
+    });
+
+    function lenisRaf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(lenisRaf);
+    }
+    requestAnimationFrame(lenisRaf);
+
+    // Sync Lenis scroll triggers
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
+
+    // Lock scroll immediately for intro
+    lenis.stop();
 
     // Start intro — Three.js scene + GSAP both start inside initIntro
     initIntro();
