@@ -217,6 +217,36 @@ body {
     color: var(--text-white) !important;
 }
 
+/* ======= SPOTLIGHT CARD (Premium Spotlight Hover Glow) ======= */
+.spotlight-card {
+    position: relative;
+    overflow: hidden;
+}
+.spotlight-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(166, 255, 0, 0.12),
+        transparent 40%
+    );
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.spotlight-card:hover::before {
+    opacity: 1;
+}
+.spotlight-card > * {
+    position: relative;
+    z-index: 2;
+}
+
 .nav-links {
     display: flex;
     align-items: center;
@@ -661,7 +691,7 @@ body {
     gap: 12px;
     opacity: 0;
     transform: translateX(30px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s ease-out, border-color 0.4s ease, background 0.4s ease;
     text-align: left;
 }
 
@@ -722,7 +752,7 @@ body {
     cursor: pointer;
     opacity: 0;
     transform: translateY(40px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s ease-out, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .service-card.visible {
@@ -858,7 +888,7 @@ body {
 .work-item {
     opacity: 0;
     transform: translateY(40px);
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s ease-out;
 }
 
 .work-item.visible {
@@ -1365,7 +1395,7 @@ body {
     backdrop-filter: blur(15px);
     opacity: 0;
     transform: translateY(40px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s ease-out, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .pricing-card.visible {

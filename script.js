@@ -163,6 +163,31 @@ function triggerImpact(rocket) {
     // Camera shake intensity spike
     shakeIntensity = 42;
 
+    // Create full-screen additive thermal radial flash overlay
+    const flash = document.createElement('div');
+    flash.style.position = 'fixed';
+    flash.style.top = '0';
+    flash.style.left = '0';
+    flash.style.width = '100vw';
+    flash.style.height = '100vh';
+    flash.style.background = 'radial-gradient(circle, #ffeedd 0%, rgba(255, 90, 0, 0.4) 60%, transparent 100%)';
+    flash.style.zIndex = '99999';
+    flash.style.opacity = '0.9';
+    flash.style.pointerEvents = 'none';
+    document.body.appendChild(flash);
+
+    gsap.to(flash, {
+        opacity: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+        onComplete: () => {
+            if (flash.parentNode) {
+                document.body.removeChild(flash);
+            }
+        }
+    });
+
+
     // ── Hide Earth meshes completely ──
     if (introEarth) {
         introEarth.children.forEach(child => {
@@ -415,10 +440,46 @@ function initIntro() {
     animate();
 
     // ── UI reveal sequence ──
-    // Center logo and CTA reveal smoothly
-    setTimeout(() => {
+    // Center logo character stagger reveal
+    const introLogo = document.getElementById('introLogo');
+    if (introLogo) {
+        const text = introLogo.textContent.trim();
+        introLogo.innerHTML = '';
+        [...text].forEach(char => {
+            const span = document.createElement('span');
+            span.textContent = char;
+            if (char === '1') {
+                span.className = 'logo-one';
+            } else if (char === 'M') {
+                span.className = 'intro-m';
+            } else {
+                span.className = 'intro-char';
+            }
+            span.style.display = 'inline-block';
+            span.style.opacity = '0';
+            span.style.transform = 'translateY(35px) scale(0.75)';
+            span.style.filter = 'blur(10px)';
+            introLogo.appendChild(span);
+        });
+
+        // Display intro container
         introCta.classList.add('show');
-    }, 800);
+
+        // Animate stagger
+        gsap.to(introLogo.children, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: 'blur(0px)',
+            duration: 1.1,
+            stagger: 0.08,
+            ease: 'power4.out',
+            delay: 0.3
+        });
+    } else {
+        introCta.classList.add('show');
+    }
+
     
     // Launch rocket after logo fades in
     setTimeout(() => {
@@ -1779,15 +1840,23 @@ function initHeroScroll() {
 
 // ======= TILT EFFECT ON SERVICE CARDS =======
 function initTiltEffects() {
-    document.querySelectorAll('.service-card').forEach(card => {
+    const cards = document.querySelectorAll('.service-card, .work-item, .pricing-card, .stat-card');
+    
+    cards.forEach(card => {
+        card.classList.add('spotlight-card');
+        
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
+            
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            const rotateX = (y - centerY) / centerY * -5;
-            const rotateY = (x - centerX) / centerX * 5;
+            const rotateX = (y - centerY) / centerY * -4;
+            const rotateY = (x - centerX) / centerX * 4;
 
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
         });
