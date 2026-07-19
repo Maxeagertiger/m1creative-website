@@ -10,6 +10,265 @@ let scrollProgress = 0;
 const clock = new THREE.Clock();
 let introSunLight = null;
 let lenis = null;
+let shakeIntensity = 0;
+const shakeDecay = 0.92;
+let explosionParticles = [];
+let trailParticles = [];
+
+// ======= ROCKET CRASH SEQUENCE =======
+function createRocket() {
+    const group = new THREE.Group();
+
+    // Body (sleek metal cylinder)
+    const bodyGeo = new THREE.CylinderGeometry(2, 2, 12, 12);
+    const bodyMat = new THREE.MeshStandardMaterial({
+        color: 0xdddddd,
+        metalness: 0.9,
+        roughness: 0.1,
+        emissive: 0x111111
+    });
+    const body = new THREE.Mesh(bodyGeo, bodyMat);
+    body.rotation.x = Math.PI / 2; // Orient along Z axis
+    group.add(body);
+
+    // Nose Cone (glowing neon orange/red)
+    const noseGeo = new THREE.ConeGeometry(2, 5, 12);
+    const noseMat = new THREE.MeshStandardMaterial({
+        color: 0xff3300,
+        metalness: 0.3,
+        roughness: 0.4,
+        emissive: 0x551100
+    });
+    const nose = new THREE.Mesh(noseGeo, noseMat);
+    nose.position.z = 8.5;
+    nose.rotation.x = Math.PI / 2;
+    group.add(nose);
+
+    // Fins (3 sleek metallic wings)
+    const finGeo = new THREE.BoxGeometry(0.5, 3, 4);
+    const finMat = new THREE.MeshStandardMaterial({
+        color: 0xff3300,
+        metalness: 0.8,
+        roughness: 0.2
+    });
+    for (let i = 0; i < 3; i++) {
+        const fin = new THREE.Mesh(finGeo, finMat);
+        const angle = (i / 3) * Math.PI * 2;
+        fin.position.x = Math.cos(angle) * 2;
+        fin.position.y = Math.sin(angle) * 2;
+        fin.position.z = -4;
+        fin.rotation.z = angle;
+        group.add(fin);
+    }
+
+    // Flame exhaust cone
+    const flameGeo = new THREE.ConeGeometry(1.2, 6, 12);
+    const flameMat = new THREE.MeshBasicMaterial({
+        color: 0xffaa00,
+        transparent: true,
+        opacity: 0.9,
+        blending: THREE.AdditiveBlending
+    });
+    const flame = new THREE.Mesh(flameGeo, flameMat);
+    flame.name = 'flame';
+    flame.position.z = -9;
+    flame.rotation.x = -Math.PI / 2;
+    group.add(flame);
+
+    return group;
+}
+
+function spawnTrailParticle(pos, offset) {
+    const geom = new THREE.SphereGeometry(1.0, 6, 6);
+    const colors = [0xff8800, 0xff3300, 0x555555];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const mat = new THREE.MeshBasicMaterial({
+        color: color,
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending
+    });
+    const p = new THREE.Mesh(geom, mat);
+    
+    // Position at exhaust tip
+    p.position.copy(pos).add(offset);
+    
+    // Slow drift velocity
+    p.userData = {
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: (Math.random() - 0.5) * 1.5,
+        vz: (Math.random() - 0.5) * 1.5,
+        life: 1.0
+    };
+    
+    scene.add(p);
+    trailParticles.push(p);
+}
+
+function launchRocket() {
+    const startPos = new THREE.Vector3(380, 220, 250);
+    const endPos = new THREE.Vector3(0, 0, -150);
+    // Control point to create a beautiful sweeping arc
+    const controlPos = new THREE.Vector3(200, -80, 50);
+
+    const rocket = createRocket();
+    scene.add(rocket);
+    rocket.position.copy(startPos);
+
+    const pathObj = { progress: 0 };
+    gsap.to(pathObj, {
+        progress: 1,
+        duration: 2.4,
+        ease: 'power2.in',
+        onUpdate: () => {
+            const t = pathObj.progress;
+            
+            // Quadratic Bezier interpolation
+            const currentPos = new THREE.Vector3();
+            currentPos.x = (1-t)*(1-t)*startPos.x + 2*(1-t)*t*controlPos.x + t*t*endPos.x;
+            currentPos.y = (1-t)*(1-t)*startPos.y + 2*(1-t)*t*controlPos.y + t*t*endPos.y;
+            currentPos.z = (1-t)*(1-t)*startPos.z + 2*(1-t)*t*controlPos.z + t*t*endPos.z;
+
+            // Orient the rocket toward its next step
+            const nextT = Math.min(1, t + 0.02);
+            const nextPos = new THREE.Vector3();
+            nextPos.x = (1-nextT)*(1-nextT)*startPos.x + 2*(1-nextT)*nextT*controlPos.x + nextT*nextT*endPos.x;
+            nextPos.y = (1-nextT)*(1-nextT)*startPos.y + 2*(1-nextT)*nextT*controlPos.y + nextT*nextT*endPos.y;
+            nextPos.z = (1-nextT)*(1-nextT)*startPos.z + 2*(1-nextT)*nextT*controlPos.z + nextT*nextT*endPos.z;
+
+            rocket.position.copy(currentPos);
+            rocket.lookAt(nextPos);
+
+            // Animate flame exhaust scaling
+            const flame = rocket.children.find(c => c.name === 'flame');
+            if (flame) {
+                flame.scale.y = 1 + Math.sin(performance.now() * 0.08) * 0.4;
+            }
+
+            // Spawn trail particles at the exhaust tip
+            const forward = new THREE.Vector3(0, 0, -1);
+            forward.applyQuaternion(rocket.quaternion);
+            spawnTrailParticle(currentPos, forward.multiplyScalar(9));
+        },
+        onComplete: () => {
+            triggerImpact(rocket);
+        }
+    });
+}
+
+function triggerImpact(rocket) {
+    scene.remove(rocket);
+
+    // Camera shake intensity spike
+    shakeIntensity = 38;
+
+    // 1. Spawn expanding shockwave ring
+    const shockwaveGeo = new THREE.RingGeometry(0.1, 40, 32);
+    const shockwaveMat = new THREE.MeshBasicMaterial({
+        color: 0xffaa44,
+        side: THREE.DoubleSide,
+        transparent: true,
+        opacity: 1.0,
+        blending: THREE.AdditiveBlending
+    });
+    const shockwave = new THREE.Mesh(shockwaveGeo, shockwaveMat);
+    shockwave.position.set(0, 0, -150);
+    shockwave.lookAt(camera.position);
+    scene.add(shockwave);
+
+    gsap.fromTo(shockwave.scale,
+        { x: 0.1, y: 0.1, z: 0.1 },
+        {
+            x: 2.8, y: 2.8, z: 2.8,
+            duration: 0.9,
+            ease: 'power3.out',
+            onComplete: () => {
+                scene.remove(shockwave);
+            }
+        }
+    );
+    gsap.to(shockwaveMat, {
+        opacity: 0,
+        duration: 0.9,
+        ease: 'power3.out'
+    });
+
+    // 2. Spawn explosion debris particles
+    const particleCount = 140; 
+    const geom = new THREE.SphereGeometry(1.2, 6, 6);
+
+    for (let i = 0; i < particleCount; i++) {
+        const colors = [0xffffff, 0xffaa00, 0xff3300, 0xff5500, 0x222222];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const mat = new THREE.MeshBasicMaterial({
+            color: color,
+            transparent: true,
+            opacity: 1.0,
+            blending: color === 0x222222 ? THREE.NormalBlending : THREE.AdditiveBlending
+        });
+        const p = new THREE.Mesh(geom, mat);
+
+        p.position.set(
+            (Math.random() - 0.5) * 8,
+            (Math.random() - 0.5) * 8,
+            -150 + (Math.random() - 0.5) * 8
+        );
+
+        // Spherical explosion velocity distribution
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos((Math.random() * 2) - 1);
+        const speed = 1 + Math.random() * 9;
+
+        p.userData = {
+            vx: Math.sin(phi) * Math.cos(theta) * speed,
+            vy: Math.sin(phi) * Math.sin(theta) * speed,
+            vz: Math.cos(phi) * speed,
+            life: 1.0,
+            decay: 0.94 + Math.random() * 0.04
+        };
+
+        scene.add(p);
+        explosionParticles.push(p);
+    }
+}
+
+function updateTrailAndExplosion() {
+    // Update rocket trails
+    for (let i = trailParticles.length - 1; i >= 0; i--) {
+        const p = trailParticles[i];
+        p.position.x += p.userData.vx;
+        p.position.y += p.userData.vy;
+        p.position.z += p.userData.vz;
+        p.userData.life -= 0.04;
+        p.material.opacity = p.userData.life;
+        p.scale.multiplyScalar(0.95);
+        if (p.userData.life <= 0) {
+            scene.remove(p);
+            trailParticles.splice(i, 1);
+        }
+    }
+    
+    // Update explosion
+    for (let i = explosionParticles.length - 1; i >= 0; i--) {
+        const p = explosionParticles[i];
+        p.position.x += p.userData.vx;
+        p.position.y += p.userData.vy;
+        p.position.z += p.userData.vz;
+        
+        p.userData.vx *= 0.97;
+        p.userData.vy *= 0.97;
+        p.userData.vz *= 0.97;
+
+        p.userData.life -= 0.015;
+        p.material.opacity = p.userData.life;
+        p.scale.multiplyScalar(p.userData.decay);
+
+        if (p.userData.life <= 0) {
+            scene.remove(p);
+            explosionParticles.splice(i, 1);
+        }
+    }
+}
 
 // ======= SCROLL-DRIVEN SPACE INTRO =======
 let introPhase = 'loading'; // 'loading' | 'active' | 'warping' | 'done'
@@ -72,10 +331,18 @@ function initIntro() {
     setTimeout(() => {
         introCta.classList.add('show');
     }, 800);
+    
+    // Launch rocket after logo fades in
+    setTimeout(() => {
+        launchRocket();
+    }, 1200);
+
+    // Release scroll block and show scroll instructions AFTER the crash
     setTimeout(() => {
         introScrollHint.classList.add('show');
         introPhase = 'active';
-    }, 1600);
+    }, 4200);
+
 
     // ── Scroll-driven camera ──
     let lastTouchY = 0;
@@ -670,6 +937,9 @@ function animate() {
     requestAnimationFrame(animate);
     const time = clock.getElapsedTime();
 
+    // Update rocket trails and explosion particles
+    updateTrailAndExplosion();
+
     // Rotate stars slowly
     if (stars) {
         stars.rotation.y += 0.00008;
@@ -749,6 +1019,13 @@ function animate() {
         // Very subtle horizontal drift (keep Earth centered)
         camera.position.x += (Math.sin(time * 0.05) * 5 - camera.position.x) * 0.008;
         camera.position.y += (Math.cos(time * 0.04) * 3 + 20 - camera.position.y) * 0.008;
+    }
+
+    // Apply camera shake if active
+    if (shakeIntensity > 0.05) {
+        camera.position.x += (Math.random() - 0.5) * shakeIntensity;
+        camera.position.y += (Math.random() - 0.5) * shakeIntensity;
+        shakeIntensity *= shakeDecay;
     }
 
     camera.lookAt(scene.position);
