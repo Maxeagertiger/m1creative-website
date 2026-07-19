@@ -114,6 +114,12 @@ body {
     color: var(--text-white);
     text-shadow: 0 0 40px rgba(166, 255, 0, 0.15);
 }
+.intro-char {
+    color: var(--accent);
+}
+.intro-m {
+    color: var(--text-white);
+}
 
 
 .intro-scroll-hint {
