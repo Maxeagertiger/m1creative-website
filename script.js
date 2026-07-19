@@ -457,24 +457,22 @@ function initIntro() {
             }
             span.style.display = 'inline-block';
             span.style.opacity = '0';
-            span.style.transform = 'translateY(35px) scale(0.75)';
-            span.style.filter = 'blur(10px)';
+            span.style.transform = 'translateY(30px) scale(0.8)';
             introLogo.appendChild(span);
         });
 
         // Display intro container
         introCta.classList.add('show');
 
-        // Animate stagger
+        // Animate stagger with snappy back easing for organic feel
         gsap.to(introLogo.children, {
             opacity: 1,
             y: 0,
             scale: 1,
-            filter: 'blur(0px)',
-            duration: 1.1,
-            stagger: 0.08,
-            ease: 'power4.out',
-            delay: 0.3
+            duration: 0.9,
+            stagger: 0.06,
+            ease: 'back.out(1.5)',
+            delay: 0.2
         });
     } else {
         introCta.classList.add('show');
@@ -1367,8 +1365,8 @@ function initNavigation() {
         });
     });
 
-    // Smooth scroll for anchor links using Lenis
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // Smooth scroll for anchor links using Lenis (excluding the case study launch button)
+    document.querySelectorAll('a[href^="#"]:not(#caseStudyLaunchBtn)').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = anchor.getAttribute('href');
