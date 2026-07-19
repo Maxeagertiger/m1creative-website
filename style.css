@@ -741,8 +741,8 @@ body {
 }
 
 .stat-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.98); /* Frosted white background */
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 16px;
     padding: 30px;
     backdrop-filter: blur(10px);
@@ -752,7 +752,7 @@ body {
     gap: 12px;
     opacity: 0;
     transform: translateX(30px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s ease-out, border-color 0.4s ease, background 0.4s ease;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s ease-out, border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
     text-align: left;
 }
 
@@ -762,15 +762,22 @@ body {
 }
 
 .stat-card:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-4px);
+    background: #ffffff;
+    border-color: rgba(166, 255, 0, 0.35); /* glows in neon color on hover */
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(166, 255, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.04);
 }
 
 .stat-icon {
-    width: 32px;
-    height: 32px;
-    color: var(--accent);
+    width: 44px;
+    height: 44px;
+    color: #4a7a00; /* dark variant of neon green for legibility */
+    background: rgba(166, 255, 0, 0.14); /* soft bubble background */
+    padding: 8px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 4px;
 }
 
@@ -781,14 +788,14 @@ body {
 
 .stat-label {
     font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-white);
+    font-weight: 700;
+    color: var(--bg-dark); /* Dark text for readability */
     letter-spacing: 0.5px;
 }
 
 .stat-desc {
     font-size: 0.85rem;
-    color: var(--text-light);
+    color: #444444; /* Dark grey desc text */
     line-height: 1.5;
     margin: 0;
 }

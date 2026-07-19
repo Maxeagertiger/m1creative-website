@@ -1687,16 +1687,17 @@ function initGSAPAnimations() {
 
     // ── About Section Description ──
     gsap.fromTo('.about-description', 
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 30 },
         {
             scrollTrigger: {
-                trigger: '.about-description',
+                trigger: '.about-left',
                 start: 'top 85%',
                 toggleActions: 'play none none reverse'
             },
             opacity: 1,
             y: 0,
             duration: 1.0,
+            stagger: 0.15,
             ease: 'power3.out'
         }
     );
