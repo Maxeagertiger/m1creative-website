@@ -3177,5 +3177,64 @@ body {
     border-color: #fff;
 }
 
+/* Pricing global terms banner */
+.pricing-global-terms {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 15px 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px auto 40px auto;
+    backdrop-filter: blur(10px);
+}
+
+.pricing-term-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.term-num {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.term-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+.pricing-term-divider {
+    width: 1px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.work-item.work-hidden {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .pricing-global-terms {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        padding: 20px;
+    }
+    .pricing-term-divider {
+        display: none;
+    }
+}
+
 
 

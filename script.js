@@ -1908,7 +1908,59 @@ function initReviews() {
 function initPortfolioFilters() {
     const pills = document.querySelectorAll('.niche-pill');
     const items = document.querySelectorAll('.work-item');
+    const moreBtn = document.getElementById('workMoreBtn');
     if (!pills.length || !items.length) return;
+
+    let isExpanded = false;
+
+    function updateVisibility(filter) {
+        let visibleCount = 0;
+        items.forEach((item) => {
+            const niche = item.getAttribute('data-niche');
+            
+            if (item._fadeTimeout) {
+                clearTimeout(item._fadeTimeout);
+            }
+
+            const isMatching = (filter === 'all' || niche === filter);
+            
+            if (isMatching) {
+                if (filter === 'all' && !isExpanded && visibleCount >= 3) {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(30px) scale(0.95)';
+                    item._fadeTimeout = setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 400);
+                } else {
+                    item.style.display = '';
+                    item.offsetHeight; // force reflow
+                    item.style.opacity = '';
+                    item.style.transform = '';
+                    item.classList.add('visible');
+                }
+                visibleCount++;
+            } else {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px) scale(0.95)';
+                item._fadeTimeout = setTimeout(() => {
+                    item.style.display = 'none';
+                }, 400);
+            }
+        });
+
+        // Show/hide "Show More" button
+        if (moreBtn) {
+            if (filter === 'all' && visibleCount > 3) {
+                moreBtn.style.display = 'inline-block';
+                moreBtn.textContent = isExpanded ? 'Show Less' : 'Show More Projects';
+            } else {
+                moreBtn.style.display = 'none';
+            }
+        }
+    }
+
+    // Run visibility once on init
+    updateVisibility('all');
 
     pills.forEach(pill => {
         pill.addEventListener('click', () => {
@@ -1916,31 +1968,27 @@ function initPortfolioFilters() {
             pill.classList.add('active');
 
             const filter = pill.getAttribute('data-filter');
-
-            items.forEach(item => {
-                const niche = item.getAttribute('data-niche');
-                
-                if (item._fadeTimeout) {
-                    clearTimeout(item._fadeTimeout);
-                }
-                
-                if (filter === 'all' || niche === filter) {
-                    item.style.display = '';
-                    // Force reflow
-                    item.offsetHeight;
-                    item.style.opacity = '';
-                    item.style.transform = '';
-                    item.classList.add('visible');
-                } else {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(30px) scale(0.95)';
-                    item._fadeTimeout = setTimeout(() => {
-                        item.style.display = 'none';
-                    }, 400);
-                }
-            });
+            updateVisibility(filter);
         });
     });
+
+    if (moreBtn) {
+        moreBtn.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            const activePill = document.querySelector('.niche-pill.active');
+            const filter = activePill ? activePill.getAttribute('data-filter') : 'all';
+            
+            updateVisibility(filter);
+
+            // Scroll back to portfolio section top if collapsing
+            if (!isExpanded) {
+                const workSec = document.getElementById('work');
+                if (workSec && typeof lenis !== 'undefined') {
+                    lenis.scrollTo(workSec, { offset: 0, duration: 0.8 });
+                }
+            }
+        });
+    }
 }
 
 // ======= CASE STUDY MODAL =======
