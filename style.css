@@ -96,16 +96,6 @@ body {
     text-shadow: 0 0 40px rgba(166, 255, 0, 0.15);
 }
 
-.intro-logo::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    transform: translateX(-50%);
-}
 
 .intro-scroll-hint {
     margin-top: 40px;
