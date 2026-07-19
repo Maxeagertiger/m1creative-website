@@ -14,13 +14,14 @@ let shakeIntensity = 0;
 const shakeDecay = 0.92;
 let explosionParticles = [];
 let trailParticles = [];
+let earthChunks = [];
 
 // ======= ROCKET CRASH SEQUENCE =======
 function createRocket() {
     const group = new THREE.Group();
 
-    // Body (sleek metal cylinder)
-    const bodyGeo = new THREE.CylinderGeometry(2, 2, 12, 12);
+    // Body (sleek metal cylinder, tripled in thickness & length)
+    const bodyGeo = new THREE.CylinderGeometry(5.5, 5.5, 32, 16);
     const bodyMat = new THREE.MeshStandardMaterial({
         color: 0xdddddd,
         metalness: 0.9,
@@ -32,7 +33,7 @@ function createRocket() {
     group.add(body);
 
     // Nose Cone (glowing neon orange/red)
-    const noseGeo = new THREE.ConeGeometry(2, 5, 12);
+    const noseGeo = new THREE.ConeGeometry(5.5, 10, 16);
     const noseMat = new THREE.MeshStandardMaterial({
         color: 0xff3300,
         metalness: 0.3,
@@ -40,12 +41,12 @@ function createRocket() {
         emissive: 0x551100
     });
     const nose = new THREE.Mesh(noseGeo, noseMat);
-    nose.position.z = 8.5;
+    nose.position.z = 21.0;
     nose.rotation.x = Math.PI / 2;
     group.add(nose);
 
     // Fins (3 sleek metallic wings)
-    const finGeo = new THREE.BoxGeometry(0.5, 3, 4);
+    const finGeo = new THREE.BoxGeometry(1.2, 8, 10);
     const finMat = new THREE.MeshStandardMaterial({
         color: 0xff3300,
         metalness: 0.8,
@@ -54,15 +55,15 @@ function createRocket() {
     for (let i = 0; i < 3; i++) {
         const fin = new THREE.Mesh(finGeo, finMat);
         const angle = (i / 3) * Math.PI * 2;
-        fin.position.x = Math.cos(angle) * 2;
-        fin.position.y = Math.sin(angle) * 2;
-        fin.position.z = -4;
+        fin.position.x = Math.cos(angle) * 5.5;
+        fin.position.y = Math.sin(angle) * 5.5;
+        fin.position.z = -12.0;
         fin.rotation.z = angle;
         group.add(fin);
     }
 
     // Flame exhaust cone
-    const flameGeo = new THREE.ConeGeometry(1.2, 6, 12);
+    const flameGeo = new THREE.ConeGeometry(3.5, 18, 16);
     const flameMat = new THREE.MeshBasicMaterial({
         color: 0xffaa00,
         transparent: true,
@@ -71,16 +72,15 @@ function createRocket() {
     });
     const flame = new THREE.Mesh(flameGeo, flameMat);
     flame.name = 'flame';
-    flame.position.z = -9;
+    flame.position.z = -25.0;
     flame.rotation.x = -Math.PI / 2;
     group.add(flame);
 
     return group;
 }
-
 function spawnTrailParticle(pos, offset) {
-    const geom = new THREE.SphereGeometry(1.0, 6, 6);
-    const colors = [0xff8800, 0xff3300, 0x555555];
+    const geom = new THREE.SphereGeometry(2.8, 6, 6);
+    const colors = [0xffaa00, 0xff3300, 0x666666];
     const color = colors[Math.floor(Math.random() * colors.length)];
     const mat = new THREE.MeshBasicMaterial({
         color: color,
@@ -106,10 +106,10 @@ function spawnTrailParticle(pos, offset) {
 }
 
 function launchRocket() {
-    const startPos = new THREE.Vector3(380, 220, 250);
+    // Starts closer to camera viewport (Z=520, camera is at Z=650) to ensure high visibility
+    const startPos = new THREE.Vector3(250, 160, 520);
     const endPos = new THREE.Vector3(0, 0, -150);
-    // Control point to create a beautiful sweeping arc
-    const controlPos = new THREE.Vector3(200, -80, 50);
+    const controlPos = new THREE.Vector3(120, -50, 200);
 
     const rocket = createRocket();
     scene.add(rocket);
@@ -118,7 +118,7 @@ function launchRocket() {
     const pathObj = { progress: 0 };
     gsap.to(pathObj, {
         progress: 1,
-        duration: 2.4,
+        duration: 3.3, // slowed down slightly so it's fully trackable
         ease: 'power2.in',
         onUpdate: () => {
             const t = pathObj.progress;
@@ -145,10 +145,10 @@ function launchRocket() {
                 flame.scale.y = 1 + Math.sin(performance.now() * 0.08) * 0.4;
             }
 
-            // Spawn trail particles at the exhaust tip
+            // Spawn trail particles at the exhaust tip (25 units behind rocket pivot)
             const forward = new THREE.Vector3(0, 0, -1);
             forward.applyQuaternion(rocket.quaternion);
-            spawnTrailParticle(currentPos, forward.multiplyScalar(9));
+            spawnTrailParticle(currentPos, forward.multiplyScalar(25));
         },
         onComplete: () => {
             triggerImpact(rocket);
@@ -160,7 +160,14 @@ function triggerImpact(rocket) {
     scene.remove(rocket);
 
     // Camera shake intensity spike
-    shakeIntensity = 38;
+    shakeIntensity = 42;
+
+    // ── Hide Earth meshes completely ──
+    if (introEarth) {
+        introEarth.children.forEach(child => {
+            child.visible = false;
+        });
+    }
 
     // 1. Spawn expanding shockwave ring
     const shockwaveGeo = new THREE.RingGeometry(0.1, 40, 32);
@@ -193,7 +200,65 @@ function triggerImpact(rocket) {
         ease: 'power3.out'
     });
 
-    // 2. Spawn explosion debris particles
+    // 2. Spawn Earth fragment chunks flying outwards
+    const chunkCount = 30;
+    for (let i = 0; i < chunkCount; i++) {
+        let color, size, isEmissive = false;
+        const roll = Math.random();
+        if (roll < 0.35) {
+            color = 0x3d6e28; // Land chunk (green)
+            size = 3.5 + Math.random() * 5.0;
+        } else if (roll < 0.7) {
+            color = 0x0a1f3c; // Ocean chunk (dark blue)
+            size = 4.0 + Math.random() * 6.0;
+        } else {
+            color = 0xff4400; // Glowing magma core chunk
+            size = 2.5 + Math.random() * 4.0;
+            isEmissive = true;
+        }
+
+        const chunkGeo = new THREE.DodecahedronGeometry(size, 0);
+        const chunkMat = new THREE.MeshStandardMaterial({
+            color: color,
+            roughness: 0.8,
+            metalness: 0.1,
+            transparent: true,
+            opacity: 1.0,
+            emissive: isEmissive ? 0xff4400 : 0x000000,
+            emissiveIntensity: isEmissive ? 2.5 : 0.0
+        });
+        const chunk = new THREE.Mesh(chunkGeo, chunkMat);
+
+        // Position chunk initially inside Earth's sphere radius (at 0, 0, -150)
+        const radius = 5 + Math.random() * 15;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos((Math.random() * 2) - 1);
+        
+        chunk.position.set(
+            Math.sin(phi) * Math.cos(theta) * radius,
+            Math.sin(phi) * Math.sin(theta) * radius,
+            -150 + Math.cos(phi) * radius
+        );
+
+        // Outward velocity from center
+        const dir = new THREE.Vector3().copy(chunk.position).sub(new THREE.Vector3(0, 0, -150)).normalize();
+        const speed = 2.0 + Math.random() * 7.5;
+        
+        chunk.userData = {
+            velocity: dir.multiplyScalar(speed),
+            rotVelocity: new THREE.Vector3(
+                (Math.random() - 0.5) * 0.06,
+                (Math.random() - 0.5) * 0.06,
+                (Math.random() - 0.5) * 0.06
+            ),
+            life: 1.0
+        };
+
+        scene.add(chunk);
+        earthChunks.push(chunk);
+    }
+
+    // 3. Spawn dense explosion sparks/flames particles
     const particleCount = 140; 
     const geom = new THREE.SphereGeometry(1.2, 6, 6);
 
@@ -233,21 +298,43 @@ function triggerImpact(rocket) {
 }
 
 function updateTrailAndExplosion() {
-    // Update rocket trails
+    // Update rocket trails (slower decay for thicker trail)
     for (let i = trailParticles.length - 1; i >= 0; i--) {
         const p = trailParticles[i];
         p.position.x += p.userData.vx;
         p.position.y += p.userData.vy;
         p.position.z += p.userData.vz;
-        p.userData.life -= 0.04;
+        p.userData.life -= 0.02;
         p.material.opacity = p.userData.life;
-        p.scale.multiplyScalar(0.95);
+        p.scale.multiplyScalar(0.96);
         if (p.userData.life <= 0) {
             scene.remove(p);
             trailParticles.splice(i, 1);
         }
     }
     
+    // Update Earth chunks
+    for (let i = earthChunks.length - 1; i >= 0; i--) {
+        const chunk = earthChunks[i];
+        chunk.position.add(chunk.userData.velocity);
+        chunk.rotation.x += chunk.userData.rotVelocity.x;
+        chunk.rotation.y += chunk.userData.rotVelocity.y;
+        chunk.rotation.z += chunk.userData.rotVelocity.z;
+
+        chunk.userData.velocity.multiplyScalar(0.975); // Slow down friction
+        chunk.userData.life -= 0.007;
+        chunk.scale.setScalar(chunk.userData.life);
+        
+        if (chunk.material) {
+            chunk.material.opacity = chunk.userData.life;
+        }
+
+        if (chunk.userData.life <= 0) {
+            scene.remove(chunk);
+            earthChunks.splice(i, 1);
+        }
+    }
+
     // Update explosion
     for (let i = explosionParticles.length - 1; i >= 0; i--) {
         const p = explosionParticles[i];
@@ -421,6 +508,15 @@ function initIntro() {
             scene.remove(introSunLight);
             introSunLight = null;
         }
+
+        // Clean up remaining crash debris
+        earthChunks.forEach(chunk => scene.remove(chunk));
+        earthChunks = [];
+        trailParticles.forEach(p => scene.remove(p));
+        trailParticles = [];
+        explosionParticles.forEach(p => scene.remove(p));
+        explosionParticles = [];
+
 
         // Restore background planet positions for the site
         if (planet) planet.position.set(350, -100, -400);
