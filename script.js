@@ -9,26 +9,20 @@ let mouseX = 0, mouseY = 0;
 let scrollProgress = 0;
 const clock = new THREE.Clock();
 
-
 // ======= SCROLL-DRIVEN SPACE INTRO =======
 let introPhase = 'loading'; // 'loading' | 'active' | 'warping' | 'done'
-let introCameraZ = 220;         // starts very close to Earth
-let introCameraTargetZ = 220;   // smoothly lerped
+let introCameraZ = 650;         // starts at a realistic distance from Earth
+let introCameraTargetZ = 650;   // smoothly lerped
 let introScrollTotal = 0;       // cumulative scroll delta
 const INTRO_SCROLL_MAX = 4000;  // pixels of scroll to complete journey
-const INTRO_Z_START   = 220;    // close-up of Earth
-const INTRO_Z_END     = 1700;   // far out in space
+const INTRO_Z_START   = 650;    // realistic distance view of Earth
+const INTRO_Z_END     = 1900;   // far out in space
 let introEarth = null;          // the dedicated Earth sphere
 
 function initIntro() {
     const loader          = document.getElementById('loader');
-    const introCornerLogo = document.getElementById('introCornerLogo');
     const introCta        = document.getElementById('introCta');
-    const introTagline    = document.getElementById('introTagline');
-    const introLine       = document.getElementById('introLine');
     const introScrollHint = document.getElementById('introScrollHint');
-    const introProgressWrap = document.getElementById('introProgressWrap');
-    const introProgressBar  = document.getElementById('introProgressBar');
     const introFlash      = document.getElementById('introFlash');
 
     // Lock body scroll
@@ -57,7 +51,7 @@ function initIntro() {
         planet2.position.set(800, 150, -2800);
     }
 
-    // Camera starts very close to Earth
+    // Camera starts at realistic distance from Earth
     camera.position.set(0, 20, INTRO_Z_START);
     camera.lookAt(0, 0, 0);
     introCameraZ = INTRO_Z_START;
@@ -67,24 +61,14 @@ function initIntro() {
     animate();
 
     // ── UI reveal sequence ──
-    // Corner logo appears first (0.8s)
-    setTimeout(() => {
-        introCornerLogo.classList.add('show');
-    }, 800);
-
-    // CTA appears (1.6s) — tagline + line + scroll hint staggered
+    // Center logo and CTA reveal smoothly
     setTimeout(() => {
         introCta.classList.add('show');
-        introTagline.style.opacity = '1';
-    }, 1600);
-    setTimeout(() => {
-        introLine.classList.add('show');
-    }, 2000);
+    }, 800);
     setTimeout(() => {
         introScrollHint.classList.add('show');
-        introProgressWrap.classList.add('show');
         introPhase = 'active';
-    }, 2600);
+    }, 1600);
 
     // ── Scroll-driven camera ──
     let lastTouchY = 0;
@@ -120,17 +104,12 @@ function initIntro() {
         const progress = introScrollTotal / INTRO_SCROLL_MAX;
 
         // Map progress → camera Z with easing for a natural pull-back feel
-        // Ease-out: fast at first (dramatic zoom out from Earth) then slows
         const eased = 1 - Math.pow(1 - progress, 1.6);
         introCameraTargetZ = INTRO_Z_START + eased * (INTRO_Z_END - INTRO_Z_START);
 
-        // Update progress bar
-        introProgressBar.style.width = (progress * 100) + '%';
-
-        // At 25% scroll: hide the CTA hint (they're exploring now)
-        if (progress > 0.25 && !introCta.classList.contains('hide')) {
-            introCta.classList.add('hide');
-        }
+        // Dynamically fade out the centered logo and hint as we scroll
+        introCta.style.opacity = Math.max(0, 1 - progress * 2.5);
+        introCta.style.transform = `translate(-50%, calc(-50% - ${progress * 100}px))`;
 
         // At 90%+: start warp
         if (progress >= 0.9 && !warpTriggered) {
@@ -149,27 +128,26 @@ function initIntro() {
 
     // ── Warp sequence ──
     function triggerWarp() {
-        // Hide progress bar and corner logo
-        introProgressWrap.style.opacity = '0';
-        introCornerLogo.style.opacity = '0';
+        // Immediately fade out logo if not fully faded
+        introCta.style.opacity = '0';
 
         const warpStart = performance.now();
-        const warpDuration = 1100;
+        const warpDuration = 1200;
 
         function warpLoop(now) {
             const t = Math.min((now - warpStart) / warpDuration, 1);
             // Cubic ease-in acceleration
             const eased = t * t * t;
-            // Rush forward from current position through the space
-            introCameraTargetZ = INTRO_Z_END + eased * 1200; // rushes to z=2900 (far past Earth)
-            introCameraZ = introCameraTargetZ; // snap during warp
+            // Rush forward through the space
+            introCameraTargetZ = INTRO_Z_END + eased * 1200;
+            introCameraZ = introCameraTargetZ;
 
             if (t < 1) {
                 requestAnimationFrame(warpLoop);
             } else {
-                // Flash!
+                // Smooth transition flash
                 introFlash.classList.add('fire');
-                setTimeout(() => finishIntro(), 700);
+                setTimeout(() => finishIntro(), 600);
             }
         }
         requestAnimationFrame(warpLoop);
@@ -196,9 +174,15 @@ function initIntro() {
         canvas.style.left = '';
         document.body.insertBefore(canvas, document.body.firstChild);
 
-        // Fade out loader
+        // Smoothly fade out the loader overlay
         loader.classList.add('exit');
-        setTimeout(() => { loader.style.display = 'none'; }, 1500);
+
+        // Start GSAP animations immediately as the loader starts fading for a seamless blend
+        initGSAPAnimations();
+
+        setTimeout(() => { 
+            loader.style.display = 'none'; 
+        }, 1800);
 
         // Unlock scroll
         document.body.style.overflow = '';
@@ -207,9 +191,6 @@ function initIntro() {
         introCameraZ = 800;
         camera.position.z = 800;
         if (renderer) renderer.setSize(window.innerWidth, window.innerHeight);
-
-        // Init GSAP
-        setTimeout(() => { initGSAPAnimations(); }, 100);
     }
 }
 
