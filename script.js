@@ -1346,10 +1346,14 @@ function initCursorGlow() {
 function initNavigation() {
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
+    const navbar = document.getElementById('navbar');
 
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         mobileMenu.classList.toggle('active');
+        if (navbar) {
+            navbar.classList.toggle('menu-active');
+        }
     });
 
     // Close mobile menu on link click
@@ -1357,6 +1361,9 @@ function initNavigation() {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             mobileMenu.classList.remove('active');
+            if (navbar) {
+                navbar.classList.remove('menu-active');
+            }
         });
     });
 
