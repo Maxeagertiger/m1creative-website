@@ -23,7 +23,7 @@ function initIntro() {
     const loader          = document.getElementById('loader');
     const introCta        = document.getElementById('introCta');
     const introScrollHint = document.getElementById('introScrollHint');
-    const introFlash      = document.getElementById('introFlash');
+
 
     // Lock body scroll
     document.body.style.overflow = 'hidden';
@@ -111,47 +111,28 @@ function initIntro() {
         introCta.style.opacity = Math.max(0, 1 - progress * 2.5);
         introCta.style.transform = `translate(-50%, calc(-50% - ${progress * 100}px))`;
 
-        // At 90%+: start warp
-        if (progress >= 0.9 && !warpTriggered) {
+        // Seamlessly dissolve the black loader background during the last 30% of the scroll
+        if (progress > 0.7) {
+            const fadeProgress = (progress - 0.7) / 0.3; // 0 to 1
+            loader.style.opacity = Math.max(0, 1 - fadeProgress);
+        } else {
+            loader.style.opacity = '1';
+        }
+
+        // At 100% scroll: transition directly to main website (no warp, no flash)
+        if (progress >= 1.0 && !warpTriggered) {
             warpTriggered = true;
-            introPhase = 'warping';
+            introPhase = 'done';
             window.removeEventListener('wheel', onIntroWheel);
             window.removeEventListener('touchstart', onIntroTouchStart);
             window.removeEventListener('touchmove', onIntroTouchMove);
-            triggerWarp();
+            finishIntro();
         }
     }
 
     window.addEventListener('wheel', onIntroWheel, { passive: false });
     window.addEventListener('touchstart', onIntroTouchStart, { passive: false });
     window.addEventListener('touchmove', onIntroTouchMove, { passive: false });
-
-    // ── Warp sequence ──
-    function triggerWarp() {
-        // Immediately fade out logo if not fully faded
-        introCta.style.opacity = '0';
-
-        const warpStart = performance.now();
-        const warpDuration = 1200;
-
-        function warpLoop(now) {
-            const t = Math.min((now - warpStart) / warpDuration, 1);
-            // Cubic ease-in acceleration
-            const eased = t * t * t;
-            // Rush forward through the space
-            introCameraTargetZ = INTRO_Z_END + eased * 1200;
-            introCameraZ = introCameraTargetZ;
-
-            if (t < 1) {
-                requestAnimationFrame(warpLoop);
-            } else {
-                // Smooth transition flash
-                introFlash.classList.add('fire');
-                setTimeout(() => finishIntro(), 600);
-            }
-        }
-        requestAnimationFrame(warpLoop);
-    }
 
     // ── Finish: reveal site ──
     function finishIntro() {
@@ -174,22 +155,18 @@ function initIntro() {
         canvas.style.left = '';
         document.body.insertBefore(canvas, document.body.firstChild);
 
-        // Smoothly fade out the loader overlay
-        loader.classList.add('exit');
+        // Instantly hide the loader since it is already faded out
+        loader.style.display = 'none';
 
-        // Start GSAP animations immediately as the loader starts fading for a seamless blend
+        // Start GSAP animations immediately for a seamless blend
         initGSAPAnimations();
-
-        setTimeout(() => { 
-            loader.style.display = 'none'; 
-        }, 1800);
 
         // Unlock scroll
         document.body.style.overflow = '';
 
-        // Reset camera to site parallax starting position
-        introCameraZ = 800;
-        camera.position.z = 800;
+        // Seamless camera starting position — it will smoothly slide/lerp to homepage Z in animate()
+        introCameraZ = INTRO_Z_END;
+        camera.position.z = INTRO_Z_END;
         if (renderer) renderer.setSize(window.innerWidth, window.innerHeight);
     }
 }
