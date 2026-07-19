@@ -88,7 +88,7 @@ body {
 .intro-logo {
     font-family: var(--font-display);
     font-size: clamp(2.5rem, 6vw, 4.5rem);
-    letter-spacing: 8px;
+    letter-spacing: 1px;
     position: relative;
     display: inline-block;
     font-style: italic;

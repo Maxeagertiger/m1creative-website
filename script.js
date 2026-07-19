@@ -181,245 +181,106 @@ function initIntro() {
     }
 }
 
-// ── Procedural Noise Helpers for Realistic Earth ──
-function earthHash(x, y) {
-    const h = Math.sin(x * 127.1 + y * 311.7) * 43758.5453123;
-    return h - Math.floor(h);
-}
-
-function earthValNoise(x, y) {
-    const ix = Math.floor(x);
-    const iy = Math.floor(y);
-    const fx = x - ix;
-    const fy = y - iy;
-    const ux = fx * fx * (3.0 - 2.0 * fx);
-    const uy = fy * fy * (3.0 - 2.0 * fy);
-    const a = earthHash(ix, iy);
-    const b = earthHash(ix + 1, iy);
-    const c = earthHash(ix, iy + 1);
-    const d = earthHash(ix + 1, iy + 1);
-    return a * (1 - ux) * (1 - uy) +
-           b * ux * (1 - uy) +
-           c * (1 - ux) * uy +
-           d * ux * uy;
-}
-
-function earthFbm(x, y) {
-    let value = 0.0;
-    let amplitude = 0.5;
-    let frequency = 1.0;
-    for (let i = 0; i < 5; i++) {
-        value += amplitude * earthValNoise(x * frequency, y * frequency);
-        frequency *= 2.15;
-        amplitude *= 0.5;
-    }
-    return value;
-}
-
 // ── Earth sphere (intro-only) ──
 function createEarth() {
     const group = new THREE.Group();
 
-    // 1. Create canvases for color, bump, and roughness maps
-    const width = 512;
-    const height = 256;
+    // Draw Earth texture on canvas
+    const size = 1024;
+    const c = document.createElement('canvas');
+    c.width = size; c.height = size / 2;
+    const ctx = c.getContext('2d');
 
-    const colorCanv = document.createElement('canvas');
-    colorCanv.width = width; colorCanv.height = height;
-    const colorCtx = colorCanv.getContext('2d');
+    // Deep blue ocean base
+    const ocean = ctx.createLinearGradient(0, 0, size, size / 2);
+    ocean.addColorStop(0,   '#0a1f3c');
+    ocean.addColorStop(0.3, '#0d2a50');
+    ocean.addColorStop(0.6, '#0a1f3c');
+    ocean.addColorStop(1,   '#071525');
+    ctx.fillStyle = ocean;
+    ctx.fillRect(0, 0, size, size / 2);
 
-    const bumpCanv = document.createElement('canvas');
-    bumpCanv.width = width; bumpCanv.height = height;
-    const bumpCtx = bumpCanv.getContext('2d');
+    // Continents — rough patches
+    ctx.globalAlpha = 1;
+    const continents = [
+        { x: 120, y: 80,  w: 160, h: 90,  color: '#2d6a2f' },  // Americas top
+        { x: 100, y: 155, w: 90,  h: 100, color: '#3a7a2a' },  // S. America
+        { x: 340, y: 60,  w: 100, h: 80,  color: '#4a7a30' },  // Europe
+        { x: 370, y: 120, w: 180, h: 140, color: '#3d6e28' },  // Africa
+        { x: 480, y: 50,  w: 200, h: 100, color: '#5c7a35' },  // Asia
+        { x: 580, y: 140, w: 100, h: 70,  color: '#6b8c3e' },  // SE Asia
+        { x: 660, y: 200, w: 100, h: 80,  color: '#4a7a30' },  // Australia
+        { x: 200, y: 60,  w: 60,  h: 40,  color: '#c8a86c' },  // desert patch
+        { x: 440, y: 90,  w: 40,  h: 60,  color: '#c8b46c' },  // Middle East
+    ];
+    continents.forEach(cont => {
+        ctx.fillStyle = cont.color;
+        ctx.beginPath();
+        ctx.ellipse(cont.x, cont.y, cont.w / 2, cont.h / 2, Math.random() * 0.5, 0, Math.PI * 2);
+        ctx.fill();
+        // Slight variation blob
+        ctx.fillStyle = cont.color + 'cc';
+        ctx.beginPath();
+        ctx.ellipse(cont.x + 20, cont.y + 15, cont.w / 3, cont.h / 3, 0.8, 0, Math.PI * 2);
+        ctx.fill();
+    });
 
-    const roughCanv = document.createElement('canvas');
-    roughCanv.width = width; roughCanv.height = height;
-    const roughCtx = roughCanv.getContext('2d');
+    // Snow caps
+    const topCap = ctx.createLinearGradient(0, 0, 0, 40);
+    topCap.addColorStop(0, 'rgba(230,245,255,0.85)');
+    topCap.addColorStop(1, 'rgba(230,245,255,0)');
+    ctx.fillStyle = topCap;
+    ctx.fillRect(0, 0, size, 40);
+    const botCap = ctx.createLinearGradient(0, size / 2 - 38, 0, size / 2);
+    botCap.addColorStop(0, 'rgba(230,245,255,0)');
+    botCap.addColorStop(1, 'rgba(230,245,255,0.9)');
+    ctx.fillStyle = botCap;
+    ctx.fillRect(0, size / 2 - 38, size, 38);
 
-    const colorImg = colorCtx.createImageData(width, height);
-    const bumpImg = bumpCtx.createImageData(width, height);
-    const roughImg = roughCtx.createImageData(width, height);
-
-    // Populate pixels using noise mapping
-    for (let y = 0; y < height; y++) {
-        for (let x = 0; x < width; x++) {
-            // Map grid coords to spherical projection noise coords
-            const nx = (x / width) * 22.0;
-            const ny = (y / height) * 11.0;
-            const val = earthFbm(nx, ny);
-            const idx = (y * width + x) * 4;
-
-            // Latitude factor (0 at equator, 1 at poles)
-            const latFactor = Math.abs(y - height / 2) / (height / 2);
-
-            if (val > 0.465) {
-                // --- LAND ---
-                let r = 34, g = 90, b = 40; // Default temperate green vegetation
-                let heightVal = Math.min(255, Math.floor((val - 0.465) * 800));
-
-                if (latFactor > 0.72) {
-                    // Polar ice / snow
-                    r = 235; g = 240; b = 250;
-                    heightVal = Math.min(255, heightVal + 40);
-                } else if (latFactor > 0.5 && val < 0.52) {
-                    // Tundra / dry grass
-                    r = 100; g = 110; b = 80;
-                } else if (val < 0.51) {
-                    // Sandy / desert dry zones
-                    r = 180 + Math.floor(val * 40);
-                    g = 150 + Math.floor(val * 30);
-                    b = 105;
-                } else if (val > 0.58) {
-                    // Mountain range (rocky gray/brown peaks)
-                    r = 100 + Math.floor((val - 0.58) * 100);
-                    g = 95 + Math.floor((val - 0.58) * 80);
-                    b = 85 + Math.floor((val - 0.58) * 80);
-                }
-
-                colorImg.data[idx]     = r;
-                colorImg.data[idx + 1] = g;
-                colorImg.data[idx + 2] = b;
-                colorImg.data[idx + 3] = 255;
-
-                // Land bump height
-                bumpImg.data[idx]     = heightVal;
-                bumpImg.data[idx + 1] = heightVal;
-                bumpImg.data[idx + 2] = heightVal;
-                bumpImg.data[idx + 3] = 255;
-
-                // Land is rough (matte)
-                roughImg.data[idx]     = 225;
-                roughImg.data[idx + 1] = 225;
-                roughImg.data[idx + 2] = 225;
-                roughImg.data[idx + 3] = 255;
-            } else {
-                // --- OCEAN ---
-                const isShallow = val > 0.435;
-                let r = 5, g = 15, b = 45; // Deep ocean base
-
-                if (isShallow && latFactor <= 0.72) {
-                    // Shallow shore reefs (light cyan water)
-                    const lerpVal = (val - 0.435) / 0.03;
-                    r = Math.floor(5 + lerpVal * 15);
-                    g = Math.floor(15 + lerpVal * 65);
-                    b = Math.floor(45 + lerpVal * 95);
-                }
-
-                colorImg.data[idx]     = r;
-                colorImg.data[idx + 1] = g;
-                colorImg.data[idx + 2] = b;
-                colorImg.data[idx + 3] = 255;
-
-                // Ocean bump is flat
-                bumpImg.data[idx]     = 0;
-                bumpImg.data[idx + 1] = 0;
-                bumpImg.data[idx + 2] = 0;
-                bumpImg.data[idx + 3] = 255;
-
-                // Ocean is highly reflective (smooth, low roughness)
-                roughImg.data[idx]     = 30;
-                roughImg.data[idx + 1] = 30;
-                roughImg.data[idx + 2] = 30;
-                roughImg.data[idx + 3] = 255;
-            }
-        }
+    // Cloud streaks
+    ctx.globalAlpha = 0.35;
+    for (let i = 0; i < 22; i++) {
+        const cy = 20 + Math.random() * (size / 2 - 40);
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.beginPath();
+        ctx.ellipse(Math.random() * size, cy, 60 + Math.random() * 120, 4 + Math.random() * 10, 0, 0, Math.PI * 2);
+        ctx.fill();
     }
+    ctx.globalAlpha = 1;
 
-    colorCtx.putImageData(colorImg, 0, 0);
-    bumpCtx.putImageData(bumpImg, 0, 0);
-    roughCtx.putImageData(roughImg, 0, 0);
-
-    // Create standard material with advanced maps
-    const mapTex = new THREE.CanvasTexture(colorCanv);
-    const bumpTex = new THREE.CanvasTexture(bumpCanv);
-    const roughTex = new THREE.CanvasTexture(roughCanv);
-
+    const tex = new THREE.CanvasTexture(c);
     const earthGeo = new THREE.SphereGeometry(200, 64, 64);
     const earthMat = new THREE.MeshStandardMaterial({
-        map: mapTex,
-        bumpMap: bumpTex,
-        bumpScale: 3.5,
-        roughnessMap: roughTex,
-        metalness: 0.1,
+        map: tex,
+        roughness: 0.75,
+        metalness: 0.05,
     });
     const earthMesh = new THREE.Mesh(earthGeo, earthMat);
     group.add(earthMesh);
 
-    // 2. Add realistic floaty Clouds layer (separate sphere for parallax)
-    const cloudCanv = document.createElement('canvas');
-    cloudCanv.width = width; cloudCanv.height = height;
-    const cloudCtx = cloudCanv.getContext('2d');
-    const cloudImg = cloudCtx.createImageData(width, height);
-
-    for (let y = 0; y < height; y++) {
-        for (let x = 0; x < width; x++) {
-            // Lower frequency noise for organic cloud shapes
-            const nx = (x / width) * 10.0;
-            const ny = (y / height) * 5.0;
-            const val = earthFbm(nx, ny);
-            const idx = (y * width + x) * 4;
-
-            if (val > 0.47) {
-                const alpha = Math.min(255, Math.floor((val - 0.47) * 900));
-                cloudImg.data[idx]     = 255;
-                cloudImg.data[idx + 1] = 255;
-                cloudImg.data[idx + 2] = 255;
-                cloudImg.data[idx + 3] = alpha;
-            } else {
-                cloudImg.data[idx + 3] = 0;
-            }
-        }
-    }
-    cloudCtx.putImageData(cloudImg, 0, 0);
-
-    const cloudTex = new THREE.CanvasTexture(cloudCanv);
-    const cloudGeo = new THREE.SphereGeometry(202.5, 64, 64);
-    const cloudMat = new THREE.MeshStandardMaterial({
-        map: cloudTex,
-        transparent: true,
-        blending: THREE.NormalBlending,
-        depthWrite: false,
-    });
-    const cloudMesh = new THREE.Mesh(cloudGeo, cloudMat);
-    cloudMesh.userData.isClouds = true;
-    group.add(cloudMesh);
-
-    // 3. Realistic Rayleigh-scattering Atmosphere Glow Layers
-    // Layer A: Thin cyan inner glow rim
-    const innerRimGeo = new THREE.SphereGeometry(206, 48, 48);
-    const innerRimMat = new THREE.MeshBasicMaterial({
-        color: 0x4fc3f7,
-        transparent: true,
-        opacity: 0.16,
-        side: THREE.BackSide,
-        blending: THREE.AdditiveBlending,
-        depthWrite: false,
-    });
-    group.add(new THREE.Mesh(innerRimGeo, innerRimMat));
-
-    // Layer B: Soft blue atmospheric halo
-    const atmosGeo = new THREE.SphereGeometry(215, 48, 48);
+    // Atmosphere glow (blue rim)
+    const atmosGeo = new THREE.SphereGeometry(212, 48, 48);
     const atmosMat = new THREE.MeshBasicMaterial({
-        color: 0x1e88e5,
+        color: 0x3a9bdc,
         transparent: true,
-        opacity: 0.08,
+        opacity: 0.12,
         side: THREE.BackSide,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
     });
     group.add(new THREE.Mesh(atmosGeo, atmosMat));
 
-    // Layer C: Extremely soft dark indigo outer halo
-    const outerHaloGeo = new THREE.SphereGeometry(228, 32, 32);
-    const outerHaloMat = new THREE.MeshBasicMaterial({
-        color: 0x0d47a1,
+    // Outer glow halo
+    const haloGeo = new THREE.SphereGeometry(230, 32, 32);
+    const haloMat = new THREE.MeshBasicMaterial({
+        color: 0x1a6bdc,
         transparent: true,
-        opacity: 0.03,
+        opacity: 0.04,
         side: THREE.BackSide,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
     });
-    group.add(new THREE.Mesh(outerHaloGeo, outerHaloMat));
+    group.add(new THREE.Mesh(haloGeo, haloMat));
 
     return group;
 }
