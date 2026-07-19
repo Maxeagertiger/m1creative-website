@@ -10,166 +10,311 @@ let scrollProgress = 0;
 const clock = new THREE.Clock();
 
 
-// ======= CINEMATIC SPACE INTRO =======
-let introPhase = 'loading'; // 'loading' | 'idle' | 'warping' | 'done'
-let introScrollY = 0;
-let introCameraZ = 1800;
-let introWarpProgress = 0;
-let introScrollLocked = true;
-let introScrollTimeout;
+// ======= SCROLL-DRIVEN SPACE INTRO =======
+let introPhase = 'loading'; // 'loading' | 'active' | 'warping' | 'done'
+let introCameraZ = 220;         // starts very close to Earth
+let introCameraTargetZ = 220;   // smoothly lerped
+let introScrollTotal = 0;       // cumulative scroll delta
+const INTRO_SCROLL_MAX = 4000;  // pixels of scroll to complete journey
+const INTRO_Z_START   = 220;    // close-up of Earth
+const INTRO_Z_END     = 1700;   // far out in space
+let introEarth = null;          // the dedicated Earth sphere
 
 function initIntro() {
-    const loader = document.getElementById('loader');
-    const introContent = document.getElementById('introContent');
-    const introLogo = document.getElementById('introLogo');
-    const introTagline = document.getElementById('introTagline');
-    const introLine = document.getElementById('introLine');
+    const loader          = document.getElementById('loader');
+    const introCornerLogo = document.getElementById('introCornerLogo');
+    const introCta        = document.getElementById('introCta');
+    const introTagline    = document.getElementById('introTagline');
+    const introLine       = document.getElementById('introLine');
     const introScrollHint = document.getElementById('introScrollHint');
-    const introFlash = document.getElementById('introFlash');
+    const introProgressWrap = document.getElementById('introProgressWrap');
+    const introProgressBar  = document.getElementById('introProgressBar');
+    const introFlash      = document.getElementById('introFlash');
 
-    // Prevent body from scrolling until intro is done
+    // Lock body scroll
     document.body.style.overflow = 'hidden';
-    // ── Build the Three.js scene immediately for the intro ──
+
+    // ── Build scene ──
     initThreeJS();
+    createSecondPlanet(); // Creates the ringed ice planet (will be far back during intro)
 
-    // Position canvas absolutely inside loader during intro
-    const canvas = document.getElementById('three-canvas');
-    canvas.style.position = 'absolute';
-    canvas.style.top = '0';
-    canvas.style.left = '0';
+    // Position canvas absolutely inside loader
+    const cvs = document.getElementById('three-canvas');
+    cvs.style.position = 'absolute';
+    cvs.style.top = '0';
+    cvs.style.left = '0';
 
-    // Position camera for cinematic pull-back opening
-    camera.position.set(0, 30, introCameraZ);
-    camera.lookAt(0, 0, 0);
+    // ── Create Earth at origin, camera starts close ──
+    introEarth = createEarth();
+    introEarth.position.set(0, 0, -150);
+    scene.add(introEarth);
 
-    // Override the planet to be more visible during intro
+    // Reposition background planets so they're revealed as camera pulls back
     if (planet) {
-        planet.position.set(-200, -80, -600);
-        // Scale the mesh (children[0]) but keep it safe
-        const pMesh = planet.children[0];
-        if (pMesh) pMesh.scale.set(1.5, 1.5, 1.5);
+        planet.position.set(-700, -200, -2200);
+    }
+    if (planet2) {
+        planet2.position.set(800, 150, -2800);
     }
 
-    // Add a second planet for depth
-    createSecondPlanet();
+    // Camera starts very close to Earth
+    camera.position.set(0, 20, INTRO_Z_START);
+    camera.lookAt(0, 0, 0);
+    introCameraZ = INTRO_Z_START;
+    introCameraTargetZ = INTRO_Z_START;
 
-    // Start the render loop
+    // Start render loop
     animate();
 
-    // ── Choreograph the UI ──
-    // Phase 1: Logo letters reveal (0.6s)
+    // ── UI reveal sequence ──
+    // Corner logo appears first (0.8s)
     setTimeout(() => {
-        introContent.classList.add('show');
-        document.querySelector('.intro-m').classList.add('show');
-        document.querySelector('.intro-one').classList.add('show');
-        document.querySelector('.intro-creative').classList.add('show');
-    }, 600);
+        introCornerLogo.classList.add('show');
+    }, 800);
 
-    // Phase 2: Tagline + glow line (1.4s)
+    // CTA appears (1.6s) — tagline + line + scroll hint staggered
     setTimeout(() => {
-        introLogo.classList.add('glow');
-        introTagline.classList.add('show');
+        introCta.classList.add('show');
+        introTagline.style.opacity = '1';
+    }, 1600);
+    setTimeout(() => {
         introLine.classList.add('show');
-    }, 1400);
-
-    // Phase 3: Scroll hint appears (2.2s)
+    }, 2000);
     setTimeout(() => {
         introScrollHint.classList.add('show');
-        introPhase = 'idle';
-        introScrollLocked = false;
-    }, 2200);
+        introProgressWrap.classList.add('show');
+        introPhase = 'active';
+    }, 2600);
 
-    // ── Scroll-to-enter listener ──
-    function onIntroScroll(e) {
-        if (introScrollLocked || introPhase !== 'idle') return;
+    // ── Scroll-driven camera ──
+    let lastTouchY = 0;
+    let warpTriggered = false;
 
-        // Get scroll delta
-        let delta = 0;
-        if (e.type === 'wheel') {
-            delta = e.deltaY;
-        } else if (e.type === 'touchmove') {
-            const touch = e.touches[0];
-            delta = (onIntroScroll._lastY || touch.clientY) - touch.clientY;
-            onIntroScroll._lastY = touch.clientY;
-        }
+    function onIntroWheel(e) {
+        if (introPhase !== 'active') return;
+        e.preventDefault();
 
-        if (delta <= 0) return;
+        // Normalise different scroll device speeds
+        let delta = e.deltaY;
+        if (e.deltaMode === 1) delta *= 30;  // Firefox line mode
+        if (e.deltaMode === 2) delta *= 300; // page mode
 
-        // Trigger warp
-        introPhase = 'warping';
-        triggerWarp();
-
-        // Remove listeners
-        window.removeEventListener('wheel', onIntroScroll, { passive: false });
-        window.removeEventListener('touchmove', onIntroScroll, { passive: false });
+        advanceIntro(delta);
     }
 
-    window.addEventListener('wheel', onIntroScroll, { passive: false });
-    window.addEventListener('touchmove', onIntroScroll, { passive: false });
+    function onIntroTouchStart(e) {
+        lastTouchY = e.touches[0].clientY;
+    }
+    function onIntroTouchMove(e) {
+        if (introPhase !== 'active') return;
+        e.preventDefault();
+        const delta = (lastTouchY - e.touches[0].clientY) * 2.5;
+        lastTouchY = e.touches[0].clientY;
+        advanceIntro(delta);
+    }
 
-    function triggerWarp() {
-        // Exit the logo UI
-        introContent.classList.add('exit');
+    function advanceIntro(delta) {
+        if (delta <= 0) return; // only scroll down moves camera back
+        introScrollTotal = Math.min(introScrollTotal + delta, INTRO_SCROLL_MAX);
 
-        // Animate camera rushing forward (handled in animate() via introWarpProgress)
-        introWarpProgress = 0;
+        const progress = introScrollTotal / INTRO_SCROLL_MAX;
 
-        const warpStart = performance.now();
-        const warpDuration = 900; // ms
+        // Map progress → camera Z with easing for a natural pull-back feel
+        // Ease-out: fast at first (dramatic zoom out from Earth) then slows
+        const eased = 1 - Math.pow(1 - progress, 1.6);
+        introCameraTargetZ = INTRO_Z_START + eased * (INTRO_Z_END - INTRO_Z_START);
 
-        function warpLoop(now) {
-            introWarpProgress = Math.min((now - warpStart) / warpDuration, 1);
+        // Update progress bar
+        introProgressBar.style.width = (progress * 100) + '%';
 
-            // Ease-in cubic: accelerate toward 0
-            const eased = introWarpProgress * introWarpProgress * introWarpProgress;
-            introCameraZ = 1800 - eased * 2200; // rushes from 1800 to -400
-
-            if (introWarpProgress < 1) {
-                requestAnimationFrame(warpLoop);
-            } else {
-                // Fire the flash burst
-                introFlash.classList.add('fire');
-
-                // After flash, move canvas out of loader, show site
-                setTimeout(() => {
-                    finishIntro();
-                }, 550);
-            }
+        // At 25% scroll: hide the CTA hint (they're exploring now)
+        if (progress > 0.25 && !introCta.classList.contains('hide')) {
+            introCta.classList.add('hide');
         }
 
+        // At 90%+: start warp
+        if (progress >= 0.9 && !warpTriggered) {
+            warpTriggered = true;
+            introPhase = 'warping';
+            window.removeEventListener('wheel', onIntroWheel);
+            window.removeEventListener('touchstart', onIntroTouchStart);
+            window.removeEventListener('touchmove', onIntroTouchMove);
+            triggerWarp();
+        }
+    }
+
+    window.addEventListener('wheel', onIntroWheel, { passive: false });
+    window.addEventListener('touchstart', onIntroTouchStart, { passive: false });
+    window.addEventListener('touchmove', onIntroTouchMove, { passive: false });
+
+    // ── Warp sequence ──
+    function triggerWarp() {
+        // Hide progress bar and corner logo
+        introProgressWrap.style.opacity = '0';
+        introCornerLogo.style.opacity = '0';
+
+        const warpStart = performance.now();
+        const warpDuration = 1100;
+
+        function warpLoop(now) {
+            const t = Math.min((now - warpStart) / warpDuration, 1);
+            // Cubic ease-in acceleration
+            const eased = t * t * t;
+            // Rush forward from current position through the space
+            introCameraTargetZ = INTRO_Z_END + eased * 1200; // rushes to z=2900 (far past Earth)
+            introCameraZ = introCameraTargetZ; // snap during warp
+
+            if (t < 1) {
+                requestAnimationFrame(warpLoop);
+            } else {
+                // Flash!
+                introFlash.classList.add('fire');
+                setTimeout(() => finishIntro(), 700);
+            }
+        }
         requestAnimationFrame(warpLoop);
     }
 
+    // ── Finish: reveal site ──
     function finishIntro() {
         introPhase = 'done';
 
-        // Move canvas out of the loader to be a persistent background
-        const cvs = document.getElementById('three-canvas');
-        // Clear the intro inline styles — CSS position:fixed will take over
-        cvs.style.position = '';
-        cvs.style.top = '';
-        cvs.style.left = '';
-        document.body.insertBefore(cvs, document.body.firstChild);
+        // Remove Earth from scene (it was intro-only)
+        if (introEarth) {
+            scene.remove(introEarth);
+            introEarth = null;
+        }
 
-        // Fade out and remove loader
+        // Restore background planet positions for the site
+        if (planet) planet.position.set(350, -100, -400);
+        if (planet2) planet2.position.set(300, 80, -900);
+
+        // Move canvas to body as persistent background
+        const canvas = document.getElementById('three-canvas');
+        canvas.style.position = '';
+        canvas.style.top = '';
+        canvas.style.left = '';
+        document.body.insertBefore(canvas, document.body.firstChild);
+
+        // Fade out loader
         loader.classList.add('exit');
-        setTimeout(() => {
-            loader.style.display = 'none';
-        }, 1200);
+        setTimeout(() => { loader.style.display = 'none'; }, 1500);
 
-        // Re-enable body scroll
+        // Unlock scroll
         document.body.style.overflow = '';
 
-        // Reset camera Z for normal site parallax
+        // Reset camera to site parallax starting position
         introCameraZ = 800;
         camera.position.z = 800;
-
-        // Resize renderer now that context has changed
         if (renderer) renderer.setSize(window.innerWidth, window.innerHeight);
 
-        // Init GSAP after intro
+        // Init GSAP
         setTimeout(() => { initGSAPAnimations(); }, 100);
     }
+}
+
+// ── Earth sphere (intro-only) ──
+function createEarth() {
+    const group = new THREE.Group();
+
+    // Draw Earth texture on canvas
+    const size = 1024;
+    const c = document.createElement('canvas');
+    c.width = size; c.height = size / 2;
+    const ctx = c.getContext('2d');
+
+    // Deep blue ocean base
+    const ocean = ctx.createLinearGradient(0, 0, size, size / 2);
+    ocean.addColorStop(0,   '#0a1f3c');
+    ocean.addColorStop(0.3, '#0d2a50');
+    ocean.addColorStop(0.6, '#0a1f3c');
+    ocean.addColorStop(1,   '#071525');
+    ctx.fillStyle = ocean;
+    ctx.fillRect(0, 0, size, size / 2);
+
+    // Continents — rough patches
+    ctx.globalAlpha = 1;
+    const continents = [
+        { x: 120, y: 80,  w: 160, h: 90,  color: '#2d6a2f' },  // Americas top
+        { x: 100, y: 155, w: 90,  h: 100, color: '#3a7a2a' },  // S. America
+        { x: 340, y: 60,  w: 100, h: 80,  color: '#4a7a30' },  // Europe
+        { x: 370, y: 120, w: 180, h: 140, color: '#3d6e28' },  // Africa
+        { x: 480, y: 50,  w: 200, h: 100, color: '#5c7a35' },  // Asia
+        { x: 580, y: 140, w: 100, h: 70,  color: '#6b8c3e' },  // SE Asia
+        { x: 660, y: 200, w: 100, h: 80,  color: '#4a7a30' },  // Australia
+        { x: 200, y: 60,  w: 60,  h: 40,  color: '#c8a86c' },  // desert patch
+        { x: 440, y: 90,  w: 40,  h: 60,  color: '#c8b46c' },  // Middle East
+    ];
+    continents.forEach(cont => {
+        ctx.fillStyle = cont.color;
+        ctx.beginPath();
+        ctx.ellipse(cont.x, cont.y, cont.w / 2, cont.h / 2, Math.random() * 0.5, 0, Math.PI * 2);
+        ctx.fill();
+        // Slight variation blob
+        ctx.fillStyle = cont.color + 'cc';
+        ctx.beginPath();
+        ctx.ellipse(cont.x + 20, cont.y + 15, cont.w / 3, cont.h / 3, 0.8, 0, Math.PI * 2);
+        ctx.fill();
+    });
+
+    // Snow caps
+    const topCap = ctx.createLinearGradient(0, 0, 0, 40);
+    topCap.addColorStop(0, 'rgba(230,245,255,0.85)');
+    topCap.addColorStop(1, 'rgba(230,245,255,0)');
+    ctx.fillStyle = topCap;
+    ctx.fillRect(0, 0, size, 40);
+    const botCap = ctx.createLinearGradient(0, size / 2 - 38, 0, size / 2);
+    botCap.addColorStop(0, 'rgba(230,245,255,0)');
+    botCap.addColorStop(1, 'rgba(230,245,255,0.9)');
+    ctx.fillStyle = botCap;
+    ctx.fillRect(0, size / 2 - 38, size, 38);
+
+    // Cloud streaks
+    ctx.globalAlpha = 0.35;
+    for (let i = 0; i < 22; i++) {
+        const cy = 20 + Math.random() * (size / 2 - 40);
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.beginPath();
+        ctx.ellipse(Math.random() * size, cy, 60 + Math.random() * 120, 4 + Math.random() * 10, 0, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    const tex = new THREE.CanvasTexture(c);
+    const earthGeo = new THREE.SphereGeometry(200, 64, 64);
+    const earthMat = new THREE.MeshStandardMaterial({
+        map: tex,
+        roughness: 0.75,
+        metalness: 0.05,
+    });
+    const earthMesh = new THREE.Mesh(earthGeo, earthMat);
+    group.add(earthMesh);
+
+    // Atmosphere glow (blue rim)
+    const atmosGeo = new THREE.SphereGeometry(212, 48, 48);
+    const atmosMat = new THREE.MeshBasicMaterial({
+        color: 0x3a9bdc,
+        transparent: true,
+        opacity: 0.12,
+        side: THREE.BackSide,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+    });
+    group.add(new THREE.Mesh(atmosGeo, atmosMat));
+
+    // Outer glow halo
+    const haloGeo = new THREE.SphereGeometry(230, 32, 32);
+    const haloMat = new THREE.MeshBasicMaterial({
+        color: 0x1a6bdc,
+        transparent: true,
+        opacity: 0.04,
+        side: THREE.BackSide,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+    });
+    group.add(new THREE.Mesh(haloGeo, haloMat));
+
+    return group;
 }
 
 // ── Second planet for intro depth ──
@@ -587,6 +732,11 @@ function animate() {
             planet2.children[1].rotation.z += 0.0004; // ring drift
         }
     }
+    
+    // Earth slow rotation during intro
+    if (introEarth) {
+        introEarth.children[0].rotation.y += 0.0008; // Earth turns slowly
+    }
 
     // Floating geometries
     floatingObjects.forEach(obj => {
@@ -601,22 +751,25 @@ function animate() {
     }
 
     // ── Camera control ──
-    if (introPhase !== 'done') {
-        // During intro: camera controlled by introCameraZ
-        // Add a very slow drift-in toward planets
-        if (introPhase === 'idle') {
-            introCameraZ -= 0.3; // slow creep forward
-        }
-        camera.position.z = introCameraZ;
-        // Gentle horizontal drift
-        camera.position.x += (Math.sin(time * 0.08) * 15 - camera.position.x) * 0.01;
-        camera.position.y += (Math.cos(time * 0.05) * 8 + 30 - camera.position.y) * 0.01;
-    } else {
-        // After intro: normal parallax scroll camera
+    if (introPhase === 'done') {
+        // After intro: normal mouse parallax + scroll-based zoom
         camera.position.x += (mouseX * 0.05 - camera.position.x) * 0.02;
         camera.position.y += (-mouseY * 0.05 - camera.position.y) * 0.02;
         const targetZ = 800 - scrollProgress * 600;
         camera.position.z += (targetZ - camera.position.z) * 0.03;
+    } else if (introPhase === 'warping') {
+        // Warp: snap directly to target (no lag)
+        introCameraZ = introCameraTargetZ;
+        camera.position.z = introCameraZ;
+        camera.position.x *= 0.92; // straighten out
+        camera.position.y *= 0.92;
+    } else {
+        // Intro active/loading: smooth lerp toward scroll-set target
+        introCameraZ += (introCameraTargetZ - introCameraZ) * 0.06;
+        camera.position.z = introCameraZ;
+        // Very subtle horizontal drift (keep Earth centered)
+        camera.position.x += (Math.sin(time * 0.05) * 5 - camera.position.x) * 0.008;
+        camera.position.y += (Math.cos(time * 0.04) * 3 + 20 - camera.position.y) * 0.008;
     }
 
     camera.lookAt(scene.position);

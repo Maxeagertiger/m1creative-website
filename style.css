@@ -38,206 +38,157 @@ body {
 }
 
 /* ===========================
-   Cinematic Space Intro
+   Scroll-Driven Space Intro
    =========================== */
 #loader {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     z-index: 10000;
     overflow: hidden;
-    cursor: default;
     background: #000;
+    cursor: default;
 }
 
-/* The Three.js canvas — inline styles set by Three.js take precedence for size */
+/* Canvas — Three.js sets pixel dimensions via inline styles */
 #three-canvas {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     z-index: 0;
     pointer-events: none;
     display: block;
 }
 
-/* Loader exit — fade + scale */
+/* Loader exit */
 #loader.exit {
-    animation: loaderExit 1.1s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+    animation: loaderExit 1.4s cubic-bezier(0.7, 0, 0.3, 1) forwards;
     pointer-events: none;
 }
-
 @keyframes loaderExit {
-    0%   { opacity: 1; transform: scale(1); }
-    40%  { opacity: 1; transform: scale(1.06); }
-    100% { opacity: 0; transform: scale(1.12); }
+    0%   { opacity: 1; }
+    60%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 /* ===========================
-   Intro Content (Logo + hint)
+   Corner Logo (top-left)
    =========================== */
-.intro-content {
+.intro-corner-logo {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    text-align: center;
-    opacity: 0;
-    pointer-events: none;
-    width: 90%;
-}
-
-.intro-content.show {
-    animation: introFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    pointer-events: auto;
-}
-
-@keyframes introFadeIn {
-    0%   { opacity: 0; transform: translate(-50%, calc(-50% + 24px)); }
-    100% { opacity: 1; transform: translate(-50%, -50%); }
-}
-
-.intro-content.exit {
-    animation: introFadeOut 0.7s cubic-bezier(0.7, 0, 0.3, 1) forwards;
-}
-
-@keyframes introFadeOut {
-    0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    100% { opacity: 0; transform: translate(-50%, calc(-50% - 20px)) scale(0.95); }
-}
-
-/* ===========================
-   Intro Logo
-   =========================== */
-.intro-logo {
+    top: 32px;
+    left: 40px;
+    z-index: 3;
     font-family: var(--font-display);
-    font-size: clamp(2.2rem, 5vw, 4rem);
-    letter-spacing: 6px;
-    position: relative;
-    display: inline-block;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    letter-spacing: 4px;
     font-style: italic;
-    color: var(--text-white);
-}
-
-.intro-logo::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
-    width: 0;
-    height: 1.5px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    transform: translateX(-50%);
-    transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.intro-logo.glow::after { width: 100%; }
-
-.intro-logo.glow {
-    text-shadow:
-        0 0 40px rgba(166, 255, 0, 0.2),
-        0 0 80px rgba(166, 255, 0, 0.08);
-}
-
-.intro-m, .intro-one {
-    color: var(--text-white);
-    display: inline-block;
     opacity: 0;
-    transform: translateY(30px);
-    filter: blur(12px);
+    transform: translateY(-8px);
+    transition: opacity 1s ease, transform 1s ease;
 }
-
-.intro-creative {
-    color: var(--accent);
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(30px);
-    filter: blur(12px);
-}
-
-.intro-m.show {
-    animation: letterReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0s forwards;
-}
-.intro-one.show {
-    animation: letterReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
-}
-.intro-creative.show {
-    animation: letterReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.22s forwards;
-}
-
-@keyframes letterReveal {
-    0%   { opacity: 0; transform: translateY(30px); filter: blur(12px); }
-    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
-}
-
-/* ===========================
-   Intro Tagline + Line
-   =========================== */
-.intro-tagline {
-    font-family: var(--font-body);
-    font-size: clamp(0.55rem, 1vw, 0.7rem);
-    letter-spacing: 7px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    margin-top: 18px;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.intro-tagline.show {
+.intro-corner-logo.show {
     opacity: 1;
     transform: translateY(0);
+}
+.intro-corner-logo .intro-m,
+.intro-corner-logo .intro-one {
+    color: #fff;
+    opacity: 1;
+    transform: none;
+    filter: none;
+}
+.intro-corner-logo .intro-creative {
+    color: var(--accent);
+    opacity: 1;
+    transform: none;
+    filter: none;
+}
+
+/* ===========================
+   Centered scroll CTA
+   =========================== */
+.intro-center-cta {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    white-space: nowrap;
+}
+.intro-center-cta.show { opacity: 1; }
+.intro-center-cta.hide { opacity: 0; transition: opacity 0.4s ease; }
+
+.intro-tagline {
+    font-family: var(--font-body);
+    font-size: clamp(0.5rem, 1vw, 0.65rem);
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
 }
 
 .intro-line {
     width: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(166, 255, 0, 0.5), transparent);
-    margin: 18px auto 0;
+    background: linear-gradient(90deg, transparent, rgba(166,255,0,0.5), transparent);
+    margin: 14px auto 0;
     transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.intro-line.show { width: 120px; }
 
-.intro-line.show { width: 140px; }
-
-/* ===========================
-   Scroll to Enter hint
-   =========================== */
 .intro-scroll-hint {
-    margin-top: 52px;
+    margin-top: 28px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.8s ease;
 }
-
-.intro-scroll-hint.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+.intro-scroll-hint.show { opacity: 1; }
 
 .intro-scroll-hint span {
     font-family: var(--font-body);
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     letter-spacing: 5px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.3);
 }
 
 .intro-scroll-arrow {
-    animation: arrowBob 1.8s ease-in-out infinite;
     color: var(--accent);
     opacity: 0.7;
+    animation: arrowBob 1.8s ease-in-out infinite;
+}
+@keyframes arrowBob {
+    0%, 100% { transform: translateY(0);   opacity: 0.4; }
+    50%       { transform: translateY(6px); opacity: 0.9; }
 }
 
-@keyframes arrowBob {
-    0%, 100% { transform: translateY(0); opacity: 0.5; }
-    50%       { transform: translateY(6px); opacity: 1; }
+/* ===========================
+   Progress bar
+   =========================== */
+.intro-progress-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.06);
+    z-index: 4;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+.intro-progress-wrap.show { opacity: 1; }
+
+.intro-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), #a0d4ff);
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px rgba(166,255,0,0.6);
 }
 
 /* ===========================
@@ -245,27 +196,27 @@ body {
    =========================== */
 .intro-flash {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(ellipse at center, #ffffff 0%, var(--accent) 35%, rgba(0,0,0,0) 75%);
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(ellipse at center, #ffffff 0%, var(--accent) 35%, rgba(0,0,0,0) 70%);
     opacity: 0;
     z-index: 5;
     pointer-events: none;
 }
-
 .intro-flash.fire {
-    animation: warpFlash 0.9s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+    animation: warpFlash 1s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
 }
-
 @keyframes warpFlash {
-    0%   { opacity: 0;   transform: scale(0.1); filter: blur(0px); }
-    18%  { opacity: 1;   transform: scale(1);   filter: blur(0px); }
-    100% { opacity: 0;   transform: scale(5);   filter: blur(20px); }
+    0%   { opacity: 0; transform: scale(0.1); filter: blur(0); }
+    20%  { opacity: 1; transform: scale(1);   filter: blur(0); }
+    100% { opacity: 0; transform: scale(6);   filter: blur(24px); }
 }
 
-
+/* ===========================
+   Legacy classes kept for safety
+   =========================== */
+.intro-m, .intro-one { color: #fff; }
+.intro-creative { color: var(--accent); }
 
 
 /* ===========================

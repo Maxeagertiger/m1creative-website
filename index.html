@@ -16,20 +16,22 @@
 </head>
 
 <body>
-    <!-- Cinematic Space Intro -->
+    <!-- Scroll-driven Space Intro -->
     <div id="loader">
-        <!-- The Three.js canvas fills the loader during intro -->
+        <!-- Three.js canvas fills loader during intro -->
         <canvas id="three-canvas"></canvas>
 
-        <!-- Logo & Scroll CTA -->
-        <div class="intro-content" id="introContent">
-            <div class="intro-logo" id="introLogo">
-                <span class="intro-m">M</span><span class="intro-one logo-one">1</span><span class="intro-creative">CREATIVE.</span>
-            </div>
+        <!-- Corner logo (subtle) -->
+        <div class="intro-corner-logo" id="introCornerLogo">
+            <span class="intro-m">M</span><span class="intro-one logo-one">1</span><span class="intro-creative">CREATIVE.</span>
+        </div>
+
+        <!-- Centered scroll CTA that fades after first scroll -->
+        <div class="intro-center-cta" id="introCta">
             <div class="intro-tagline" id="introTagline">CRAFTING DIGITAL EXPERIENCES</div>
             <div class="intro-line" id="introLine"></div>
             <div class="intro-scroll-hint" id="introScrollHint">
-                <span>scroll to enter</span>
+                <span>scroll to explore</span>
                 <div class="intro-scroll-arrow">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
                         <path d="M12 5v14M5 12l7 7 7-7"/>
@@ -38,9 +40,15 @@
             </div>
         </div>
 
+        <!-- Progress bar at bottom -->
+        <div class="intro-progress-wrap" id="introProgressWrap">
+            <div class="intro-progress-bar" id="introProgressBar"></div>
+        </div>
+
         <!-- Flash overlay for warp transition -->
         <div class="intro-flash" id="introFlash"></div>
     </div>
+
 
     <!-- Navigation -->
     <nav id="navbar">
