@@ -339,90 +339,93 @@ body {
 /* Mobile Menu */
 .mobile-menu {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(255, 255, 255, 0.96); /* frosted white glass */
-    backdrop-filter: blur(30px);
+    top: 90px; /* drops down below navbar */
+    right: 40px;
+    width: 280px;
+    height: auto;
+    background: rgba(255, 255, 255, 0.98); /* frosted white glass */
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
+    align-items: stretch;
+    gap: 12px;
     z-index: 999;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
     
     /* Open & Close Slide Transition */
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-100%);
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, visibility 0.6s;
+    transform: translateY(-15px) scale(0.96);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.4s;
 }
 
 .mobile-menu.active {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
 .mobile-link {
     font-family: var(--font-display);
-    font-size: 2.2rem;
+    font-size: 1.2rem;
     color: var(--bg-dark); /* dark slate text for contrast */
     text-decoration: none;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    padding: 10px 15px;
+    border-radius: 12px;
     opacity: 0;
-    transform: translateY(20px);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, color 0.3s ease;
+    transform: translateX(15px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, color 0.2s ease, background 0.2s ease;
 }
 
 .mobile-link:hover {
-    color: #4a7a00; /* dark variant of accent for readability on white background */
+    background: rgba(0, 0, 0, 0.04);
+    color: #000000;
+    transform: translateX(5px);
 }
 
 /* Delay reveals */
 .mobile-menu.active .mobile-link {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
 }
-.mobile-menu.active .mobile-link:nth-child(1) { transition-delay: 0.1s; }
-.mobile-menu.active .mobile-link:nth-child(2) { transition-delay: 0.18s; }
-.mobile-menu.active .mobile-link:nth-child(3) { transition-delay: 0.26s; }
-.mobile-menu.active .mobile-link:nth-child(4) { transition-delay: 0.34s; }
-.mobile-menu.active .mobile-link:nth-child(5) { transition-delay: 0.42s; }
+.mobile-menu.active .mobile-link:nth-child(1) { transition-delay: 0.05s; }
+.mobile-menu.active .mobile-link:nth-child(2) { transition-delay: 0.1s; }
+.mobile-menu.active .mobile-link:nth-child(3) { transition-delay: 0.15s; }
+.mobile-menu.active .mobile-link:nth-child(4) { transition-delay: 0.2s; }
+.mobile-menu.active .mobile-link:nth-child(5) { transition-delay: 0.25s; }
 
 /* Custom Action Button inside Mobile Menu */
 .mobile-menu .nav-cta {
     background: var(--bg-dark);
     color: var(--text-white) !important;
-    padding: 14px 36px;
-    border-radius: 30px;
-    font-size: 1.3rem;
-    margin-top: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     opacity: 0;
-    transform: translateY(20px);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, background 0.3s ease, box-shadow 0.3s ease;
+    transform: translateY(15px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 .mobile-menu .nav-cta:hover {
     background: #000000;
     transform: translateY(-2px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
 }
 
-/* Navbar overrides when menu is open */
-#navbar.menu-active .nav-logo {
-    color: var(--bg-dark) !important;
-}
-#navbar.menu-active .logo-one {
-    color: var(--bg-dark) !important;
-}
-#navbar.menu-active .nav-logo span {
-    color: var(--bg-dark) !important;
-}
-#navbar.menu-active .nav-hamburger span {
-    background: var(--bg-dark) !important;
+@media (max-width: 480px) {
+    .mobile-menu {
+        right: 20px;
+        left: 20px;
+        width: auto;
+        top: 80px;
+    }
 }
 
 /* ===========================
