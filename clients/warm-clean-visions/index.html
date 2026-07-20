@@ -1,14 +1,644 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prisma — A Network of Visual Artists & Filmmakers</title>
-    <meta name="description" content="Prisma is a worldwide network of visual artists, filmmakers and storytellers bound by passion and unique perspectives." />
-    <script type="module" crossorigin src="./assets/main-BeDxh-wd.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-Z5sLIz9T.css">
-  </head>
-  <body class="bg-black text-white">
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prisma — A Network of Visual Artists & Filmmakers</title>
+  <meta name="description" content="Prisma is a worldwide network of visual artists, filmmakers and storytellers bound by passion and unique perspectives." />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #e8e4d4;
+      --dark: #000;
+      --accent: #c8c4a8;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--cream);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom cursor */
+    .cursor {
+      width: 12px; height: 12px;
+      background: var(--cream);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s, opacity 0.2s;
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(232,228,212,0.5);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all 0.18s ease;
+      mix-blend-mode: difference;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 60px;
+      height: 70px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(232,228,212,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--cream);
+      transform: scaleX(0);
+      transition: transform 0.25s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--cream); }
+    .nav-links a.active::after { transform: scaleX(1); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    #poly-canvas {
+      position: absolute;
+      top: 0; right: -5%;
+      width: 65%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 60px 80px;
+      width: 100%;
+    }
+
+    .hero-dot {
+      width: 8px; height: 8px;
+      background: var(--cream);
+      border-radius: 50%;
+      margin-bottom: 40px;
+    }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(5rem, 14vw, 13rem);
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      color: var(--cream);
+      margin-bottom: 0;
+    }
+
+    .hero-asterisk {
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.5em;
+      vertical-align: top;
+      line-height: 1;
+    }
+
+    .hero-aside {
+      position: absolute;
+      right: 60px;
+      bottom: 80px;
+      max-width: 340px;
+      z-index: 2;
+    }
+
+    .hero-aside p {
+      color: rgba(232,228,212,0.75);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .join-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      border: 1px solid var(--cream);
+      border-radius: 999px;
+      padding: 14px 28px;
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background 0.25s, color 0.25s;
+    }
+    .join-btn:hover { background: var(--cream); color: #000; }
+    .join-btn .arrow { transition: transform 0.2s; }
+    .join-btn:hover .arrow { transform: translateX(4px); }
+
+    .scroll-label {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: rgba(232,228,212,0.35);
+      z-index: 2;
+      text-transform: uppercase;
+      animation: nudge 2s ease-in-out infinite;
+    }
+    @keyframes nudge {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.35; }
+      50% { transform: translateX(-50%) translateY(-5px); opacity: 0.6; }
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 120px 60px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(232,228,212,0.4);
+      margin-bottom: 60px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: rgba(232,228,212,0.2);
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 30px;
+    }
+
+    .section-body {
+      color: rgba(232,228,212,0.65);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 600px;
+      margin-bottom: 60px;
+    }
+
+    /* ── COLLECTIVE GRID ── */
+    .collective-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .collective-item {
+      position: relative;
+      aspect-ratio: 3/4;
+      background: #111;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .collective-item::before {
+      content: attr(data-name);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--cream);
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .collective-item:hover::before { opacity: 1; }
+
+    .collective-inner {
+      width: 100%; height: 100%;
+      transition: transform 0.5s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+    .collective-item:hover .collective-inner { transform: scale(1.05); }
+
+    /* ── WORKSHOPS ── */
+    .workshop-list { display: flex; flex-direction: column; gap: 0; }
+    .workshop-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(232,228,212,0.1);
+      cursor: pointer;
+      transition: padding-left 0.3s;
+    }
+    .workshop-item:first-child { border-top: 1px solid rgba(232,228,212,0.1); }
+    .workshop-item:hover { padding-left: 12px; }
+    .workshop-left { display: flex; align-items: baseline; gap: 24px; }
+    .workshop-num { font-size: 0.78rem; color: rgba(232,228,212,0.3); font-weight: 500; }
+    .workshop-item h3 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; }
+    .workshop-meta { font-size: 0.82rem; color: rgba(232,228,212,0.45); }
+    .workshop-arrow { font-size: 1.2rem; color: rgba(232,228,212,0.4); transition: transform 0.2s, color 0.2s; }
+    .workshop-item:hover .workshop-arrow { transform: translateX(6px); color: var(--cream); }
+
+    /* ── PROGRAMS ── */
+    .programs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .program-card {
+      border: 1px solid rgba(232,228,212,0.12);
+      border-radius: 4px;
+      padding: 36px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .program-card:hover { border-color: rgba(232,228,212,0.35); background: rgba(232,228,212,0.03); }
+    .program-tag { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,228,212,0.4); margin-bottom: 16px; }
+    .program-card h3 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; }
+    .program-card p { color: rgba(232,228,212,0.55); font-size: 0.88rem; line-height: 1.7; margin-bottom: 28px; }
+    .program-link { color: var(--cream); text-decoration: none; font-size: 0.85rem; font-weight: 500; border-bottom: 1px solid rgba(232,228,212,0.3); padding-bottom: 2px; transition: border-color 0.2s; }
+    .program-link:hover { border-color: var(--cream); }
+
+    /* ── INQUIRY / FOOTER ── */
+    #inquiries-section {
+      padding: 120px 60px;
+      text-align: center;
+      border-top: 1px solid rgba(232,228,212,0.08);
+    }
+    #inquiries-section h2 { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; margin-bottom: 16px; }
+    #inquiries-section p { color: rgba(232,228,212,0.55); font-size: 1rem; max-width: 460px; margin: 0 auto 40px; line-height: 1.7; }
+    .inquiry-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; text-align: left; }
+    .inquiry-form input, .inquiry-form textarea, .inquiry-form select {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(232,228,212,0.2);
+      padding: 14px 0;
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .inquiry-form input::placeholder, .inquiry-form textarea::placeholder { color: rgba(232,228,212,0.3); }
+    .inquiry-form input:focus, .inquiry-form textarea:focus, .inquiry-form select:focus { border-color: var(--cream); }
+    .inquiry-form select option { background: #000; }
+    .inquiry-form textarea { resize: vertical; min-height: 80px; }
+    .submit-btn {
+      margin-top: 8px;
+      border: 1px solid var(--cream);
+      border-radius: 999px;
+      padding: 15px 40px;
+      color: var(--cream);
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+      align-self: flex-start;
+    }
+    .submit-btn:hover { background: var(--cream); color: #000; }
+    .success-note { display: none; text-align: center; padding: 40px; }
+    .success-note .big { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; }
+    .success-note p { color: rgba(232,228,212,0.6); }
+
+    footer {
+      padding: 40px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(232,228,212,0.07);
+      font-size: 0.8rem;
+      color: rgba(232,228,212,0.3);
+    }
+    .footer-logo { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--cream); }
+  </style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Nav -->
+<nav>
+  <ul class="nav-links">
+    <li><a href="#our-story" class="active">Our story</a></li>
+    <li><a href="#collective">Collective</a></li>
+    <li><a href="#workshops">Workshops</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#inquiries">Inquiries</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <canvas id="poly-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-dot"></div>
+    <h1 class="hero-title">Prisma<span class="hero-asterisk">*</span></h1>
+  </div>
+  <div class="hero-aside">
+    <p>Prisma is a worldwide network of visual artists, filmmakers and storytellers bound not by place, status or labels but by passion and hunger to unlock potential through our unique perspectives.</p>
+    <a href="#inquiries" class="join-btn">Join the lab <span class="arrow">→</span></a>
+  </div>
+  <div class="scroll-label">SCROLL</div>
+</section>
+
+<!-- Our Story -->
+<div id="our-story">
+  <div class="section">
+    <div class="section-label">Our Story</div>
+    <h2>Born from obsession,<br/>built by vision</h2>
+    <p class="section-body">In 2018, five filmmakers met in a Johannesburg basement, united by a single conviction: that the most powerful stories are told by those who live them. From that basement to festivals across four continents, Prisma has grown into a 200-member collective spanning 34 countries — each member a world-class visual storyteller in their own right.</p>
+    <p class="section-body">We don't hire. We recognise. Every member is selected because their perspective is irreplaceable. Together, we've produced award-winning documentary series, brand campaigns for Fortune 500 companies, and independent art films that have changed conversations.</p>
+  </div>
+</div>
+
+<!-- Collective -->
+<div id="collective">
+  <div class="section">
+    <div class="section-label">Collective</div>
+    <h2>200 artists.<br/>34 countries.</h2>
+    <p class="section-body">Our members are directors, cinematographers, editors, and sound designers who bring distinct visual identities to every project. Browse a selection of our collective below.</p>
+    <div class="collective-grid">
+      <div class="collective-item" data-name="Lena Voss — Berlin">
+        <div class="collective-inner" style="background:linear-gradient(135deg,#1a1a1a,#2d2d2d);">🎬</div>
+      </div>
+      <div class="collective-item" data-name="Marcus Obi — Lagos">
+        <div class="collective-inner" style="background:linear-gradient(135deg,#0d1a0d,#1a2a1a);">📽️</div>
+      </div>
+      <div class="collective-item" data-name="Yuki Tanaka — Tokyo">
+        <div class="collective-inner" style="background:linear-gradient(135deg,#1a1a2a,#0d0d1a);">🎥</div>
+      </div>
+      <div class="collective-item" data-name="Sofia Reyes — Mexico City">
+        <div class="collective-inner" style="background:linear-gradient(135deg,#2a1a0d,#1a0d0d);">✨</div>
+      </div>
+      <div class="collective-item" data-name="Amir Hassan — Cairo">
+        <div class="collective-inner" style="background:linear-gradient(135deg,#1a1a1a,#111);">🌌</div>
+      </div>
+      <div class="collective-item" data-name="Eva Kowalski — Warsaw">
+        <div class="collective-inner" style="background:linear-gradient(135deg,#0d0d0d,#1a1a1a);">🎞️</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Workshops -->
+<div id="workshops">
+  <div class="section">
+    <div class="section-label">Workshops</div>
+    <h2>Learn from<br/>the best.</h2>
+    <p class="section-body">Intensive, small-cohort workshops led by Prisma members. No fluff — pure craft, peer critique, and real project collaboration.</p>
+    <div class="workshop-list">
+      <div class="workshop-item">
+        <div class="workshop-left">
+          <span class="workshop-num">01</span>
+          <h3>Cinematic Language Intensive</h3>
+        </div>
+        <div class="workshop-meta">Berlin · Oct 2026 · 5 days</div>
+        <span class="workshop-arrow">→</span>
+      </div>
+      <div class="workshop-item">
+        <div class="workshop-left">
+          <span class="workshop-num">02</span>
+          <h3>Documentary Storytelling Lab</h3>
+        </div>
+        <div class="workshop-meta">Cape Town · Nov 2026 · 7 days</div>
+        <span class="workshop-arrow">→</span>
+      </div>
+      <div class="workshop-item">
+        <div class="workshop-left">
+          <span class="workshop-num">03</span>
+          <h3>Commercial Direction Masterclass</h3>
+        </div>
+        <div class="workshop-meta">Tokyo · Jan 2027 · 3 days</div>
+        <span class="workshop-arrow">→</span>
+      </div>
+      <div class="workshop-item">
+        <div class="workshop-left">
+          <span class="workshop-num">04</span>
+          <h3>Sound Design & Scoring Retreat</h3>
+        </div>
+        <div class="workshop-meta">Lisbon · Feb 2027 · 4 days</div>
+        <span class="workshop-arrow">→</span>
+      </div>
+      <div class="workshop-item">
+        <div class="workshop-left">
+          <span class="workshop-num">05</span>
+          <h3>Visual Identity & Brand Film</h3>
+        </div>
+        <div class="workshop-meta">New York · Mar 2027 · 3 days</div>
+        <span class="workshop-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Programs -->
+<div id="programs">
+  <div class="section">
+    <div class="section-label">Programs</div>
+    <h2>Structured paths<br/>to mastery.</h2>
+    <p class="section-body">Our multi-month programs are designed for serious visual artists ready to elevate their craft and connect with a global network.</p>
+    <div class="programs-grid">
+      <div class="program-card">
+        <div class="program-tag">6 months · Online + Residency</div>
+        <h3>The Prisma Fellowship</h3>
+        <p>A fully-funded mentorship program pairing emerging filmmakers with senior Prisma members. Culminates in a short film screened at our annual festival.</p>
+        <a href="#inquiries" class="program-link">Apply now →</a>
+      </div>
+      <div class="program-card">
+        <div class="program-tag">12 months · Global</div>
+        <h3>Director in Residence</h3>
+        <p>Spend a year embedded in three different Prisma studios around the world. Collaborate on live projects, build your reel, and grow your global network.</p>
+        <a href="#inquiries" class="program-link">Learn more →</a>
+      </div>
+      <div class="program-card">
+        <div class="program-tag">3 months · Online</div>
+        <h3>Brand Film Accelerator</h3>
+        <p>For commercial directors ready to break into brand storytelling. Live briefings, real brand clients, and mentorship from our commercial leads.</p>
+        <a href="#inquiries" class="program-link">Join waitlist →</a>
+      </div>
+      <div class="program-card">
+        <div class="program-tag">Ongoing · Open Cohort</div>
+        <h3>The Collective Pass</h3>
+        <p>Monthly membership giving you access to our entire library of masterclasses, critique sessions, script labs, and member-only project opportunities.</p>
+        <a href="#inquiries" class="program-link">Get access →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Inquiries -->
+<section id="inquiries" id="inquiries-section">
+  <div id="inquiries-section" style="padding:120px 60px; text-align:center; border-top:1px solid rgba(232,228,212,0.08);">
+    <h2 style="font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;margin-bottom:16px;">Start a project</h2>
+    <p style="color:rgba(232,228,212,0.55);font-size:1rem;max-width:460px;margin:0 auto 40px;line-height:1.7;">Tell us what you're creating. We connect you with the right Prisma members for any visual project.</p>
+    <div class="inquiry-form" id="inquiryForm" style="max-width:500px;margin:0 auto;display:flex;flex-direction:column;gap:16px;text-align:left;">
+      <input type="text" placeholder="Your name" required />
+      <input type="email" placeholder="Your email" required />
+      <select style="background:transparent;border:none;border-bottom:1px solid rgba(232,228,212,0.2);padding:14px 0;color:rgba(232,228,212,0.7);font-family:'Inter',sans-serif;font-size:0.9rem;outline:none;">
+        <option value="" style="background:#000;">Type of project...</option>
+        <option style="background:#000;">Documentary</option>
+        <option style="background:#000;">Brand Film / Commercial</option>
+        <option style="background:#000;">Music Video</option>
+        <option style="background:#000;">Short Film</option>
+        <option style="background:#000;">Workshop / Residency</option>
+        <option style="background:#000;">Other</option>
+      </select>
+      <textarea placeholder="Tell us about your project..." rows="4" style="background:transparent;border:none;border-bottom:1px solid rgba(232,228,212,0.2);padding:14px 0;color:var(--cream);font-family:'Inter',sans-serif;font-size:0.9rem;outline:none;resize:none;"></textarea>
+      <button onclick="handleInquiry(event)" class="submit-btn" style="margin-top:8px;border:1px solid var(--cream);border-radius:999px;padding:15px 40px;color:var(--cream);background:transparent;font-family:'Inter',sans-serif;font-size:0.9rem;font-weight:500;cursor:pointer;align-self:flex-start;">Send inquiry →</button>
+    </div>
+    <div id="successNote" style="display:none;text-align:center;padding:40px;">
+      <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:700;margin-bottom:10px;">We received your inquiry.</div>
+      <p style="color:rgba(232,228,212,0.55);">A Prisma curator will reach out within 48 hours.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">Prisma*</span>
+  <span>A worldwide collective of visual artists & filmmakers</span>
+  <span>&copy; 2026 Prisma. Built with M1Creative.</span>
+</footer>
+
+<script>
+  // ── CURSOR ──
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function animCursor() {
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  })();
+  document.querySelectorAll('a,button,.workshop-item,.collective-item,.program-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(2)'; ring.style.opacity = '0.5'; });
+    el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.opacity = '1'; });
+  });
+
+  // ── THREE.JS POLYHEDRON ──
+  const polyCanvas = document.getElementById('poly-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas: polyCanvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  function setPolySize() {
+    renderer.setSize(polyCanvas.clientWidth, polyCanvas.clientHeight);
+    camera.aspect = polyCanvas.clientWidth / polyCanvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+  camera.position.set(0, 0, 7);
+
+  // Icosahedron (matching the thumbnail polyhedron)
+  const geo = new THREE.IcosahedronGeometry(2, 1);
+  // Flat-shaded dark olive-grey look matching thumbnail
+  const mat = new THREE.MeshLambertMaterial({
+    color: 0x6b7055,
+    flatShading: true,
+  });
+  const poly = new THREE.Mesh(geo, mat);
+  poly.position.set(0.5, 0.2, 0);
+  scene.add(poly);
+
+  // Lighting to match thumbnail — soft overhead, slight front
+  const ambLight = new THREE.AmbientLight(0xffffff, 0.35);
+  scene.add(ambLight);
+  const keyLight = new THREE.DirectionalLight(0xd4d0b8, 2.5);
+  keyLight.position.set(3, 5, 4);
+  scene.add(keyLight);
+  const fillLight = new THREE.DirectionalLight(0x303030, 1);
+  fillLight.position.set(-3, -2, -2);
+  scene.add(fillLight);
+
+  setPolySize();
+
+  let mouseXNorm = 0, mouseYNorm = 0;
+  window.addEventListener('mousemove', e => {
+    mouseXNorm = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseYNorm = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  let t = 0;
+  function animPoly() {
+    requestAnimationFrame(animPoly);
+    t += 0.004;
+    poly.rotation.y = t + mouseXNorm * 0.2;
+    poly.rotation.x = mouseYNorm * 0.1 + Math.sin(t * 0.5) * 0.1;
+    renderer.render(scene, camera);
+  }
+  animPoly();
+
+  window.addEventListener('resize', setPolySize);
+
+  // ── SMOOTH SCROLL ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // ── INQUIRY FORM ──
+  function handleInquiry(e) {
+    e.preventDefault();
+    document.getElementById('inquiryForm').style.display = 'none';
+    document.getElementById('successNote').style.display = 'block';
+  }
+</script>
+</body>
 </html>

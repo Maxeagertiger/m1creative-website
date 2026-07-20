@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Stellar Flight</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --cyan: #60cdfe; --dark: #050810; }
+    body { font-family: 'Inter', sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; }
+    #star-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; background: rgba(5,8,16,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--cyan); font-weight: 700; font-size: 1.15rem; }
+    .nav-logo svg { width: 30px; height: 30px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--cyan); }
+    .nav-launch { background: var(--cyan); color: #050810 !important; padding: 8px 22px; border-radius: 8px; font-weight: 700 !important; }
+    .page-hero { position: relative; z-index: 2; padding: 160px 40px 80px; max-width: 1200px; margin: 0 auto; }
+    .page-tag { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; color: var(--cyan); text-transform: uppercase; margin-bottom: 14px; display: block; }
+    h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+    .page-desc { color: rgba(255,255,255,0.6); font-size: 1.1rem; max-width: 560px; line-height: 1.7; }
+    main { position: relative; z-index: 2; padding: 0 40px 100px; max-width: 1200px; margin: 0 auto; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: start; }
+    .contact-info h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 28px; }
+    .contact-icon { width: 44px; height: 44px; background: rgba(96,205,254,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem; }
+    .contact-item h4 { font-size: 0.88rem; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+    .contact-item p { font-size: 0.95rem; font-weight: 500; }
+    .form-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.09); border-radius: 20px; padding: 40px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.6); margin-bottom: 8px; }
+    input, select, textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 13px 16px; color: #fff; font-family: inherit; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    input:focus, select:focus, textarea:focus { border-color: var(--cyan); }
+    select option { background: #0e1a2e; }
+    textarea { resize: vertical; min-height: 120px; }
+    .btn-submit { width: 100%; background: var(--cyan); color: #050810; font-weight: 700; font-size: 1rem; padding: 15px; border-radius: 10px; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 8px; }
+    .btn-submit:hover { background: #93e4ff; transform: translateY(-2px); }
+    .success-msg { display: none; text-align: center; padding: 40px 0; }
+    .success-msg .icon { font-size: 3rem; margin-bottom: 16px; }
+    .success-msg h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
+    .success-msg p { color: rgba(255,255,255,0.6); }
+    footer { position: relative; z-index: 2; padding: 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.07); color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+    footer span { color: var(--cyan); }
+  </style>
+</head>
+<body>
+<canvas id="star-canvas"></canvas>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 30 30" fill="none"><path d="M15 2L18 12H28L20 18L23 28L15 22L7 28L10 18L2 12H12L15 2Z" fill="#60cdfe" opacity="0.8"/><circle cx="15" cy="15" r="5" fill="#60cdfe"/></svg>
+    Stellar
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rockets.html">Rockets</a></li>
+    <li><a href="missions.html">Missions</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+    <li><a href="contact.html" class="nav-launch">Launch</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <span class="page-tag">Get In Touch</span>
+  <h1>Ready to<br/>launch?</h1>
+  <p class="page-desc">Reserve your seat on the next mission or ask us anything. Our mission specialists respond within 24 hours.</p>
+</div>
+
+<main>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h2>Mission Control</h2>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <h4>Launch Facility</h4>
+          <p>Stellar Flight HQ<br/>Kennedy Space Center, FL 32899</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <h4>Mission Line</h4>
+          <p>+1 (800) STELLAR</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <h4>Email</h4>
+          <p>missions@stellarflight.com</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <h4>Response Time</h4>
+          <p>Within 24 hours, 7 days a week</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <form id="missionForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="James" required />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Okafor" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="james@example.com" required />
+        </div>
+        <div class="form-group">
+          <label>Mission of Interest</label>
+          <select required>
+            <option value="">Select a mission...</option>
+            <option>Aurora Station Alpha (LEO — Jul 2026)</option>
+            <option>Artemis Excursion III (Lunar — Sep 2026)</option>
+            <option>Red Horizon I (Mars — Jan 2027)</option>
+            <option>Project Voyager (Deep Space — 2028)</option>
+            <option>Custom / Private Charter</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Number of Passengers</label>
+          <select>
+            <option>1 (Solo)</option>
+            <option>2 (Couple)</option>
+            <option>3–6 (Small Group)</option>
+            <option>7–12 (Group)</option>
+            <option>13+ (Charter)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message (optional)</label>
+          <textarea placeholder="Tell us more about your mission goals, special requirements, or questions..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">🚀 Submit Mission Request</button>
+      </form>
+      <div class="success-msg" id="successMsg">
+        <div class="icon">🚀</div>
+        <h3>Mission request received!</h3>
+        <p>Your mission specialist will contact you within 24 hours. Prepare for liftoff.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer><p>&copy; 2026 <span>Stellar Flight</span>. All rights reserved. Website by <span>M1Creative</span>.</p></footer>
+
+<script>
+  const sc = document.getElementById('star-canvas'); sc.width = window.innerWidth; sc.height = window.innerHeight;
+  const ctx = sc.getContext('2d');
+  const stars = Array.from({length:220},()=>({x:Math.random()*sc.width,y:Math.random()*sc.height,r:Math.random()*1.4+0.3,tw:Math.random()*Math.PI*2,a:Math.random()*0.7+0.2}));
+  function draw(){ctx.clearRect(0,0,sc.width,sc.height);stars.forEach(s=>{s.tw+=0.014;const a=s.a*(0.6+0.4*Math.sin(s.tw));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${a})`;ctx.fill();});requestAnimationFrame(draw);}
+  draw();
+  window.addEventListener('resize',()=>{sc.width=window.innerWidth;sc.height=window.innerHeight;});
+
+  document.getElementById('missionForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  });
+</script>
+</body>
+</html>
