@@ -61,6 +61,10 @@
               link.setAttribute('href', 'contact.html');
             }
           });
+
+          // Hide social links dynamically
+          const socials = document.querySelectorAll('.socials, .social-links, .footer-social, [class*="social"]');
+          socials.forEach(el => el.style.display = 'none');
         }
 
         // Intercept clicks on links and buttons for seamless redirection

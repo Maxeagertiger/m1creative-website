@@ -11,7 +11,7 @@
   <body class="bg-black text-white">
     <div id="root"></div>
 
-    <!-- Navigation Patch Script to link to the new subpages -->
+    <!-- Navigation Patch Script to link to the new subpages and localize text/socials -->
     <script>
       (function() {
         function patchNavLinks() {
@@ -36,6 +36,34 @@
               if (link.tagName === 'A') {
                 link.setAttribute('href', 'inquiries.html?type=project');
               }
+            }
+          });
+
+          // Walk the DOM and replace Berlin/Paris in text nodes
+          function walkAndReplace(node) {
+            if (node.nodeType === Node.TEXT_NODE) {
+              node.nodeValue = node.nodeValue
+                .replace(/Berlin-based/g, 'Johannesburg-based')
+                .replace(/in Paris/g, 'in Cape Town')
+                .replace(/Berlin/g, 'Johannesburg')
+                .replace(/Paris/g, 'Cape Town');
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+              // Exclude script and style tags
+              if (node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
+                for (let child of node.childNodes) {
+                  walkAndReplace(child);
+                }
+              }
+            }
+          }
+          walkAndReplace(document.body);
+
+          // Hide social links dynamically
+          const footerLinks = document.querySelectorAll('footer a, footer span, a');
+          footerLinks.forEach(link => {
+            const txt = link.textContent.trim().toLowerCase();
+            if (txt === 'instagram' || txt === 'vimeo') {
+              link.style.display = 'none';
             }
           });
         }
