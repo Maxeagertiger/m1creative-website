@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Missions — Stellar Flight</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --cyan: #60cdfe; --dark: #050810; }
+    body { font-family: 'Inter', sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; }
+    #star-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; background: rgba(5,8,16,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--cyan); font-weight: 700; font-size: 1.15rem; }
+    .nav-logo svg { width: 30px; height: 30px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--cyan); }
+    .nav-launch { background: var(--cyan); color: #050810 !important; padding: 8px 22px; border-radius: 8px; font-weight: 700 !important; }
+    .page-hero { position: relative; z-index: 2; padding: 160px 40px 80px; max-width: 1200px; margin: 0 auto; }
+    .page-tag { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; color: var(--cyan); text-transform: uppercase; margin-bottom: 14px; display: block; }
+    h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+    .page-desc { color: rgba(255,255,255,0.6); font-size: 1.1rem; max-width: 560px; line-height: 1.7; }
+    main { position: relative; z-index: 2; padding: 0 40px 100px; max-width: 1200px; margin: 0 auto; }
+    .missions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+    .mission-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; overflow: hidden; transition: transform 0.3s, border-color 0.3s; }
+    .mission-card:hover { transform: translateY(-6px); border-color: rgba(96,205,254,0.35); }
+    .mission-header { padding: 28px 28px 0; display: flex; align-items: center; justify-content: space-between; }
+    .mission-status { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; }
+    .status-live { background: rgba(50,220,100,0.15); color: #3edc78; }
+    .status-scheduled { background: rgba(96,205,254,0.15); color: var(--cyan); }
+    .status-completed { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+    .mission-date { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
+    .mission-visual { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; }
+    .mission-body { padding: 0 28px 28px; }
+    .mission-dest { font-size: 0.78rem; font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .mission-body h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+    .mission-body p { color: rgba(255,255,255,0.55); font-size: 0.88rem; line-height: 1.6; margin-bottom: 20px; }
+    .mission-meta { display: flex; gap: 20px; }
+    .meta-item { font-size: 0.8rem; }
+    .meta-item strong { color: var(--cyan); display: block; font-size: 1rem; font-weight: 700; }
+    .meta-item span { color: rgba(255,255,255,0.4); font-size: 0.72rem; }
+    footer { position: relative; z-index: 2; padding: 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.07); color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+    footer span { color: var(--cyan); }
+  </style>
+</head>
+<body>
+<canvas id="star-canvas"></canvas>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 30 30" fill="none"><path d="M15 2L18 12H28L20 18L23 28L15 22L7 28L10 18L2 12H12L15 2Z" fill="#60cdfe" opacity="0.8"/><circle cx="15" cy="15" r="5" fill="#60cdfe"/></svg>
+    Stellar
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rockets.html">Rockets</a></li>
+    <li><a href="missions.html" class="active">Missions</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="contact.html" class="nav-launch">Launch</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <span class="page-tag">Mission Log</span>
+  <h1>Our missions</h1>
+  <p class="page-desc">From pioneering orbital hotel stays to deep space science expeditions — every mission we fly pushes the boundary of what is possible.</p>
+</div>
+
+<main>
+  <div class="missions-grid">
+    <div class="mission-card">
+      <div class="mission-header"><div class="mission-status status-live">LIVE</div><span class="mission-date">Jul 2026</span></div>
+      <div class="mission-visual">🛰️</div>
+      <div class="mission-body">
+        <div class="mission-dest">Low Earth Orbit</div>
+        <h3>Aurora Station Alpha</h3>
+        <p>6 passengers aboard Orion-X for a 3-day stay at LEO altitude 400km. Live aurora watching from the cupola, zero-G yoga sessions, and Earth photography workshops.</p>
+        <div class="mission-meta">
+          <div class="meta-item"><strong>6</strong><span>Passengers</span></div>
+          <div class="meta-item"><strong>3 days</strong><span>Duration</span></div>
+          <div class="meta-item"><strong>Orion-X</strong><span>Vessel</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mission-card">
+      <div class="mission-header"><div class="mission-status status-scheduled">SCHEDULED</div><span class="mission-date">Sep 2026</span></div>
+      <div class="mission-visual">🌕</div>
+      <div class="mission-body">
+        <div class="mission-dest">Lunar Surface</div>
+        <h3>Artemis Excursion III</h3>
+        <p>12-person lunar surface expedition aboard Helios-II. Surface moonwalks at the Shackleton Crater rim, sample collection, and overnight stay on the Moon's surface.</p>
+        <div class="mission-meta">
+          <div class="meta-item"><strong>12</strong><span>Passengers</span></div>
+          <div class="meta-item"><strong>14 days</strong><span>Duration</span></div>
+          <div class="meta-item"><strong>Helios-II</strong><span>Vessel</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mission-card">
+      <div class="mission-header"><div class="mission-status status-scheduled">SCHEDULED</div><span class="mission-date">Jan 2027</span></div>
+      <div class="mission-visual">🔴</div>
+      <div class="mission-body">
+        <div class="mission-dest">Mars Flyby</div>
+        <h3>Red Horizon I</h3>
+        <p>The first commercial Mars flyby mission. 40 passengers will orbit Mars at 1,000km altitude, conduct surface mapping, and return with the most detailed imagery ever captured by civilians.</p>
+        <div class="mission-meta">
+          <div class="meta-item"><strong>40</strong><span>Passengers</span></div>
+          <div class="meta-item"><strong>7 months</strong><span>Duration</span></div>
+          <div class="meta-item"><strong>Ares-Prime</strong><span>Vessel</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mission-card">
+      <div class="mission-header"><div class="mission-status status-completed">COMPLETED</div><span class="mission-date">Apr 2026</span></div>
+      <div class="mission-visual">🌍</div>
+      <div class="mission-body">
+        <div class="mission-dest">Low Earth Orbit</div>
+        <h3>Horizon Dawn</h3>
+        <p>Sold-out 6-passenger orbital sunrise tour. Passengers witnessed 16 sunrises in 24 hours from the cupola of Orion-X. Crew rated the mission 5/5 across all categories.</p>
+        <div class="mission-meta">
+          <div class="meta-item"><strong>6</strong><span>Passengers</span></div>
+          <div class="meta-item"><strong>2 days</strong><span>Duration</span></div>
+          <div class="meta-item"><strong>Orion-X</strong><span>Vessel</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mission-card">
+      <div class="mission-header"><div class="mission-status status-completed">COMPLETED</div><span class="mission-date">Nov 2025</span></div>
+      <div class="mission-visual">☄️</div>
+      <div class="mission-body">
+        <div class="mission-dest">Near-Earth Asteroid</div>
+        <h3>Ryugu Rendezvous</h3>
+        <p>First commercial science mission to a near-Earth asteroid. A team of 8 researchers and 4 passengers completed close-approach manoeuvres and sample-capture operations.</p>
+        <div class="mission-meta">
+          <div class="meta-item"><strong>12</strong><span>Aboard</span></div>
+          <div class="meta-item"><strong>21 days</strong><span>Duration</span></div>
+          <div class="meta-item"><strong>Helios-II</strong><span>Vessel</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mission-card">
+      <div class="mission-header"><div class="mission-status status-scheduled">COMING SOON</div><span class="mission-date">2028</span></div>
+      <div class="mission-visual">🌌</div>
+      <div class="mission-body">
+        <div class="mission-dest">Deep Space</div>
+        <h3>Project Voyager</h3>
+        <p>Our most ambitious mission yet. A 2-year deep space voyage beyond the heliopause — the boundary of our solar system — aboard a next-generation ship. Registrations now open.</p>
+        <div class="mission-meta">
+          <div class="meta-item"><strong>20</strong><span>Crew Slots</span></div>
+          <div class="meta-item"><strong>2 years</strong><span>Duration</span></div>
+          <div class="meta-item"><strong>TBD</strong><span>Vessel</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer><p>&copy; 2026 <span>Stellar Flight</span>. All rights reserved. Website by <span>M1Creative</span>.</p></footer>
+
+<script>
+  const sc = document.getElementById('star-canvas'); sc.width = window.innerWidth; sc.height = window.innerHeight;
+  const ctx = sc.getContext('2d');
+  const stars = Array.from({length:220},()=>({x:Math.random()*sc.width,y:Math.random()*sc.height,r:Math.random()*1.4+0.3,tw:Math.random()*Math.PI*2,a:Math.random()*0.7+0.2}));
+  function draw(){ctx.clearRect(0,0,sc.width,sc.height);stars.forEach(s=>{s.tw+=0.014;const a=s.a*(0.6+0.4*Math.sin(s.tw));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${a})`;ctx.fill();});requestAnimationFrame(draw);}
+  draw();
+  window.addEventListener('resize',()=>{sc.width=window.innerWidth;sc.height=window.innerHeight;});
+</script>
+</body>
+</html>

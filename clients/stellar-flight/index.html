@@ -20,6 +20,99 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
+
+    <!-- Navigation and CTA Patch Script -->
+    <script>
+      (function() {
+        function patchStellarLinks() {
+          const links = document.querySelectorAll('a, button');
+          links.forEach(link => {
+            const text = link.textContent.trim().toLowerCase();
+            
+            // Header Nav links
+            if (text === 'home') {
+              link.setAttribute('href', 'index.html');
+            } else if (text === 'rockets') {
+              link.setAttribute('href', 'rockets.html');
+            } else if (text === 'missions') {
+              link.setAttribute('href', 'missions.html');
+            } else if (text === 'about' || text === 'about us') {
+              link.setAttribute('href', 'about.html');
+            } else if (text === 'contact') {
+              link.setAttribute('href', 'contact.html');
+            }
+            
+            // CTA Buttons
+            else if (text === 'start mission') {
+              if (link.tagName === 'A') link.setAttribute('href', 'contact.html');
+            } else if (text === 'learn more') {
+              if (link.tagName === 'A') link.setAttribute('href', 'about.html');
+            } else if (text === 'begin your journey') {
+              if (link.tagName === 'A') link.setAttribute('href', 'contact.html');
+            } else if (text === 'contact mission control') {
+              if (link.tagName === 'A') link.setAttribute('href', 'contact.html');
+            }
+            
+            // Footer Links
+            else if (text === 'careers') {
+              link.setAttribute('href', 'about.html');
+            } else if (text === 'press') {
+              link.setAttribute('href', 'contact.html');
+            }
+          });
+        }
+
+        // Intercept clicks on links and buttons for seamless redirection
+        document.addEventListener('click', function(e) {
+          const target = e.target.closest('a, button');
+          if (!target) return;
+          
+          const text = target.textContent.trim().toLowerCase();
+          
+          if (text === 'start mission') {
+            e.preventDefault();
+            window.location.href = 'contact.html';
+          } else if (text === 'learn more') {
+            e.preventDefault();
+            window.location.href = 'about.html';
+          } else if (text === 'begin your journey') {
+            e.preventDefault();
+            window.location.href = 'contact.html';
+          } else if (text === 'contact mission control') {
+            e.preventDefault();
+            window.location.href = 'contact.html';
+          } else if (text === 'about' || text === 'about us') {
+            e.preventDefault();
+            window.location.href = 'about.html';
+          } else if (text === 'careers') {
+            e.preventDefault();
+            window.location.href = 'about.html';
+          } else if (text === 'press') {
+            e.preventDefault();
+            window.location.href = 'contact.html';
+          } else if (text === 'rockets') {
+            e.preventDefault();
+            window.location.href = 'rockets.html';
+          } else if (text === 'missions') {
+            e.preventDefault();
+            window.location.href = 'missions.html';
+          } else if (text === 'contact') {
+            e.preventDefault();
+            window.location.href = 'contact.html';
+          } else if (text === 'home') {
+            e.preventDefault();
+            window.location.href = 'index.html';
+          }
+        }, true); // Use capturing phase to execute before React event listeners
+
+        // Observe DOM changes to dynamically patch new elements rendered by React
+        const observer = new MutationObserver(patchStellarLinks);
+        observer.observe(document.documentElement, { childList: true, subtree: true });
+        
+        // Initial run on window load
+        window.addEventListener('load', patchStellarLinks);
+      })();
+    </script>
   </body>
 </html>
