@@ -1891,17 +1891,286 @@ function initFAQ() {
     });
 }
 
-// ======= REVIEWS INFINITE SCROLL =======
+// ======= REVIEWS INFINITE SCROLL & REVIEW CREATOR =======
+const defaultReviews = [
+    {
+        name: "Thabo Nkosi",
+        role: "Founder, Apex Legal Group",
+        stars: 5,
+        text: "M1Creative completely transformed our online presence. Within weeks of launching our new site, we saw a 40% increase in enquiries. Michael truly understands how to build websites that convert.",
+        avatar: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=150&h=150&fit=crop&q=80"
+    },
+    {
+        name: "Lerato Mokoena",
+        role: "Owner, Veloura Beauty Lounge",
+        stars: 5,
+        text: "From the first consultation to final launch, the experience was seamless. Our salon website looks absolutely stunning and our bookings have doubled since going live. Worth every cent.",
+        avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=150&h=150&fit=crop&q=80"
+    },
+    {
+        name: "Jason van der Walt",
+        role: "Director, Prisma",
+        stars: 5,
+        text: "I was hesitant about investing in a professional website, but M1Creative made it so easy. The monthly retainer means I don't have to worry about hosting or updates — it's all taken care of.",
+        avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&q=80"
+    },
+    {
+        name: "Sofia Chabalala",
+        role: "Manager, Luna Bistro",
+        stars: 5,
+        text: "Our restaurant needed a website that felt as premium as our dining experience. M1Creative delivered exactly that — moody, elegant, and our online reservations jumped by 60% in the first month.",
+        avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&q=80"
+    },
+    {
+        name: "Kyle Pillay",
+        role: "CEO, Stellar Flight",
+        stars: 5,
+        text: "The attention to detail is unmatched. They didn't just build us a website — they built us a brand experience. Our competitors are now asking who designed our site. Highly recommend.",
+        avatar: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?w=150&h=150&fit=crop&q=80"
+    }
+];
+
 function initReviews() {
     const track = document.querySelector('.reviews-track');
     if (!track) return;
 
-    // Clone all review cards to create a seamless loop
-    const cards = track.querySelectorAll('.review-card');
-    cards.forEach(card => {
+    // Load custom reviews from localStorage
+    let customReviews = [];
+    try {
+        const stored = localStorage.getItem('m1creative_custom_reviews');
+        if (stored) {
+            customReviews = JSON.parse(stored);
+        }
+    } catch (e) {
+        console.error("Error loading reviews from localStorage:", e);
+    }
+
+    // Combine reviews (custom ones prepended to default reviews to show newest first)
+    const allReviews = [...customReviews, ...defaultReviews];
+
+    // Clear track
+    track.innerHTML = '';
+
+    // Render review cards
+    allReviews.forEach(review => {
+        const starsHtml = '★'.repeat(review.stars) + '☆'.repeat(5 - review.stars);
+        
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        card.innerHTML = `
+            <div class="review-stars">${starsHtml}</div>
+            <p class="review-text">"${review.text}"</p>
+            <div class="review-author">
+                <img src="${review.avatar}" alt="${review.name}" class="review-avatar" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(review.name)}&background=a6ff00&color=0d0d0d&bold=true'"/>
+                <div class="review-info">
+                    <span class="review-name">${review.name}</span>
+                    <span class="review-role">${review.role}</span>
+                </div>
+            </div>
+        `;
+        track.appendChild(card);
+    });
+
+    // Clone all cards to create a seamless infinite loop
+    const originalCards = track.querySelectorAll('.review-card');
+    originalCards.forEach(card => {
         const clone = card.cloneNode(true);
         track.appendChild(clone);
     });
+}
+
+function initReviewModal() {
+    const openBtn = document.getElementById('openReviewModalBtn');
+    const closeBtn = document.getElementById('closeReviewModal');
+    const overlay = document.getElementById('modalOverlay');
+    const modal = document.getElementById('reviewModal');
+    const form = document.getElementById('reviewForm');
+    const starsContainer = document.getElementById('interactiveStars');
+
+    if (!modal) return;
+
+    let selectedRating = 5; // Default rating
+
+    // Star Selection Interaction
+    const stars = starsContainer ? starsContainer.querySelectorAll('.interactive-star') : [];
+    
+    function updateStars(val, type = 'selected') {
+        stars.forEach(star => {
+            const starVal = parseInt(star.getAttribute('data-value'));
+            if (starVal <= val) {
+                star.classList.add(type);
+            } else {
+                star.classList.remove(type);
+            }
+        });
+    }
+
+    if (stars.length) {
+        // Initialize default selected stars
+        updateStars(selectedRating, 'selected');
+
+        stars.forEach(star => {
+            star.addEventListener('mouseenter', () => {
+                const hoverVal = parseInt(star.getAttribute('data-value'));
+                updateStars(hoverVal, 'hovered');
+            });
+
+            star.addEventListener('mouseleave', () => {
+                stars.forEach(s => s.classList.remove('hovered'));
+            });
+
+            star.addEventListener('click', () => {
+                selectedRating = parseInt(star.getAttribute('data-value'));
+                updateStars(selectedRating, 'selected');
+            });
+        });
+    }
+
+    // Modal Control Functions
+    function openModal() {
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden'; // Disable page scrolling
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = ''; // Restore page scrolling
+        // Reset form
+        if (form) {
+            form.reset();
+            selectedRating = 5;
+            updateStars(5, 'selected');
+        }
+    }
+
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (overlay) overlay.addEventListener('click', closeModal);
+
+    // Escape key closes modal
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    // Form Submission
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nameInput = document.getElementById('reviewAuthorName');
+            const roleInput = document.getElementById('reviewAuthorRole');
+            const textInput = document.getElementById('reviewText');
+
+            if (!nameInput || !roleInput || !textInput) return;
+
+            const name = nameInput.value.trim();
+            const role = roleInput.value.trim();
+            const text = textInput.value.trim();
+
+            if (!name || !role || !text) return;
+
+            // Generate initials avatar
+            const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=a6ff00&color=0d0d0d&bold=true`;
+
+            const newReview = {
+                name,
+                role,
+                stars: selectedRating,
+                text,
+                avatar: avatarUrl
+            };
+
+            // Get existing, prepend new, save
+            let customReviews = [];
+            try {
+                const stored = localStorage.getItem('m1creative_custom_reviews');
+                if (stored) {
+                    customReviews = JSON.parse(stored);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+
+            customReviews.unshift(newReview);
+
+            try {
+                localStorage.setItem('m1creative_custom_reviews', JSON.stringify(customReviews));
+            } catch (err) {
+                console.error("Failed to save review to localStorage:", err);
+            }
+
+            // Re-initialize reviews list
+            initReviews();
+
+            // Close modal
+            closeModal();
+
+            // Show toast notification
+            showReviewToast("Thank you! Your review has been published.");
+        });
+    }
+}
+
+function showReviewToast(message) {
+    let container = document.getElementById('toastContainer');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toastContainer';
+        container.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        `;
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = 'glass-card';
+    toast.style.cssText = `
+        padding: 16px 24px;
+        background: rgba(15, 15, 15, 0.9);
+        border: 1px solid var(--accent);
+        border-radius: 12px;
+        color: var(--text-white);
+        font-weight: 500;
+        font-size: 0.9rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        pointer-events: auto;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    `;
+    toast.innerHTML = `
+        <span style="color: var(--accent); font-weight: bold;">✓</span>
+        <span>${message}</span>
+    `;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.opacity = '1';
+        toast.style.transform = 'translateY(0)';
+    }, 50);
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            toast.remove();
+        }, 400);
+    }, 4000);
 }
 
 // ======= PORTFOLIO FILTERS =======
@@ -2146,6 +2415,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTiltEffects();
     initFAQ();
     initReviews();
+    initReviewModal();
     initPortfolioFilters();
     initHeroScroll();
     initCaseStudies();

@@ -2801,6 +2801,268 @@ body {
     .trust-number {
         font-size: 1.6rem;
     }
+/* Reviews CTA & Modal Styles */
+.reviews-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.reviews-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-white);
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(10px);
+}
+
+.reviews-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(166, 255, 0, 0.08);
+}
+
+.reviews-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.reviews-btn:hover svg {
+    transform: rotate(15deg) scale(1.1);
+}
+
+/* Modal Container */
+.review-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.review-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(3, 3, 3, 0.7);
+    backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    background: rgba(15, 15, 15, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 40px;
+    z-index: 2;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.review-modal.active .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.close-modal-btn:hover {
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+.modal-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 8px;
+}
+
+.modal-subtitle {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* Rating Group */
+.rating-group {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rating-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.star-rating {
+    display: flex;
+    gap: 6px;
+}
+
+.interactive-star {
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.interactive-star:hover {
+    transform: scale(1.15);
+}
+
+.interactive-star.hovered,
+.interactive-star.selected {
+    color: #f5a623;
+    text-shadow: 0 0 10px rgba(245, 166, 35, 0.3);
+}
+
+/* Review Form Inputs */
+.review-form .form-group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.review-form .form-group.full-width {
+    margin-bottom: 30px;
+}
+
+.review-form input,
+.review-form textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 0;
+    color: var(--text-white);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.review-form textarea {
+    resize: none;
+}
+
+.review-form label {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.review-form input:focus ~ label,
+.review-form input:not(:placeholder-shown) ~ label,
+.review-form textarea:focus ~ label,
+.review-form textarea:not(:placeholder-shown) ~ label {
+    top: -14px;
+    font-size: 0.8rem;
+    color: var(--accent);
+}
+
+.review-form .form-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.review-form input:focus ~ .form-line,
+.review-form textarea:focus ~ .form-line {
+    width: 100%;
+}
+
+.review-form input:focus,
+.review-form textarea:focus {
+    outline: none;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+.submit-review-btn {
+    width: 100%;
+    background: var(--accent);
+    color: var(--bg-dark);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.submit-review-btn:hover {
+    background: var(--text-white);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(166, 255, 0, 0.2);
+}
+
+.submit-review-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.submit-review-btn:hover svg {
+    transform: translate(3px, -3px);
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 30px 24px;
+    }
 }
 
 /* ===========================

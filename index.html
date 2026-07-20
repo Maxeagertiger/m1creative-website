@@ -81,9 +81,9 @@
                 <p class="hero-sub">Transforming visions into stunning, high-performance websites that captivate and
                     convert.</p>
                 <div class="hero-trust-badges">
-                    <span class="trust-badge"><span class="badge-icon">✓</span> Fast 7-Day Launch</span>
+                    <span class="trust-badge"><span class="badge-icon">✓</span> Fast 5-Day Launch</span>
                     <span class="trust-badge"><span class="badge-icon">✓</span> Month-to-Month</span>
-                    <span class="trust-badge"><span class="badge-icon">✓</span> 5.0 Star Rated</span>
+                    <span class="trust-badge"><span class="badge-icon">✓</span> Bespoke Design</span>
                 </div>
                 <div class="hero-ctas">
                     <a href="#pricing" class="hero-btn primary-btn">Start Your Project</a>
@@ -647,6 +647,15 @@
                         <span class="trust-label">Response Time</span>
                     </div>
                 </div>
+
+                <div class="reviews-cta">
+                    <button class="reviews-btn open-review-modal-btn" id="openReviewModalBtn">
+                        <span>Leave a Review</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="margin-left: 8px;">
+                            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -725,7 +734,7 @@
                                 <div class="step-badge">3</div>
                                 <div class="step-details">
                                     <h4 class="dark-text">Launch & Grow</h4>
-                                    <p class="dark-text">We construct, test, and host your premium site in just 7 days, then handle all upkeep.</p>
+                                    <p class="dark-text">We construct, test, and host your premium site in just 5 days, then handle all upkeep.</p>
                                 </div>
                             </div>
                         </div>
@@ -852,6 +861,55 @@
                 </div>
             </div>
         </footer>
+    </div>
+
+    <!-- Leave a Review Modal -->
+    <div id="reviewModal" class="review-modal" aria-hidden="true">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content glass-card">
+            <button class="close-modal-btn" id="closeReviewModal" aria-label="Close modal">&times;</button>
+            <h3 class="modal-title">Share Your Experience</h3>
+            <p class="modal-subtitle">Your feedback helps us continuously craft and deliver premium digital experiences.</p>
+            
+            <form id="reviewForm" class="review-form">
+                <div class="form-group">
+                    <input type="text" id="reviewAuthorName" required placeholder=" ">
+                    <label for="reviewAuthorName">Your Full Name</label>
+                    <div class="form-line"></div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" id="reviewAuthorRole" required placeholder=" ">
+                    <label for="reviewAuthorRole">Role / Company (e.g., CEO, Apex Legal)</label>
+                    <div class="form-line"></div>
+                </div>
+
+                <div class="rating-group">
+                    <span class="rating-label">Your Rating</span>
+                    <div class="star-rating" id="interactiveStars">
+                        <span class="interactive-star" data-value="1">★</span>
+                        <span class="interactive-star" data-value="2">★</span>
+                        <span class="interactive-star" data-value="3">★</span>
+                        <span class="interactive-star" data-value="4">★</span>
+                        <span class="interactive-star" data-value="5">★</span>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <textarea id="reviewText" required placeholder=" " rows="4"></textarea>
+                    <label for="reviewText">Your Review Message</label>
+                    <div class="form-line"></div>
+                </div>
+
+                <button type="submit" class="submit-review-btn">
+                    <span>Submit Review</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                        <line x1="22" y1="2" x2="11" y2="13" />
+                        <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                    </svg>
+                </button>
+            </form>
+        </div>
     </div>
 
     <!-- Three.js Library -->
