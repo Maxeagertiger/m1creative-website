@@ -1,14 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prisma — A Network of Visual Artists & Filmmakers</title>
-    <meta name="description" content="Prisma is a worldwide network of visual artists, filmmakers and storytellers bound by passion and unique perspectives." />
-    <script type="module" crossorigin src="./assets/main-BeDxh-wd.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-Z5sLIz9T.css">
-  </head>
-  <body class="bg-black text-white">
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prisma — A Network of Visual Artists & Filmmakers</title>
+  <meta name="description" content="Prisma is a worldwide network of visual artists, filmmakers and storytellers bound by passion and unique perspectives." />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    /* Hero-specific styles to match the exact thumbnail */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 80px;
+      overflow: hidden;
+    }
+
+    #poly-canvas {
+      position: absolute;
+      top: 0;
+      right: -5%;
+      width: 60%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding-left: 60px;
+      width: 50%;
+    }
+
+    .hero-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--cream);
+      border-radius: 50%;
+      margin-bottom: 30px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 14vw, 13rem);
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      color: var(--cream);
+      margin-bottom: 0;
+    }
+
+    .hero-asterisk {
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 0.55em;
+      vertical-align: top;
+      line-height: 1;
+      margin-left: -5px;
+    }
+
+    .hero-aside {
+      position: absolute;
+      right: 60px;
+      bottom: 80px;
+      max-width: 380px;
+      z-index: 2;
+    }
+
+    .hero-aside p {
+      color: rgba(232, 228, 212, 0.75);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .scroll-label {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      color: rgba(232, 228, 212, 0.3);
+      z-index: 2;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      #hero {
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 120px 30px 40px;
+      }
+      .hero-content {
+        width: 100%;
+        padding-left: 0;
+        margin-bottom: 30px;
+      }
+      #poly-canvas {
+        top: -10%;
+        right: 0;
+        width: 100%;
+        height: 70%;
+      }
+      .hero-aside {
+        position: static;
+        max-width: 100%;
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="index.html" class="nav-brand">Prisma<span>*</span></a>
+  <button class="nav-toggle" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="story.html">Our story</a></li>
+    <li><a href="collective.html">Collective</a></li>
+    <li><a href="workshops.html">Workshops</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="inquiries.html">Inquiries</a></li>
+  </ul>
+</nav>
+
+<!-- Main Page Hero -->
+<main>
+  <section id="hero">
+    <canvas id="poly-canvas"></canvas>
+    
+    <div class="hero-content">
+      <div class="hero-dot"></div>
+      <h1 class="hero-title">Prisma<span class="hero-asterisk">*</span></h1>
+    </div>
+    
+    <div class="hero-aside">
+      <p>Prisma is a worldwide network of visual artists, filmmakers and storytellers bound not by place, status or labels but by passion and hunger to unlock potential through our unique perspectives.</p>
+      <div style="display: flex; gap: 14px;">
+        <a href="inquiries.html?type=join" class="btn">Join the lab <span class="arrow">→</span></a>
+        <a href="inquiries.html?type=project" class="btn btn-primary">Start a project</a>
+      </div>
+    </div>
+    
+    <div class="scroll-label">Scroll</div>
+  </section>
+</main>
+
+<footer>
+  <a href="index.html" class="footer-logo">Prisma*</a>
+  <span>A worldwide collective of visual artists & filmmakers</span>
+  <span>&copy; 2026 Prisma. Built with M1Creative.</span>
+</footer>
+
+<!-- Shared Interactives Script -->
+<script src="script.js"></script>
+
+<script>
+  // ── THREE.JS POLYHEDRON ──
+  const polyCanvas = document.getElementById('poly-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas: polyCanvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  function setPolySize() {
+    renderer.setSize(polyCanvas.clientWidth, polyCanvas.clientHeight);
+    camera.aspect = polyCanvas.clientWidth / polyCanvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+  camera.position.set(0, 0, 7);
+
+  // Icosahedron matching the thumbnail
+  const geo = new THREE.IcosahedronGeometry(2.1, 1);
+  const mat = new THREE.MeshLambertMaterial({
+    color: 0x6b7055, // Flat shaded dark olive-grey
+    flatShading: true,
+  });
+  const poly = new THREE.Mesh(geo, mat);
+  poly.position.set(0.4, 0.25, 0);
+  scene.add(poly);
+
+  // Shading lights matching the preview thumbnail
+  const ambLight = new THREE.AmbientLight(0xffffff, 0.35);
+  scene.add(ambLight);
+  const keyLight = new THREE.DirectionalLight(0xd4d0b8, 2.5);
+  keyLight.position.set(3, 5, 4);
+  scene.add(keyLight);
+  const fillLight = new THREE.DirectionalLight(0x303030, 1);
+  fillLight.position.set(-3, -2, -2);
+  scene.add(fillLight);
+
+  setPolySize();
+
+  let mouseXNorm = 0, mouseYNorm = 0;
+  window.addEventListener('mousemove', e => {
+    mouseXNorm = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseYNorm = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  let t = 0;
+  function animPoly() {
+    requestAnimationFrame(animPoly);
+    t += 0.005;
+    poly.rotation.y = t + mouseXNorm * 0.25;
+    poly.rotation.x = mouseYNorm * 0.15 + Math.sin(t * 0.4) * 0.1;
+    renderer.render(scene, camera);
+  }
+  animPoly();
+
+  window.addEventListener('resize', setPolySize);
+</script>
+</body>
 </html>
