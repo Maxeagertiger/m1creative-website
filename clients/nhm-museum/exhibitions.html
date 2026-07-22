@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exhibitions — NHM Museum | Cape Town</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .filter-btn {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-gold);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+            border-color: var(--gold-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <div class="logo-mark">N</div>
+            <div class="logo-text">NHM MUSEUM</div>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="exhibitions.html" class="active">Exhibitions</a></li>
+                <li><a href="collection.html">Digital Archive</a></li>
+                <li><a href="tickets.html">Tickets</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="tickets.html" class="nav-cta">Book Admission →</a>
+        <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="hero" style="min-height: 50vh; padding-top: 160px;">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="tagline">GALLERIES & EXHIBITS</span>
+            <h1>Curated Exhibitions</h1>
+            <p>Journey through interactive halls detailing natural sciences, ancient archaeology, and South Africa's diverse heritage.</p>
+        </div>
+    </section>
+
+    <!-- Exhibitions Grid with Filter -->
+    <section class="section">
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Exhibitions</button>
+            <button class="filter-btn" data-filter="paleontology">Paleontology</button>
+            <button class="filter-btn" data-filter="astronomy">Astronomy</button>
+            <button class="filter-btn" data-filter="heritage">Heritage</button>
+        </div>
+
+        <div class="grid-3">
+            <div class="card exhibit-card" data-category="paleontology">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&fit=crop&q=80" alt="Karoo Fossils" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">PALEONTOLOGY</span>
+                    <h3 class="card-title">Cradle of Giants: Karoo Fossils</h3>
+                    <p class="card-text">250-million-year-old pre-dinosaur species unearthed across South Africa's Karoo Basin.</p>
+                    <a href="tickets.html" class="card-link">Reserve Entrance →</a>
+                </div>
+            </div>
+
+            <div class="card exhibit-card" data-category="astronomy">
+                <img src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&fit=crop&q=80" alt="Indigenous Astronomy" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">ASTRONOMY</span>
+                    <h3 class="card-title">Navigators of the Southern Sky</h3>
+                    <p class="card-text">Explore ancient astronomical charts and sky lore recorded by early indigenous star navigators.</p>
+                    <a href="tickets.html" class="card-link">Reserve Entrance →</a>
+                </div>
+            </div>
+
+            <div class="card exhibit-card" data-category="heritage">
+                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=800&fit=crop&q=80" alt="Golden Mapungubwe" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">HERITAGE</span>
+                    <h3 class="card-title">Gold of Mapungubwe</h3>
+                    <p class="card-text">Ancient South African royal kingdom artifacts crafted from pure beaten gold foil.</p>
+                    <a href="tickets.html" class="card-link">Reserve Entrance →</a>
+                </div>
+            </div>
+
+            <div class="card exhibit-card" data-category="heritage">
+                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&fit=crop&q=80" alt="Freedom Struggle" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">HERITAGE</span>
+                    <h3 class="card-title">Voices of Democracy</h3>
+                    <p class="card-text">Original manuscripts, audio recordings, and personal effects of 20th-century anti-apartheid leaders.</p>
+                    <a href="tickets.html" class="card-link">Reserve Entrance →</a>
+                </div>
+            </div>
+
+            <div class="card exhibit-card" data-category="paleontology">
+                <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&fit=crop&q=80" alt="Sterkfontein Caves" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">PALEONTOLOGY</span>
+                    <h3 class="card-title">Sterkfontein Hominin Vaults</h3>
+                    <p class="card-text">Casts and original hominin fossil fragments from the Cradle of Humankind UNESCO site.</p>
+                    <a href="tickets.html" class="card-link">Reserve Entrance →</a>
+                </div>
+            </div>
+
+            <div class="card exhibit-card" data-category="astronomy">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&fit=crop&q=80" alt="SALT Telescope Exhibit" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">ASTRONOMY</span>
+                    <h3 class="card-title">SALT: Southern African Large Telescope</h3>
+                    <p class="card-text">Scale optical exhibits showing deep-space images captured high in Sutherland, Karoo.</p>
+                    <a href="tickets.html" class="card-link">Reserve Entrance →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Strictly NO Social Icons) -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>NHM MUSEUM</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">National History & Heritage Museum of South Africa.</p>
+            </div>
+            <div class="footer-col">
+                <h4>QUICK LINKS</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="exhibitions.html">Exhibitions</a></li>
+                    <li><a href="collection.html">Digital Archive</a></li>
+                    <li><a href="tickets.html">Book Tickets</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>VISITING HOURS</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Monday – Sunday: 09:00 – 17:00</p>
+            </div>
+            <div class="footer-col">
+                <h4>LOCATION & CONTACT</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">14 Heritage Square, Cape Town 8001, SA<br>Phone: +27 21 481 3800</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NHM Museum South Africa. All Rights Reserved. Designed by M1Creative.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

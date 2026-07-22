@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editorial Lookbook — PRMPT Fashion</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .lookbook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .lookbook-item {
+            position: relative;
+            overflow: hidden;
+            height: 480px;
+            border: 1px solid var(--border-light);
+        }
+        .lookbook-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        .lookbook-item:hover img {
+            transform: scale(1.06);
+        }
+        .lookbook-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .lookbook-title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: #FFF;
+        }
+        .lookbook-num {
+            font-size: 0.8rem;
+            color: var(--accent-crimson);
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <div class="logo-text">PRM<span>PT</span></div>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="collections.html">Collections</a></li>
+                <li><a href="atelier.html">The Atelier</a></li>
+                <li><a href="lookbook.html" class="active">Lookbook</a></li>
+                <li><a href="contact.html">Private Fitting</a></li>
+            </ul>
+        </nav>
+        <a href="contact.html" class="nav-cta">Book Consultation</a>
+        <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="hero" style="min-height: 45vh; padding-top: 150px;">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-tag">SS26 EDITORIAL GALLERY</span>
+            <h1>Runway Lookbook</h1>
+            <p>Visual presentation from our secret runway presentation in Rosebank, Johannesburg.</p>
+        </div>
+    </section>
+
+    <!-- Lookbook Grid -->
+    <section class="section">
+        <div class="lookbook-grid">
+            <div class="lookbook-item">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&fit=crop&q=80" alt="Look 01">
+                <div class="lookbook-overlay">
+                    <div class="lookbook-title">Silk Matrix Trench</div>
+                    <div class="lookbook-num">LOOK 01</div>
+                </div>
+            </div>
+            <div class="lookbook-item">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&fit=crop&q=80" alt="Look 02">
+                <div class="lookbook-overlay">
+                    <div class="lookbook-title">Structured Obsidian Suit</div>
+                    <div class="lookbook-num">LOOK 02</div>
+                </div>
+            </div>
+            <div class="lookbook-item">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&fit=crop&q=80" alt="Look 03">
+                <div class="lookbook-overlay">
+                    <div class="lookbook-title">Tech-Silk Trousers</div>
+                    <div class="lookbook-num">LOOK 03</div>
+                </div>
+            </div>
+            <div class="lookbook-item">
+                <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&fit=crop&q=80" alt="Look 04">
+                <div class="lookbook-overlay">
+                    <div class="lookbook-title">Midnight Velvet Gown</div>
+                    <div class="lookbook-num">LOOK 04</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Strictly NO Social Icons) -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>PRMPT FASHION</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Avant-garde South African haute couture atelier.</p>
+            </div>
+            <div class="footer-col">
+                <h4>NAVIGATION</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="collections.html">Collections</a></li>
+                    <li><a href="atelier.html">The Atelier</a></li>
+                    <li><a href="lookbook.html">Lookbook</a></li>
+                    <li><a href="contact.html">Private Fitting</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>ATELIER HOURS</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Tuesday – Saturday: 10:00 – 18:00</p>
+            </div>
+            <div class="footer-col">
+                <h4>LOCATION & CONTACT</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">72 Keyes Avenue, Rosebank, SA<br>Phone: +27 11 327 5000</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 PRMPT Fashion Atelier South Africa. All Rights Reserved. Designed by M1Creative.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

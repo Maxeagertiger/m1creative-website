@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Directions — NHM Museum | Cape Town</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <div class="logo-mark">N</div>
+            <div class="logo-text">NHM MUSEUM</div>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="exhibitions.html">Exhibitions</a></li>
+                <li><a href="collection.html">Digital Archive</a></li>
+                <li><a href="tickets.html">Tickets</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="tickets.html" class="nav-cta">Book Admission →</a>
+        <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" style="min-height: 45vh; padding-top: 150px;">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="tagline">GET IN TOUCH & DIRECTIONS</span>
+            <h1>Contact Museum Operations</h1>
+            <p>Have questions about group tours, research access, or visiting 14 Heritage Square? We're here to help.</p>
+        </div>
+    </section>
+
+    <!-- Contact Form & Info -->
+    <section class="section">
+        <div class="grid-3" style="margin-bottom: 60px;">
+            <div class="card" style="padding: 30px;">
+                <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold-primary); margin-bottom: 12px;">Physical Address</h3>
+                <p style="color: var(--text-muted);">14 Heritage Square, Buitengracht Street<br>Cape Town City Centre, 8001<br>Western Cape, South Africa</p>
+            </div>
+            <div class="card" style="padding: 30px;">
+                <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold-primary); margin-bottom: 12px;">Telephone & Email</h3>
+                <p style="color: var(--text-muted);">Switchboard: +27 21 481 3800<br>Group Bookings: +27 21 481 3810<br>Email: info@nhmmuseum.co.za</p>
+            </div>
+            <div class="card" style="padding: 30px;">
+                <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold-primary); margin-bottom: 12px;">Operating Hours</h3>
+                <p style="color: var(--text-muted);">Monday – Sunday: 09:00 – 17:00<br>Public Holidays: 10:00 – 16:00<br>Parking available on-site.</p>
+            </div>
+        </div>
+
+        <div class="form-box">
+            <h3 style="font-family: var(--font-heading); font-size: 2rem; text-align: center; margin-bottom: 24px;">Send an Inquiry</h3>
+            <form id="contactForm" onsubmit="event.preventDefault(); alert('Thank you for contacting NHM Museum! Our team will respond shortly.');">
+                <div class="form-group">
+                    <label for="cName">Your Name</label>
+                    <input type="text" id="cName" class="form-control" required placeholder="Full Name">
+                </div>
+                <div class="form-group">
+                    <label for="cEmail">Email Address</label>
+                    <input type="email" id="cEmail" class="form-control" required placeholder="name@domain.co.za">
+                </div>
+                <div class="form-group">
+                    <label for="cSubject">Subject</label>
+                    <select id="cSubject" class="form-control" required>
+                        <option value="general">General Visitor Question</option>
+                        <option value="group">School & Group Tour Inquiry</option>
+                        <option value="research">Academic Archive Access</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cMessage">Message</label>
+                    <textarea id="cMessage" class="form-control" rows="4" required placeholder="Write your message here..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Submit Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer (Strictly NO Social Icons) -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>NHM MUSEUM</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">National History & Heritage Museum of South Africa.</p>
+            </div>
+            <div class="footer-col">
+                <h4>QUICK LINKS</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="exhibitions.html">Exhibitions</a></li>
+                    <li><a href="collection.html">Digital Archive</a></li>
+                    <li><a href="tickets.html">Book Tickets</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>VISITING HOURS</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Monday – Sunday: 09:00 – 17:00</p>
+            </div>
+            <div class="footer-col">
+                <h4>LOCATION & CONTACT</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">14 Heritage Square, Cape Town 8001, SA<br>Phone: +27 21 481 3800</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NHM Museum South Africa. All Rights Reserved. Designed by M1Creative.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

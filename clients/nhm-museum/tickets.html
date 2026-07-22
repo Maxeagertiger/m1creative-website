@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Tickets — NHM Museum | Cape Town</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <div class="logo-mark">N</div>
+            <div class="logo-text">NHM MUSEUM</div>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="exhibitions.html">Exhibitions</a></li>
+                <li><a href="collection.html">Digital Archive</a></li>
+                <li><a href="tickets.html" class="active">Tickets</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="tickets.html" class="nav-cta">Book Admission →</a>
+        <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" style="min-height: 45vh; padding-top: 150px;">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="tagline">RESERVE ADMISSION ONLINE</span>
+            <h1>Museum Ticket Portal</h1>
+            <p>Select your date and visitor tickets below to skip the queue at 14 Heritage Square, Cape Town.</p>
+        </div>
+    </section>
+
+    <!-- Ticket Booking Form Section -->
+    <section class="section">
+        <div class="form-box">
+            <form id="ticketForm">
+                <div class="form-group">
+                    <label for="visitDate">Date of Visit</label>
+                    <input type="date" id="visitDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="ticketType">Select Ticket Pass</label>
+                    <select id="ticketType" class="form-control" required>
+                        <option value="adult">General Adult Admission — R120</option>
+                        <option value="family">Family Pass (2 Adults + 3 Children) — R320</option>
+                        <option value="student">Student / Senior Pass (SA ID required) — R70</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ticketQty">Quantity</label>
+                    <input type="number" id="ticketQty" class="form-control" min="1" max="10" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="visitorName">Full Name</label>
+                    <input type="text" id="visitorName" class="form-control" placeholder="e.g. Sipho Dlamini" required>
+                </div>
+                <div class="form-group">
+                    <label for="visitorEmail">Email Address</label>
+                    <input type="email" id="visitorEmail" class="form-control" placeholder="sipho@example.co.za" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Confirm & Pay Admission</button>
+            </form>
+
+            <div id="bookingSuccess" style="display: none; text-align: center; padding: 30px 0;">
+                <div style="font-size: 3rem; color: var(--gold-primary); margin-bottom: 16px;">✓</div>
+                <h3 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 10px;">Ticket Reserved!</h3>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Your digital QR admission pass has been sent to your email address. Present it at the NHM main entrance in Cape Town.</p>
+                <a href="index.html" class="btn-secondary">Return to Homepage</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Strictly NO Social Icons) -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>NHM MUSEUM</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">National History & Heritage Museum of South Africa.</p>
+            </div>
+            <div class="footer-col">
+                <h4>QUICK LINKS</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="exhibitions.html">Exhibitions</a></li>
+                    <li><a href="collection.html">Digital Archive</a></li>
+                    <li><a href="tickets.html">Book Tickets</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>VISITING HOURS</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Monday – Sunday: 09:00 – 17:00</p>
+            </div>
+            <div class="footer-col">
+                <h4>LOCATION & CONTACT</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">14 Heritage Square, Cape Town 8001, SA<br>Phone: +27 21 481 3800</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NHM Museum South Africa. All Rights Reserved. Designed by M1Creative.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

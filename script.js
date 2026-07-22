@@ -2344,6 +2344,34 @@ function initCaseStudies() {
             ],
             tech: "HTML5, Custom CSS, WebGL, Three.js, ES6 JS, Parallax layouts",
             url: "clients/warm-clean-visions/index.html"
+        },
+        nhm: {
+            title: "NHM — National History & Heritage Museum",
+            category: "Culture & Heritage",
+            problem: "National museums often struggle with outdated web presence that fails to convey the grandeur of ancient heritage artifacts and interactive online ticket bookings to international and local visitors.",
+            solution: "We engineered a deep dark-velvet and gold museum portal featuring a self-drawing crest preloader, 3D digital artifact vaults, interactive exhibit category filtering, and online ZAR ticket reservation workflows.",
+            features: [
+                "Deep obsidian & gold heritage aesthetic design system",
+                "Self-drawing SVG museum crest entrance preloader",
+                "3D digital vault archive with high-resolution artifact scans",
+                "Online ZAR ticket reservation portal for Cape Town visitors"
+            ],
+            tech: "HTML5, CSS Custom Variables, Vanilla ES6 JS, SVG Path Animations",
+            url: "clients/nhm-museum/index.html"
+        },
+        prmpt: {
+            title: "PRMPT — Cyber Haute Couture Atelier",
+            category: "Fashion & Luxury",
+            problem: "High-end fashion ateliers need a digital home that radiates ultra-luxury, exclusivity, and architectural precision, while making private fitting consultations seamless for VIP clientele.",
+            solution: "We created a cyber-luxury editorial platform in Rosebank, Johannesburg with glowing neon crimson accents, high-fashion typography, interactive runway lookbooks, and private fitting scheduler.",
+            features: [
+                "Cyber-luxury dark editorial aesthetics with Syne typography",
+                "Interactive SS26 runway collection filters & high-fashion lookbook",
+                "Rosebank bespoke private fitting consultation scheduler",
+                "Fully mobile-optimized touch-first luxury layout"
+            ],
+            tech: "HTML5, CSS Flexbox/Grid, ES6 JS, Custom Modal Engine",
+            url: "clients/prmpt-fashion/index.html"
         }
     };
     
