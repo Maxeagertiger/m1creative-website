@@ -1964,7 +1964,6 @@ function initReviews() {
                 <img src="${review.avatar}" alt="${review.name}" class="review-avatar" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(review.name)}&background=a6ff00&color=0d0d0d&bold=true'"/>
                 <div class="review-info">
                     <span class="review-name">${review.name}</span>
-                    <span class="review-role">${review.role}</span>
                 </div>
             </div>
         `;
@@ -2062,23 +2061,21 @@ function initReviewModal() {
             e.preventDefault();
 
             const nameInput = document.getElementById('reviewAuthorName');
-            const roleInput = document.getElementById('reviewAuthorRole');
             const textInput = document.getElementById('reviewText');
 
-            if (!nameInput || !roleInput || !textInput) return;
+            if (!nameInput || !textInput) return;
 
             const name = nameInput.value.trim();
-            const role = roleInput.value.trim();
             const text = textInput.value.trim();
 
-            if (!name || !role || !text) return;
+            if (!name || !text) return;
 
             // Generate initials avatar
             const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=a6ff00&color=0d0d0d&bold=true`;
 
             const newReview = {
                 name,
-                role,
+                role: "",
                 stars: selectedRating,
                 text,
                 avatar: avatarUrl

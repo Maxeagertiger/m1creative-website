@@ -401,22 +401,24 @@ body {
 
 /* Custom Action Button inside Mobile Menu */
 .mobile-menu .nav-cta {
-    background: var(--bg-dark);
-    color: var(--text-white) !important;
+    background: var(--accent) !important;
+    color: #000000 !important;
+    font-weight: 700 !important;
     padding: 12px 24px;
     border-radius: 14px;
     font-size: 1.1rem;
     text-align: center;
     margin-top: 8px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(166, 255, 0, 0.25);
     opacity: 0;
     transform: translateY(15px);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 .mobile-menu .nav-cta:hover {
-    background: #000000;
+    background: #b5ff26 !important;
+    color: #000000 !important;
     transform: translateY(-2px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 12px 25px rgba(166, 255, 0, 0.35);
 }
 
 @media (max-width: 480px) {
@@ -2725,9 +2727,7 @@ body {
 }
 
 .review-role {
-    color: rgba(255, 255, 255, 0.45);
-    font-size: 0.8rem;
-    letter-spacing: 0.5px;
+    display: none !important;
 }
 
 /* Trust Stats Bar */
