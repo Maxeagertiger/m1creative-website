@@ -2343,7 +2343,7 @@ function initCaseStudies() {
             url: "clients/warm-clean-visions/index.html"
         },
         nhm: {
-            title: "NHM — National History & Heritage Museum",
+            title: "Bone x Epoch — Natural History Museum",
             category: "Culture & Heritage",
             problem: "National museums often struggle with outdated web presence that fails to convey the grandeur of ancient heritage artifacts and interactive online ticket bookings to international and local visitors.",
             solution: "We engineered a deep dark-velvet and gold museum portal featuring a self-drawing crest preloader, 3D digital artifact vaults, interactive exhibit category filtering, and online ZAR ticket reservation workflows.",
