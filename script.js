@@ -2356,8 +2356,8 @@ function initCaseStudies() {
             tech: "HTML5, CSS Custom Variables, Vanilla ES6 JS, SVG Path Animations",
             url: "clients/nhm-museum/index.html"
         },
-        prmpt: {
-            title: "PRMPT — Cyber Haute Couture Atelier",
+        ghostweaver: {
+            title: "Ghostweaver — Cyber Haute Couture Atelier",
             category: "Fashion & Luxury",
             problem: "High-end fashion ateliers need a digital home that radiates ultra-luxury, exclusivity, and architectural precision, while making private fitting consultations seamless for VIP clientele.",
             solution: "We created a cyber-luxury editorial platform in Rosebank, Johannesburg with glowing neon crimson accents, high-fashion typography, interactive runway lookbooks, and private fitting scheduler.",
@@ -2367,7 +2367,21 @@ function initCaseStudies() {
                 "Rosebank bespoke private fitting consultation scheduler",
                 "Fully mobile-optimized touch-first luxury layout"
             ],
-            tech: "HTML5, CSS Flexbox/Grid, ES6 JS, Custom Modal Engine",
+            tech: "React 19, Vite, Tailwind CSS, Lucide Icons",
+            url: "clients/prmpt-fashion/index.html"
+        },
+        prmpt: {
+            title: "Ghostweaver — Cyber Haute Couture Atelier",
+            category: "Fashion & Luxury",
+            problem: "High-end fashion ateliers need a digital home that radiates ultra-luxury, exclusivity, and architectural precision, while making private fitting consultations seamless for VIP clientele.",
+            solution: "We created a cyber-luxury editorial platform in Rosebank, Johannesburg with glowing neon crimson accents, high-fashion typography, interactive runway lookbooks, and private fitting scheduler.",
+            features: [
+                "Cyber-luxury dark editorial aesthetics with Syne typography",
+                "Interactive SS26 runway collection filters & high-fashion lookbook",
+                "Rosebank bespoke private fitting consultation scheduler",
+                "Fully mobile-optimized touch-first luxury layout"
+            ],
+            tech: "React 19, Vite, Tailwind CSS, Lucide Icons",
             url: "clients/prmpt-fashion/index.html"
         }
     };
