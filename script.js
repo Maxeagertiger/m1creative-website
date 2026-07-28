@@ -1840,17 +1840,19 @@ function initGSAPAnimations() {
 
 // ======= HERO CTA SCROLL =======
 function initHeroScroll() {
-    const ctas = document.querySelectorAll('.hero-btn');
+    const ctas = document.querySelectorAll('.hero-btn, .section-view-all-btn');
     ctas.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            e.preventDefault();
             const targetId = btn.getAttribute('href');
-            const target = document.querySelector(targetId);
-            if (target) {
-                if (lenis) {
-                    lenis.scrollTo(target, { offset: 0, duration: 1.2 });
-                } else {
-                    target.scrollIntoView({ behavior: 'smooth' });
+            if (targetId && targetId.startsWith('#') && targetId !== '#') {
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    if (lenis) {
+                        lenis.scrollTo(target, { offset: 0, duration: 1.2 });
+                    } else {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }
             }
         });

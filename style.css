@@ -3863,6 +3863,70 @@ body {
     font-weight: 700;
 }
 
+/* ===========================
+   STUNNING SECTION VIEW-ALL BUTTONS
+   =========================== */
+.section-view-all-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 36px;
+    background: linear-gradient(135deg, var(--accent) 0%, #8ae600 100%);
+    color: #050505 !important;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(166, 255, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.section-view-all-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s ease;
+    z-index: -1;
+}
+
+.section-view-all-btn:hover::before {
+    left: 100%;
+}
+
+.section-view-all-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 40px rgba(166, 255, 0, 0.45);
+    color: #000 !important;
+}
+
+.section-view-all-btn .btn-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.15);
+    color: #000;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.section-view-all-btn:hover .btn-arrow {
+    transform: translateX(4px);
+    background: rgba(0, 0, 0, 0.25);
+}
+
 
 
 
