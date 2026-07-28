@@ -397,22 +397,24 @@ function initIntro() {
     const loader          = document.getElementById('loader');
     const introCta        = document.getElementById('introCta');
     const introScrollHint = document.getElementById('introScrollHint');
+    const cvs             = document.getElementById('three-canvas');
 
-
-    // Lock body scroll
-    document.body.style.overflow = 'hidden';
-
-    // ── Build scene ──
-    initThreeJS();
-    createSecondPlanet(); // Creates the ringed ice planet (will be far back during intro)
-
-    // Dedicated white sun light to illuminate Earth realistically with shading/highlights
-    introSunLight = new THREE.DirectionalLight(0xffffff, 2.5);
-    introSunLight.position.set(400, 300, 600);
-    scene.add(introSunLight);
-
-    // Position canvas absolutely inside loader
-    const cvs = document.getElementById('three-canvas');
+    if (!loader) {
+        document.body.style.overflow = '';
+        if (lenis) lenis.start();
+        initThreeJS();
+        createSecondPlanet();
+        if (planet) planet.position.set(350, -100, -400);
+        if (planet2) planet2.position.set(300, 80, -900);
+        if (cvs) {
+            cvs.style.position = '';
+            document.body.insertBefore(cvs, document.body.firstChild);
+        }
+        animate();
+        initGSAPAnimations();
+        introPhase = 'done';
+        return;
+    }
     cvs.style.position = 'absolute';
     cvs.style.top = '0';
     cvs.style.left = '0';
@@ -486,7 +488,7 @@ function initIntro() {
 
     // Release scroll block and show scroll instructions AFTER the crash
     setTimeout(() => {
-        introScrollHint.classList.add('show');
+        if (introScrollHint) introScrollHint.classList.add('show');
         introPhase = 'active';
     }, 2600);
 
@@ -1282,6 +1284,7 @@ function handleScroll() {
 function animateOnScroll() {
     // Animate big text words
     document.querySelectorAll('.animate-text .word').forEach(word => {
+        if (!word) return;
         const rect = word.getBoundingClientRect();
         if (rect.top < window.innerHeight * 0.85) {
             word.classList.add('visible');
@@ -1368,14 +1371,16 @@ function initNavigation() {
     // Smooth scroll for anchor links using Lenis (excluding the case study launch button)
     document.querySelectorAll('a[href^="#"]:not(#caseStudyLaunchBtn)').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
-            e.preventDefault();
             const targetId = anchor.getAttribute('href');
-            const target = document.querySelector(targetId);
-            if (target) {
-                if (lenis) {
-                    lenis.scrollTo(target, { offset: 0, duration: 1.2 });
-                } else {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (targetId && targetId !== '#') {
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    if (lenis) {
+                        lenis.scrollTo(target, { offset: 0, duration: 1.2 });
+                    } else {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 }
             }
         });
@@ -1486,6 +1491,8 @@ function initCheckout() {
     const checkoutForm = document.getElementById('checkout-form');
     const checkoutSuccess = document.getElementById('checkoutSuccess');
 
+    if (!overlay) return;
+
     const packageNames = {
         Bronze: 'Starter Presence',
         Silver: 'Growth Package',
@@ -1496,12 +1503,6 @@ function initCheckout() {
     document.querySelectorAll('.pricing-cta').forEach(btn => {
         btn.addEventListener('click', () => {
             const pkg = btn.dataset.package;
-
-            const fullPackageName = `${pkg} ${packageNames[pkg]}`;
-            const message = `Hi M1Creative, I’m interested in your ${fullPackageName} for my business. Please send me the next steps to get started in 2-5 days!`;
-            window.open(`https://wa.me/27828722365?text=${encodeURIComponent(message)}`, '_blank');
-            return;
-
             const setup = btn.dataset.setup;
             const monthly = btn.dataset.monthly;
             const tier = pkg.toLowerCase();
@@ -2177,7 +2178,7 @@ function initPortfolioFilters() {
     const moreBtn = document.getElementById('workMoreBtn');
     if (!pills.length || !items.length) return;
 
-    let isExpanded = false;
+    let isExpanded = !moreBtn;
 
     function updateVisibility(filter) {
         let visibleCount = 0;
