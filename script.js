@@ -399,11 +399,13 @@ function initIntro() {
     const introScrollHint = document.getElementById('introScrollHint');
     const cvs             = document.getElementById('three-canvas');
 
+    // Always initialize ThreeJS scene first
+    initThreeJS();
+    createSecondPlanet();
+
     if (!loader) {
         document.body.style.overflow = '';
         if (lenis) lenis.start();
-        initThreeJS();
-        createSecondPlanet();
         if (planet) planet.position.set(350, -100, -400);
         if (planet2) planet2.position.set(300, 80, -900);
         if (cvs) {
@@ -415,9 +417,20 @@ function initIntro() {
         introPhase = 'done';
         return;
     }
-    cvs.style.position = 'absolute';
-    cvs.style.top = '0';
-    cvs.style.left = '0';
+
+    // Dedicated white sun light to illuminate Earth realistically
+    introSunLight = new THREE.DirectionalLight(0xffffff, 2.5);
+    introSunLight.position.set(400, 300, 600);
+    scene.add(introSunLight);
+
+    if (cvs) {
+        cvs.style.position = 'absolute';
+        cvs.style.top = '0';
+        cvs.style.left = '0';
+    }
+
+    // Lock body scroll for intro
+    document.body.style.overflow = 'hidden';
 
     // ── Create Earth at origin, camera starts close ──
     introEarth = createEarth();
