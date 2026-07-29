@@ -16,23 +16,27 @@
 </head>
 
 <body>
-    <!-- Scroll-driven Space Intro -->
-    <div id="loader">
-        <!-- Three.js canvas fills loader during intro -->
-        <canvas id="three-canvas"></canvas>
+    <!-- Blueprint Sitewide Background Canvas -->
+    <canvas id="three-canvas"></canvas>
 
-        <!-- Centered brand logo + scroll CTA -->
-        <div class="intro-center-logo" id="introCta">
+    <!-- Blueprint Intro Sequence -->
+    <div id="loader">
+        <div class="blueprint-grid-overlay"></div>
+        <div class="blueprint-scanline"></div>
+        <div class="blueprint-corner tl">+</div>
+        <div class="blueprint-corner tr">+</div>
+        <div class="blueprint-corner bl">+</div>
+        <div class="blueprint-corner br">+</div>
+
+        <!-- Centered brand logo + compilation status -->
+        <div class="intro-center-logo show" id="introCta">
+            <div class="blueprint-tag">[ SYSTEM // ENGINEERING CANVAS ]</div>
             <div class="intro-logo" id="introLogo">
                 <span class="intro-m">M</span><span class="logo-one">1</span><span class="intro-creative">CREATIVE.</span>
             </div>
-            <div class="intro-scroll-hint" id="introScrollHint">
-                <span>scroll to explore</span>
-                <div class="intro-scroll-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
-                        <path d="M12 5v14M5 12l7 7 7-7"/>
-                    </svg>
-                </div>
+            <div class="blueprint-status" id="blueprintStatus">
+                <span class="status-pulse"></span>
+                <span id="blueprintStatusText">BUILDING STRUCTURE...</span>
             </div>
         </div>
     </div>
