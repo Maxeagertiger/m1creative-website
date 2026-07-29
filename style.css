@@ -69,7 +69,7 @@ body {
     cursor: default;
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
 }
 
 #loader.exit {
@@ -78,44 +78,13 @@ body {
     pointer-events: none;
 }
 
-/* Background blueprint grid overlay for intro */
-.blueprint-grid-overlay {
+/* Dynamic intro construction canvas */
+#intro-canvas {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 60px 60px, 60px 60px, 15px 15px, 15px 15px;
-    background-position: center center;
-    opacity: 0.85;
-    pointer-events: none;
-}
-
-/* Subtle laser scanline sweep */
-.blueprint-scanline {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
-    box-shadow: 0 0 20px var(--accent);
-    opacity: 0;
-    z-index: 4;
-    pointer-events: none;
-}
-
-.blueprint-scanline.active {
-    animation: scanlineSweep 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-@keyframes scanlineSweep {
-    0% { top: 0%; opacity: 0; }
-    15% { opacity: 0.9; }
-    85% { opacity: 0.9; }
-    100% { top: 100%; opacity: 0; }
+    display: block;
+    z-index: 1;
 }
 
 /* Structural corner tick crosshairs */
@@ -128,7 +97,10 @@ body {
     z-index: 3;
     pointer-events: none;
     user-select: none;
+    opacity: 0;
+    transition: opacity 0.4s ease 0.3s;
 }
+#loader.corners-in .blueprint-corner { opacity: 1; }
 .blueprint-corner.tl { top: 24px; left: 24px; }
 .blueprint-corner.tr { top: 24px; right: 24px; }
 .blueprint-corner.bl { bottom: 24px; left: 24px; }
@@ -154,13 +126,9 @@ body {
     transform: translate(-50%, -50%);
     z-index: 3;
     text-align: center;
-    opacity: 0;
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
     width: 90%;
     max-width: 600px;
-}
-.intro-center-logo.show {
-    opacity: 1;
 }
 
 .blueprint-tag {
@@ -171,6 +139,13 @@ body {
     color: rgba(255, 255, 255, 0.4);
     margin-bottom: 16px;
     font-weight: 600;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.blueprint-tag.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .intro-logo {
@@ -183,11 +158,25 @@ body {
     color: var(--text-white);
     text-shadow: 0 0 40px rgba(166, 255, 0, 0.2);
 }
-.intro-char, .intro-creative {
+
+/* Per-character intro assembly */
+.intro-char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(12px) scale(0.92);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    color: var(--text-white);
+}
+.intro-char.logo-one {
+    color: var(--text-white);
+}
+.intro-char.intro-creative {
     color: var(--accent);
 }
-.intro-m, .intro-one {
-    color: var(--text-white);
+.intro-char.assembled {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 .blueprint-status {
@@ -204,6 +193,13 @@ body {
     letter-spacing: 3px;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.7);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+}
+.blueprint-status.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .status-pulse {
@@ -219,7 +215,6 @@ body {
     0%, 100% { opacity: 0.4; transform: scale(0.8); }
     50% { opacity: 1; transform: scale(1.2); }
 }
-.intro-creative { color: var(--accent); }
 
 
 /* ===========================
@@ -3684,6 +3679,118 @@ body {
     }
     .trust-strip-divider {
         display: none;
+    }
+}
+
+/* ===========================
+   TRUST STRIP — Icon style
+   =========================== */
+.trust-strip-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--accent);
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+/* ===========================
+   VALUE PROP CARDS (redesigned)
+   =========================== */
+.about-full-desc {
+    margin-bottom: 36px;
+}
+
+.about-full-desc .about-description {
+    max-width: 700px;
+}
+
+.value-prop-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.value-prop-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 32px 28px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: default;
+}
+
+.value-prop-card.vp-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.value-prop-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(166, 255, 0, 0.35);
+    box-shadow: 0 24px 60px rgba(166, 255, 0, 0.10), 0 0 0 1px rgba(166, 255, 0, 0.08);
+}
+
+/* Blueprint accent line on top edge on hover */
+.value-prop-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+.value-prop-card:hover::before {
+    opacity: 1;
+}
+
+.value-prop-icon {
+    width: 56px;
+    height: 56px;
+    color: var(--accent);
+    margin-bottom: 20px;
+    opacity: 0.85;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.value-prop-card:hover .value-prop-icon {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(166, 255, 0, 0.5));
+}
+
+.value-prop-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.value-prop-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 10px;
+    letter-spacing: 0.3px;
+    font-style: italic;
+}
+
+.value-prop-desc {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    line-height: 1.65;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .value-prop-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .value-prop-card[data-vp="1"],
+    .value-prop-card[data-vp="2"] {
+        transition-delay: 0s;
     }
 }
 

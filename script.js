@@ -413,80 +413,112 @@ function initBlueprintCanvas() {
         const width = window.innerWidth;
         const height = window.innerHeight;
         const scrollY = window.scrollY || 0;
+        const t = (time || 0) * 0.001;
 
-        // Clear background to ultra-dark midnight black
+        // Clear background
         blueprintCtx.fillStyle = '#050505';
         blueprintCtx.fillRect(0, 0, width, height);
 
-        // 1. Soft Neon Green Ambient Glows behind conversion zones
-        const t = (time || 0) * 0.001;
-        const pulse1 = Math.sin(t * 0.8) * 0.015 + 0.045;
-        const pulse2 = Math.cos(t * 0.6) * 0.015 + 0.04;
+        // === AMBIENT GREEN GLOW — scrolls with the page ===
+        const glowCenterY = height * 0.38 - (scrollY * 0.12 % height);
+        const pulse1 = Math.sin(t * 0.7) * 0.018 + 0.045;
+        const pulse2 = Math.cos(t * 0.5) * 0.014 + 0.032;
 
-        // Glow 1: Hero / Brand Zone (Center)
-        let g1 = blueprintCtx.createRadialGradient(width * 0.5, height * 0.35, 10, width * 0.5, height * 0.35, width * 0.45);
+        let g1 = blueprintCtx.createRadialGradient(width * 0.5, glowCenterY, 10, width * 0.5, glowCenterY, width * 0.48);
         g1.addColorStop(0, `rgba(166, 255, 0, ${pulse1})`);
         g1.addColorStop(1, 'rgba(166, 255, 0, 0)');
         blueprintCtx.fillStyle = g1;
         blueprintCtx.fillRect(0, 0, width, height);
 
-        // Glow 2: Section Accent (Bottom Right)
-        let g2 = blueprintCtx.createRadialGradient(width * 0.8, height * 0.75, 10, width * 0.8, height * 0.75, width * 0.5);
+        let g2 = blueprintCtx.createRadialGradient(width * 0.82, height * 0.7, 10, width * 0.82, height * 0.7, width * 0.45);
         g2.addColorStop(0, `rgba(166, 255, 0, ${pulse2})`);
         g2.addColorStop(1, 'rgba(166, 255, 0, 0)');
         blueprintCtx.fillStyle = g2;
         blueprintCtx.fillRect(0, 0, width, height);
 
-        // 2. Blueprint Grid Lines
-        const majorGrid = 60;
-        const minorGrid = 15;
-        const offsetY = (scrollY * 0.08) % majorGrid;
+        // === THREE-LAYER PARALLAX GRID ===
+        const layers = [
+            { cell: 80,  alpha: 0.022, speed: 0.04 },  // deep background
+            { cell: 40,  alpha: 0.042, speed: 0.07 },  // mid
+            { cell: 16,  alpha: 0.014, speed: 0.12 }   // fine foreground
+        ];
 
-        // Minor grid lines (ultra faint)
-        blueprintCtx.strokeStyle = 'rgba(255, 255, 255, 0.018)';
-        blueprintCtx.lineWidth = 0.5;
-        blueprintCtx.beginPath();
+        layers.forEach(({ cell, alpha, speed }) => {
+            const off = (scrollY * speed) % cell;
+            blueprintCtx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+            blueprintCtx.lineWidth = alpha > 0.03 ? 1.0 : 0.5;
+            blueprintCtx.beginPath();
+            for (let x = 0; x < width + cell; x += cell) {
+                blueprintCtx.moveTo(x, 0);
+                blueprintCtx.lineTo(x, height);
+            }
+            for (let y = -off; y < height + cell; y += cell) {
+                blueprintCtx.moveTo(0, y);
+                blueprintCtx.lineTo(width, y);
+            }
+            blueprintCtx.stroke();
+        });
 
-        for (let x = 0; x < width; x += minorGrid) {
-            blueprintCtx.moveTo(x, 0);
-            blueprintCtx.lineTo(x, height);
-        }
-        for (let y = -offsetY; y < height; y += minorGrid) {
-            blueprintCtx.moveTo(0, y);
-            blueprintCtx.lineTo(width, y);
-        }
-        blueprintCtx.stroke();
+        // === ENGINEERING MARKS on major (40px) grid ===
+        const majorCell = 40;
+        const majorOff = (scrollY * 0.07) % majorCell;
+        const arm = 4;
+        const bracket = 5;
 
-        // Major grid lines (structural blueprint lines)
-        blueprintCtx.strokeStyle = 'rgba(255, 255, 255, 0.045)';
         blueprintCtx.lineWidth = 1.0;
-        blueprintCtx.beginPath();
 
-        for (let x = 0; x < width; x += majorGrid) {
-            blueprintCtx.moveTo(x, 0);
-            blueprintCtx.lineTo(x, height);
-        }
-        for (let y = -offsetY; y < height; y += majorGrid) {
-            blueprintCtx.moveTo(0, y);
-            blueprintCtx.lineTo(width, y);
-        }
-        blueprintCtx.stroke();
+        for (let xi = 0; xi * majorCell < width + majorCell; xi++) {
+            for (let yi = 0; yi * majorCell - majorOff < height + majorCell; yi++) {
+                const x = xi * majorCell;
+                const y = yi * majorCell - majorOff;
 
-        // Major Node Crosshairs (+)
-        blueprintCtx.strokeStyle = 'rgba(166, 255, 0, 0.25)';
-        blueprintCtx.lineWidth = 1.2;
-        blueprintCtx.beginPath();
-        const arm = 3;
+                // Every 2nd intersection: green + crosshair
+                if ((xi + yi) % 2 === 0) {
+                    blueprintCtx.strokeStyle = 'rgba(166, 255, 0, 0.22)';
+                    blueprintCtx.beginPath();
+                    blueprintCtx.moveTo(x - arm, y);
+                    blueprintCtx.lineTo(x + arm, y);
+                    blueprintCtx.moveTo(x, y - arm);
+                    blueprintCtx.lineTo(x, y + arm);
+                    blueprintCtx.stroke();
+                }
 
-        for (let x = majorGrid; x < width; x += majorGrid * 2) {
-            for (let y = majorGrid - offsetY; y < height; y += majorGrid * 2) {
-                blueprintCtx.moveTo(x - arm, y);
-                blueprintCtx.lineTo(x + arm, y);
-                blueprintCtx.moveTo(x, y - arm);
-                blueprintCtx.lineTo(x, y + arm);
+                // Every 4th intersection: corner bracket mark ┐
+                if (xi % 4 === 0 && yi % 4 === 0) {
+                    blueprintCtx.strokeStyle = 'rgba(166, 255, 0, 0.14)';
+                    blueprintCtx.beginPath();
+                    // top-right corner bracket shape
+                    blueprintCtx.moveTo(x + 2, y - bracket);
+                    blueprintCtx.lineTo(x + bracket, y - bracket);
+                    blueprintCtx.lineTo(x + bracket, y + 2);
+                    blueprintCtx.stroke();
+                }
+
+                // Every 6th col + row: dimension tick mark
+                if (xi % 6 === 3 && yi % 6 === 3) {
+                    blueprintCtx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+                    blueprintCtx.beginPath();
+                    // short perpendicular tick pair
+                    blueprintCtx.moveTo(x - 2, y + 8);
+                    blueprintCtx.lineTo(x + 2, y + 8);
+                    blueprintCtx.moveTo(x, y + 8);
+                    blueprintCtx.lineTo(x, y + 16);
+                    blueprintCtx.moveTo(x - 2, y + 16);
+                    blueprintCtx.lineTo(x + 2, y + 16);
+                    blueprintCtx.stroke();
+                }
             }
         }
-        blueprintCtx.stroke();
+
+        // === DARK VIGNETTE (edges) — focuses eye on center ===
+        const vignette = blueprintCtx.createRadialGradient(
+            width * 0.5, height * 0.5, height * 0.25,
+            width * 0.5, height * 0.5, height * 0.85
+        );
+        vignette.addColorStop(0, 'rgba(0,0,0,0)');
+        vignette.addColorStop(1, 'rgba(0,0,0,0.45)');
+        blueprintCtx.fillStyle = vignette;
+        blueprintCtx.fillRect(0, 0, width, height);
 
         blueprintAnimFrame = requestAnimationFrame(renderBlueprint);
     }
@@ -498,88 +530,224 @@ function initBlueprintCanvas() {
 // ======= NEW BLUEPRINT INTRO SEQUENCE =======
 function initIntro() {
     const loader = document.getElementById('loader');
-    const introCta = document.getElementById('introCta');
-    const introLogo = document.getElementById('introLogo');
+    const introCanvas = document.getElementById('intro-canvas');
     const statusText = document.getElementById('blueprintStatusText');
+    const blueprintTag = document.getElementById('introTag');
+    const blueprintStatus = document.getElementById('blueprintStatus');
+    const chars = document.querySelectorAll('#introLogo .intro-char');
 
-    // Initialize Blueprint background canvas across page
+    // Always init background canvas
     initBlueprintCanvas();
 
     if (!loader) {
         document.body.style.overflow = '';
         if (lenis) lenis.start();
         initGSAPAnimations();
+        initValuePropObserver();
         return;
     }
 
-    // Lock body scroll for intro
     document.body.style.overflow = 'hidden';
 
-    if (introLogo) {
-        introLogo.innerHTML = `
-            <span class="intro-m">M</span><span class="logo-one">1</span><span class="intro-creative">CREATIVE.</span>
-        `;
-        const m = introLogo.querySelector('.intro-m');
-        const one = introLogo.querySelector('.logo-one');
-        const creative = introLogo.querySelector('.intro-creative');
+    // === PHASE 1: Animate intro canvas — draw grid lines ===
+    if (introCanvas) {
+        const ctx = introCanvas.getContext('2d');
+        const W = window.innerWidth;
+        const H = window.innerHeight;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        introCanvas.width = W * dpr;
+        introCanvas.height = H * dpr;
+        introCanvas.style.width = W + 'px';
+        introCanvas.style.height = H + 'px';
+        ctx.scale(dpr, dpr);
 
-        if (m) {
-            m.style.opacity = '0';
-            m.style.transform = 'translateY(15px) scale(0.9)';
-            m.style.display = 'inline-block';
-            m.style.transition = 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        const cellMajor = 60;
+        const cellMinor = 15;
+        const centerX = W / 2;
+        const centerY = H / 2;
+
+        // State for progressive grid drawing
+        let gridProgress = 0; // 0→1
+        let gridDone = false;
+        let circuitProgress = 0; // 0→1, starts after grid
+        let circuitDone = false;
+        let introPhase = 'grid'; // 'grid' | 'circuit'
+
+        // Circuit trace: 3 L-shaped paths converging toward center
+        const circuits = [
+            [
+                { x: 0,  y: H * 0.3 }, { x: W * 0.3, y: H * 0.3 },
+                { x: W * 0.3, y: centerY }
+            ],
+            [
+                { x: W,  y: H * 0.6 }, { x: W * 0.7, y: H * 0.6 },
+                { x: W * 0.7, y: centerY }, { x: centerX + 80, y: centerY }
+            ],
+            [
+                { x: centerX * 0.4, y: 0 }, { x: centerX * 0.4, y: H * 0.4 },
+                { x: centerX - 80, y: centerY }
+            ]
+        ];
+
+        // Compute total length of each circuit path
+        function pathLen(pts) {
+            let l = 0;
+            for (let i = 1; i < pts.length; i++) {
+                l += Math.hypot(pts[i].x - pts[i-1].x, pts[i].y - pts[i-1].y);
+            }
+            return l;
         }
-        if (one) {
-            one.style.opacity = '0';
-            one.style.transform = 'translateY(15px) scale(0.9)';
-            one.style.display = 'inline-block';
-            one.style.transition = 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+
+        function drawCircuitAt(pts, t, color) {
+            const total = pathLen(pts);
+            const drawn = total * t;
+            let acc = 0;
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 1.5;
+            ctx.shadowColor = color;
+            ctx.shadowBlur = 8;
+            ctx.beginPath();
+            ctx.moveTo(pts[0].x, pts[0].y);
+            for (let i = 1; i < pts.length; i++) {
+                const segLen = Math.hypot(pts[i].x - pts[i-1].x, pts[i].y - pts[i-1].y);
+                if (acc + segLen <= drawn) {
+                    ctx.lineTo(pts[i].x, pts[i].y);
+                    acc += segLen;
+                } else {
+                    const rem = drawn - acc;
+                    const frac = rem / segLen;
+                    ctx.lineTo(
+                        pts[i-1].x + (pts[i].x - pts[i-1].x) * frac,
+                        pts[i-1].y + (pts[i].y - pts[i-1].y) * frac
+                    );
+                    break;
+                }
+            }
+            ctx.stroke();
+            ctx.shadowBlur = 0;
         }
-        if (creative) {
-            creative.style.opacity = '0';
-            creative.style.transform = 'translateY(15px) scale(0.9)';
-            creative.style.display = 'inline-block';
-            creative.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+
+        let startTime = null;
+        const gridDuration = 550;    // ms to draw grid
+        const circuitDelay = 50;     // pause between grid and circuit
+        const circuitDuration = 400; // ms for circuit traces
+
+        function animateIntroCanvas(now) {
+            if (!startTime) startTime = now;
+            const elapsed = now - startTime;
+
+            // Clear
+            ctx.fillStyle = '#050505';
+            ctx.fillRect(0, 0, W, H);
+
+            // Grid progress
+            gridProgress = Math.min(elapsed / gridDuration, 1);
+
+            // Minor grid (radiates from center outward via alpha progress)
+            ctx.strokeStyle = `rgba(255,255,255,${0.022 * gridProgress})`;
+            ctx.lineWidth = 0.5;
+            ctx.shadowBlur = 0;
+            ctx.beginPath();
+            for (let x = 0; x < W; x += cellMinor) { ctx.moveTo(x, 0); ctx.lineTo(x, H); }
+            for (let y = 0; y < H; y += cellMinor) { ctx.moveTo(0, y); ctx.lineTo(W, y); }
+            ctx.stroke();
+
+            // Major grid (draws lines extending from center)
+            const totalH = Math.ceil(W / cellMajor);
+            const totalV = Math.ceil(H / cellMajor);
+            const totalLines = totalH + totalV;
+            const linesDrawn = Math.floor(gridProgress * totalLines);
+
+            ctx.strokeStyle = `rgba(255,255,255,${0.065 * gridProgress})`;
+            ctx.lineWidth = 1.0;
+            ctx.beginPath();
+
+            let lineIdx = 0;
+            for (let x = 0; x < W; x += cellMajor) {
+                if (lineIdx < linesDrawn) { ctx.moveTo(x, 0); ctx.lineTo(x, H); }
+                lineIdx++;
+            }
+            for (let y = 0; y < H; y += cellMajor) {
+                if (lineIdx < linesDrawn) { ctx.moveTo(0, y); ctx.lineTo(W, y); }
+                lineIdx++;
+            }
+            ctx.stroke();
+
+            // Crosshairs at intersections
+            if (gridProgress > 0.5) {
+                const xhAlpha = (gridProgress - 0.5) * 2 * 0.25;
+                ctx.strokeStyle = `rgba(166,255,0,${xhAlpha})`;
+                ctx.lineWidth = 1.0;
+                const arm = 3;
+                ctx.beginPath();
+                for (let x = cellMajor; x < W; x += cellMajor * 2) {
+                    for (let y = cellMajor; y < H; y += cellMajor * 2) {
+                        ctx.moveTo(x - arm, y); ctx.lineTo(x + arm, y);
+                        ctx.moveTo(x, y - arm); ctx.lineTo(x, y + arm);
+                    }
+                }
+                ctx.stroke();
+            }
+
+            // Circuit traces phase
+            if (elapsed > gridDuration + circuitDelay) {
+                const circuitElapsed = elapsed - gridDuration - circuitDelay;
+                circuitProgress = Math.min(circuitElapsed / circuitDuration, 1);
+                const eased = 1 - Math.pow(1 - circuitProgress, 2);
+
+                circuits.forEach((pts, i) => {
+                    // Stagger each circuit by 80ms
+                    const staggerT = Math.max(0, Math.min(1, (circuitElapsed - i * 80) / circuitDuration));
+                    const easedT = 1 - Math.pow(1 - staggerT, 2);
+                    if (easedT > 0) {
+                        drawCircuitAt(pts, easedT, 'rgba(166,255,0,0.7)');
+                    }
+                });
+
+                if (circuitProgress >= 1) circuitDone = true;
+            }
+
+            if (!circuitDone || elapsed < gridDuration + circuitDelay + circuitDuration + 80) {
+                requestAnimationFrame(animateIntroCanvas);
+            }
         }
 
-        if (introCta) introCta.classList.add('show');
-
-        // Step 1: M1 structure resolves white
-        setTimeout(() => {
-            if (statusText) statusText.textContent = 'BUILDING STRUCTURE...';
-            if (m) { m.style.opacity = '1'; m.style.transform = 'translateY(0) scale(1)'; }
-            if (one) { one.style.opacity = '1'; one.style.transform = 'translateY(0) scale(1)'; }
-        }, 150);
-
-        // Step 2: CREATIVE compiles in neon green
-        setTimeout(() => {
-            if (statusText) statusText.textContent = 'COMPILING DESIGN SYSTEM...';
-            if (creative) { creative.style.opacity = '1'; creative.style.transform = 'translateY(0) scale(1)'; }
-        }, 500);
-
-        // Step 3: Terminal scanline sweep
-        setTimeout(() => {
-            if (statusText) statusText.textContent = 'BUILT WITH PRECISION';
-            const scanline = document.querySelector('.blueprint-scanline');
-            if (scanline) scanline.classList.add('active');
-        }, 900);
-
-        // Step 4: Dissolve intro and reveal Hero section
-        setTimeout(() => {
-            loader.classList.add('exit');
-            document.body.style.overflow = '';
-            if (lenis) lenis.start();
-            initGSAPAnimations();
-        }, 1500);
-
-    } else {
-        setTimeout(() => {
-            loader.classList.add('exit');
-            document.body.style.overflow = '';
-            if (lenis) lenis.start();
-            initGSAPAnimations();
-        }, 1200);
+        requestAnimationFrame(animateIntroCanvas);
     }
+
+    // === PHASE 2: Show tag + status ===
+    setTimeout(() => {
+        loader.classList.add('corners-in');
+        if (blueprintTag) blueprintTag.classList.add('visible');
+    }, 200);
+
+    setTimeout(() => {
+        if (blueprintStatus) blueprintStatus.classList.add('visible');
+        if (statusText) statusText.textContent = 'BUILDING STRUCTURE...';
+    }, 350);
+
+    // === PHASE 3: Character-by-character assembly ===
+    setTimeout(() => {
+        if (statusText) statusText.textContent = 'COMPILING DESIGN SYSTEM...';
+        chars.forEach((char, i) => {
+            setTimeout(() => {
+                char.classList.add('assembled');
+            }, i * 55);
+        });
+    }, 600);
+
+    // === PHASE 4: Status update + exit ===
+    setTimeout(() => {
+        if (statusText) statusText.textContent = 'BUILT WITH PRECISION';
+    }, 1200);
+
+    setTimeout(() => {
+        loader.classList.add('exit');
+        document.body.style.overflow = '';
+        if (lenis) lenis.start();
+        initGSAPAnimations();
+        initValuePropObserver();
+    }, 1850);
 }
 
 // ======= SCROLL HANDLING =======
@@ -956,6 +1124,23 @@ function handleResize() {
     }
 }
 
+// ======= VALUE PROP SCROLL REVEAL (IntersectionObserver) =======
+function initValuePropObserver() {
+    const cards = document.querySelectorAll('.value-prop-card');
+    if (!cards.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('vp-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    cards.forEach(card => observer.observe(card));
+}
+
 // ======= GSAP SCROLL ANIMATIONS =======
 function initGSAPAnimations() {
     gsap.registerPlugin(ScrollTrigger);
@@ -1023,20 +1208,20 @@ function initGSAPAnimations() {
         }
     );
 
-    // Staggered About stat cards (flips flat from side)
-    gsap.fromTo('.stat-card',
-        { opacity: 0, x: 60, rotationY: -15 },
+    // Staggered About value-prop cards (new blueprint cards)
+    gsap.fromTo('.value-prop-card',
+        { opacity: 0, y: 50, rotationY: -8 },
         {
             scrollTrigger: {
-                trigger: '.about-right',
+                trigger: '.value-prop-grid',
                 start: 'top 85%',
                 toggleActions: 'play none none reverse'
             },
             opacity: 1,
-            x: 0,
+            y: 0,
             rotationY: 0,
-            duration: 1.2,
-            stagger: 0.1,
+            duration: 1.0,
+            stagger: 0.12,
             ease: 'power4.out'
         }
     );
@@ -1169,7 +1354,7 @@ function initHeroScroll() {
 
 // ======= TILT EFFECT ON SERVICE CARDS =======
 function initTiltEffects() {
-    const cards = document.querySelectorAll('.service-card, .work-item, .pricing-card, .stat-card');
+    const cards = document.querySelectorAll('.service-card, .work-item, .pricing-card, .stat-card, .value-prop-card');
     
     cards.forEach(card => {
         card.classList.add('spotlight-card');

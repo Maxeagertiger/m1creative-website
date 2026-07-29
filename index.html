@@ -21,22 +21,22 @@
 
     <!-- Blueprint Intro Sequence -->
     <div id="loader">
-        <div class="blueprint-grid-overlay"></div>
-        <div class="blueprint-scanline"></div>
+        <!-- Dynamic grid construction canvas -->
+        <canvas id="intro-canvas"></canvas>
         <div class="blueprint-corner tl">+</div>
         <div class="blueprint-corner tr">+</div>
         <div class="blueprint-corner bl">+</div>
         <div class="blueprint-corner br">+</div>
 
         <!-- Centered brand logo + compilation status -->
-        <div class="intro-center-logo show" id="introCta">
-            <div class="blueprint-tag">[ SYSTEM // ENGINEERING CANVAS ]</div>
+        <div class="intro-center-logo" id="introCta">
+            <div class="blueprint-tag" id="introTag">[ SYSTEM // ENGINEERING CANVAS ]</div>
             <div class="intro-logo" id="introLogo">
-                <span class="intro-m">M</span><span class="logo-one">1</span><span class="intro-creative">CREATIVE.</span>
+                <span class="intro-char" data-char="M">M</span><span class="intro-char logo-one" data-char="1">1</span><span class="intro-char intro-creative" data-char="C">C</span><span class="intro-char intro-creative" data-char="R">R</span><span class="intro-char intro-creative" data-char="E">E</span><span class="intro-char intro-creative" data-char="A">A</span><span class="intro-char intro-creative" data-char="T">T</span><span class="intro-char intro-creative" data-char="I">I</span><span class="intro-char intro-creative" data-char="V">V</span><span class="intro-char intro-creative" data-char="E">E</span><span class="intro-char intro-creative" data-char=".">.</span>
             </div>
             <div class="blueprint-status" id="blueprintStatus">
                 <span class="status-pulse"></span>
-                <span id="blueprintStatusText">BUILDING STRUCTURE...</span>
+                <span id="blueprintStatusText">INITIALISING...</span>
             </div>
         </div>
     </div>
@@ -92,16 +92,18 @@
                 <!-- Section 2: Trust Strip (directly under hero) -->
                 <div class="trust-strip">
                     <div class="trust-strip-item">
-                        <span class="trust-strip-star">★</span>
-                        <strong>5.0★</strong> Average Rating
+                        <svg class="trust-strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        <strong>5-Day</strong> Build Turnaround
                     </div>
                     <div class="trust-strip-divider"></div>
                     <div class="trust-strip-item">
-                        <strong>100%</strong> Client Satisfaction
+                        <svg class="trust-strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 1 0 20"></path><line x1="12" y1="2" x2="12" y2="22"></line></svg>
+                        <strong>50/50</strong> Payment — No Upfront Risk
                     </div>
                     <div class="trust-strip-divider"></div>
                     <div class="trust-strip-item">
-                        <strong>24hr</strong> Response Time
+                        <svg class="trust-strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <strong>24hr</strong> Response Guarantee
                     </div>
                 </div>
 
@@ -121,24 +123,74 @@
                     <span class="word"><em>by design</em></span>
                 </h2>
                 
-                <!-- 3 Value Props -->
-                <div class="about-grid" style="margin-bottom: 50px;">
-                    <div class="about-left">
-                        <p class="about-description">At M1Creative, we engineer high-performance custom websites designed strategically to turn casual visitors into loyal clients. No templates, no bloat.</p>
+                <!-- 3 Value Props —— redesigned blueprint cards -->
+                <div class="about-full-desc">
+                    <p class="about-description">At M1Creative, we engineer high-performance custom websites designed strategically to turn casual visitors into loyal clients. No templates, no bloat.</p>
+                </div>
+                <div class="value-prop-grid" style="margin-bottom: 50px;">
+                    <!-- Card 1: Responsive Design -->
+                    <div class="value-prop-card" data-vp="0">
+                        <div class="value-prop-icon">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <!-- Desktop frame -->
+                                <rect x="4" y="8" width="28" height="20" rx="2"/>
+                                <line x1="4" y1="34" x2="32" y2="34"/>
+                                <line x1="15" y1="34" x2="15" y2="38"/>
+                                <line x1="21" y1="34" x2="21" y2="38"/>
+                                <line x1="12" y1="38" x2="24" y2="38"/>
+                                <!-- Tablet -->
+                                <rect x="34" y="12" width="10" height="14" rx="1.5"/>
+                                <line x1="39" y1="24" x2="39" y2="26"/>
+                                <!-- Phone -->
+                                <rect x="34" y="28" width="7" height="12" rx="1"/>
+                                <line x1="37.5" y1="38" x2="37.5" y2="39"/>
+                            </svg>
+                        </div>
+                        <h3 class="value-prop-title">Modern Responsive Design</h3>
+                        <p class="value-prop-desc">Looks sharp and works perfectly on every screen — from widescreen to pocket.</p>
                     </div>
-                    <div class="about-right">
-                        <div class="stat-card" style="padding: 16px;">
-                            <div class="stat-label" style="font-size: 0.95rem;">Modern Responsive Design</div>
-                            <p class="stat-desc" style="font-size: 0.8rem;">Looks perfect on every screen size.</p>
+
+                    <!-- Card 2: Mobile Optimized -->
+                    <div class="value-prop-card" data-vp="1">
+                        <div class="value-prop-icon">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <!-- Phone outline -->
+                                <rect x="14" y="6" width="20" height="36" rx="3"/>
+                                <line x1="14" y1="12" x2="34" y2="12"/>
+                                <line x1="14" y1="36" x2="34" y2="36"/>
+                                <circle cx="24" cy="40" r="1"/>
+                                <!-- Signal bars -->
+                                <line x1="6" y1="22" x2="6" y2="24"/>
+                                <line x1="9" y1="19" x2="9" y2="24"/>
+                                <line x1="12" y1="16" x2="12" y2="24"/>
+                                <!-- Touch pointer -->
+                                <path d="M28 26 l4 6 l1.5-1 l-2.5-4 l3.5 0" stroke-linejoin="round"/>
+                                <path d="M22 18 l0 12" stroke-width="1.2"/>
+                                <path d="M25 20 l0 10" stroke-width="1.2"/>
+                                <path d="M28 22 l0 8" stroke-width="1.2"/>
+                            </svg>
                         </div>
-                        <div class="stat-card" style="padding: 16px;">
-                            <div class="stat-label" style="font-size: 0.95rem;">Mobile Optimized</div>
-                            <p class="stat-desc" style="font-size: 0.8rem;">Built mobile-first for 60%+ mobile web users.</p>
+                        <h3 class="value-prop-title">Mobile Optimized</h3>
+                        <p class="value-prop-desc">Built mobile-first for the 65%+ of visitors browsing on their phones.</p>
+                    </div>
+
+                    <!-- Card 3: Built To Convert -->
+                    <div class="value-prop-card" data-vp="2">
+                        <div class="value-prop-icon">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <!-- Wide top (visitors) -->
+                                <path d="M8 10 L40 10 L34 18 L14 18 Z"/>
+                                <!-- Mid funnel -->
+                                <path d="M14 18 L34 18 L30 26 L18 26 Z"/>
+                                <!-- Narrow bottom (leads) -->
+                                <path d="M18 26 L30 26 L27 34 L21 34 Z"/>
+                                <!-- Arrow out -->
+                                <line x1="24" y1="34" x2="24" y2="40"/>
+                                <polyline points="20 37 24 41 28 37"/>
+                            </svg>
                         </div>
-                        <div class="stat-card" style="padding: 16px;">
-                            <div class="stat-label" style="font-size: 0.95rem;">Built To Convert</div>
-                            <p class="stat-desc" style="font-size: 0.8rem;">Engineered strategically to capture leads.</p>
-                        </div>
+                        <h3 class="value-prop-title">Built To Convert</h3>
+                        <p class="value-prop-desc">Every element placed to guide visitors toward your most valuable action.</p>
                     </div>
                 </div>
 
