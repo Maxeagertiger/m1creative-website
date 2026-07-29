@@ -1215,43 +1215,7 @@ function initFAQ() {
 }
 
 // ======= REVIEWS INFINITE SCROLL & REVIEW CREATOR =======
-const defaultReviews = [
-    {
-        name: "Thabo Nkosi",
-        role: "Founder, Apex Legal Group",
-        stars: 5,
-        text: "M1Creative completely transformed our online presence. Within weeks of launching our new site, we saw a 40% increase in enquiries. Michael truly understands how to build websites that convert.",
-        avatar: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=150&h=150&fit=crop&q=80"
-    },
-    {
-        name: "Lerato Mokoena",
-        role: "Owner, Veloura Beauty Lounge",
-        stars: 5,
-        text: "From the first consultation to final launch, the experience was seamless. Our salon website looks absolutely stunning and our bookings have doubled since going live. Worth every cent.",
-        avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=150&h=150&fit=crop&q=80"
-    },
-    {
-        name: "Jason van der Walt",
-        role: "Director, Prisma",
-        stars: 5,
-        text: "I was hesitant about investing in a professional website, but M1Creative made it so easy. The monthly retainer means I don't have to worry about hosting or updates — it's all taken care of.",
-        avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&q=80"
-    },
-    {
-        name: "Sofia Chabalala",
-        role: "Manager, Luna Bistro",
-        stars: 5,
-        text: "Our restaurant needed a website that felt as premium as our dining experience. M1Creative delivered exactly that — moody, elegant, and our online reservations jumped by 60% in the first month.",
-        avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&q=80"
-    },
-    {
-        name: "Kyle Pillay",
-        role: "CEO, Stellar Flight",
-        stars: 5,
-        text: "The attention to detail is unmatched. They didn't just build us a website — they built us a brand experience. Our competitors are now asking who designed our site. Highly recommend.",
-        avatar: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?w=150&h=150&fit=crop&q=80"
-    }
-];
+const defaultReviews = [];
 
 function initReviews() {
     const track = document.querySelector('.reviews-track');
@@ -1596,10 +1560,10 @@ function initCaseStudies() {
     
     const caseStudies = {
         veloura: {
-            title: "VELOURA — Beauty Lounge",
-            category: "Beauty & Wellness",
-            problem: "Veloura struggled to attract high-end, premium salon bookings online. Their previous website was slow, felt generic, and lacked the visual refinement required to appeal to luxury spa customers looking for an elite wellness experience.",
-            solution: "We designed and engineered an elegant dark-mauve landing page centered around custom typography, responsive galleries, and seamless page loading. An upscale vertical-slide preloader was created to mirror the calming transition from a busy day to a luxury spa treatment.",
+            title: "VELOURA — Beauty Lounge (Concept Build)",
+            category: "Beauty & Wellness · CONCEPT BUILD",
+            problem: "Concept Challenge: Demonstrates how a luxury beauty & spa lounge can elevate online conversions. Addresses typical industry friction like slow load times, generic templates, and clunky mobile menu navigation.",
+            solution: "What This Concept Demonstrates: We designed and engineered an elegant dark-mauve landing page centered around custom typography, responsive galleries, and seamless page loading. Features a bespoke curtain slide-up entrance preloader.",
             features: [
                 "Luxury visual design system (mauve HSL tokens)",
                 "Bespoke curtain slide-up entrance preloader",
@@ -1610,10 +1574,10 @@ function initCaseStudies() {
             url: "clients/veloura-beauty-lounge/index.html"
         },
         apex: {
-            title: "Apex Legal — Corporate Law",
-            category: "Legal & Corporate",
-            problem: "Corporate law firms often feel impersonal, hard to navigate, and intimidating to prospective clients. Apex faced low conversion rates on consultations due to cluttered site design, a lack of clear navigation hierarchies, and generic branding.",
-            solution: "We engineered a commanding, sophisticated digital home in gold and navy. An interactive preloader draws a precise vector gold crest on startup to build instant authority. Navigation was streamlined to guide clients directly to booking a consultation, paired with a custom FAQ accordion.",
+            title: "Apex Legal — Corporate Law (Concept Build)",
+            category: "Legal & Corporate · CONCEPT BUILD",
+            problem: "Concept Challenge: Demonstrates how high-end corporate law firms can establish immediate digital authority. Overcomes common legal website drawbacks like intimidating clutter and confusing navigation hierarchies.",
+            solution: "What This Concept Demonstrates: We engineered a commanding, sophisticated digital home in gold and navy. Features an interactive vector gold crest preloader, streamlined consultation booking flows, and an accessible FAQ panel.",
             features: [
                 "Self-drawing gold vector emblem preloader",
                 "Responsive lawyer profiles with interactive tilt effects",
@@ -1624,10 +1588,10 @@ function initCaseStudies() {
             url: "clients/apex-legal/index.html"
         },
         luna: {
-            title: "Luna Bistro — Fine Dining",
-            category: "Food & Dining",
-            problem: "Luna Bistro needed to showcase their atmosphere and premium dishes to convert digital visitors into table reservations. Their previous mobile layout crashed when viewing menus, and a lack of unified branding led to high customer drop-offs.",
-            solution: "We built a theatrical split-curtain preloader featuring a self-drawing gold crescent moon and stars. Created fully responsive tabbed gallery and menu filtering systems to explore dishes and interiors, integrated Google Maps, and built a custom table booking form validation pipeline.",
+            title: "Luna Bistro — Fine Dining (Concept Build)",
+            category: "Food & Dining · CONCEPT BUILD",
+            problem: "Concept Challenge: Demonstrates how fine-dining establishments can convert online website visitors into table reservations. Solves common mobile menu crashes and disjointed branding.",
+            solution: "What This Concept Demonstrates: We built a theatrical split-curtain preloader featuring a self-drawing gold crescent moon. Includes tabbed menu filters, high-resolution interior galleries, and custom table reservation workflows.",
             features: [
                 "Theatrical top/bottom curtain panels with SVG moon drawing preloader",
                 "Deduplicated tabbed category filters for both menus and photo galleries",
@@ -1638,10 +1602,10 @@ function initCaseStudies() {
             url: "clients/luna-bistro/index.html"
         },
         stellar: {
-            title: "Stellar Flight — Space Dashboard",
-            category: "Technology",
-            problem: "Space travel concepts require building intense visual excitement and showing engineering excellence. Standard corporate website templates fail to convey the scale, high performance, and awe of future cosmic tourism.",
-            solution: "We designed a futuristic space booking dashboard. Implemented a fully interactive WebGL space field that shifts and revolves dynamically based on the visitor's scroll, paired with glassmorphic cards, telemetry dashboards, and neon borders.",
+            title: "Stellar Flight — Space Dashboard (Concept Build)",
+            category: "Technology · CONCEPT BUILD",
+            problem: "Concept Challenge: Demonstrates how futuristic tech concepts and space travel platforms can create intense visual engagement without sacrificing performance or usability.",
+            solution: "What This Concept Demonstrates: We designed a futuristic space travel dashboard featuring an interactive WebGL space particle field, scroll-tied telemetry panels, glassmorphic cards, and orbital flight booking forms.",
             features: [
                 "Dynamic WebGL Three.js space particle simulation",
                 "Futuristic glassmorphic panels displaying orbital telemetry",
@@ -1652,10 +1616,10 @@ function initCaseStudies() {
             url: "clients/stellar-flight/index.html"
         },
         prisma: {
-            title: "Prisma — Cinematic Studio",
-            category: "Film & Creative",
-            problem: "Avant-garde filmmakers need a digital canvas that reflects their creative authority without distracting from their videos. A standard grid template felt too plain and failed to capture their artistic voice.",
-            solution: "We created a minimalist, high-contrast creative studio centered on a rotating WebGL 3D glass prism. Built fluid scroll-tied animation triggers, fullscreen video lightboxes, and a sleek layout showing their award-winning documentaries.",
+            title: "Prisma — Cinematic Studio (Concept Build)",
+            category: "Film & Creative · CONCEPT BUILD",
+            problem: "Concept Challenge: Demonstrates a digital portfolio canvas for avant-garde film directors and creative production studios that highlights video work without visual distraction.",
+            solution: "What This Concept Demonstrates: We created a minimalist, high-contrast creative studio centered on a rotating WebGL 3D glass prism. Built fluid scroll-tied animation triggers and fullscreen video lightboxes.",
             features: [
                 "Custom 3D WebGL rotating glass prism lens rendering",
                 "High-contrast, brutalist design token typography",
@@ -1666,10 +1630,10 @@ function initCaseStudies() {
             url: "clients/warm-clean-visions/index.html"
         },
         nhm: {
-            title: "Bone x Epoch — Natural History Museum",
-            category: "Culture & Heritage",
-            problem: "National museums often struggle with outdated web presence that fails to convey the grandeur of ancient heritage artifacts and interactive online ticket bookings to international and local visitors.",
-            solution: "We engineered a deep dark-velvet and gold museum portal featuring a self-drawing crest preloader, 3D digital artifact vaults, interactive exhibit category filtering, and online ZAR ticket reservation workflows.",
+            title: "Bone x Epoch — Natural History Museum (Concept Build)",
+            category: "Culture & Heritage · CONCEPT BUILD",
+            problem: "Concept Challenge: Demonstrates how national museums and cultural institutions can modernize their web presence to drive international and local exhibition ticket sales.",
+            solution: "What This Concept Demonstrates: We engineered a deep dark-velvet and gold museum portal featuring a self-drawing crest preloader, 3D digital artifact vaults, interactive exhibit filters, and online ticket booking UI.",
             features: [
                 "Deep obsidian & gold heritage aesthetic design system",
                 "Self-drawing SVG museum crest entrance preloader",
@@ -1680,10 +1644,10 @@ function initCaseStudies() {
             url: "clients/nhm-museum/index.html"
         },
         ghostweave: {
-            title: "Ghostweave — Cyber Haute Couture Atelier",
-            category: "Fashion & Luxury",
-            problem: "High-end fashion ateliers need a digital home that radiates ultra-luxury, exclusivity, and architectural precision, while making private fitting consultations seamless for VIP clientele.",
-            solution: "We created a cyber-luxury editorial platform in Rosebank, Johannesburg with glowing neon crimson accents, high-fashion typography, interactive runway lookbooks, and private fitting scheduler.",
+            title: "Ghostweave — Cyber Haute Couture (Concept Build)",
+            category: "Fashion & Luxury · CONCEPT BUILD",
+            problem: "Concept Challenge: Demonstrates how high-end cyber luxury fashion ateliers can showcase seasonal runway collections and manage private fitting consultation requests.",
+            solution: "What This Concept Demonstrates: We created a cyber-luxury editorial platform with glowing neon crimson accents, high-fashion typography, interactive lookbooks, and private consultation scheduling.",
             features: [
                 "Cyber-luxury dark editorial aesthetics with Syne typography",
                 "Interactive SS26 runway collection filters & high-fashion lookbook",
@@ -1694,10 +1658,10 @@ function initCaseStudies() {
             url: "clients/prmpt-fashion/index.html"
         },
         ghostweaver: {
-            title: "Ghostweave — Cyber Haute Couture Atelier",
-            category: "Fashion & Luxury",
-            problem: "High-end fashion ateliers need a digital home that radiates ultra-luxury, exclusivity, and architectural precision, while making private fitting consultations seamless for VIP clientele.",
-            solution: "We created a cyber-luxury editorial platform in Rosebank, Johannesburg with glowing neon crimson accents, high-fashion typography, interactive runway lookbooks, and private fitting scheduler.",
+            title: "Ghostweave — Cyber Haute Couture (Concept Build)",
+            category: "Fashion & Luxury · CONCEPT BUILD",
+            problem: "Concept Challenge: Demonstrates how high-end cyber luxury fashion ateliers can showcase seasonal runway collections and manage private fitting consultation requests.",
+            solution: "What This Concept Demonstrates: We created a cyber-luxury editorial platform with glowing neon crimson accents, high-fashion typography, interactive lookbooks, and private consultation scheduling.",
             features: [
                 "Cyber-luxury dark editorial aesthetics with Syne typography",
                 "Interactive SS26 runway collection filters & high-fashion lookbook",
@@ -1708,10 +1672,10 @@ function initCaseStudies() {
             url: "clients/prmpt-fashion/index.html"
         },
         prmpt: {
-            title: "Ghostweave — Cyber Haute Couture Atelier",
-            category: "Fashion & Luxury",
-            problem: "High-end fashion ateliers need a digital home that radiates ultra-luxury, exclusivity, and architectural precision, while making private fitting consultations seamless for VIP clientele.",
-            solution: "We created a cyber-luxury editorial platform in Rosebank, Johannesburg with glowing neon crimson accents, high-fashion typography, interactive runway lookbooks, and private fitting scheduler.",
+            title: "Ghostweave — Cyber Haute Couture (Concept Build)",
+            category: "Fashion & Luxury · CONCEPT BUILD",
+            problem: "Concept Challenge: Demonstrates how high-end cyber luxury fashion ateliers can showcase seasonal runway collections and manage private fitting consultation requests.",
+            solution: "What This Concept Demonstrates: We created a cyber-luxury editorial platform with glowing neon crimson accents, high-fashion typography, interactive lookbooks, and private consultation scheduling.",
             features: [
                 "Cyber-luxury dark editorial aesthetics with Syne typography",
                 "Interactive SS26 runway collection filters & high-fashion lookbook",

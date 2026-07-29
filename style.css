@@ -3963,9 +3963,135 @@ body {
     transition: transform 0.3s ease, background 0.3s ease;
 }
 
-.section-view-all-btn:hover .btn-arrow {
-    transform: translateX(4px);
-    background: rgba(0, 0, 0, 0.25);
+/* ===========================
+   CONCEPT BUILD & DEMO LABELS
+   =========================== */
+.concept-ribbon {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 5;
+    background: rgba(5, 5, 5, 0.9);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(166, 255, 0, 0.4);
+    color: var(--accent);
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 4px 10px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.concept-badge {
+    display: inline-block;
+    padding: 2px 7px;
+    margin-left: 8px;
+    background: rgba(166, 255, 0, 0.12);
+    border: 1px solid rgba(166, 255, 0, 0.35);
+    border-radius: 4px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--accent);
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+/* ===========================
+   WHY WORK WITH US (HONEST TRUST GRID)
+   =========================== */
+.trust-guarantee-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 40px 0;
+}
+
+@media (max-width: 768px) {
+    .trust-guarantee-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.trust-guarantee-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 32px 28px;
+    backdrop-filter: blur(12px);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.trust-guarantee-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+}
+
+.trust-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(166, 255, 0, 0.1);
+    border: 1px solid rgba(166, 255, 0, 0.25);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.trust-guarantee-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text-white);
+    margin-bottom: 10px;
+}
+
+.trust-guarantee-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+.trust-section-subtitle {
+    text-align: center;
+    font-size: 1.05rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 10px auto 30px auto;
+}
+
+/* Honest Review Notice & Button */
+.honest-review-notice {
+    text-align: center;
+    margin-top: 40px;
+    padding: 28px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+}
+
+.honest-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(166, 255, 0, 0.15);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+}
+
+.honest-review-notice p {
+    font-size: 0.95rem;
+    color: var(--text-white);
+    margin-bottom: 20px;
+    font-weight: 500;
 }
 
 
