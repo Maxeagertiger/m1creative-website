@@ -1642,48 +1642,6 @@ function initCaseStudies() {
             ],
             tech: "HTML5, CSS Custom Variables, Vanilla ES6 JS, SVG Path Animations",
             url: "clients/nhm-museum/index.html"
-        },
-        ghostweave: {
-            title: "Ghostweave — Cyber Haute Couture (Concept Build)",
-            category: "Fashion & Luxury · CONCEPT BUILD",
-            problem: "Concept Challenge: Demonstrates how high-end cyber luxury fashion ateliers can showcase seasonal runway collections and manage private fitting consultation requests.",
-            solution: "What This Concept Demonstrates: We created a cyber-luxury editorial platform with glowing neon crimson accents, high-fashion typography, interactive lookbooks, and private consultation scheduling.",
-            features: [
-                "Cyber-luxury dark editorial aesthetics with Syne typography",
-                "Interactive SS26 runway collection filters & high-fashion lookbook",
-                "Rosebank bespoke private fitting consultation scheduler",
-                "Fully mobile-optimized touch-first luxury layout"
-            ],
-            tech: "React 19, Vite, Tailwind CSS, Lucide Icons",
-            url: "clients/prmpt-fashion/index.html"
-        },
-        ghostweaver: {
-            title: "Ghostweave — Cyber Haute Couture (Concept Build)",
-            category: "Fashion & Luxury · CONCEPT BUILD",
-            problem: "Concept Challenge: Demonstrates how high-end cyber luxury fashion ateliers can showcase seasonal runway collections and manage private fitting consultation requests.",
-            solution: "What This Concept Demonstrates: We created a cyber-luxury editorial platform with glowing neon crimson accents, high-fashion typography, interactive lookbooks, and private consultation scheduling.",
-            features: [
-                "Cyber-luxury dark editorial aesthetics with Syne typography",
-                "Interactive SS26 runway collection filters & high-fashion lookbook",
-                "Rosebank bespoke private fitting consultation scheduler",
-                "Fully mobile-optimized touch-first luxury layout"
-            ],
-            tech: "React 19, Vite, Tailwind CSS, Lucide Icons",
-            url: "clients/prmpt-fashion/index.html"
-        },
-        prmpt: {
-            title: "Ghostweave — Cyber Haute Couture (Concept Build)",
-            category: "Fashion & Luxury · CONCEPT BUILD",
-            problem: "Concept Challenge: Demonstrates how high-end cyber luxury fashion ateliers can showcase seasonal runway collections and manage private fitting consultation requests.",
-            solution: "What This Concept Demonstrates: We created a cyber-luxury editorial platform with glowing neon crimson accents, high-fashion typography, interactive lookbooks, and private consultation scheduling.",
-            features: [
-                "Cyber-luxury dark editorial aesthetics with Syne typography",
-                "Interactive SS26 runway collection filters & high-fashion lookbook",
-                "Rosebank bespoke private fitting consultation scheduler",
-                "Fully mobile-optimized touch-first luxury layout"
-            ],
-            tech: "React 19, Vite, Tailwind CSS, Lucide Icons",
-            url: "clients/prmpt-fashion/index.html"
         }
     };
     
