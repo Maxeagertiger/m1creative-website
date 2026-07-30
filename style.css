@@ -4565,21 +4565,31 @@ body {
     background: rgba(255, 255, 255, 0.06);
 }
 
-.built-on-item svg,
-.built-on-item img {
-    max-width: 110px;
-    max-height: 36px;
-    width: auto;
-    height: auto;
-    opacity: 0.6;
-    filter: grayscale(100%) brightness(2);
-    transition: opacity 0.35s ease, filter 0.35s ease;
+.built-on-item svg {
+    width: 36px;
+    height: 36px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.35s ease, filter 0.35s ease;
 }
 
-.built-on-item:hover svg,
-.built-on-item:hover img {
-    opacity: 1;
-    filter: grayscale(0%) brightness(1);
+.built-on-item:hover svg {
+    color: var(--text-white);
+    filter: drop-shadow(0 0 8px rgba(166, 255, 0, 0.4));
+}
+
+.built-on-brand-text {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.75);
+    text-transform: uppercase;
+    transition: color 0.35s ease, text-shadow 0.35s ease;
+}
+
+.built-on-item:hover .built-on-brand-text {
+    color: var(--text-white);
+    text-shadow: 0 0 12px rgba(166, 255, 0, 0.4);
 }
 
 .built-on-caption {
@@ -4630,12 +4640,16 @@ body {
         height: 68px;
         padding: 14px 20px;
     }
-    .built-on-item svg,
-    .built-on-item img {
-        max-width: 90px;
-        max-height: 30px;
+    .built-on-item svg {
+        width: 32px;
+        height: 32px;
+    }
+    .built-on-brand-text {
+        font-size: 0.95rem;
+        letter-spacing: 1.5px;
     }
 }
+
 
 
 
