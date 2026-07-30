@@ -1058,7 +1058,11 @@ body {
     height: 275px;
     flex-shrink: 0;
     position: relative;
-    background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.05) 0%, rgba(8, 9, 13, 0.98) 100%);
+    background: 
+        radial-gradient(circle at 50% 40%, rgba(166, 255, 0, 0.05) 0%, rgba(18, 21, 30, 0.95) 60%, rgba(7, 8, 12, 1) 100%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 20px 20px, 20px 20px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -1084,11 +1088,11 @@ body {
     width: 100%;
     padding-top: 62.5%; /* 16:10 aspect ratio */
     background: #000;
-    border: 2px solid #282832;
+    border: 3px solid #1a1b22;
     border-bottom: none;
     border-radius: 12px 12px 0 0;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.14), inset 0 0 0 1px rgba(0, 0, 0, 0.8);
 }
 
 /* MacBook Camera Notch */
@@ -1097,9 +1101,9 @@ body {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 50px;
+    width: 52px;
     height: 9px;
-    background: #0a0a0e;
+    background: #000;
     border-radius: 0 0 5px 5px;
     z-index: 10;
     display: flex;
@@ -1111,7 +1115,7 @@ body {
 .macbook-camera {
     width: 3px;
     height: 3px;
-    background: #181822;
+    background: #111218;
     border-radius: 50%;
 }
 
@@ -1120,15 +1124,16 @@ body {
     height: 2px;
     background: var(--accent);
     border-radius: 50%;
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 /* MacBook Viewport Image */
 .macbook-viewport {
     position: absolute;
-    top: 0; left: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     width: 100%; height: 100%;
     overflow: hidden;
+    background: #000;
 }
 
 .macbook-img {
@@ -1137,6 +1142,8 @@ body {
     object-fit: cover;
     object-position: top center;
     display: block;
+    border: none;
+    outline: none;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1144,7 +1151,7 @@ body {
 .macbook-reflection {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.015) 40%, transparent 60%);
+    background: linear-gradient(125deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 32%, transparent 55%, rgba(255,255,255,0.015) 100%);
     pointer-events: none;
     z-index: 5;
 }
@@ -1154,12 +1161,12 @@ body {
     position: relative;
     width: 114%;
     left: -7%;
-    height: 9px;
-    background: linear-gradient(180deg, #2d2d38 0%, #17171d 100%);
+    height: 10px;
+    background: linear-gradient(180deg, #32333e 0%, #1c1d24 55%, #121318 100%);
     border-radius: 0 0 10px 10px;
-    border: 1px solid #3a3a48;
-    border-top: none;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+    border: 1px solid #404150;
+    border-top: 1px solid #525466;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.9);
 }
 
 .macbook-thumb-indent {
@@ -1167,10 +1174,11 @@ body {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 40px;
+    width: 42px;
     height: 3px;
-    background: #111116;
+    background: #0a0b0e;
     border-radius: 0 0 3px 3px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
 }
 
 /* iPhone 15 Pro Floating Frame */
@@ -1187,12 +1195,12 @@ body {
 .iphone-screen {
     position: relative;
     width: 100%;
-    padding-top: 212%; /* 19.5:9 iPhone aspect ratio */
+    padding-top: 215%; /* 19.5:9 iPhone aspect ratio */
     background: #000;
-    border: 2.5px solid #2d2d38;
-    border-radius: 20px;
+    border: 3px solid #333442;
+    border-radius: 22px;
     overflow: hidden;
-    box-shadow: -12px 16px 35px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.12);
+    box-shadow: -16px 20px 42px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.18), inset 0 0 0 1px #000;
 }
 
 /* iPhone Dynamic Island */
@@ -1201,19 +1209,22 @@ body {
     top: 5px;
     left: 50%;
     transform: translateX(-50%);
-    width: 30%;
-    height: 7px;
+    width: 32%;
+    height: 8px;
     background: #000;
-    border-radius: 7px;
+    border-radius: 8px;
     z-index: 10;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 /* iPhone Screen Image */
 .iphone-viewport {
     position: absolute;
-    top: 0; left: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     width: 100%; height: 100%;
+    border-radius: 18px;
     overflow: hidden;
+    background: #000;
 }
 
 .iphone-img {
@@ -1222,6 +1233,8 @@ body {
     object-fit: cover;
     object-position: top center;
     display: block;
+    border: none;
+    outline: none;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1229,7 +1242,7 @@ body {
 .iphone-reflection {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 45%);
+    background: linear-gradient(135deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.03) 40%, transparent 60%);
     pointer-events: none;
     z-index: 5;
 }
@@ -1239,9 +1252,9 @@ body {
     bottom: 4px;
     left: 50%;
     transform: translateX(-50%);
-    width: 32%;
+    width: 34%;
     height: 2.5px;
-    background: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.7);
     border-radius: 3px;
     z-index: 10;
 }
@@ -1256,8 +1269,8 @@ body {
 }
 
 .work-card-inner:hover .iphone-container {
-    transform: translateY(-10px) scale(1.06) rotate(-2deg);
-    filter: drop-shadow(-10px 18px 25px rgba(0, 0, 0, 0.9));
+    transform: translateY(-12px) scale(1.07) rotate(-2deg);
+    filter: drop-shadow(-12px 22px 30px rgba(0, 0, 0, 0.95));
 }
 
 .work-card-inner:hover .iphone-img {
