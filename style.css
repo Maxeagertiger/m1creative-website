@@ -3840,11 +3840,27 @@ body {
    TRUST STRIP — Icon style
    =========================== */
 .trust-strip-icon {
-    width: 16px;
-    height: 16px;
+    width: 16px !important;
+    height: 16px !important;
+    max-width: 16px !important;
+    max-height: 16px !important;
     color: var(--accent);
     flex-shrink: 0;
     vertical-align: middle;
+}
+
+.value-prop-icon svg {
+    width: 44px !important;
+    height: 44px !important;
+    max-width: 44px !important;
+    max-height: 44px !important;
+}
+
+.condensed-service-icon svg {
+    width: 20px !important;
+    height: 20px !important;
+    max-width: 20px !important;
+    max-height: 20px !important;
 }
 
 /* ===========================
