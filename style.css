@@ -1033,7 +1033,7 @@ body {
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
     display: flex;
     flex-direction: column;
-    height: 480px;
+    height: 520px;
 }
 
 .work-card-inner:hover {
@@ -1055,23 +1055,25 @@ body {
    =========================== */
 .dual-mockup {
     width: 100%;
-    height: 100%;
+    height: 275px;
+    flex-shrink: 0;
     position: relative;
-    background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.05) 0%, rgba(8, 9, 13, 0.98) 100%);
+    background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.05) 0%, rgba(8, 9, 13, 0.98) 100%);
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     overflow: hidden;
-    padding: 20px 20px 0 20px;
+    padding: 16px 16px 0 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* MacBook Pro Container */
 .macbook-container {
     position: relative;
-    width: 78%;
-    max-width: 420px;
+    width: 74%;
+    max-width: 330px;
     margin-right: 12%;
-    margin-bottom: 24px;
+    margin-bottom: 0;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
     z-index: 2;
 }
@@ -1095,15 +1097,15 @@ body {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 56px;
-    height: 10px;
+    width: 50px;
+    height: 9px;
     background: #0a0a0e;
-    border-radius: 0 0 6px 6px;
+    border-radius: 0 0 5px 5px;
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 4px;
 }
 
 .macbook-camera {
@@ -1165,7 +1167,7 @@ body {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 44px;
+    width: 40px;
     height: 3px;
     background: #111116;
     border-radius: 0 0 3px 3px;
@@ -1174,10 +1176,10 @@ body {
 /* iPhone 15 Pro Floating Frame */
 .iphone-container {
     position: absolute;
-    right: 8%;
-    bottom: 8%;
-    width: 26%;
-    max-width: 130px;
+    right: 7%;
+    bottom: -6px;
+    width: 25%;
+    max-width: 105px;
     z-index: 10;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
@@ -1188,21 +1190,21 @@ body {
     padding-top: 212%; /* 19.5:9 iPhone aspect ratio */
     background: #000;
     border: 2.5px solid #2d2d38;
-    border-radius: 22px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: -14px 20px 45px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.12);
+    box-shadow: -12px 16px 35px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 /* iPhone Dynamic Island */
 .iphone-island {
     position: absolute;
-    top: 6px;
+    top: 5px;
     left: 50%;
     transform: translateX(-50%);
     width: 30%;
-    height: 8px;
+    height: 7px;
     background: #000;
-    border-radius: 8px;
+    border-radius: 7px;
     z-index: 10;
 }
 
@@ -1234,11 +1236,11 @@ body {
 
 .iphone-home-bar {
     position: absolute;
-    bottom: 5px;
+    bottom: 4px;
     left: 50%;
     transform: translateX(-50%);
     width: 32%;
-    height: 3px;
+    height: 2.5px;
     background: rgba(255, 255, 255, 0.65);
     border-radius: 3px;
     z-index: 10;
@@ -1254,7 +1256,7 @@ body {
 }
 
 .work-card-inner:hover .iphone-container {
-    transform: translateY(-14px) scale(1.08) rotate(-2deg);
+    transform: translateY(-10px) scale(1.06) rotate(-2deg);
     filter: drop-shadow(-10px 18px 25px rgba(0, 0, 0, 0.9));
 }
 
@@ -1282,13 +1284,15 @@ body {
 }
 
 .work-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 30px;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
-    z-index: 2;
+    position: relative;
+    flex: 1;
+    padding: 22px 26px;
+    background: #0d0e14;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 5;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .work-category {
