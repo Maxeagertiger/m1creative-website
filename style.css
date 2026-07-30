@@ -4509,6 +4509,134 @@ body {
     color: var(--text-white);
 }
 
+/* ===========================
+   BUILT ON — Technology Strip
+   =========================== */
+.built-on-section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.built-on-strip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+}
+
+.built-on-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 80px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 16px 24px;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.35s ease,
+                box-shadow 0.35s ease,
+                background 0.35s ease;
+    cursor: default;
+
+    /* Start hidden for scroll-reveal */
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+.built-on-item.built-on-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.35s ease,
+                box-shadow 0.35s ease,
+                background 0.35s ease;
+}
+
+.built-on-item:hover {
+    transform: translateY(-4px) scale(1.05);
+    border-color: rgba(166, 255, 0, 0.3);
+    box-shadow: 0 0 24px rgba(166, 255, 0, 0.1), 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.built-on-item svg,
+.built-on-item img {
+    max-width: 110px;
+    max-height: 36px;
+    width: auto;
+    height: auto;
+    opacity: 0.6;
+    filter: grayscale(100%) brightness(2);
+    transition: opacity 0.35s ease, filter 0.35s ease;
+}
+
+.built-on-item:hover svg,
+.built-on-item:hover img {
+    opacity: 1;
+    filter: grayscale(0%) brightness(1);
+}
+
+.built-on-caption {
+    margin-top: 28px;
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s;
+}
+
+.built-on-caption.built-on-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Reduced motion fallback */
+@media (prefers-reduced-motion: reduce) {
+    .built-on-item {
+        opacity: 1;
+        transform: none;
+        transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+    }
+    .built-on-item.built-on-visible {
+        transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+    }
+    .built-on-item:hover {
+        transform: scale(1.05);
+    }
+    .built-on-caption {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .built-on-strip {
+        gap: 20px;
+    }
+    .built-on-item {
+        width: 140px;
+        height: 68px;
+        padding: 14px 20px;
+    }
+    .built-on-item svg,
+    .built-on-item img {
+        max-width: 90px;
+        max-height: 30px;
+    }
+}
+
 
 
 

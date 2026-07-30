@@ -544,6 +544,7 @@ function initIntro() {
         if (lenis) lenis.start();
         initGSAPAnimations();
         initValuePropObserver();
+        initBuiltOnObserver();
         return;
     }
 
@@ -747,6 +748,7 @@ function initIntro() {
         if (lenis) lenis.start();
         initGSAPAnimations();
         initValuePropObserver();
+        initBuiltOnObserver();
     }, 1850);
 }
 
@@ -1139,6 +1141,40 @@ function initValuePropObserver() {
     }, { threshold: 0.15 });
 
     cards.forEach(card => observer.observe(card));
+}
+
+// ======= BUILT ON SCROLL REVEAL (IntersectionObserver) =======
+function initBuiltOnObserver() {
+    const items = document.querySelectorAll('.built-on-item');
+    const caption = document.querySelector('.built-on-caption');
+    if (!items.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const delay = parseInt(entry.target.dataset.builtOn || 0) * 150;
+                setTimeout(() => {
+                    entry.target.classList.add('built-on-visible');
+                }, delay);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    items.forEach(item => observer.observe(item));
+
+    // Reveal caption after logos
+    if (caption) {
+        const captionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    caption.classList.add('built-on-visible');
+                    captionObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        captionObserver.observe(caption);
+    }
 }
 
 // ======= GSAP SCROLL ANIMATIONS =======
