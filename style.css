@@ -4773,6 +4773,170 @@ body {
     }
 }
 
+/* ===========================
+   DESKTOP RESPONSIVENESS & WIDESCREEN OPTIMIZATIONS (1200px - 1920px+)
+   =========================== */
+
+/* Desktop Base Scaling (1200px and up) */
+@media (min-width: 1200px) {
+    .section-content {
+        max-width: 1280px;
+    }
+
+    .hero-content {
+        max-width: 1050px;
+    }
+
+    .hero-sub {
+        max-width: 680px;
+        font-size: 1.25rem;
+    }
+
+    .about-grid {
+        gap: 80px;
+    }
+
+    .services-grid {
+        gap: 32px;
+    }
+
+    .service-card {
+        padding: 44px;
+    }
+
+    .pricing-grid {
+        gap: 32px;
+        align-items: stretch;
+    }
+
+    .pricing-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 44px 36px;
+    }
+
+    .pricing-features {
+        flex-grow: 1;
+    }
+
+    .work-showcase {
+        gap: 32px;
+    }
+
+    .work-card-inner {
+        height: 540px;
+    }
+
+    .contact-wrapper {
+        gap: 80px;
+    }
+
+    .built-on-strip {
+        gap: 56px;
+    }
+
+    .built-on-item {
+        width: 180px;
+        height: 90px;
+    }
+
+    .legal-container {
+        max-width: 960px;
+    }
+
+    .legal-card {
+        padding: 44px 50px;
+    }
+}
+
+/* Widescreen Desktop Scaling (1440px and up) */
+@media (min-width: 1440px) {
+    .section-content {
+        max-width: 1380px;
+    }
+
+    .hero-content {
+        max-width: 1150px;
+    }
+
+    #navbar {
+        padding: 24px 80px;
+    }
+
+    #navbar.scrolled {
+        padding: 18px 80px;
+    }
+
+    .hero-title {
+        font-size: clamp(4rem, 8vw, 8rem);
+    }
+
+    .big-text {
+        font-size: clamp(3.5rem, 6.5vw, 7rem);
+    }
+
+    .work-card-inner {
+        height: 570px;
+    }
+
+    .dual-mockup {
+        height: 310px;
+    }
+}
+
+/* Ultra-Widescreen Desktop Scaling (1680px and up) */
+@media (min-width: 1680px) {
+    .section-content {
+        max-width: 1520px;
+    }
+
+    .hero-content {
+        max-width: 1250px;
+    }
+
+    #navbar {
+        padding: 28px 120px;
+    }
+
+    #navbar.scrolled {
+        padding: 20px 120px;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 28px;
+    }
+
+    .service-card {
+        padding: 36px 28px;
+    }
+
+    .about-grid {
+        gap: 100px;
+    }
+
+    .contact-wrapper {
+        gap: 100px;
+    }
+}
+
+/* Ultra-Wide 4K Displays (1920px+) */
+@media (min-width: 1920px) {
+    .section-content {
+        max-width: 1650px;
+    }
+
+    .hero-title {
+        font-size: 7.5rem;
+    }
+
+    .big-text {
+        font-size: 6.8rem;
+    }
+}
+
+
 
 
 
