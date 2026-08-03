@@ -4774,167 +4774,130 @@ body {
 }
 
 /* ===========================
-   DESKTOP RESPONSIVENESS & WIDESCREEN OPTIMIZATIONS (1200px - 1920px+)
+   UNIFIED MOBILE DESIGN ON DESKTOP & ALL VIEWPORTS
+   Makes Desktop Look & Function 100% Identical to Mobile
    =========================== */
 
-/* Desktop Base Scaling (1200px and up) */
-@media (min-width: 1200px) {
-    .section-content {
-        max-width: 1280px;
-    }
-
-    .hero-content {
-        max-width: 1050px;
-    }
-
-    .hero-sub {
-        max-width: 680px;
-        font-size: 1.25rem;
-    }
-
-    .about-grid {
-        gap: 80px;
-    }
-
-    .services-grid {
-        gap: 32px;
-    }
-
-    .service-card {
-        padding: 44px;
-    }
-
-    .pricing-grid {
-        gap: 32px;
-        align-items: stretch;
-    }
-
-    .pricing-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 44px 36px;
-    }
-
-    .pricing-features {
-        flex-grow: 1;
-    }
-
-    .work-showcase {
-        gap: 32px;
-    }
-
-    .work-card-inner {
-        height: 540px;
-    }
-
-    .contact-wrapper {
-        gap: 80px;
-    }
-
-    .built-on-strip {
-        gap: 56px;
-    }
-
-    .built-on-item {
-        width: 180px;
-        height: 90px;
-    }
-
-    .legal-container {
-        max-width: 960px;
-    }
-
-    .legal-card {
-        padding: 44px 50px;
-    }
+/* Navbar & Navigation: Mobile Style Sitewide */
+.nav-links {
+    display: none !important;
 }
 
-/* Widescreen Desktop Scaling (1440px and up) */
-@media (min-width: 1440px) {
-    .section-content {
-        max-width: 1380px;
-    }
-
-    .hero-content {
-        max-width: 1150px;
-    }
-
-    #navbar {
-        padding: 24px 80px;
-    }
-
-    #navbar.scrolled {
-        padding: 18px 80px;
-    }
-
-    .hero-title {
-        font-size: clamp(4rem, 8vw, 8rem);
-    }
-
-    .big-text {
-        font-size: clamp(3.5rem, 6.5vw, 7rem);
-    }
-
-    .work-card-inner {
-        height: 570px;
-    }
-
-    .dual-mockup {
-        height: 310px;
-    }
+.nav-hamburger {
+    display: flex !important;
 }
 
-/* Ultra-Widescreen Desktop Scaling (1680px and up) */
-@media (min-width: 1680px) {
-    .section-content {
-        max-width: 1520px;
-    }
-
-    .hero-content {
-        max-width: 1250px;
-    }
-
-    #navbar {
-        padding: 28px 120px;
-    }
-
-    #navbar.scrolled {
-        padding: 20px 120px;
-    }
-
-    .services-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 28px;
-    }
-
-    .service-card {
-        padding: 36px 28px;
-    }
-
-    .about-grid {
-        gap: 100px;
-    }
-
-    .contact-wrapper {
-        gap: 100px;
-    }
+#navbar {
+    padding: 15px 20px !important;
 }
 
-/* Ultra-Wide 4K Displays (1920px+) */
-@media (min-width: 1920px) {
-    .section-content {
-        max-width: 1650px;
-    }
-
-    .hero-title {
-        font-size: 7.5rem;
-    }
-
-    .big-text {
-        font-size: 6.8rem;
-    }
+#navbar.scrolled {
+    padding: 12px 20px !important;
 }
+
+.mobile-menu {
+    top: 70px !important;
+    right: 20px !important;
+    width: 280px !important;
+    max-width: calc(100vw - 40px) !important;
+}
+
+/* Container Width: Centered Mobile Frame on Desktop */
+.section {
+    padding: 60px 20px !important;
+    min-height: auto !important;
+}
+
+.section-content,
+.hero-content,
+.legal-container,
+.seo-content-block {
+    max-width: 640px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+}
+
+/* Force All Layout Grids to 1-Column Single Stream */
+.about-grid,
+.services-grid,
+.pricing-grid,
+.work-showcase,
+.contact-wrapper,
+.form-grid,
+.footer-links,
+.seo-grid,
+.seo-hero-grid,
+.value-prop-grid,
+.reviews-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+}
+
+.pricing-grid,
+.work-showcase,
+.contact-form,
+.contact-info {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+}
+
+/* Card Proportions & Padding */
+.service-card {
+    padding: 25px 20px !important;
+}
+
+.pricing-card {
+    padding: 28px 20px !important;
+}
+
+.legal-card {
+    padding: 24px 20px !important;
+}
+
+.pricing-card.featured {
+    transform: none !important;
+}
+
+.pricing-card.featured:hover {
+    transform: translateY(-5px) !important;
+}
+
+.work-card-inner {
+    height: 480px !important;
+}
+
+.dual-mockup {
+    height: 250px !important;
+}
+
+/* Mobile Typography & Header Scaling */
+.hero-title {
+    font-size: clamp(2.4rem, 10vw, 3.8rem) !important;
+    line-height: 1.1 !important;
+}
+
+.big-text {
+    font-size: clamp(2rem, 9vw, 3.4rem) !important;
+    line-height: 1.1 !important;
+}
+
+.hero-sub {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+}
+
+.price-amount {
+    font-size: 2.4rem !important;
+}
+
+/* Footer Mobile Alignment */
+.footer-bottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+}
+
 
 
 
