@@ -4648,6 +4648,8 @@ body {
         font-size: 0.95rem;
         letter-spacing: 1.5px;
     }
+}
+
 /* ===========================
    LEGAL PAGES (Privacy Policy & Terms of Service)
    =========================== */
@@ -4774,135 +4776,49 @@ body {
 }
 
 /* ===========================
-   UNIFIED MOBILE DESIGN ON DESKTOP & ALL VIEWPORTS
-   Makes Desktop Look & Function 100% Identical to Mobile
+   DESKTOP LAYOUT — Proper responsive max-widths & nav
+   Restores correct desktop rendering after removing the
+   destructive mobile-override block.
    =========================== */
 
-/* Navbar & Navigation: Mobile Style Sitewide */
-.nav-links {
-    display: none !important;
+/* Desktop nav: show links, hide hamburger */
+@media (min-width: 901px) {
+    .nav-links {
+        display: flex;
+    }
+    .nav-hamburger {
+        display: none;
+    }
+    .mobile-menu {
+        display: none !important;
+    }
 }
 
-.nav-hamburger {
-    display: flex !important;
+/* Condensed services grid: 2 columns on mid-width, 4 on wide */
+@media (min-width: 901px) {
+    .condensed-services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1100px) {
+    .condensed-services-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
-#navbar {
-    padding: 15px 20px !important;
+/* Value prop grid: 3 columns on desktop */
+@media (min-width: 901px) {
+    .value-prop-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
-#navbar.scrolled {
-    padding: 12px 20px !important;
+/* Pricing teaser: 3 columns on desktop */
+@media (min-width: 993px) {
+    .pricing-teaser-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
-.mobile-menu {
-    top: 70px !important;
-    right: 20px !important;
-    width: 280px !important;
-    max-width: calc(100vw - 40px) !important;
-}
-
-/* Container Width: Centered Mobile Frame on Desktop */
-.section {
-    padding: 60px 20px !important;
-    min-height: auto !important;
-}
-
-.section-content,
-.hero-content,
-.legal-container,
-.seo-content-block {
-    max-width: 640px !important;
-    width: 100% !important;
-    margin: 0 auto !important;
-}
-
-/* Force All Layout Grids to 1-Column Single Stream */
-.about-grid,
-.services-grid,
-.pricing-grid,
-.work-showcase,
-.contact-wrapper,
-.form-grid,
-.footer-links,
-.seo-grid,
-.seo-hero-grid,
-.value-prop-grid,
-.reviews-grid {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-}
-
-.pricing-grid,
-.work-showcase,
-.contact-form,
-.contact-info {
-    max-width: 100% !important;
-    width: 100% !important;
-    margin: 0 auto !important;
-}
-
-/* Card Proportions & Padding */
-.service-card {
-    padding: 25px 20px !important;
-}
-
-.pricing-card {
-    padding: 28px 20px !important;
-}
-
-.legal-card {
-    padding: 24px 20px !important;
-}
-
-.pricing-card.featured {
-    transform: none !important;
-}
-
-.pricing-card.featured:hover {
-    transform: translateY(-5px) !important;
-}
-
-.work-card-inner {
-    height: 480px !important;
-}
-
-.dual-mockup {
-    height: 250px !important;
-}
-
-/* Mobile Typography & Header Scaling */
-.hero-title {
-    font-size: clamp(2.4rem, 10vw, 3.8rem) !important;
-    line-height: 1.1 !important;
-}
-
-.big-text {
-    font-size: clamp(2rem, 9vw, 3.4rem) !important;
-    line-height: 1.1 !important;
-}
-
-.hero-sub {
-    font-size: 1rem !important;
-    line-height: 1.6 !important;
-}
-
-.price-amount {
-    font-size: 2.4rem !important;
-}
-
-/* Footer Mobile Alignment */
-.footer-bottom {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 12px !important;
-}
-
-
-
-
-
-
-
-
-
+/* Trust guarantee grid: 2x2 on desktop (base rule already sets this) */
+/* Work showcase: sizes already set in base CSS */
