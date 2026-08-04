@@ -4822,3 +4822,62 @@ body {
 
 /* Trust guarantee grid: 2x2 on desktop (base rule already sets this) */
 /* Work showcase: sizes already set in base CSS */
+
+/* ===========================
+   DESKTOP TYPOGRAPHY & LAYOUT CAPS
+   The vw-based clamp() values were designed for mobile.
+   At 1920px, 8vw = 153px (too big). These rules cap font sizes
+   and layout proportions so the desktop looks right.
+   =========================== */
+
+@media (min-width: 1024px) {
+    /* Cap the giant display headings */
+    .big-text {
+        font-size: clamp(2.8rem, 3.5vw, 4rem);
+        margin-bottom: 40px;
+    }
+
+    /* Cap hero title */
+    .hero-title {
+        font-size: clamp(3rem, 4vw, 4.4rem);
+        line-height: 1.1;
+    }
+
+    /* Cap hero subtitle */
+    .hero-sub {
+        font-size: 1.1rem;
+    }
+
+    /* Section padding — reasonable on wide screens */
+    .section {
+        padding: 100px 60px;
+    }
+
+    /* Content max-width: don't let it stretch to 1920px edge-to-edge */
+    .section-content {
+        max-width: 1100px;
+        padding: 0 20px;
+    }
+
+    /* Hero content narrower so it doesn't span the full 1200px */
+    .hero-content {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    /* About description: don't let it go full-page wide */
+    .about-description {
+        font-size: 1.1rem;
+        max-width: 640px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .big-text {
+        font-size: 3.8rem;
+    }
+
+    .hero-title {
+        font-size: 4.2rem;
+    }
+}
