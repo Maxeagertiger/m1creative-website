@@ -4454,6 +4454,8 @@ body {
     align-items: flex-start;
     gap: 20px;
     text-align: left;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .seo-analogy-icon {
@@ -4483,6 +4485,7 @@ body {
 
 .seo-content-block {
     max-width: 850px;
+    width: 100%;
     margin: 0 auto;
     text-align: left;
 }
@@ -4496,6 +4499,23 @@ body {
 
 .seo-content-block strong {
     color: var(--text-white);
+}
+
+/* SEO Education Page Desktop Layout & Section Spacing */
+#what-is-seo,
+#why-it-matters,
+#how-seo-works,
+#why-m1creative,
+#seo-cta {
+    min-height: auto !important;
+    padding: 80px 20px !important;
+}
+
+@media (min-width: 901px) {
+    .seo-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 28px;
+    }
 }
 
 /* ===========================
