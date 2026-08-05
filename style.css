@@ -3649,38 +3649,22 @@ body {
     transform: translate(2px, -2px);
 }
 
-/* Portfolio Overlay Action buttons */
+/* Portfolio Overlay Action buttons — Always visible & fully interactive on desktop & mobile */
 .work-actions {
     display: flex;
     gap: 12px;
     margin-top: 15px;
     width: 100%;
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
 }
 
-@media (hover: hover) {
-    .work-actions {
-        opacity: 0;
-        transform: translateY(10px);
-        transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
-        pointer-events: none;
-    }
-    .work-image:hover .work-actions {
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: auto;
-    }
-    .work-desc {
-        opacity: 0;
-        transform: translateY(10px);
-        transition: all 0.4s ease 0.1s;
-    }
-    .work-image:hover .work-desc {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.work-desc {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
 }
 .work-actions .work-cta {
     margin-top: 0 !important;
