@@ -1126,63 +1126,30 @@ function handleResize() {
     }
 }
 
-// ======= VALUE PROP SCROLL REVEAL (IntersectionObserver) =======
+// ======= VALUE PROP SCROLL REVEAL =======
+// Note: Animation now handled by GSAP in initGSAPAnimations() to avoid conflicts
 function initValuePropObserver() {
-    const cards = document.querySelectorAll('.value-prop-card');
-    if (!cards.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('vp-visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15 });
-
-    cards.forEach(card => observer.observe(card));
+    // Intentionally empty - GSAP handles .value-prop-card animations
 }
 
-// ======= BUILT ON SCROLL REVEAL (IntersectionObserver) =======
+// ======= BUILT ON SCROLL REVEAL =======
+// Note: Animation now handled by GSAP in initGSAPAnimations() to avoid conflicts
 function initBuiltOnObserver() {
-    const items = document.querySelectorAll('.built-on-item');
+    // Intentionally empty - GSAP handles .built-on-item animations
+    // Immediately reveal the caption (no animation needed)
     const caption = document.querySelector('.built-on-caption');
-    if (!items.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const delay = parseInt(entry.target.dataset.builtOn || 0) * 150;
-                setTimeout(() => {
-                    entry.target.classList.add('built-on-visible');
-                }, delay);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15 });
-
-    items.forEach(item => observer.observe(item));
-
-    // Reveal caption after logos
-    if (caption) {
-        const captionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    caption.classList.add('built-on-visible');
-                    captionObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.15 });
-        captionObserver.observe(caption);
-    }
+    if (caption) caption.classList.add('built-on-visible');
 }
 
 // ======= GSAP SCROLL ANIMATIONS =======
+let gsapInitialized = false;
 function initGSAPAnimations() {
+    if (gsapInitialized) return;  // Guard: never register ScrollTriggers twice
+    gsapInitialized = true;
     gsap.registerPlugin(ScrollTrigger);
 
     // Clear CSS transitions on these elements so GSAP animates them smoothly without clashing
-    gsap.set('.service-card, .work-item, .pricing-card, .stat-card, .process-step', { transition: 'none' });
+    gsap.set('.service-card, .work-item, .pricing-card, .stat-card, .process-step, .built-on-item, .value-prop-card', { transition: 'none' });
 
     // ── Hero Section Entrance (Fades & rises on page reveal) ──
     gsap.fromTo('.hero-content > *',
@@ -1210,13 +1177,13 @@ function initGSAPAnimations() {
         scale: 0.93
     });
 
-    // ── Unified Section Headers Reveal (Sleek slide up & scale) ──
+    // ── Section headers reveal ──
     gsap.utils.toArray('.section-header').forEach(header => {
         gsap.from(header.children, {
             scrollTrigger: {
                 trigger: header,
                 start: 'top 85%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             },
             opacity: 0,
             y: 40,
@@ -1232,9 +1199,9 @@ function initGSAPAnimations() {
         { opacity: 0, y: 30 },
         {
             scrollTrigger: {
-                trigger: '.about-left',
+                trigger: '.about-full-desc',   // fixed: was '.about-left' which doesn't exist
                 start: 'top 85%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             },
             opacity: 1,
             y: 0,
@@ -1251,50 +1218,67 @@ function initGSAPAnimations() {
             scrollTrigger: {
                 trigger: '.value-prop-grid',
                 start: 'top 85%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             },
             opacity: 1,
             y: 0,
             rotationY: 0,
             duration: 1.0,
             stagger: 0.12,
-            ease: 'power4.out'
+            ease: 'power4.out',
+            clearProps: 'rotationY'  // release 3D transform after animation, keep opacity/position
         }
     );
 
-    // Staggered Service cards (3D rotationX + scale)
-    gsap.fromTo('.service-card',
-        { opacity: 0, y: 90, rotationX: -12, scale: 0.93 },
+    // Built-on logos stagger reveal
+    gsap.fromTo('.built-on-item',
+        { opacity: 0, y: 24 },
         {
             scrollTrigger: {
-                trigger: '.services-grid',
+                trigger: '.built-on-strip',
                 start: 'top 85%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             },
             opacity: 1,
             y: 0,
-            rotationX: 0,
+            duration: 0.7,
+            stagger: 0.15,
+            ease: 'power3.out',
+            clearProps: 'all'
+        }
+    );
+
+    // Staggered Service cards — targets both condensed (homepage) and full services grid
+    gsap.fromTo('.condensed-service-card, .service-card',
+        { opacity: 0, y: 50, scale: 0.96 },
+        {
+            scrollTrigger: {
+                trigger: '.condensed-services-grid, .services-grid',
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            },
+            opacity: 1,
+            y: 0,
             scale: 1,
-            duration: 1.2,
+            duration: 1.0,
             stagger: 0.1,
-            ease: 'power4.out',
-            transformOrigin: 'top center'
+            ease: 'power4.out'
         }
     );
 
     // Staggered Work showcase items
     gsap.fromTo('.work-item',
-        { opacity: 0, y: 100, scale: 0.95 },
+        { opacity: 0, y: 60, scale: 0.97 },
         {
             scrollTrigger: {
                 trigger: '.work-showcase',
                 start: 'top 85%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             },
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 1.2,
+            duration: 1.0,
             stagger: 0.12,
             ease: 'power3.out'
         }
@@ -1302,18 +1286,17 @@ function initGSAPAnimations() {
 
     // Staggered Pricing cards
     gsap.fromTo('.pricing-card',
-        { opacity: 0, y: 90, rotationY: 10, scale: 0.95 },
+        { opacity: 0, y: 60, scale: 0.97 },
         {
             scrollTrigger: {
                 trigger: '.pricing-grid',
                 start: 'top 85%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             },
             opacity: 1,
             y: 0,
-            rotationY: 0,
             scale: 1,
-            duration: 1.2,
+            duration: 1.0,
             stagger: 0.1,
             ease: 'power4.out'
         }
@@ -1326,7 +1309,7 @@ function initGSAPAnimations() {
             scrollTrigger: {
                 trigger: '.process-timeline',
                 start: 'top 85%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             },
             opacity: 1,
             x: 0,
@@ -1344,7 +1327,7 @@ function initGSAPAnimations() {
             scrollTrigger: {
                 trigger: '.contact-form',
                 start: 'top 85%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             },
             opacity: 1,
             y: 0,

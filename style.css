@@ -986,9 +986,10 @@ body {
 }
 
 .work-item {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s ease-out;
+    /* GSAP fromTo controls opacity and transform — no CSS initial hidden state needed */
+    opacity: 1;
+    transform: none;
+    transition: none;
 }
 
 .work-item.visible {
@@ -4516,6 +4517,7 @@ body {
     padding-top: 40px;
     padding-bottom: 40px;
     text-align: center;
+    min-height: auto !important;  /* Override .section's 100vh — logo strip doesn't need full viewport height */
 }
 
 .built-on-strip {
@@ -4537,26 +4539,21 @@ body {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 16px 24px;
+    cursor: default;
+    /* GSAP controls entrance animation - no CSS initial hidden state */
+    /* Hover transitions applied after GSAP releases control via clearProps: 'all' */
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 0.35s ease,
                 box-shadow 0.35s ease,
                 background 0.35s ease;
-    cursor: default;
-
-    /* Start hidden for scroll-reveal */
-    opacity: 0;
-    transform: translateY(24px);
 }
 
+/* .built-on-visible is kept for caption reveal compatibility */
 .built-on-item.built-on-visible {
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.35s ease,
-                box-shadow 0.35s ease,
-                background 0.35s ease;
 }
+
 
 .built-on-item:hover {
     transform: translateY(-4px) scale(1.05);
