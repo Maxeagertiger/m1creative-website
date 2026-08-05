@@ -1716,9 +1716,10 @@ body {
 .pricing-subtitle {
     font-size: clamp(1rem, 2vw, 1.2rem);
     color: var(--text-light);
-    margin-bottom: 50px;
-    max-width: 550px;
+    margin: 0 auto 50px auto !important;
+    max-width: 650px;
     line-height: 1.7;
+    text-align: center;
 }
 
 .pricing-grid {
@@ -4501,7 +4502,12 @@ body {
     color: var(--text-white);
 }
 
-/* SEO Education Page Desktop Layout & Section Alignment */
+/* SEO Education Page & Subpage Hero Alignment */
+.subpage-hero .big-text .word {
+    display: inline-block !important;
+    margin: 0 6px;
+}
+
 #hero.subpage-hero .section-content,
 #what-is-seo .section-content,
 #why-it-matters .section-content,
@@ -4509,7 +4515,15 @@ body {
 #why-m1creative .section-content,
 #seo-cta .section-content,
 #faq .section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center !important;
+}
+
+#seo-cta .hero-btn,
+#faq .reviews-cta .hero-btn {
+    align-self: center;
 }
 
 #what-is-seo,
