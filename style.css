@@ -4531,10 +4531,24 @@ body {
     }
 }
 
-#faq .faq-container {
+#faq .faq-container,
+#faq .faq-header-wrap {
     max-width: 800px;
-    margin: 40px auto 0 auto;
+    margin: 0 auto;
+    text-align: left;
 }
+
+#faq .faq-header-wrap .pricing-subtitle {
+    max-width: 800px;
+    margin: 0 0 32px 0 !important;
+    text-align: left !important;
+}
+
+#faq .faq-container {
+    margin-top: 40px;
+}
+
+
 
 
 /* ===========================
