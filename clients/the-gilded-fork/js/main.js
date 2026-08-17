@@ -1,5 +1,5 @@
 /* ============================================================
-   LUNA BISTRO - JavaScript
+   THE GILDED FORK - JavaScript
    Handles all interactive features including:
    - Preloader animation
    - Navigation behavior
