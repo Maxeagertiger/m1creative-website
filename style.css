@@ -3680,44 +3680,54 @@ body {
     margin-top: 0 !important;
     flex: 1;
     text-align: center;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
+    font-size: 0.88rem;
     font-weight: 700;
-    padding: 10px 14px;
-    border-radius: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 14px 24px;
+    min-height: 48px;
+    border-radius: 50px;
     background: var(--accent);
     color: #000;
     white-space: nowrap;
     text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
 }
 .work-actions .work-cta:hover {
     background: #fff;
     color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(166, 255, 0, 0.3);
 }
 .work-cta-secondary {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 14px;
+    padding: 14px 24px;
+    min-height: 48px;
     background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: #fff;
-    font-size: 0.8rem;
+    font-size: 0.88rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
     flex: 1;
     text-align: center;
     white-space: nowrap;
+    box-sizing: border-box;
 }
 .work-cta-secondary:hover {
     background: rgba(255, 255, 255, 0.2);
     border-color: #fff;
+    transform: translateY(-2px);
 }
 
 /* Pricing global terms banner */
@@ -4951,14 +4961,19 @@ body {
     .nav-logo {
         font-size: 1.2rem !important;
     }
+}
+
+@media (max-width: 580px) {
     .work-actions {
-        gap: 8px !important;
+        flex-direction: column !important;
+        gap: 10px !important;
     }
     .work-actions .work-cta,
     .work-cta-secondary {
-        padding: 9px 6px !important;
-        font-size: 0.72rem !important;
-        letter-spacing: 0.5px !important;
+        width: 100% !important;
+        padding: 13px 20px !important;
+        font-size: 0.85rem !important;
+        min-height: 46px !important;
     }
 }
 
