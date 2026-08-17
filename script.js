@@ -1763,8 +1763,8 @@ function initCaseStudies() {
     if (!overlay || !closeBtn) return;
     
     const caseStudies = {
-        veloura: {
-            title: "VELOURA — Beauty Lounge (Concept Build)",
+        elavea: {
+            title: "ELAVEA — Beauty Lounge (Concept Build)",
             category: "Beauty & Wellness · CONCEPT BUILD",
             problem: "Concept Challenge: Demonstrates how a luxury beauty & spa lounge can elevate online conversions. Addresses typical industry friction like slow load times, generic templates, and clunky mobile menu navigation.",
             solution: "What This Concept Demonstrates: We designed and engineered an elegant dark-mauve landing page centered around custom typography, responsive galleries, and seamless page loading. Features a bespoke curtain slide-up entrance preloader.",
@@ -1775,7 +1775,7 @@ function initCaseStudies() {
                 "Fully responsive, touch-first booking layout"
             ],
             tech: "HTML5, CSS Custom Variables, Modern ES6 JS, Intersection Observer API",
-            url: "clients/veloura-beauty-lounge/index.html"
+            url: "clients/elavea-beauty-lounge/index.html"
         },
         sterling: {
             title: "Sterling & Vance — Corporate Law (Concept Build)",

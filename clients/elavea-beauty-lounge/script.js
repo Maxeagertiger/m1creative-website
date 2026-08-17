@@ -1,5 +1,5 @@
 /* =========================================================
-   Veloura Beauty Lounge — Interactive scripts
+   Elavea Beauty Lounge — Interactive scripts
    ========================================================= */
 
 (function () {
