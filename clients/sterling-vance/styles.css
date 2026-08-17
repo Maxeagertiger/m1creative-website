@@ -1,4 +1,4 @@
-/* Apex Legal Group — Parallax Immersive Theme */
+/* Sterling & Vance — Parallax Immersive Theme */
 :root {
   --charcoal: #222831;
   --gunmetal: #393E46;
@@ -237,7 +237,7 @@ body.intro-done .hero-scroll {
 }
 .menu-overlay.open { opacity: 1; visibility: visible; }
 .menu-overlay::before {
-  content: 'APEX'; position: absolute; font-family: var(--serif);
+  content: 'STERLING'; position: absolute; font-family: var(--serif);
   font-size: clamp(12rem, 30vw, 26rem); color: rgba(223,208,184,.04);
   font-weight: 600; letter-spacing: .05em; pointer-events: none;
   top: 50%; left: 50%; transform: translate(-50%, -50%);
