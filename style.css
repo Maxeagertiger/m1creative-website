@@ -3684,10 +3684,13 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 0.8rem;
+    font-weight: 700;
     padding: 10px 14px;
     border-radius: 8px;
     background: var(--accent);
     color: #000;
+    white-space: nowrap;
+    text-decoration: none;
 }
 .work-actions .work-cta:hover {
     background: #fff;
@@ -3710,6 +3713,7 @@ body {
     cursor: pointer;
     flex: 1;
     text-align: center;
+    white-space: nowrap;
 }
 .work-cta-secondary:hover {
     background: rgba(255, 255, 255, 0.2);
@@ -4947,5 +4951,15 @@ body {
     .nav-logo {
         font-size: 1.2rem !important;
     }
+    .work-actions {
+        gap: 8px !important;
+    }
+    .work-actions .work-cta,
+    .work-cta-secondary {
+        padding: 9px 6px !important;
+        font-size: 0.72rem !important;
+        letter-spacing: 0.5px !important;
+    }
 }
+
 
