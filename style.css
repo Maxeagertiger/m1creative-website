@@ -1043,7 +1043,8 @@ body {
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
     display: flex;
     flex-direction: column;
-    height: 520px;
+    min-height: 540px;
+    height: 100%;
 }
 
 .work-card-inner:hover {
@@ -1065,7 +1066,7 @@ body {
    =========================== */
 .dual-mockup {
     width: 100%;
-    height: 275px;
+    height: 230px;
     flex-shrink: 0;
     position: relative;
     background: 
@@ -1309,7 +1310,7 @@ body {
 .work-overlay {
     position: relative;
     flex: 1;
-    padding: 22px 26px;
+    padding: 18px 22px 22px 22px;
     background: #0d0e14;
     display: flex;
     flex-direction: column;
