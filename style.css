@@ -150,13 +150,18 @@ body {
 
 .intro-logo {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
     letter-spacing: 1px;
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    flex-wrap: nowrap;
     font-style: italic;
     color: var(--text-white);
     text-shadow: 0 0 40px rgba(166, 255, 0, 0.2);
+    max-width: 100%;
 }
 
 /* Per-character intro assembly */
@@ -249,6 +254,10 @@ body {
     letter-spacing: 1px;
     cursor: pointer;
     font-style: italic;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: nowrap;
 }
 
 .nav-logo span {
@@ -4919,3 +4928,24 @@ body {
         font-size: 4.2rem;
     }
 }
+
+/* ===========================
+   LOGO FIT PROTECTION
+   =========================== */
+.intro-logo,
+.nav-logo,
+.footer-logo {
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+}
+
+@media (max-width: 480px) {
+    .intro-logo {
+        font-size: clamp(1.6rem, 7.5vw, 2.4rem) !important;
+    }
+    .nav-logo {
+        font-size: 1.2rem !important;
+    }
+}
+
