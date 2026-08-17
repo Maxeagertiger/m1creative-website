@@ -1791,8 +1791,8 @@ function initCaseStudies() {
             tech: "HTML5, CSS Flexbox & Grid, ES6 JS, SVG Path Animations",
             url: "clients/sterling-vance/index.html"
         },
-        gilded: {
-            title: "The Gilded Fork — Fine Dining (Concept Build)",
+        ambrelle: {
+            title: "Ambrelle House — Fine Dining (Concept Build)",
             category: "Food & Dining · CONCEPT BUILD",
             problem: "Concept Challenge: Demonstrates how fine-dining establishments can convert online website visitors into table reservations. Solves common mobile menu crashes and disjointed branding.",
             solution: "What This Concept Demonstrates: We built a theatrical split-curtain preloader featuring a self-drawing gold crescent moon. Includes tabbed menu filters, high-resolution interior galleries, and custom table reservation workflows.",
@@ -1803,7 +1803,7 @@ function initCaseStudies() {
                 "Automated reservation forms with custom success animations"
             ],
             tech: "HTML5, Vanilla CSS, Vanilla ES6 JS, SVG Animations, Leaflet Map integration",
-            url: "clients/the-gilded-fork/index.html"
+            url: "clients/ambrelle-house/index.html"
         },
         stellar: {
             title: "Stellar Flight — Space Dashboard (Concept Build)",

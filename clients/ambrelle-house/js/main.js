@@ -1,5 +1,5 @@
 /* ============================================================
-   THE GILDED FORK - JavaScript
+   AMBRELLE HOUSE - JavaScript
    Handles all interactive features including:
    - Preloader animation
    - Navigation behavior
