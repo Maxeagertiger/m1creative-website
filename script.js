@@ -1777,8 +1777,8 @@ function initCaseStudies() {
             tech: "HTML5, CSS Custom Variables, Modern ES6 JS, Intersection Observer API",
             url: "clients/veloura-beauty-lounge/index.html"
         },
-        apex: {
-            title: "Apex Legal — Corporate Law (Concept Build)",
+        sterling: {
+            title: "Sterling & Vance — Corporate Law (Concept Build)",
             category: "Legal & Corporate · CONCEPT BUILD",
             problem: "Concept Challenge: Demonstrates how high-end corporate law firms can establish immediate digital authority. Overcomes common legal website drawbacks like intimidating clutter and confusing navigation hierarchies.",
             solution: "What This Concept Demonstrates: We engineered a commanding, sophisticated digital home in gold and navy. Features an interactive vector gold crest preloader, streamlined consultation booking flows, and an accessible FAQ panel.",
@@ -1789,7 +1789,7 @@ function initCaseStudies() {
                 "Consultation request forms with direct validation feedback"
             ],
             tech: "HTML5, CSS Flexbox & Grid, ES6 JS, SVG Path Animations",
-            url: "clients/apex-legal/index.html"
+            url: "clients/sterling-vance/index.html"
         },
         gilded: {
             title: "The Gilded Fork — Fine Dining (Concept Build)",
