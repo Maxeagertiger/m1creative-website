@@ -3710,9 +3710,9 @@ body {
     justify-content: center;
     padding: 14px 24px;
     min-height: 48px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: rgba(255, 255, 255, 0.14);
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    color: #ffffff !important;
     font-size: 0.88rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -3724,11 +3724,14 @@ body {
     text-align: center;
     white-space: nowrap;
     box-sizing: border-box;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 .work-cta-secondary:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: #fff;
+    background: #ffffff;
+    color: #000000 !important;
+    border-color: #ffffff;
     transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.3);
 }
 
 /* Pricing global terms banner */
