@@ -173,7 +173,9 @@ body.intro-done #particle-canvas {
   opacity: 0.6;
 }
 .hero-scroll {
-  transition: opacity 1.5s ease 0.8s, transform 1.5s ease 0.8s;
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+  font-size: .70rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--text-soft); display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 5;
 }
 body:not(.intro-done) .hero-scroll {
   opacity: 0;
@@ -263,10 +265,7 @@ body.intro-done .hero-scroll {
 @media (max-width: 600px) { .menu-meta { flex-direction: column; gap: 12px; text-align: center; padding: 0 24px; } }
 
 /* Hero */
-.hero {
-  min-height: 100vh; display: flex; align-items: center; position: relative;
-  overflow: hidden; padding: 160px 0 100px;
-}
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 140px 0 160px 0; overflow: hidden; }
 #particle-canvas {
   position: absolute; inset: 0; z-index: 0; opacity: .55;
 }
@@ -303,7 +302,7 @@ body.intro-done .hero-scroll {
   color: var(--text-soft); display: flex; flex-direction: column; align-items: center; gap: 12px;
 }
 .hero-scroll::after {
-  content: ''; width: 1px; height: 50px; background: var(--accent);
+  content: ''; width: 1px; height: 32px; background: var(--accent);
   animation: scrollLine 2s var(--ease) infinite;
 }
 @keyframes scrollLine { 0%,100% { transform: scaleY(.3); transform-origin: top; } 50% { transform: scaleY(1); } }
@@ -558,3 +557,10 @@ body.intro-done .hero-scroll {
 /* Utility */
 .divider { width: 60px; height: 1px; background: var(--accent); margin-bottom: 30px; }
 .text-center { text-align: center; }
+
+
+@media (max-height: 820px), (max-width: 768px) {
+  .hero-scroll {
+    display: none !important;
+  }
+}
