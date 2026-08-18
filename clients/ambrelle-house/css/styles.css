@@ -471,11 +471,17 @@ p {
   background-position: center;
   background-attachment: fixed;
   z-index: -2;
-  transition: transform 3.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 2.2s cubic-bezier(0.16, 1, 0.3, 1), filter 2s ease;
   transform: scale(1);
+  filter: brightness(1);
 }
-body.loading .hero-background {
-  transform: scale(1.15);
+body:not(.intro-done) .hero-background {
+  transform: scale(1.12);
+  filter: brightness(0.6);
+}
+body.intro-done .hero-background {
+  transform: scale(1);
+  filter: brightness(1);
 }
 
 .hero-overlay {
@@ -492,8 +498,16 @@ body.loading .hero-background {
   max-width: 900px;
   padding: var(--spacing-xl);
   opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 1s ease 0.5s forwards;
+  transform: translateY(35px) scale(0.97);
+  filter: blur(4px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
+              filter 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+body.intro-done .hero-content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
 }
 
 .hero-tagline {
@@ -2125,4 +2139,17 @@ body.loading .page-header-background {
   .hero-scroll {
     display: none !important;
   }
+}
+
+
+/* Navigation Smooth Entrance */
+body:not(.intro-done) .nav {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+body.intro-done .nav {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s,
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
 }

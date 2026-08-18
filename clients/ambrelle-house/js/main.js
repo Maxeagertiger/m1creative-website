@@ -22,23 +22,29 @@ document.addEventListener('DOMContentLoaded', function() {
   const preloader = document.querySelector('.preloader');
   
   if (preloader) {
+    let hasDismissed = false;
     function hidePreloader() {
+      if (hasDismissed) return;
+      hasDismissed = true;
+      
+      // Step 1: Fade out preloader content
+      preloader.classList.add('exiting');
+      
+      // Step 2: Part panels and trigger luxury hero reveal
       setTimeout(function() {
         preloader.classList.add('hidden');
         document.body.classList.remove('loading');
-      }, 2400); // 2.4 second minimum display time
+        document.body.classList.add('intro-done');
+      }, 350);
     }
 
     if (document.readyState === 'complete') {
-      hidePreloader();
+      setTimeout(hidePreloader, 1600);
     } else {
-      window.addEventListener('load', hidePreloader);
-      setTimeout(function() {
-        if (!preloader.classList.contains('hidden')) {
-          preloader.classList.add('hidden');
-          document.body.classList.remove('loading');
-        }
-      }, 5000);
+      window.addEventListener('load', function() {
+        setTimeout(hidePreloader, 1200);
+      });
+      setTimeout(hidePreloader, 3500);
     }
   }
   
