@@ -13,7 +13,7 @@
    ============================================================ */
 
 // Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
+function initAmbrelleApp() {
   
   /* ============================================================
      PRELOADER
@@ -22,30 +22,21 @@ document.addEventListener('DOMContentLoaded', function() {
   const preloader = document.querySelector('.preloader');
   
   if (preloader) {
-    let hasDismissed = false;
-    function hidePreloader() {
-      if (hasDismissed) return;
-      hasDismissed = true;
+    let preloaderDismissed = false;
+    function dismissPreloader() {
+      if (preloaderDismissed) return;
+      preloaderDismissed = true;
       
-      // Step 1: Fade out preloader content
-      preloader.classList.add('exiting');
-      
-      // Step 2: Part panels and trigger luxury hero reveal
-      setTimeout(function() {
-        preloader.classList.add('hidden');
-        document.body.classList.remove('loading');
-        document.body.classList.add('intro-done');
-      }, 350);
+      preloader.classList.add('done');
+      document.body.classList.add('intro-done');
+      document.body.classList.remove('loading');
     }
 
-    if (document.readyState === 'complete') {
-      setTimeout(hidePreloader, 1600);
-    } else {
-      window.addEventListener('load', function() {
-        setTimeout(hidePreloader, 1200);
-      });
-      setTimeout(hidePreloader, 3500);
-    }
+    // Always dismiss preloader smoothly after 1.6s
+    setTimeout(dismissPreloader, 1600);
+    window.addEventListener('load', function() {
+      setTimeout(dismissPreloader, 1000);
+    });
   }
   
   /* ============================================================
@@ -747,5 +738,10 @@ document.addEventListener('DOMContentLoaded', function() {
   yearElements.forEach(function(el) {
     el.textContent = currentYear;
   });
-  
-}); // End DOMContentLoaded
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAmbrelleApp);
+} else {
+  initAmbrelleApp();
+}

@@ -200,13 +200,13 @@ p {
 .panel-bottom {
   bottom: 0; border-top: 1px solid rgba(74, 154, 142, 0.05);
 }
-.preloader.hidden .panel-top {
+.preloader.done .panel-top, .preloader.hidden .panel-top {
   transform: translateY(-100%);
 }
-.preloader.hidden .panel-bottom {
+.preloader.done .panel-bottom, .preloader.hidden .panel-bottom {
   transform: translateY(100%);
 }
-.preloader.hidden {
+.preloader.done, .preloader.hidden {
   visibility: hidden;
   transition: visibility 0s 1.4s;
   pointer-events: none;
@@ -215,7 +215,7 @@ p {
   position: relative; z-index: 2; text-align: center;
   transition: opacity 1s cubic-bezier(0.85, 0, 0.15, 1), transform 1s cubic-bezier(0.85, 0, 0.15, 1);
 }
-.preloader.hidden .preloader-content {
+.preloader.done .preloader-content, .preloader.hidden .preloader-content {
   opacity: 0; transform: translateY(-30px) scale(0.95);
 }
 .preloader-moon-wrap {
@@ -497,12 +497,12 @@ body.intro-done .hero-background {
 .hero-content {
   max-width: 900px;
   padding: var(--spacing-xl);
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.8s ease, filter 1.8s ease;
+}
+body:not(.intro-done) .hero-content {
   opacity: 0;
-  transform: translateY(35px) scale(0.97);
+  transform: translateY(30px) scale(0.96);
   filter: blur(4px);
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
-              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
-              filter 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
 }
 body.intro-done .hero-content {
   opacity: 1;
@@ -558,6 +558,15 @@ body.intro-done .hero-content {
   text-transform: uppercase;
   animation: bounce 2s ease-in-out infinite;
   z-index: 5;
+  transition: opacity 1.5s ease 0.6s, transform 1.5s ease 0.6s;
+}
+body:not(.intro-done) .hero-scroll {
+  opacity: 0;
+  transform: translate(-50%, 15px);
+}
+body.intro-done .hero-scroll {
+  opacity: 0.8;
+  transform: translate(-50%, 0);
 }
 
 .hero-scroll-icon {
