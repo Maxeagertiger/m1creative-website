@@ -454,11 +454,14 @@ p {
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 140px 0 160px 0;
+  justify-content: space-between;
+  padding: 130px 24px 36px 24px;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .hero-background {
@@ -495,8 +498,12 @@ body.intro-done .hero-background {
 }
 
 .hero-content {
+  position: relative;
+  z-index: 2;
   max-width: 900px;
-  padding: var(--spacing-xl);
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
   transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.8s ease, filter 1.8s ease;
 }
 body:not(.intro-done) .hero-content {
@@ -2144,11 +2151,7 @@ body.loading .page-header-background {
 }
 
 
-@media (max-height: 820px), (max-width: 768px) {
-  .hero-scroll {
-    display: none !important;
-  }
-}
+
 
 
 /* Navigation Smooth Entrance */
