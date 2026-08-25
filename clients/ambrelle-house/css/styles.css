@@ -2165,3 +2165,11 @@ body.intro-done .nav {
   transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s,
               transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
 }
+
+
+/* About CTA Centered Alignment */
+.about-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-xl);
+}
