@@ -611,10 +611,10 @@
         <!-- Section 7: Condensed Contact CTA -->
         <section id="contact" class="section section-light">
             <div class="section-content">
-                <div class="section-tag dark">START YOUR PROJECT</div>
+                <div class="section-tag dark">SCHEDULE A CALL</div>
                 <h2 class="big-text animate-text dark-text">
-                    <span class="word">ready to</span>
-                    <span class="word"><em>convert?</em></span>
+                    <span class="word">schedule your</span>
+                    <span class="word"><em>15-min call</em></span>
                 </h2>
                 
                 <div class="contact-wrapper">
@@ -626,22 +626,22 @@
                             <div class="process-step">
                                 <div class="step-badge">1</div>
                                 <div class="step-details">
-                                    <h4 class="dark-text">Send a Message</h4>
-                                    <p class="dark-text">Fill out this quick form. Michael will get back to you personally within 24 hours.</p>
+                                    <h4 class="dark-text">Pick Date & Time</h4>
+                                    <p class="dark-text">Select an available 15-minute slot on our live calendar that fits your schedule.</p>
                                 </div>
                             </div>
                             <div class="process-step">
                                 <div class="step-badge">2</div>
                                 <div class="step-details">
-                                    <h4 class="dark-text">Align on Concept</h4>
-                                    <p class="dark-text">We'll arrange a 15-minute alignment call to finalize your goals, structure, and preferences.</p>
+                                    <h4 class="dark-text">Share Project Notes</h4>
+                                    <p class="dark-text">Tell us your core business goals, target launch date, and preferences.</p>
                                 </div>
                             </div>
                             <div class="process-step">
                                 <div class="step-badge">3</div>
                                 <div class="step-details">
-                                    <h4 class="dark-text">Launch & Grow</h4>
-                                    <p class="dark-text">We construct, test, and host your premium site in just 5 days, then handle all upkeep.</p>
+                                    <h4 class="dark-text">15-Min Alignment Call</h4>
+                                    <p class="dark-text">Meet with Michael directly to review your custom website strategy & quote.</p>
                                 </div>
                             </div>
                         </div>
@@ -652,55 +652,101 @@
                         </div>
                     </div>
 
-                    <!-- Condensed High-Converting Form -->
-                    <form id="contact-form" class="contact-form">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <input type="text" id="name" name="name" required placeholder=" ">
-                                <label for="name">Your Name</label>
+                    <!-- Interactive Calendar Booking Form -->
+                    <div class="booking-card">
+                        <form id="contact-form" class="booking-form">
+                            <div class="booking-step-title">
+                                <span class="step-number">1</span>
+                                <span>Select Date & Time</span>
+                            </div>
+                            
+                            <!-- Month Navigation Header -->
+                            <div class="calendar-header">
+                                <button type="button" id="cal-prev" class="cal-nav-btn" aria-label="Previous month">&lsaquo;</button>
+                                <div id="cal-month-year" class="cal-month-title">August 2026</div>
+                                <button type="button" id="cal-next" class="cal-nav-btn" aria-label="Next month">&rsaquo;</button>
+                            </div>
+
+                            <!-- Weekdays -->
+                            <div class="calendar-weekdays">
+                                <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+                            </div>
+
+                            <!-- Calendar Days Grid -->
+                            <div id="calendar-days" class="calendar-days-grid">
+                                <!-- JS populates dates -->
+                            </div>
+
+                            <!-- Time Slot Selector -->
+                            <div id="time-slots-wrapper" class="time-slots-wrapper" style="display: none;">
+                                <div class="time-slots-label">Available Slots for <strong id="selected-date-display">Select a date</strong>:</div>
+                                <div id="time-slots-grid" class="time-slots-grid">
+                                    <button type="button" class="time-slot-btn" data-time="09:30 AM">09:30 AM</button>
+                                    <button type="button" class="time-slot-btn" data-time="11:00 AM">11:00 AM</button>
+                                    <button type="button" class="time-slot-btn" data-time="02:00 PM">02:00 PM</button>
+                                    <button type="button" class="time-slot-btn" data-time="03:30 PM">03:30 PM</button>
+                                    <button type="button" class="time-slot-btn" data-time="05:00 PM">05:00 PM</button>
+                                </div>
+                            </div>
+
+                            <div class="booking-step-title" style="margin-top: 28px;">
+                                <span class="step-number">2</span>
+                                <span>Your Contact Details</span>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <input type="text" id="name" name="name" required placeholder=" ">
+                                    <label for="name">Your Name</label>
+                                    <div class="form-line"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" id="email" name="email" required placeholder=" ">
+                                    <label for="email">Email Address</label>
+                                    <div class="form-line"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" id="phone" name="phone" required placeholder=" ">
+                                    <label for="phone">Phone / WhatsApp</label>
+                                    <div class="form-line"></div>
+                                </div>
+                                <div class="form-group">
+                                    <select id="project-type" name="project_type" style="width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(0,0,0,0.2); padding: 15px 0; color: #1a1a1a; font-family: inherit; font-size: 1rem; outline: none;">
+                                        <option value="" disabled selected>Select Project Type</option>
+                                        <option value="website-creation">Website Creation</option>
+                                        <option value="website-redesign">Website Redesign</option>
+                                        <option value="ecommerce">E-Commerce Store</option>
+                                        <option value="seo-growth">Growth / SEO</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <textarea id="message" name="message" rows="2" placeholder=" "></textarea>
+                                <label for="message">Brief Project Description (Optional)</label>
                                 <div class="form-line"></div>
                             </div>
-                            <div class="form-group">
-                                <input type="email" id="email" name="email" required placeholder=" ">
-                                <label for="email">Email Address</label>
-                                <div class="form-line"></div>
+
+                            <input type="hidden" id="selected-date-input" name="selected_date">
+                            <input type="hidden" id="selected-time-input" name="selected_time">
+
+                            <button type="submit" class="submit-btn" id="submit-btn">
+                                <span class="btn-text">Confirm & Book Call</span>
+                                <span class="btn-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                        <polyline points="12 5 19 12 12 19" />
+                                    </svg>
+                                </span>
+                            </button>
+                            <div class="form-success" id="formSuccess">
+                                <div class="success-icon">✓</div>
+                                <h3>Call Scheduled!</h3>
+                                <p id="booking-success-detail">Your 15-minute alignment call is booked. A calendar invitation has been sent to your email.</p>
+                                <button type="button" id="booking-reset-btn" class="secondary-btn" style="margin-top: 20px; font-size: 0.85rem; padding: 10px 24px; cursor: pointer;">Book Another Slot</button>
                             </div>
-                            <div class="form-group">
-                                <input type="tel" id="phone" name="phone" placeholder=" ">
-                                <label for="phone">Phone / WhatsApp</label>
-                                <div class="form-line"></div>
-                            </div>
-                            <div class="form-group">
-                                <select id="project-type" name="project_type" style="width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(0,0,0,0.2); padding: 12px 0; color: #1a1a1a; font-family: inherit; font-size: 1rem; outline: none;">
-                                    <option value="" disabled selected>Select Project Type</option>
-                                    <option value="website-creation">Website Creation</option>
-                                    <option value="website-redesign">Website Redesign</option>
-                                    <option value="ecommerce">E-Commerce Store</option>
-                                    <option value="seo-growth">Growth / SEO</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group full-width">
-                            <textarea id="message" name="message" rows="3" placeholder=" "></textarea>
-                            <label for="message">Tell us about your project</label>
-                            <div class="form-line"></div>
-                        </div>
-                        <button type="submit" class="submit-btn" id="submit-btn">
-                            <span class="btn-text">Send Enquiry</span>
-                            <span class="btn-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="5" y1="12" x2="19" y2="12" />
-                                    <polyline points="12 5 19 12 12 19" />
-                                </svg>
-                            </span>
-                        </button>
-                        <div class="form-success" id="formSuccess">
-                            <div class="success-icon">✓</div>
-                            <h3>Message Sent!</h3>
-                            <p>We'll get back to you within 24 hours.</p>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>

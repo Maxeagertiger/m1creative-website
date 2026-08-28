@@ -877,12 +877,150 @@ function initNavigation() {
     });
 }
 
-// ======= FORM HANDLING =======
+// ======= CALENDAR & BOOKING FORM HANDLING =======
 function initForm() {
     const form = document.getElementById('contact-form');
     const successEl = document.getElementById('formSuccess');
     if (!form) return;
 
+    // Calendar Elements
+    const calDaysGrid = document.getElementById('calendar-days');
+    const calMonthYear = document.getElementById('cal-month-year');
+    const calPrevBtn = document.getElementById('cal-prev');
+    const calNextBtn = document.getElementById('cal-next');
+    const timeSlotsWrapper = document.getElementById('time-slots-wrapper');
+    const timeSlotsGrid = document.getElementById('time-slots-grid');
+    const selectedDateDisplay = document.getElementById('selected-date-display');
+    const selectedDateInput = document.getElementById('selected-date-input');
+    const selectedTimeInput = document.getElementById('selected-time-input');
+    const resetBtn = document.getElementById('booking-reset-btn');
+    const successDetail = document.getElementById('booking-success-detail');
+
+    let currentDate = new Date();
+    let displayMonth = currentDate.getMonth();
+    let displayYear = currentDate.getFullYear();
+    let selectedDate = null;
+    let selectedTime = null;
+
+    const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    function renderCalendar() {
+        if (!calDaysGrid || !calMonthYear) return;
+
+        calMonthYear.textContent = `${monthNames[displayMonth]} ${displayYear}`;
+
+        // Enable/Disable Prev Button (don't go before current month/year)
+        const today = new Date();
+        const isCurrentMonth = (displayYear === today.getFullYear() && displayMonth === today.getMonth());
+        if (calPrevBtn) calPrevBtn.disabled = isCurrentMonth;
+
+        calDaysGrid.innerHTML = '';
+
+        // First day of display month
+        const firstDayIndex = new Date(displayYear, displayMonth, 1).getDay();
+        // Convert Sun(0)-Sat(6) to Mon(0)-Sun(6)
+        const adjustedFirstDay = (firstDayIndex === 0) ? 6 : firstDayIndex - 1;
+
+        // Total days in display month
+        const totalDays = new Date(displayYear, displayMonth + 1, 0).getDate();
+
+        // Empty cells before month starts
+        for (let i = 0; i < adjustedFirstDay; i++) {
+            const emptyCell = document.createElement('div');
+            emptyCell.className = 'cal-day-cell disabled';
+            calDaysGrid.appendChild(emptyCell);
+        }
+
+        // Render days
+        for (let day = 1; day <= totalDays; day++) {
+            const cell = document.createElement('div');
+            cell.className = 'cal-day-cell';
+            cell.textContent = day;
+
+            const dateObj = new Date(displayYear, displayMonth, day);
+            const dateStr = `${displayYear}-${String(displayMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+            // Check if past date
+            const isToday = (today.getFullYear() === displayYear && today.getMonth() === displayMonth && today.getDate() === day);
+            const isPast = dateObj < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            const dayOfWeek = dateObj.getDay();
+            const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6); // Sat or Sun
+
+            if (isToday) cell.classList.add('today');
+
+            if (isPast || isWeekend) {
+                cell.classList.add('disabled');
+            } else {
+                if (selectedDate === dateStr) {
+                    cell.classList.add('selected');
+                }
+
+                cell.addEventListener('click', () => {
+                    calDaysGrid.querySelectorAll('.cal-day-cell').forEach(c => c.classList.remove('selected'));
+                    cell.classList.add('selected');
+                    selectedDate = dateStr;
+                    if (selectedDateInput) selectedDateInput.value = dateStr;
+
+                    // Format display date
+                    const options = { weekday: 'short', month: 'short', day: 'numeric' };
+                    const formattedDate = dateObj.toLocaleDateString('en-US', options);
+                    if (selectedDateDisplay) selectedDateDisplay.textContent = formattedDate;
+
+                    if (timeSlotsWrapper) {
+                        timeSlotsWrapper.style.display = 'block';
+                        timeSlotsWrapper.classList.remove('cal-error-glow');
+                    }
+                });
+            }
+
+            calDaysGrid.appendChild(cell);
+        }
+    }
+
+    if (calPrevBtn) {
+        calPrevBtn.addEventListener('click', () => {
+            if (displayMonth === 0) {
+                displayMonth = 11;
+                displayYear--;
+            } else {
+                displayMonth--;
+            }
+            renderCalendar();
+        });
+    }
+
+    if (calNextBtn) {
+        calNextBtn.addEventListener('click', () => {
+            if (displayMonth === 11) {
+                displayMonth = 0;
+                displayYear++;
+            } else {
+                displayMonth++;
+            }
+            renderCalendar();
+        });
+    }
+
+    // Time slots click handling
+    if (timeSlotsGrid) {
+        timeSlotsGrid.querySelectorAll('.time-slot-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                timeSlotsGrid.querySelectorAll('.time-slot-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedTime = btn.getAttribute('data-time');
+                if (selectedTimeInput) selectedTimeInput.value = selectedTime;
+                if (timeSlotsWrapper) timeSlotsWrapper.classList.remove('cal-error-glow');
+            });
+        });
+    }
+
+    // Initial render
+    renderCalendar();
+
+    // Standard input validation
     const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea');
 
     function validateInput(input) {
@@ -932,6 +1070,23 @@ function initForm() {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
+        // Check if date and time selected
+        if (!selectedDate) {
+            if (calDaysGrid) {
+                calDaysGrid.classList.add('cal-error-glow');
+                setTimeout(() => calDaysGrid.classList.remove('cal-error-glow'), 2500);
+            }
+            return;
+        }
+
+        if (!selectedTime) {
+            if (timeSlotsWrapper) {
+                timeSlotsWrapper.classList.add('cal-error-glow');
+                setTimeout(() => timeSlotsWrapper.classList.remove('cal-error-glow'), 2500);
+            }
+            return;
+        }
+
         let allValid = true;
         inputs.forEach(input => {
             validateInput(input);
@@ -946,32 +1101,47 @@ function initForm() {
         const formData = new FormData(form);
         const data = {};
         formData.forEach((value, key) => {
-            if (data[key]) {
-                if (Array.isArray(data[key])) {
-                    data[key].push(value);
-                } else {
-                    data[key] = [data[key], value];
-                }
-            } else {
-                data[key] = value;
-            }
+            data[key] = value;
         });
 
-        console.log('Form submission:', data);
+        console.log('Calendar Booking Submitted:', data);
+
+        // Update success text with selected date and time
+        const dateParts = selectedDate.split('-');
+        const formattedDateStr = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]).toLocaleDateString('en-US', {
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+        });
+
+        if (successDetail) {
+            successDetail.innerHTML = `Your 15-minute alignment call is booked for <strong>${formattedDateStr} at ${selectedTime} (SAST)</strong>.<br>A calendar invitation has been sent to <strong>${data.email || 'your email'}</strong>.`;
+        }
 
         // Show success message
         successEl.classList.add('show');
+    });
 
-        // Reset form after delay
-        setTimeout(() => {
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
             form.reset();
+            selectedDate = null;
+            selectedTime = null;
+            if (selectedDateInput) selectedDateInput.value = '';
+            if (selectedTimeInput) selectedTimeInput.value = '';
+            if (timeSlotsWrapper) timeSlotsWrapper.style.display = 'none';
+            if (timeSlotsGrid) {
+                timeSlotsGrid.querySelectorAll('.time-slot-btn').forEach(b => b.classList.remove('selected'));
+            }
+            renderCalendar();
             successEl.classList.remove('show');
             inputs.forEach(input => {
                 const group = input.closest('.form-group');
                 if (group) group.classList.remove('is-valid', 'is-invalid');
             });
-        }, 4000);
-    });
+        });
+    }
 }
 
 // ======= CHECKOUT SYSTEM =======
