@@ -1363,7 +1363,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1.4fr;
     gap: 60px;
-    margin-top: 50px;
+    margin-top: 0;
     align-items: start;
     text-align: left;
 }
@@ -1371,9 +1371,13 @@ body {
 .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 24px;
     padding-right: 0;
     padding-top: 0;
+}
+
+.contact-info .big-text {
+    margin-bottom: 20px;
 }
 
 .contact-info-title {
