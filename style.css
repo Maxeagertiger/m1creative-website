@@ -1362,8 +1362,8 @@ body {
 .contact-wrapper {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
-    gap: 60px;
-    margin-top: 50px;
+    gap: 48px;
+    margin-top: 40px;
     align-items: start;
     text-align: left;
 }
@@ -1372,7 +1372,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 28px;
-    padding-right: 20px;
+    padding-right: 15px;
+    padding-top: 10px;
 }
 
 .contact-info-title {
@@ -2690,8 +2691,8 @@ body {
     }
 
     .contact-wrapper {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        grid-template-columns: 1fr 1.3fr;
+        gap: 24px;
     }
 
     .contact-info {
@@ -2727,6 +2728,48 @@ body {
     .service-pill {
         padding: 8px 16px;
         font-size: 0.8rem;
+    }
+
+    .booking-card {
+        padding: 20px 14px;
+    }
+
+    .cal-day-cell {
+        font-size: 0.72rem;
+        border-radius: 8px;
+    }
+
+    .calendar-weekdays span {
+        font-size: 0.6rem;
+    }
+
+    .time-slot-btn {
+        padding: 7px 10px;
+        font-size: 0.72rem;
+    }
+
+    .booking-step-title {
+        font-size: 0.88rem;
+    }
+
+    .contact-info-title {
+        font-size: 1.2rem;
+    }
+
+    .contact-info-subtitle {
+        font-size: 0.82rem;
+    }
+
+    .step-details h4 {
+        font-size: 0.88rem;
+    }
+
+    .step-details p {
+        font-size: 0.78rem;
+    }
+
+    .direct-contact {
+        display: none;
     }
 }
 
