@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /cancel.html
+Disallow: /success.html
+Disallow: /scratch/
+
+Sitemap: https://www.m1creativeweb.co.za/sitemap.xml
