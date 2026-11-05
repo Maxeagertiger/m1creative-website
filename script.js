@@ -1400,23 +1400,25 @@ function initGSAPAnimations() {
         }
     );
 
-    // Built-on logos stagger reveal
-    gsap.fromTo('.built-on-item',
-        { opacity: 0, y: 24 },
-        {
-            scrollTrigger: {
-                trigger: '.built-on-strip',
-                start: 'top 85%',
-                toggleActions: 'play none none none'
-            },
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            stagger: 0.15,
-            ease: 'power3.out',
-            clearProps: 'all'
-        }
-    );
+        // Built-on LogoLoop reveal
+    if (document.querySelector('.logoloop-wrapper')) {
+        gsap.fromTo('.logoloop-wrapper, .built-on-caption',
+            { opacity: 0, y: 30 },
+            {
+                scrollTrigger: {
+                    trigger: '.built-on-section',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: 'power3.out',
+                clearProps: 'transform'
+            }
+        );
+    }
 
     // Staggered Service cards — targets both condensed (homepage) and full services grid
     gsap.fromTo('.condensed-service-card, .service-card',
@@ -2077,10 +2079,134 @@ function initCaseStudies() {
     });
 }
 
+
+// ======= LOGOLOOP (REACT BITS ENGINE ADAPTATION) =======
+function initLogoLoop() {
+    const root = document.getElementById('brandLogoLoop');
+    const track = document.getElementById('logoLoopTrack');
+    if (!root || !track) return;
+
+    const list = track.querySelector('.logoloop__list');
+    if (!list) return;
+
+    let offset = 0;
+    let velocity = 0;
+    let targetSpeed = 45; // Pixels per second to the left
+    let currentSpeed = targetSpeed;
+    let isHovered = false;
+    let isDragging = false;
+    let pointerStartX = 0;
+    let pointerLastX = 0;
+    let pointerLastTime = 0;
+    let dragDistance = 0;
+    let lastTime = performance.now();
+    let period = list.offsetWidth || 1;
+    let animId = null;
+
+    function updatePeriod() {
+        if (list) {
+            period = list.getBoundingClientRect().width || list.offsetWidth || 1;
+        }
+    }
+    updatePeriod();
+
+    const resizeObserver = window.ResizeObserver ? new ResizeObserver(() => {
+        updatePeriod();
+    }) : null;
+    if (resizeObserver) resizeObserver.observe(list);
+
+    // Hover slowdown
+    root.addEventListener('mouseenter', () => {
+        isHovered = true;
+    });
+    root.addEventListener('mouseleave', () => {
+        isHovered = false;
+    });
+
+    // Drag & Fling Physics
+    root.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        dragDistance = 0;
+        pointerStartX = e.clientX;
+        pointerLastX = e.clientX;
+        pointerLastTime = performance.now();
+        velocity = 0;
+        root.setPointerCapture(e.pointerId);
+    });
+
+    root.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        const now = performance.now();
+        const deltaX = e.clientX - pointerLastX;
+        const dt = Math.max(1, now - pointerLastTime);
+        
+        dragDistance += Math.abs(deltaX);
+        offset -= deltaX; // move with finger/cursor
+        velocity = -(deltaX / dt) * 1000; // px/sec
+
+        pointerLastX = e.clientX;
+        pointerLastTime = now;
+    });
+
+    function endDrag(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        try {
+            root.releasePointerCapture(e.pointerId);
+        } catch (_) {}
+    }
+
+    root.addEventListener('pointerup', endDrag);
+    root.addEventListener('pointercancel', endDrag);
+
+    // Prevent navigation if dragged
+    root.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', (e) => {
+            if (dragDistance > 6) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
+    });
+
+    // Animation loop
+    function tick(now) {
+        const dt = Math.min(0.1, (now - lastTime) / 1000);
+        lastTime = now;
+
+        if (!isDragging) {
+            // Apply friction to fling velocity
+            if (Math.abs(velocity) > 0.1) {
+                velocity *= Math.exp(-dt * 3.5);
+                offset += velocity * dt;
+            } else {
+                velocity = 0;
+                // Normal running speed with smooth hover deceleration
+                const desiredSpeed = isHovered ? 0 : targetSpeed;
+                currentSpeed += (desiredSpeed - currentSpeed) * Math.min(1, dt * 5);
+                offset += currentSpeed * dt;
+            }
+        }
+
+        // Infinite modulo loop
+        if (period > 0) {
+            offset = ((offset % period) + period) % period;
+        }
+
+        // Apply 3D accelerated transform to track
+        track.style.transform = `translate3d(${-offset.toFixed(2)}px, 0, 0)`;
+
+        animId = requestAnimationFrame(tick);
+    }
+
+    animId = requestAnimationFrame(tick);
+}
+
 // ======= INIT =======
 document.addEventListener('DOMContentLoaded', () => {
     // Init UI interactions immediately (they don't need Three.js)
     initNavigation();
+    initLogoLoop();
     initForm();
     initCheckout();
     initCursorGlow();
