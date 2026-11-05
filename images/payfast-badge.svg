@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 40" fill="none">
+    <rect width="140" height="40" rx="8" fill="#D41C24"/>
+    <g transform="translate(10, 9)">
+        <rect width="22" height="22" rx="4" fill="#FFFFFF"/>
+        <path d="M5 4.5 L12.5 4.5 C15.2 4.5 17 6.2 17 8.5 C17 10.8 15.2 12.5 12.5 12.5 L8.5 12.5 L8.5 17.5 L5 17.5 Z" fill="#D41C24"/>
+        <path d="M8.5 7.5 L12 7.5 C13 7.5 13.8 8 13.8 8.8 C13.8 9.6 13 10.1 12 10.1 L8.5 10.1 Z" fill="#FFFFFF"/>
+        <circle cx="16" cy="15" r="1.5" fill="#D41C24"/>
+    </g>
+    <text x="37" y="24.5" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="14.5" font-weight="800" letter-spacing="-0.3">Pay<tspan font-weight="400">Fast</tspan></text>
+    <rect x="86" y="11" width="44" height="18" rx="4" fill="#FFFFFF" fill-opacity="0.22"/>
+    <text x="108" y="23.5" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="7.5" font-weight="800" letter-spacing="0.8" text-anchor="middle">VERIFIED</text>
+</svg>

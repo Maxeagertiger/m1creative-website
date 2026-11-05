@@ -126,23 +126,23 @@
                     <span class="word">our</span>
                     <span class="word"><em>packages</em></span>
                 </h2>
-                <p class="pricing-subtitle">Transparent pricing, no hidden fees. 50% setup fee upfront, 50% after website completion. Monthly starts at the end of the month.</p>
+                <p class="pricing-subtitle">Transparent pricing, no hidden fees. 50% setup fee upfront via Yoco, 50% after website completion via PayFast. Monthly retainers start after 30 days via PayFast.</p>
                 
                 <!-- Global terms display -->
                 <div class="pricing-global-terms">
                     <div class="pricing-term-item">
                         <span class="term-num">50%</span>
-                        <span class="term-label">Upfront Setup</span>
+                        <span class="term-label">Upfront Setup · Yoco</span>
                     </div>
                     <div class="pricing-term-divider"></div>
                     <div class="pricing-term-item">
                         <span class="term-num">50%</span>
-                        <span class="term-label">On Completion</span>
+                        <span class="term-label">On Completion · PayFast</span>
                     </div>
                     <div class="pricing-term-divider"></div>
                     <div class="pricing-term-item">
                         <span class="term-num">30 Days</span>
-                        <span class="term-label">Deferred Monthly Starts</span>
+                        <span class="term-label">Deferred Monthly · PayFast</span>
                     </div>
                 </div>
 
@@ -226,6 +226,79 @@
                         <button class="pricing-cta" data-package="Gold" data-setup="7999" data-monthly="1499" id="cta-gold">Get Started</button>
                     </div>
                 </div>
+
+                <!-- Payment Trust & Security Section -->
+                <div class="payment-trust-section">
+                    <div class="payment-trust-header">
+                        <div class="payment-trust-shield">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="payment-trust-title">Bank-Grade Secure Payments Powered by Yoco & PayFast</h3>
+                            <p class="payment-trust-desc">We partner exclusively with South Africa's most trusted, licensed payment processors so your business is always 100% protected.</p>
+                        </div>
+                    </div>
+
+                    <div class="payment-trust-cards">
+                        <!-- Card 1: Yoco (First 50% Deposit) -->
+                        <div class="payment-gateway-card">
+                            <div class="payment-gateway-top">
+                                <span class="gateway-step">STEP 1 · PROJECT INITIATION</span>
+                                <div class="gateway-badge-wrap">
+                                    <img src="images/yoco-badge.svg" alt="Yoco Verified Payments" class="gateway-badge-img" width="130" height="34" loading="lazy">
+                                </div>
+                            </div>
+                            <h4>First 50% Upfront Setup Deposit</h4>
+                            <p>Processed securely via <strong>Yoco</strong>. Once your initial deposit is confirmed, design and engineering kickoff immediately with zero delays.</p>
+                            <div class="gateway-features">
+                                <span>✓ Instant Confirmation</span>
+                                <span>✓ Visa & Mastercard</span>
+                                <span>✓ Apple Pay</span>
+                                <span>✓ 3D Secure Protection</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: PayFast (Final 50% Deposit & Monthly Retainer) -->
+                        <div class="payment-gateway-card">
+                            <div class="payment-gateway-top">
+                                <span class="gateway-step">STEP 2 · LAUNCH & ONGOING</span>
+                                <div class="gateway-badge-wrap">
+                                    <img src="images/payfast-badge.svg" alt="PayFast Verified Payments" class="gateway-badge-img" width="130" height="34" loading="lazy">
+                                </div>
+                            </div>
+                            <h4>Final 50% Deposit & Monthly Retainer</h4>
+                            <p>Processed securely via <strong>PayFast</strong>. You only pay the second 50% after your website is built, tested, and fully approved. Monthly hosting & retainers are handled automatically with 30-day cancel-anytime flexibility.</p>
+                            <div class="gateway-features">
+                                <span>✓ Instant EFT (All SA Banks)</span>
+                                <span>✓ Automated Monthly Billing</span>
+                                <span>✓ PCI-DSS Level 1 Encrypted</span>
+                                <span>✓ No Lock-in Contracts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="payment-security-strip">
+                        <div class="security-badge-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <span>256-Bit SSL Encrypted</span>
+                        </div>
+                        <div class="security-badge-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <span>PCI-DSS Level 1 Certified</span>
+                        </div>
+                        <div class="security-badge-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>3D Secure / OTP Authentication</span>
+                        </div>
+                        <div class="security-badge-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            <span>30-Day Rolling · Cancel Anytime</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -279,6 +352,16 @@
                         <label for="checkout-notes">Tell us about your project (optional)</label>
                     </div>
                     <div class="checkout-error" id="checkoutError" style="display:none;"></div>
+                    <div class="checkout-trust-banner">
+                        <div class="checkout-trust-badges">
+                            <img src="images/yoco-badge.svg" alt="Yoco" width="80" height="23">
+                            <img src="images/payfast-badge.svg" alt="PayFast" width="80" height="23">
+                        </div>
+                        <p class="checkout-trust-text">
+                            <strong>First 50% deposit</strong> is securely processed via <strong>Yoco</strong>.<br>
+                            Final 50% balance & monthly retainers are billed via <strong>PayFast</strong>.
+                        </p>
+                    </div>
                     <button type="submit" class="checkout-submit" id="checkout-submit-btn">
                         <span class="btn-text">Proceed to Payment</span>
                         <span class="btn-loading" style="display:none;">
@@ -294,7 +377,7 @@
                     </button>
                     <p class="checkout-note">
                         <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" style="vertical-align:-2px;margin-right:4px;opacity:0.6;"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
-                        You'll be securely redirected to Yoco to complete payment.
+                        You'll be securely redirected to Yoco to complete your first 50% deposit payment.
                     </p>
                 </form>
                 <div class="checkout-success" id="checkoutSuccess">
@@ -485,6 +568,16 @@
                         <a href="https://www.instagram.com/m1creative.web/?hl=en" target="_blank" rel="noopener noreferrer" class="social-link">Instagram</a>
                         <a href="https://www.tiktok.com/@m1creative.web" target="_blank" rel="noopener noreferrer" class="social-link">TikTok</a>
                         <a href="https://www.linkedin.com/in/michael-james-335111406" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="footer-payment-trust">
+                    <span class="footer-trust-text">Bank-Grade Secure Payments Powered by</span>
+                    <div class="footer-payment-badges">
+                        <img src="images/yoco-badge.svg" alt="Yoco" width="75" height="22" loading="lazy">
+                        <img src="images/payfast-badge.svg" alt="PayFast" width="75" height="22" loading="lazy">
+                        <span class="footer-pay-method">Visa</span>
+                        <span class="footer-pay-method">Mastercard</span>
+                        <span class="footer-pay-method">Instant EFT</span>
                     </div>
                 </div>
                 <div class="footer-bottom">
