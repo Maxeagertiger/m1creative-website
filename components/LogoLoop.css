@@ -8,8 +8,8 @@
   user-select: none;
   -webkit-user-select: none;
   perspective: 1200px;
-  --logoloop-gap: 30px;
-  --logoloop-logoHeight: 22px;
+  --logoloop-gap: 28px;
+  --logoloop-logoHeight: 24px;
 }
 
 .logoloop--horizontal {
@@ -70,22 +70,22 @@
   box-sizing: border-box;
 }
 
+/* Light Card Theme - matching .booking-card */
+.logoloop.light-card-theme .logoloop__content,
 .logoloop__content {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
   text-decoration: none;
-  color: #ffffff;
+  color: #111827;
   position: relative;
-  height: 48px;
+  height: 50px;
   padding: 0 24px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 999px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
   white-space: nowrap;
   box-sizing: border-box;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
@@ -94,47 +94,43 @@
               background 0.3s ease;
 }
 
+.logoloop.light-card-theme .logoloop__content:hover,
 .logoloop--scale-hover .logoloop__item:hover .logoloop__content,
 .logoloop__content:hover {
-  transform: scale(1.05) translateY(-2px);
-  background: rgba(166, 255, 0, 0.06);
-  border-color: rgba(166, 255, 0, 0.5);
-  box-shadow: 0 0 25px rgba(166, 255, 0, 0.22), inset 0 0 15px rgba(166, 255, 0, 0.06);
-  color: #ffffff;
+  transform: translateY(-2px) scale(1.04);
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.09);
+  background: #ffffff;
 }
 
 .logoloop__node {
-  height: 22px;
+  height: 24px;
   width: auto;
-  max-height: 22px;
+  max-height: 24px;
   object-fit: contain;
   display: block;
   pointer-events: none;
   user-select: none;
-  fill: #ffffff;
-  color: #ffffff;
-  transition: filter 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 svg.logoloop__node {
   width: auto;
-  height: 22px;
-  max-height: 22px;
-  fill: #ffffff;
-  color: #ffffff;
+  height: 24px;
+  max-height: 24px;
 }
 
 .logoloop__content:hover .logoloop__node {
-  filter: drop-shadow(0 0 8px rgba(166, 255, 0, 0.5));
+  transform: scale(1.05);
 }
 
 .logoloop__label {
   font-family: inherit;
-  font-size: 0.88rem;
-  font-weight: 600;
-  letter-spacing: 0.3px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: -0.2px;
   white-space: nowrap;
-  color: #ffffff;
+  color: #111827;
 }
 
 /* Tooltips */
@@ -148,7 +144,7 @@ svg.logoloop__node {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 3px 8px;
-  background: rgba(10, 10, 10, 0.94);
+  background: #111827;
   color: #a6ff00;
   border: 1px solid rgba(166, 255, 0, 0.35);
   border-radius: 999px;
