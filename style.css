@@ -4864,9 +4864,9 @@ body {
     user-select: none;
     -webkit-user-select: none;
     perspective: 1200px;
-    padding: 12px 0;
-    --logoloop-gap: 32px;
-    --logoloop-logoHeight: 28px;
+    padding: 16px 0;
+    --logoloop-gap: 30px;
+    --logoloop-logoHeight: 22px;
 }
 
 .logoloop[data-draggable] {
@@ -4906,69 +4906,69 @@ body {
     box-sizing: border-box;
 }
 
+/* Identical height, padding, and uniform white monochrome design matching the booking form */
 .logoloop__content {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
+    height: 48px;
+    padding: 0 24px;
     text-decoration: none;
-    color: #e5e5e5;
-    position: relative;
-    padding: 10px 22px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 100px;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    white-space: nowrap;
+    box-sizing: border-box;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 0.3s ease,
                 box-shadow 0.3s ease,
-                background 0.3s ease,
-                color 0.3s ease;
+                background 0.3s ease;
 }
 
 .logoloop__content:hover {
     background: rgba(166, 255, 0, 0.06);
-    border-color: rgba(166, 255, 0, 0.45);
-    box-shadow: 0 0 25px rgba(166, 255, 0, 0.2), inset 0 0 15px rgba(166, 255, 0, 0.05);
+    border-color: rgba(166, 255, 0, 0.5);
+    box-shadow: 0 0 25px rgba(166, 255, 0, 0.22), inset 0 0 15px rgba(166, 255, 0, 0.06);
     color: #ffffff;
     transform: translateY(-2px) scale(1.05);
 }
 
 .logoloop__node {
-    height: var(--logoloop-logoHeight);
+    height: 22px;
     width: auto;
-    max-width: 120px;
+    max-height: 22px;
     object-fit: contain;
     display: block;
     pointer-events: none;
     user-select: none;
-    filter: brightness(0.92);
+    color: #ffffff;
+    fill: #ffffff;
     transition: filter 0.3s ease;
-}
-
-.logoloop__content:hover .logoloop__node {
-    filter: brightness(1.2) drop-shadow(0 0 8px rgba(166, 255, 0, 0.4));
 }
 
 svg.logoloop__node {
     width: auto;
-    height: var(--logoloop-logoHeight);
-    fill: currentColor;
+    height: 22px;
+    max-height: 22px;
+    fill: #ffffff;
+    color: #ffffff;
+}
+
+.logoloop__content:hover .logoloop__node {
+    filter: drop-shadow(0 0 8px rgba(166, 255, 0, 0.5));
 }
 
 .logoloop__label {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     font-weight: 600;
     letter-spacing: 0.3px;
     white-space: nowrap;
-    color: rgba(255, 255, 255, 0.85);
-    transition: color 0.3s ease;
-}
-
-.logoloop__content:hover .logoloop__label {
     color: #ffffff;
 }
 

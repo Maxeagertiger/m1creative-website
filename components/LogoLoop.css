@@ -8,8 +8,8 @@
   user-select: none;
   -webkit-user-select: none;
   perspective: 1200px;
-  --logoloop-gap: 32px;
-  --logoloop-logoHeight: 32px;
+  --logoloop-gap: 30px;
+  --logoloop-logoHeight: 22px;
 }
 
 .logoloop--horizontal {
@@ -74,44 +74,67 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
-  color: inherit;
+  color: #ffffff;
   position: relative;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease, color 0.25s ease;
+  height: 48px;
+  padding: 0 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  box-sizing: border-box;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease,
+              background 0.3s ease;
 }
 
-.logoloop--scale-hover .logoloop__item:hover .logoloop__content {
-  transform: scale(1.12);
-}
-
-.logoloop__item[data-color]:hover .logoloop__content {
-  color: var(--logoloop-item-color, #a6ff00);
+.logoloop--scale-hover .logoloop__item:hover .logoloop__content,
+.logoloop__content:hover {
+  transform: scale(1.05) translateY(-2px);
+  background: rgba(166, 255, 0, 0.06);
+  border-color: rgba(166, 255, 0, 0.5);
+  box-shadow: 0 0 25px rgba(166, 255, 0, 0.22), inset 0 0 15px rgba(166, 255, 0, 0.06);
+  color: #ffffff;
 }
 
 .logoloop__node {
-  height: var(--logoloop-logoHeight);
+  height: 22px;
   width: auto;
-  max-width: 180px;
+  max-height: 22px;
   object-fit: contain;
   display: block;
   pointer-events: none;
   user-select: none;
-  transition: filter 0.25s ease, transform 0.25s ease;
+  fill: #ffffff;
+  color: #ffffff;
+  transition: filter 0.3s ease;
 }
 
 svg.logoloop__node {
   width: auto;
-  height: var(--logoloop-logoHeight);
-  fill: currentColor;
+  height: 22px;
+  max-height: 22px;
+  fill: #ffffff;
+  color: #ffffff;
+}
+
+.logoloop__content:hover .logoloop__node {
+  filter: drop-shadow(0 0 8px rgba(166, 255, 0, 0.5));
 }
 
 .logoloop__label {
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.3px;
   white-space: nowrap;
+  color: #ffffff;
 }
 
 /* Tooltips */
@@ -120,14 +143,14 @@ svg.logoloop__node {
   bottom: -28px;
   left: 50%;
   transform: translateX(-50%) translateY(4px);
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 3px 8px;
-  background: rgba(10, 10, 10, 0.88);
+  background: rgba(10, 10, 10, 0.94);
   color: #a6ff00;
-  border: 1px solid rgba(166, 255, 0, 0.25);
+  border: 1px solid rgba(166, 255, 0, 0.35);
   border-radius: 999px;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -141,50 +164,4 @@ svg.logoloop__node {
 .logoloop__item:hover .logoloop__tip {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
-}
-
-/* Muted state support */
-.logoloop[data-muted] .logoloop__item {
-  filter: grayscale(var(--logoloop-gray, 0.7)) opacity(var(--logoloop-dim, 0.65));
-  transition: filter 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.logoloop[data-muted] .logoloop__item:hover {
-  filter: grayscale(0) opacity(1);
-}
-
-/* M1Creative Brand Theme Styling */
-.logoloop.brand-theme {
-  padding: 16px 0;
-}
-
-.logoloop.brand-theme .logoloop__content {
-  padding: 10px 22px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 100px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: #e5e5e5;
-  font-size: 0.875rem;
-  font-weight: 500;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.logoloop.brand-theme .logoloop__content:hover {
-  background: rgba(166, 255, 0, 0.06);
-  border-color: rgba(166, 255, 0, 0.45);
-  box-shadow: 0 0 25px rgba(166, 255, 0, 0.2), inset 0 0 15px rgba(166, 255, 0, 0.05);
-  color: #ffffff;
-}
-
-.logoloop.brand-theme .logoloop__node {
-  height: 26px;
-  filter: brightness(0.92);
-  transition: filter 0.3s ease;
-}
-
-.logoloop.brand-theme .logoloop__content:hover .logoloop__node {
-  filter: brightness(1.15) drop-shadow(0 0 8px rgba(166, 255, 0, 0.35));
 }
