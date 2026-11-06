@@ -6054,6 +6054,28 @@ svg.logoloop__node {
    DEDICATED SUBPAGES: ABOUT, SERVICES & CONTACT
    ========================================================= */
 
+/* Subpage section spacing & flow */
+body.subpage .section {
+    min-height: auto !important;
+    padding: 70px 40px !important;
+}
+
+body.subpage .subpage-hero {
+    padding-top: 140px !important;
+    padding-bottom: 30px !important;
+    min-height: auto !important;
+}
+
+@media (max-width: 768px) {
+    body.subpage .section {
+        padding: 45px 20px !important;
+    }
+    body.subpage .subpage-hero {
+        padding-top: 110px !important;
+        padding-bottom: 25px !important;
+    }
+}
+
 /* Subpage Hero Text */
 .subpage-lead {
     font-size: clamp(1.05rem, 2vw, 1.25rem);
