@@ -1,0 +1,5 @@
+node_modules/
+images/backup/
+compress-images.js
+package.json
+package-lock.json
