@@ -1155,7 +1155,7 @@ function initCheckout() {
 
     const packageNames = {
         Bronze: 'Starter Presence',
-        Silver: 'Growth Package',
+        Silver: 'Growth Machine',
         Gold: 'Premium Authority'
     };
 

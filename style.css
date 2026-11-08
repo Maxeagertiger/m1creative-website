@@ -6498,3 +6498,131 @@ body.subpage .subpage-hero {
         padding: 20px 14px;
     }
 }
+
+/* ===========================
+   PRICING PAGE ENHANCEMENTS (6-SCREENSHOT DIRECTIVES)
+   =========================== */
+.pricing-timeline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 24px;
+    width: fit-content;
+}
+
+.pricing-timeline.gold-timeline {
+    background: rgba(166, 255, 0, 0.09);
+    border-color: rgba(166, 255, 0, 0.35);
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 0 15px rgba(166, 255, 0, 0.12);
+}
+
+.pricing-timeline.gold-timeline .timeline-icon {
+    filter: drop-shadow(0 0 6px rgba(166, 255, 0, 0.7));
+}
+
+.pricing-badge-subtle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 5px 12px;
+    border-radius: 50px;
+    text-transform: uppercase;
+}
+
+/* Button rule: Bronze & Silver buttons are dark outlines */
+.pricing-card:not(.featured) .pricing-cta {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1.5px solid rgba(255, 255, 255, 0.22);
+    color: var(--text-white);
+    font-weight: 600;
+}
+
+.pricing-card:not(.featured) .pricing-cta:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Button rule: Gold button is solid bright lime green with dark text */
+.pricing-card.featured .pricing-cta.featured-cta,
+.pricing-card[data-tier="gold"] .pricing-cta.featured-cta {
+    background: var(--accent) !important;
+    color: var(--bg-dark) !important;
+    border-color: var(--accent) !important;
+    font-weight: 800 !important;
+    box-shadow: 0 6px 25px rgba(166, 255, 0, 0.35) !important;
+}
+
+.pricing-card.featured .pricing-cta.featured-cta:hover,
+.pricing-card[data-tier="gold"] .pricing-cta.featured-cta:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 10px 35px rgba(166, 255, 0, 0.5) !important;
+}
+
+/* Gold card featured styling */
+.pricing-card[data-tier="gold"].featured {
+    border-color: rgba(166, 255, 0, 0.35);
+    background: linear-gradient(180deg, rgba(166, 255, 0, 0.06) 0%, rgba(255, 215, 0, 0.02) 100%);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(166, 255, 0, 0.1);
+}
+
+.pricing-card[data-tier="gold"].featured:hover {
+    border-color: rgba(166, 255, 0, 0.6);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 50px rgba(166, 255, 0, 0.22);
+}
+
+/* Sub-labels in global terms */
+.term-label {
+    font-size: 0.82rem;
+    color: var(--text-white);
+    letter-spacing: 0.3px;
+    margin-top: 6px;
+    line-height: 1.4;
+    text-transform: none;
+}
+
+.term-sub {
+    display: block;
+    font-size: 0.74rem;
+    color: var(--text-light);
+    opacity: 0.75;
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+/* Content clock note below pricing cards */
+.pricing-clock-note {
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 32px auto 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    max-width: 800px;
+    line-height: 1.5;
+}
+
+.pricing-clock-note svg {
+    color: var(--accent);
+    flex-shrink: 0;
+}
