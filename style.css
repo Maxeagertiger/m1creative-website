@@ -6723,3 +6723,18 @@ body.subpage .subpage-hero {
         border-radius: 18px;
     }
 }
+
+/* Textarea label adjustment for qualification question */
+.form-group textarea ~ label {
+    white-space: normal;
+    max-width: 95%;
+    line-height: 1.35;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+    .form-group textarea ~ label {
+        font-size: 0.82rem;
+        top: 18px;
+    }
+}
