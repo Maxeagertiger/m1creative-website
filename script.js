@@ -1159,39 +1159,11 @@ function initCheckout() {
         Gold: 'Premium Authority'
     };
 
-    // Open checkout from pricing CTA buttons
+    // Get Started buttons: redirect to contact form with package pre-selected
     document.querySelectorAll('.pricing-cta').forEach(btn => {
         btn.addEventListener('click', () => {
-            const pkg = btn.dataset.package;
-            const setup = btn.dataset.setup;
-            const monthly = btn.dataset.monthly;
-            const tier = pkg.toLowerCase();
-
-            const setupNumber = Number(setup);
-            const dueToday = setupNumber / 2;
-
-            // Update modal content
-            const badge = document.getElementById('checkoutBadge');
-            badge.textContent = pkg.toUpperCase();
-            badge.setAttribute('data-tier', tier);
-
-            document.getElementById('checkoutPackageName').textContent = packageNames[pkg] || pkg;
-            document.getElementById('checkoutSetup').textContent = `R${setupNumber.toLocaleString()} (50% upfront: R${dueToday.toLocaleString()})`;
-            document.getElementById('checkoutMonthly').textContent = `R${Number(monthly).toLocaleString()}/mo`;
-            document.getElementById('checkoutTotal').textContent = `R${dueToday.toLocaleString()}`;
-
-            // Set hidden fields
-            document.getElementById('checkout-package').value = pkg;
-            document.getElementById('checkout-setup-amount').value = setup;
-            document.getElementById('checkout-monthly-amount').value = monthly;
-
-            // Reset form state
-            checkoutForm.reset();
-            checkoutSuccess.classList.remove('show');
-
-            // Open modal
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            const pkg = btn.dataset.package; // Bronze | Silver | Gold
+            window.location.href = 'contact.html?package=' + encodeURIComponent(pkg);
         });
     });
 

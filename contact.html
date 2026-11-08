@@ -366,6 +366,43 @@
         </div>
     </div>
 
+    <!-- Pre-select package from URL parameter (e.g. contact.html?package=Gold) -->
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const pkg = params.get('package'); // Bronze | Silver | Gold
+            if (!pkg) return;
+
+            // Map package name to option value
+            const map = {
+                'Gold':   'Gold Tier: Premium Authority Framework (5-Day Express Track)',
+                'Silver': 'Silver Tier: Growth Machine Architecture (7-10 Days)',
+                'Bronze': 'Bronze Tier: Starter Presence Profile (3-5 Days)'
+            };
+
+            const value = map[pkg];
+            if (!value) return;
+
+            // Wait for DOM then set the select value and scroll to form
+            window.addEventListener('DOMContentLoaded', function () {
+                const select = document.getElementById('project-type');
+                if (select) {
+                    select.value = value;
+                    // Trigger 'change' so any listeners / label animations fire
+                    select.dispatchEvent(new Event('change'));
+                }
+
+                // Scroll form into view smoothly
+                const formSection = document.getElementById('contact') || document.querySelector('.booking-card');
+                if (formSection) {
+                    setTimeout(function () {
+                        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 400);
+                }
+            });
+        })();
+    </script>
+
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.36/dist/lenis.min.js"></script>
