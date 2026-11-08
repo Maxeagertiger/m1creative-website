@@ -6626,3 +6626,100 @@ body.subpage .subpage-hero {
     color: var(--accent);
     flex-shrink: 0;
 }
+
+/* ===========================
+   FOUNDING CLIENT SLOTS (High-Ticket Trust Builder)
+   =========================== */
+.founding-client-callout {
+    background: linear-gradient(135deg, rgba(166, 255, 0, 0.05) 0%, rgba(18, 18, 18, 0.95) 100%);
+    border: 1px solid rgba(166, 255, 0, 0.25);
+    border-radius: 24px;
+    padding: 48px 36px;
+    text-align: center;
+    max-width: 860px;
+    margin: 40px auto 0 auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(166, 255, 0, 0.06);
+    backdrop-filter: blur(12px);
+}
+
+.founding-slot-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(166, 255, 0, 0.12);
+    border: 1px solid rgba(166, 255, 0, 0.35);
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    padding: 6px 16px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.founding-slot-badge .slot-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.75); }
+}
+
+.founding-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+    color: var(--text-white);
+    margin-bottom: 18px;
+    line-height: 1.25;
+}
+
+.founding-subtext {
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 740px;
+    margin: 0 auto 28px auto;
+}
+
+.founding-subtext strong {
+    color: var(--text-white);
+    font-weight: 700;
+}
+
+.founding-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 36px;
+    font-size: 1rem;
+    font-weight: 800;
+    border-radius: 50px;
+    background: var(--accent);
+    color: var(--bg-dark);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 25px rgba(166, 255, 0, 0.3);
+}
+
+.founding-btn:hover {
+    background: #ffffff;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 35px rgba(166, 255, 0, 0.45);
+}
+
+@media (max-width: 768px) {
+    .founding-client-callout {
+        padding: 32px 20px;
+        border-radius: 18px;
+    }
+}
