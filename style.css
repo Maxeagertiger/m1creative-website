@@ -6263,6 +6263,7 @@ body.subpage .subpage-hero {
     flex-direction: column;
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
     backdrop-filter: blur(12px);
+    text-align: left;
 }
 
 .service-full-card:hover {
@@ -6321,8 +6322,9 @@ body.subpage .subpage-hero {
     font-size: 0.88rem;
     color: var(--text-light);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
+    text-align: left;
 }
 
 .service-feature-item::before {
