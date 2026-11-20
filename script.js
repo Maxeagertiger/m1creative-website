@@ -415,38 +415,38 @@ function initBlueprintCanvas() {
         const scrollY = window.scrollY || 0;
         const t = (time || 0) * 0.001;
 
-        // Clear background — deep darker obsidian matching latest favicon
-        blueprintCtx.fillStyle = '#030303';
+        // Clear background
+        blueprintCtx.fillStyle = '#050505';
         blueprintCtx.fillRect(0, 0, width, height);
 
-        // === AMBIENT CYBER GLOW — darker, subtle, focused (keeps background ultra-dark) ===
+        // === AMBIENT GREEN GLOW — scrolls with the page ===
         const glowCenterY = height * 0.38 - (scrollY * 0.12 % height);
-        const pulse1 = Math.sin(t * 0.7) * 0.007 + 0.016;
-        const pulse2 = Math.cos(t * 0.5) * 0.005 + 0.012;
+        const pulse1 = Math.sin(t * 0.7) * 0.018 + 0.045;
+        const pulse2 = Math.cos(t * 0.5) * 0.014 + 0.032;
 
-        let g1 = blueprintCtx.createRadialGradient(width * 0.5, glowCenterY, 10, width * 0.5, glowCenterY, width * 0.46);
+        let g1 = blueprintCtx.createRadialGradient(width * 0.5, glowCenterY, 10, width * 0.5, glowCenterY, width * 0.48);
         g1.addColorStop(0, `rgba(166, 255, 0, ${pulse1})`);
         g1.addColorStop(1, 'rgba(166, 255, 0, 0)');
         blueprintCtx.fillStyle = g1;
         blueprintCtx.fillRect(0, 0, width, height);
 
-        let g2 = blueprintCtx.createRadialGradient(width * 0.82, height * 0.7, 10, width * 0.82, height * 0.7, width * 0.42);
+        let g2 = blueprintCtx.createRadialGradient(width * 0.82, height * 0.7, 10, width * 0.82, height * 0.7, width * 0.45);
         g2.addColorStop(0, `rgba(166, 255, 0, ${pulse2})`);
         g2.addColorStop(1, 'rgba(166, 255, 0, 0)');
         blueprintCtx.fillStyle = g2;
         blueprintCtx.fillRect(0, 0, width, height);
 
-        // === DARK CYBER GRID (matched to latest favicon grid background) ===
+        // === THREE-LAYER PARALLAX GRID ===
         const layers = [
-            { cell: 80,  color: 'rgba(166, 255, 0, 0.024)', width: 0.6, speed: 0.04 },  // deep cyber grid
-            { cell: 40,  color: 'rgba(166, 255, 0, 0.038)', width: 0.8, speed: 0.07 },  // mid main grid
-            { cell: 20,  color: 'rgba(255, 255, 255, 0.010)', width: 0.4, speed: 0.10 }  // fine sub-grid
+            { cell: 80,  alpha: 0.022, speed: 0.04 },  // deep background
+            { cell: 40,  alpha: 0.042, speed: 0.07 },  // mid
+            { cell: 16,  alpha: 0.014, speed: 0.12 }   // fine foreground
         ];
 
-        layers.forEach(({ cell, color, width: lw, speed }) => {
+        layers.forEach(({ cell, alpha, speed }) => {
             const off = (scrollY * speed) % cell;
-            blueprintCtx.strokeStyle = color;
-            blueprintCtx.lineWidth = lw;
+            blueprintCtx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+            blueprintCtx.lineWidth = alpha > 0.03 ? 1.0 : 0.5;
             blueprintCtx.beginPath();
             for (let x = 0; x < width + cell; x += cell) {
                 blueprintCtx.moveTo(x, 0);
@@ -516,7 +516,7 @@ function initBlueprintCanvas() {
             width * 0.5, height * 0.5, height * 0.85
         );
         vignette.addColorStop(0, 'rgba(0,0,0,0)');
-        vignette.addColorStop(1, 'rgba(0,0,0,0.68)');
+        vignette.addColorStop(1, 'rgba(0,0,0,0.45)');
         blueprintCtx.fillStyle = vignette;
         blueprintCtx.fillRect(0, 0, width, height);
 
@@ -638,7 +638,7 @@ function initIntro() {
             const elapsed = now - startTime;
 
             // Clear
-            ctx.fillStyle = '#030303';
+            ctx.fillStyle = '#050505';
             ctx.fillRect(0, 0, W, H);
 
             // Grid progress
