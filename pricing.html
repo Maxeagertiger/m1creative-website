@@ -436,147 +436,131 @@
         </div>
 
         <!-- Section: Contact Form -->
-        <section id="contact" class="section section-light">
-            <div class="section-content">
-                <div class="contact-wrapper">
-                    <div class="contact-info">
-                        <div class="section-tag dark">1-ON-1 STRATEGY CALL</div>
-                        <h2 class="big-text animate-text dark-text">
-                            <span class="word">secure your 1-on-1</span>
-                            <span class="word">strategy call with</span>
-                            <span class="word"><em>our founder.</em></span>
-                        </h2>
-                        <p class="contact-info-subtitle dark-text" style="font-size: 1rem; line-height: 1.65; margin-bottom: 24px;">
-                            We intentionally limit our intake to 3 active client builds at a time to ensure maximum quality and conversion engineering. Book a 15-minute alignment slot below to map out your digital infrastructure directly with Michael.
-                        </p>
-                        <h3 class="contact-info-title dark-text">What happens next?</h3>
-                        <p class="contact-info-subtitle dark-text">Three simple steps to launch your new digital presence.</p>
-                        
-                        <div class="process-timeline">
-                            <div class="process-step">
-                                <div class="step-badge">1</div>
-                                <div class="step-details">
-                                    <h4 class="dark-text">Pick Date & Time</h4>
-                                    <p class="dark-text">Select an available 15-minute slot on our live calendar that fits your schedule.</p>
-                                </div>
-                            </div>
-                            <div class="process-step">
-                                <div class="step-badge">2</div>
-                                <div class="step-details">
-                                    <h4 class="dark-text">Share Project Notes</h4>
-                                    <p class="dark-text">Tell us your core business goals, target launch date, and preferences.</p>
-                                </div>
-                            </div>
-                            <div class="process-step">
-                                <div class="step-badge">3</div>
-                                <div class="step-details">
-                                    <h4 class="dark-text">15-Min Alignment Call</h4>
-                                    <p class="dark-text">Meet with Michael directly to review your custom website strategy & quote.</p>
-                                </div>
-                            </div>
-                        </div>
+        <section id="contact" class="section process-modern-section">
+            <div class="section-modern-container">
+                <div class="section-eyebrow">HOW IT WORKS</div>
+                <h2 class="section-modern-title">
+                    Three steps to <em class="accent-serif">launch.</em>
+                </h2>
 
-                        <div class="direct-contact">
-                            <p class="dark-text">Prefer email or phone? Reach us directly:</p>
-                            <a href="tel:0720733092" class="direct-email-link" style="margin-right: 15px;">072 073 3092</a>
-                            <a href="mailto:create@m1creativeweb.co.za" class="direct-email-link">create@m1creativeweb.co.za</a>
-                        </div>
+                <div class="process-steps-grid">
+                    <div class="process-step-card">
+                        <span class="step-card-num">01</span>
+                        <h3 class="step-card-title">Pick a time</h3>
+                        <p class="step-card-desc">Choose a 15-minute slot on the live calendar.</p>
                     </div>
+                    <div class="process-step-card">
+                        <span class="step-card-num">02</span>
+                        <h3 class="step-card-title">Share your goals</h3>
+                        <p class="step-card-desc">Tell us your business goals and launch date.</p>
+                    </div>
+                    <div class="process-step-card">
+                        <span class="step-card-num">03</span>
+                        <h3 class="step-card-title">Alignment call</h3>
+                        <p class="step-card-desc">Review your strategy and quote with Michael.</p>
+                    </div>
+                </div>
 
-                    <!-- Interactive Calendar Booking Form -->
-                    <div class="booking-card booking-card-modern">
-                        <form id="contact-form" class="booking-form">
-                            <div class="booking-step-title">
-                                <span class="step-number">1</span>
-                                <span>Select Date & Time</span>
-                            </div>
-                            
-                            <!-- Month Navigation Header -->
-                            <div class="calendar-header">
-                                <button type="button" id="cal-prev" class="cal-nav-btn" aria-label="Previous month">&lsaquo;</button>
-                                <div id="cal-month-year" class="cal-month-title">August 2026</div>
-                                <button type="button" id="cal-next" class="cal-nav-btn" aria-label="Next month">&rsaquo;</button>
-                            </div>
+                <!-- Interactive Calendar Booking Interface (Preserving All Original IDs & Form Fields) -->
+                <div class="booking-card-modern">
+                    <form id="contact-form" class="booking-form">
+                        <div class="booking-step-title">
+                            <span class="step-number">1</span>
+                            <span>Select Date &amp; Time</span>
+                        </div>
+                        
+                        <!-- Month Navigation Header -->
+                        <div class="calendar-header">
+                            <button type="button" id="cal-prev" class="cal-nav-btn" aria-label="Previous month">&lsaquo;</button>
+                            <div id="cal-month-year" class="cal-month-title">August 2026</div>
+                            <button type="button" id="cal-next" class="cal-nav-btn" aria-label="Next month">&rsaquo;</button>
+                        </div>
 
-                            <!-- Weekdays -->
-                            <div class="calendar-weekdays">
-                                <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
-                            </div>
+                        <!-- Weekdays -->
+                        <div class="calendar-weekdays">
+                            <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+                        </div>
 
-                            <!-- Calendar Days Grid -->
-                            <div id="calendar-days" class="calendar-days-grid">
-                                <!-- JS populates dates -->
-                            </div>
+                        <!-- Calendar Days Grid -->
+                        <div id="calendar-days" class="calendar-days-grid">
+                            <!-- JS populates dates -->
+                        </div>
 
-                            <!-- Time Slot Selector -->
-                            <div id="time-slots-wrapper" class="time-slots-wrapper" style="display: none;">
-                                <div class="time-slots-label">Available Slots for <strong id="selected-date-display">Select a date</strong>:</div>
-                                <div id="time-slots-grid" class="time-slots-grid">
-                                    <button type="button" class="time-slot-btn" data-time="09:30 AM">09:30 AM</button>
-                                    <button type="button" class="time-slot-btn" data-time="11:00 AM">11:00 AM</button>
-                                    <button type="button" class="time-slot-btn" data-time="02:00 PM">02:00 PM</button>
-                                    <button type="button" class="time-slot-btn" data-time="03:30 PM">03:30 PM</button>
-                                    <button type="button" class="time-slot-btn" data-time="05:00 PM">05:00 PM</button>
-                                </div>
+                        <!-- Time Slot Selector -->
+                        <div id="time-slots-wrapper" class="time-slots-wrapper" style="display: none;">
+                            <div class="time-slots-label">Available Slots for <strong id="selected-date-display">Select a date</strong>:</div>
+                            <div id="time-slots-grid" class="time-slots-grid">
+                                <button type="button" class="time-slot-btn" data-time="09:30 AM">09:30 AM</button>
+                                <button type="button" class="time-slot-btn" data-time="11:00 AM">11:00 AM</button>
+                                <button type="button" class="time-slot-btn" data-time="02:00 PM">02:00 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="03:30 PM">03:30 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="05:00 PM">05:00 PM</button>
                             </div>
+                        </div>
 
-                            <div class="booking-step-title" style="margin-top: 28px;">
-                                <span class="step-number">2</span>
-                                <span>Your Contact Details</span>
-                            </div>
+                        <div class="booking-step-title" style="margin-top: 36px;">
+                            <span class="step-number">2</span>
+                            <span>Your Contact Details</span>
+                        </div>
 
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <input type="text" id="name" name="name" required placeholder=" ">
-                                    <label for="name">Your Name</label>
-                                    <div class="form-line"></div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" id="email" name="email" required placeholder=" ">
-                                    <label for="email">Email Address</label>
-                                    <div class="form-line"></div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="tel" id="phone" name="phone" required placeholder=" ">
-                                    <label for="phone">Phone / WhatsApp</label>
-                                    <div class="form-line"></div>
-                                </div>
-                                <div class="form-group">
-                                    <select id="project-type" name="project_type" required>
-                                        <option value="" disabled selected hidden></option>
-                                        <option value="Gold Tier: Premium Authority Framework (5-Day Express Track)">🥇 Gold Tier: Premium Authority Framework (5-Day Express Track)</option>
-                                        <option value="Silver Tier: Growth Machine Architecture (7-10 Days)">🥈 Silver Tier: Growth Machine Architecture (7-10 Days)</option>
-                                        <option value="Bronze Tier: Starter Presence Profile (3-5 Days)">🥉 Bronze Tier: Starter Presence Profile (3-5 Days)</option>
-                                    </select>
-                                    <label for="project-type">Project Tier / Scope</label>
-                                    <div class="form-line"></div>
-                                </div>
-                            </div>
-                            <div class="form-group full-width">
-                                <textarea id="message" name="message" rows="2" placeholder=" "></textarea>
-                                <label for="message">What is your business industry &amp; target monthly lead goal?</label>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" required placeholder=" ">
+                                <label for="name">Your Name</label>
                                 <div class="form-line"></div>
                             </div>
-
-                            <input type="hidden" id="selected-date-input" name="selected_date">
-                            <input type="hidden" id="selected-time-input" name="selected_time">
-
-                            <button type="submit" class="submit-btn" id="submit-btn">
-                                <span class="btn-text">Confirm & Book Call</span>
-                                <span class="btn-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <line x1="5" y1="12" x2="19" y2="12" />
-                                        <polyline points="12 5 19 12 12 19" />
-                                    </svg>
-                                </span>
-                            </button>
-                            <div class="form-success" id="formSuccess">
-                                <div class="success-icon">✓</div>
-                                <h3>Call Scheduled!</h3>
-                                <p id="booking-success-detail">Your 15-minute alignment call is booked. A calendar invitation has been sent to your email.</p>
-                                <button type="button" id="booking-reset-btn" class="secondary-btn" style="margin-top: 20px; font-size: 0.85rem; padding: 10px 24px; cursor: pointer;">Book Another Slot</button>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" required placeholder=" ">
+                                <label for="email">Email Address</label>
+                                <div class="form-line"></div>
                             </div>
-                        </form>
+                            <div class="form-group">
+                                <input type="tel" id="phone" name="phone" required placeholder=" ">
+                                <label for="phone">Phone / WhatsApp</label>
+                                <div class="form-line"></div>
+                            </div>
+                            <div class="form-group">
+                                <select id="project-type" name="project_type" required>
+                                    <option value="" disabled selected hidden></option>
+                                    <option value="Gold Tier: Premium Authority Framework (5-Day Express Track)">🥇 Gold Tier: Premium Authority Framework (5-Day Express Track)</option>
+                                    <option value="Silver Tier: Growth Machine Architecture (7-10 Days)">🥈 Silver Tier: Growth Machine Architecture (7-10 Days)</option>
+                                    <option value="Bronze Tier: Starter Presence Profile (3-5 Days)">🥉 Bronze Tier: Starter Presence Profile (3-5 Days)</option>
+                                </select>
+                                <label for="project-type">Project Tier / Scope</label>
+                                <div class="form-line"></div>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <textarea id="message" name="message" rows="2" placeholder=" "></textarea>
+                            <label for="message">What is your business industry &amp; target monthly lead goal?</label>
+                            <div class="form-line"></div>
+                        </div>
+
+                        <input type="hidden" id="selected-date-input" name="selected_date">
+                        <input type="hidden" id="selected-time-input" name="selected_time">
+
+                        <button type="submit" class="submit-btn" id="submit-btn">
+                            <span class="btn-text">Confirm &amp; Book Call</span>
+                            <span class="btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                    <polyline points="12 5 19 12 12 19" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="form-success" id="formSuccess">
+                            <div class="success-icon">✓</div>
+                            <h3>Call Scheduled!</h3>
+                            <p id="booking-success-detail">Your 15-minute alignment call is booked. A calendar invitation has been sent to your email.</p>
+                            <button type="button" id="booking-reset-btn" class="secondary-btn" style="margin-top: 20px; font-size: 0.85rem; padding: 10px 24px; cursor: pointer;">Book Another Slot</button>
+                        </div>
+                    </form>
+
+                    <div class="booking-direct-contact">
+                        <span>Prefer to connect directly?</span>
+                        <a href="tel:0720733092" class="direct-link">072 073 3092</a>
+                        <span class="direct-sep">·</span>
+                        <a href="mailto:create@m1creativeweb.co.za" class="direct-link">create@m1creativeweb.co.za</a>
                     </div>
                 </div>
             </div>

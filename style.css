@@ -7447,6 +7447,7 @@ a.service-modern-card {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 15%;
     display: block;
 }
 
@@ -7950,8 +7951,9 @@ a.pricing-modern-card {
     }
 
     .founder-photo-frame {
-        max-width: 100%;
-        aspect-ratio: 16/12;
+        max-width: 380px;
+        margin: 0 auto;
+        aspect-ratio: 4/5;
     }
 }
 
