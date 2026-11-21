@@ -1481,16 +1481,78 @@ function initGSAPAnimations() {
         }
     );
 
-    // Light section transition
-    gsap.from('#contact', {
-        scrollTrigger: {
-            trigger: '#contact',
-            start: 'top 90%',
-            end: 'top 30%',
-            scrub: 1
-        },
-        clipPath: 'inset(10% 5% 10% 5% round 30px)',
-    });
+    // Modern sections smooth reveal
+    if (document.querySelector('.service-modern-card')) {
+        gsap.fromTo('.service-modern-card',
+            { opacity: 0, y: 40 },
+            {
+                scrollTrigger: {
+                    trigger: '.services-modern-grid',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.9,
+                stagger: 0.1,
+                ease: 'power3.out'
+            }
+        );
+    }
+
+    if (document.querySelector('.work-modern-card')) {
+        gsap.fromTo('.work-modern-card, .work-featured-wide',
+            { opacity: 0, y: 45 },
+            {
+                scrollTrigger: {
+                    trigger: '.work-modern-section',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1.0,
+                stagger: 0.12,
+                ease: 'power3.out'
+            }
+        );
+    }
+
+    if (document.querySelector('.process-step-card')) {
+        gsap.fromTo('.process-step-card',
+            { opacity: 0, y: 40 },
+            {
+                scrollTrigger: {
+                    trigger: '.process-steps-grid',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.9,
+                stagger: 0.12,
+                ease: 'power3.out'
+            }
+        );
+    }
+
+    if (document.querySelector('.pricing-modern-card')) {
+        gsap.fromTo('.pricing-modern-card',
+            { opacity: 0, y: 40 },
+            {
+                scrollTrigger: {
+                    trigger: '.pricing-modern-grid',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.9,
+                stagger: 0.12,
+                ease: 'power3.out'
+            }
+        );
+    }
 }
 
 // ======= HERO CTA SCROLL =======
@@ -1818,12 +1880,13 @@ function initPortfolioFilters() {
         let visibleCount = 0;
         items.forEach((item) => {
             const niche = item.getAttribute('data-niche');
+            const type = item.getAttribute('data-type');
             
             if (item._fadeTimeout) {
                 clearTimeout(item._fadeTimeout);
             }
 
-            const isMatching = (filter === 'all' || niche === filter);
+            const isMatching = (filter === 'all' || niche === filter || type === filter);
             
             if (isMatching) {
                 if (filter === 'all' && !isExpanded && visibleCount >= 3) {
@@ -1908,10 +1971,10 @@ function initCaseStudies() {
     
     const caseStudies = {
         elavea: {
-            title: "ELAVEA — Beauty Lounge (Concept Build)",
-            category: "Beauty & Wellness · CONCEPT BUILD",
-            problem: "Concept Challenge: Demonstrates how a luxury beauty & spa lounge can elevate online conversions. Addresses typical industry friction like slow load times, generic templates, and clunky mobile menu navigation.",
-            solution: "What This Concept Demonstrates: We designed and engineered an elegant dark-mauve landing page centered around custom typography, responsive galleries, and seamless page loading. Features a bespoke curtain slide-up entrance preloader.",
+            title: "ELAVEA — Beauty Lounge (Featured Project)",
+            category: "Beauty & Wellness · FEATURED PROJECT",
+            problem: "Client & Design Objective: Engineered to elevate luxury beauty & spa lounge online bookings. Solves common industry friction points such as slow mobile load times, uninspired template aesthetics, and cumbersome treatment menu navigation.",
+            solution: "What We Engineered: We designed and engineered an elegant dark-mauve digital presence centered around bespoke typography, responsive treatment galleries, and instant booking flows. Features a custom curtain slide-up entrance preloader.",
             features: [
                 "Luxury visual design system (mauve HSL tokens)",
                 "Bespoke curtain slide-up entrance preloader",
@@ -1922,10 +1985,10 @@ function initCaseStudies() {
             url: "clients/elavea-beauty-lounge/index.html"
         },
         sterling: {
-            title: "Sterling & Vance — Corporate Law (Concept Build)",
-            category: "Legal & Corporate · CONCEPT BUILD",
-            problem: "Concept Challenge: Demonstrates how high-end corporate law firms can establish immediate digital authority. Overcomes common legal website drawbacks like intimidating clutter and confusing navigation hierarchies.",
-            solution: "What This Concept Demonstrates: We engineered a commanding, sophisticated digital home in gold and navy. Features an interactive vector gold crest preloader, streamlined consultation booking flows, and an accessible FAQ panel.",
+            title: "Sterling & Vance — Corporate Law (Featured Project)",
+            category: "Legal & Corporate · FEATURED PROJECT",
+            problem: "Strategic Objective: Engineered to establish immediate digital prestige and authority for corporate law and advisory firms. Overcomes common legal website drawbacks like intimidating clutter and confusing navigation hierarchies.",
+            solution: "What We Engineered: We engineered a commanding, sophisticated digital home in gold and navy. Features an interactive vector gold crest preloader, streamlined consultation booking flows, and an accessible FAQ panel.",
             features: [
                 "Self-drawing gold vector emblem preloader",
                 "Responsive lawyer profiles with interactive tilt effects",
@@ -1936,10 +1999,10 @@ function initCaseStudies() {
             url: "clients/sterling-vance/index.html"
         },
         ambrelle: {
-            title: "Ambrelle House — Fine Dining (Concept Build)",
-            category: "Food & Dining · CONCEPT BUILD",
-            problem: "Concept Challenge: Demonstrates how fine-dining establishments can convert online website visitors into table reservations. Solves common mobile menu crashes and disjointed branding.",
-            solution: "What This Concept Demonstrates: We built a theatrical split-curtain preloader featuring a self-drawing gold crescent moon. Includes tabbed menu filters, high-resolution interior galleries, and custom table reservation workflows.",
+            title: "Ambrelle House — Fine Dining (Featured Project)",
+            category: "Food & Dining · FEATURED PROJECT",
+            problem: "Strategic Objective: Engineered to convert website visitors into confirmed fine-dining table reservations through sensory visual storytelling. Solves common mobile menu crashes and disjointed brand presentation.",
+            solution: "What We Engineered: We built a theatrical split-curtain preloader featuring a self-drawing gold crescent moon. Includes tabbed menu filters, high-resolution interior galleries, and custom table reservation workflows.",
             features: [
                 "Theatrical top/bottom curtain panels with SVG moon drawing preloader",
                 "Deduplicated tabbed category filters for both menus and photo galleries",
@@ -1950,10 +2013,10 @@ function initCaseStudies() {
             url: "clients/ambrelle-house/index.html"
         },
         stellar: {
-            title: "Stellar Flight — Space Dashboard (Concept Build)",
-            category: "Technology · CONCEPT BUILD",
-            problem: "Concept Challenge: Demonstrates how futuristic tech concepts and space travel platforms can create intense visual engagement without sacrificing performance or usability.",
-            solution: "What This Concept Demonstrates: We designed a futuristic space travel dashboard featuring an interactive WebGL space particle field, scroll-tied telemetry panels, glassmorphic cards, and orbital flight booking forms.",
+            title: "Stellar Flight — Space Dashboard (Interactive Build)",
+            category: "Technology · INTERACTIVE BUILD",
+            problem: "Interactive Engineering Goal: Pushing browser capabilities to create deep visual engagement for aerospace and high-tech platforms without sacrificing 60fps performance or responsive usability.",
+            solution: "What We Engineered: We engineered a futuristic space travel dashboard featuring an interactive WebGL space particle field, scroll-tied telemetry panels, glassmorphic cards, and orbital flight booking forms.",
             features: [
                 "Dynamic WebGL Three.js space particle simulation",
                 "Futuristic glassmorphic panels displaying orbital telemetry",
@@ -1964,10 +2027,10 @@ function initCaseStudies() {
             url: "clients/stellar-flight/index.html"
         },
         prisma: {
-            title: "Prisma — Cinematic Studio (Concept Build)",
-            category: "Film & Creative · CONCEPT BUILD",
-            problem: "Concept Challenge: Demonstrates a digital portfolio canvas for avant-garde film directors and creative production studios that highlights video work without visual distraction.",
-            solution: "What This Concept Demonstrates: We created a minimalist, high-contrast creative studio centered on a rotating WebGL 3D glass prism. Built fluid scroll-tied animation triggers and fullscreen video lightboxes.",
+            title: "Prisma — Cinematic Studio (Interactive Build)",
+            category: "Film & Creative · INTERACTIVE BUILD",
+            problem: "Creative Engineering Goal: Providing an avant-garde digital canvas for film directors and creative production houses that showcases motion and video work through cutting-edge interactive WebGL shaders.",
+            solution: "What We Engineered: We created a minimalist, high-contrast creative studio centered on a rotating WebGL 3D glass prism. Built fluid scroll-tied animation triggers and fullscreen video lightboxes.",
             features: [
                 "Custom 3D WebGL rotating glass prism lens rendering",
                 "High-contrast, brutalist design token typography",
@@ -1978,10 +2041,10 @@ function initCaseStudies() {
             url: "clients/warm-clean-visions/index.html"
         },
         nhm: {
-            title: "Bone x Epoch — Natural History Museum (Concept Build)",
-            category: "Culture & Heritage · CONCEPT BUILD",
-            problem: "Concept Challenge: Demonstrates how national museums and cultural institutions can modernize their web presence to drive international and local exhibition ticket sales.",
-            solution: "What This Concept Demonstrates: We engineered a deep dark-velvet and gold museum portal featuring a self-drawing crest preloader, 3D digital artifact vaults, interactive exhibit filters, and online ticket booking UI.",
+            title: "Bone x Epoch — Natural History Museum (Interactive Build)",
+            category: "Culture & Heritage · INTERACTIVE BUILD",
+            problem: "Interactive Experience Goal: Modernizing cultural institutions and heritage museums to capture younger digital audiences and drive international ticket reservations through immersive 3D digital archival vaults.",
+            solution: "What We Engineered: We engineered a deep dark-velvet and gold museum portal featuring a self-drawing crest preloader, 3D digital artifact vaults, interactive exhibit filters, and online ticket booking UI.",
             features: [
                 "Deep obsidian & gold heritage aesthetic design system",
                 "Self-drawing SVG museum crest entrance preloader",

@@ -120,7 +120,7 @@
     <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Knewave&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -151,551 +151,460 @@
         </div>
     </div>
 
-        <!-- Navigation -->
+    <!-- Navigation -->
     <nav id="navbar">
-        <a href="index.html" class="nav-logo" style="text-decoration:none;color:inherit;">M<span class="logo-one">1</span><span>CREATIVE.</span></a>
+        <a href="index.html" class="nav-logo">M1CREATIVE.</a>
         <div class="nav-links">
-            <a href="about.html">About</a>
-            <a href="services.html">Services</a>
-            <a href="pricing.html">Pricing</a>
-            <a href="work.html">Work</a>
-            <a href="contact.html">Contact</a>
-            <a href="contact.html" class="nav-cta">Get Started</a>
+            <a href="#services">Services</a>
+            <a href="#work">Work</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#founder">About</a>
             <a href="faq.html">FAQ</a>
         </div>
+        <a href="#contact" class="nav-cta-btn">Book a call</a>
         <div class="nav-hamburger" id="hamburger" aria-label="Toggle navigation menu">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span class="hamburger-label">MENU</span>
+            <span class="hamburger-bars">
+                <span></span>
+                <span></span>
+            </span>
         </div>
     </nav>
 
-        <!-- Mobile Menu / Dropdown Menu -->
+    <!-- Mobile Menu / Dropdown Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="index.html" class="mobile-link active">Home</a>
-        <a href="about.html" class="mobile-link">About</a>
-        <a href="services.html" class="mobile-link">Services</a>
-        <a href="pricing.html" class="mobile-link">Pricing</a>
-        <a href="work.html" class="mobile-link">Work</a>
-        <a href="contact.html" class="mobile-link">Contact</a>
+        <a href="#services" class="mobile-link">Services</a>
+        <a href="#work" class="mobile-link">Work</a>
+        <a href="#pricing" class="mobile-link">Pricing</a>
+        <a href="#founder" class="mobile-link">About</a>
         <a href="faq.html" class="mobile-link">FAQ</a>
-        <a href="contact.html" class="mobile-link nav-cta">Get Started</a>
+        <a href="#contact" class="mobile-link nav-cta">Book a call</a>
     </div>
 
     <!-- Scroll Container -->
     <div id="scroll-container">
 
-        <!-- Section 1: Hero -->
-        <section id="hero" class="section">
-            <div class="hero-content">
-                <div class="hero-badge">WEB DESIGN & CREATIVE AGENCY</div>
-                <h1 class="hero-title" style="max-width: 900px; margin: 0 auto;">
-                    <span class="line line-1" style="font-size: clamp(2.2rem, 5vw, 4.2rem); font-weight: 800;">We build websites that</span>
-                    <span class="line line-2" style="font-size: clamp(2.2rem, 5vw, 4.2rem); color: var(--accent); font-weight: 900;">earn trust</span>
-                    <span class="line line-3" style="font-size: clamp(2.2rem, 5vw, 4.2rem); font-weight: 800;">— and convert.</span>
-                </h1>
-                <p class="hero-sub" style="max-width: 680px; margin: 24px auto 32px auto; font-size: 1.1rem; line-height: 1.6; color: var(--text-light);">
-                    Premium, custom-built sites engineered to make your business look as credible as it is — no templates, no shortcuts.
-                </p>
-                <div class="hero-ctas">
-                    <a href="#contact" class="hero-btn primary-btn">Start Your Project</a>
-                    <a href="work.html" class="hero-btn secondary-btn">View Our Work</a>
+        <!-- Section 1: Hero Section -->
+        <section id="hero" class="section hero-modern-section">
+            <div class="hero-modern-container">
+                <div class="hero-modern-grid">
+                    <!-- Left Column: Hero Text & CTAs -->
+                    <div class="hero-text-col">
+                        <div class="hero-eyebrow">WEB DESIGN · SOUTH AFRICA</div>
+                        <h1 class="hero-modern-title">
+                            Websites that<br>
+                            earn trust —<br>
+                            and <em class="accent-serif">convert.</em>
+                        </h1>
+                        <p class="hero-modern-sub">
+                            Premium, custom-built sites engineered to make your business look as credible as it is. No templates, no shortcuts.
+                        </p>
+                        <div class="hero-modern-ctas">
+                            <a href="#contact" class="hero-btn primary-btn">Start your project</a>
+                            <a href="#work" class="hero-btn secondary-btn">View our work</a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Hero Visual Frame (Bone x Epoch Mockup Showcase) -->
+                    <div class="hero-visual-col">
+                        <div class="hero-visual-card">
+                            <div class="hero-visual-header">
+                                <span class="visual-tag-status">FEATURED BUILD // BONE X EPOCH</span>
+                                <span class="visual-badge-pill">INTERACTIVE</span>
+                            </div>
+                            <div class="hero-visual-inner">
+                                <div class="hero-mockup-stage">
+                                    <div class="hero-macbook-preview">
+                                        <img src="images/nhm-desktop.png" alt="Bone x Epoch Natural History Museum Desktop" class="hero-mock-desktop-img">
+                                    </div>
+                                    <div class="hero-phone-preview">
+                                        <img src="images/nhm-mobile.png" alt="Bone x Epoch Natural History Museum Mobile" class="hero-mock-phone-img">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Section 2: Trust Strip (directly under hero) -->
-                <div class="trust-strip">
-                    <div class="trust-strip-item">
-                        <svg class="trust-strip-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                        <strong>5–10 Day</strong> Build Turnaround
+                <!-- Trust Strip: 3 Cards on Desktop, Horizontal Pill on Mobile -->
+                <div class="hero-trust-cards">
+                    <div class="hero-trust-card">
+                        <div class="trust-card-num">5–10 days</div>
+                        <div class="trust-card-label">Build turnaround</div>
                     </div>
-                    <div class="trust-strip-divider"></div>
-                    <div class="trust-strip-item">
-                        <svg class="trust-strip-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 1 0 20"></path><line x1="12" y1="2" x2="12" y2="22"></line></svg>
-                        <strong>50/50</strong> Payment — No Upfront Risk
+                    <div class="hero-trust-card">
+                        <div class="trust-card-num">50 / 50</div>
+                        <div class="trust-card-label">Payment, no upfront risk</div>
                     </div>
-                    <div class="trust-strip-divider"></div>
-                    <div class="trust-strip-item">
-                        <svg class="trust-strip-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                        <strong>24hr</strong> Response Guarantee
+                    <div class="hero-trust-card">
+                        <div class="trust-card-num">24hr</div>
+                        <div class="trust-card-label">Response guarantee</div>
                     </div>
                 </div>
 
-                <div class="scroll-indicator" style="margin-top: 40px;">
-                    <div class="scroll-arrow"></div>
-                    <span>Scroll to explore</span>
+                <!-- Partner & Technology Stack Strip -->
+                <div class="hero-tech-strip">
+                    <span>SHOPIFY</span>
+                    <span class="tech-sep">·</span>
+                    <span>WORDPRESS</span>
+                    <span class="tech-sep">·</span>
+                    <span>YOCO</span>
+                    <span class="tech-sep">·</span>
+                    <span>PAYFAST</span>
+                    <span class="tech-sep">·</span>
+                    <span>HOSTAFRICA</span>
+                    <span class="tech-sep">·</span>
+                    <span>GSAP</span>
+                    <span class="tech-sep">·</span>
+                    <span>THREE.JS</span>
                 </div>
             </div>
         </section>
 
-        <!-- Section 3: Condensed About & Services -->
-        <section id="about" class="section">
-            <div class="section-content">
-                <div class="section-tag">WHO WE ARE & WHAT WE DO</div>
-                <h2 class="big-text animate-text">
-                    <span class="word">exceptional</span>
-                    <span class="word"><em>by design</em></span>
+        <!-- Section 2: WHAT WE DO -->
+        <section id="services" class="section services-modern-section">
+            <div class="section-modern-container">
+                <div class="section-eyebrow">WHAT WE DO</div>
+                <h2 class="section-modern-title">
+                    Everything your brand needs, <em class="accent-serif">engineered.</em>
                 </h2>
-                
-                <!-- 3 Value Props —— redesigned blueprint cards -->
-                <div class="about-full-desc">
-                    <p class="about-description">At M1Creative, we engineer high-performance custom websites designed strategically to turn casual visitors into loyal clients. No templates, no bloat.</p>
-                </div>
-                <div class="value-prop-grid" style="margin-bottom: 50px;">
-                    <!-- Card 1: Responsive Design -->
-                    <div class="value-prop-card" data-vp="0">
-                        <div class="value-prop-icon">
-                            <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <!-- Desktop frame -->
-                                <rect x="4" y="8" width="28" height="20" rx="2"/>
-                                <line x1="4" y1="34" x2="32" y2="34"/>
-                                <line x1="15" y1="34" x2="15" y2="38"/>
-                                <line x1="21" y1="34" x2="21" y2="38"/>
-                                <line x1="12" y1="38" x2="24" y2="38"/>
-                                <!-- Tablet -->
-                                <rect x="34" y="12" width="10" height="14" rx="1.5"/>
-                                <line x1="39" y1="24" x2="39" y2="26"/>
-                                <!-- Phone -->
-                                <rect x="34" y="28" width="7" height="12" rx="1"/>
-                                <line x1="37.5" y1="38" x2="37.5" y2="39"/>
-                            </svg>
-                        </div>
-                        <h3 class="value-prop-title">Modern Responsive Design</h3>
-                        <p class="value-prop-desc">Looks sharp and works perfectly on every screen — from widescreen to pocket.</p>
+
+                <div class="services-modern-grid">
+                    <!-- 01 Website design -->
+                    <div class="service-modern-card" data-num="01">
+                        <span class="service-modern-num">01</span>
+                        <h3 class="service-modern-title">Website design</h3>
+                        <p class="service-modern-desc">Custom, responsive sites from landing pages to full platforms.</p>
                     </div>
 
-                    <!-- Card 2: Mobile Optimized -->
-                    <div class="value-prop-card" data-vp="1">
-                        <div class="value-prop-icon">
-                            <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <!-- Phone outline -->
-                                <rect x="14" y="6" width="20" height="36" rx="3"/>
-                                <line x1="14" y1="12" x2="34" y2="12"/>
-                                <line x1="14" y1="36" x2="34" y2="36"/>
-                                <circle cx="24" cy="40" r="1"/>
-                                <!-- Signal bars -->
-                                <line x1="6" y1="22" x2="6" y2="24"/>
-                                <line x1="9" y1="19" x2="9" y2="24"/>
-                                <line x1="12" y1="16" x2="12" y2="24"/>
-                                <!-- Touch pointer -->
-                                <path d="M28 26 l4 6 l1.5-1 l-2.5-4 l3.5 0" stroke-linejoin="round"/>
-                                <path d="M22 18 l0 12" stroke-width="1.2"/>
-                                <path d="M25 20 l0 10" stroke-width="1.2"/>
-                                <path d="M28 22 l0 8" stroke-width="1.2"/>
-                            </svg>
-                        </div>
-                        <h3 class="value-prop-title">Mobile Optimized</h3>
-                        <p class="value-prop-desc">Built mobile-first for the 65%+ of visitors browsing on their phones.</p>
+                    <!-- 02 E-commerce -->
+                    <div class="service-modern-card" data-num="02">
+                        <span class="service-modern-num">02</span>
+                        <h3 class="service-modern-title">E-commerce</h3>
+                        <p class="service-modern-desc">High-converting online stores built to scale.</p>
                     </div>
 
-                    <!-- Card 3: Built To Convert -->
-                    <div class="value-prop-card" data-vp="2">
-                        <div class="value-prop-icon">
-                            <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <!-- Wide top (visitors) -->
-                                <path d="M8 10 L40 10 L34 18 L14 18 Z"/>
-                                <!-- Mid funnel -->
-                                <path d="M14 18 L34 18 L30 26 L18 26 Z"/>
-                                <!-- Narrow bottom (leads) -->
-                                <path d="M18 26 L30 26 L27 34 L21 34 Z"/>
-                                <!-- Arrow out -->
-                                <line x1="24" y1="34" x2="24" y2="40"/>
-                                <polyline points="20 37 24 41 28 37"/>
-                            </svg>
-                        </div>
-                        <h3 class="value-prop-title">Built To Convert</h3>
-                        <p class="value-prop-desc">Every element placed to guide visitors toward your most valuable action.</p>
+                    <!-- 03 Brand identity -->
+                    <div class="service-modern-card" data-num="03">
+                        <span class="service-modern-num">03</span>
+                        <h3 class="service-modern-title">Brand identity</h3>
+                        <p class="service-modern-desc">Logos, colour systems and guidelines that position you as a leader.</p>
+                    </div>
+
+                    <!-- 04 SEO & growth -->
+                    <div class="service-modern-card" data-num="04">
+                        <span class="service-modern-num">04</span>
+                        <h3 class="service-modern-title">SEO &amp; growth</h3>
+                        <p class="service-modern-desc">Rank higher and attract organic leads.</p>
+                        <p class="service-modern-sublink"><a href="seo.html">Learn how it works &rarr;</a></p>
                     </div>
                 </div>
-
-                <!-- 4 Services (Compact) -->
-                <div id="services">
-                    <div class="condensed-services-grid">
-                        <div class="condensed-service-card">
-                            <div class="condensed-service-header">
-                                <div class="condensed-service-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <rect x="2" y="3" width="20" height="14" rx="2" />
-                                        <line x1="8" y1="21" x2="16" y2="21" />
-                                        <line x1="12" y1="17" x2="12" y2="21" />
-                                    </svg>
-                                </div>
-                                <h3 class="condensed-service-title">Website Design</h3>
-                            </div>
-                            <p class="condensed-service-desc">Custom, responsive websites built for impact on every device. From landing pages to full platforms.</p>
-                        </div>
-
-                        <div class="condensed-service-card">
-                            <div class="condensed-service-header">
-                                <div class="condensed-service-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <circle cx="9" cy="21" r="1" />
-                                        <circle cx="20" cy="21" r="1" />
-                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                                    </svg>
-                                </div>
-                                <h3 class="condensed-service-title">E-Commerce</h3>
-                            </div>
-                            <p class="condensed-service-desc">High-converting online stores engineered to scale seamlessly and drive steady sales growth.</p>
-                        </div>
-
-                        <div class="condensed-service-card">
-                            <div class="condensed-service-header">
-                                <div class="condensed-service-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                                        <path d="M2 17l10 5 10-5" />
-                                        <path d="M2 12l10 5 10-5" />
-                                    </svg>
-                                </div>
-                                <h3 class="condensed-service-title">Brand Identity</h3>
-                            </div>
-                            <p class="condensed-service-desc">Memorable logos, color systems, and visual guidelines that position your business as an industry leader.</p>
-                        </div>
-
-                        <div class="condensed-service-card">
-                            <div class="condensed-service-header">
-                                <div class="condensed-service-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-                                        <polyline points="17 6 23 6 23 12" />
-                                    </svg>
-                                </div>
-                                <h3 class="condensed-service-title">SEO & Growth</h3>
-                            </div>
-                            <p class="condensed-service-desc">Data-driven search engine optimization to boost online visibility, rank higher, and attract organic leads.</p>
-                            <p class="seo-teaser-link">Not sure what SEO actually means? <a href="seo.html">Learn how it works &rarr;</a></p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
-        <!-- Section: Meet The Founder -->
-        <section id="founder" class="section founder-section">
-            <div class="section-content">
-                <div class="section-tag">MEET THE FOUNDER</div>
-                <h2 class="big-text animate-text">
-                    <span class="word">direct</span>
-                    <span class="word"><em>collaboration</em></span>
+        <!-- Section 3: SELECTED WORK -->
+        <section id="work" class="section work-modern-section">
+            <div class="section-modern-container">
+                <div class="section-eyebrow">SELECTED WORK</div>
+                <h2 class="section-modern-title">
+                    Crafted with <em class="accent-serif">precision.</em>
                 </h2>
 
-                <div class="founder-card">
-                    <div class="founder-image-wrapper">
-                        <div class="founder-image-container">
-                            <img src="images/founder.jpg" alt="Michael, Founder of M1Creative Web Design South Africa" class="founder-img" loading="lazy">
-                            <div class="founder-image-tag">
-                                <span class="founder-tag-text">FOUNDER & LEAD ENGINEER</span>
-                                <span class="founder-status-dot" title="Available for projects"></span>
+                <div class="work-modern-grid">
+                    <!-- Project 1: Bone x Epoch -->
+                    <div class="work-modern-card" data-project="nhm">
+                        <div class="work-visual-frame">
+                            <img src="images/nhm-desktop.png" alt="Bone x Epoch Natural History Museum" class="work-mockup-img" loading="lazy">
+                            <div class="work-card-overlay">
+                                <a href="clients/nhm-museum/index.html" target="_blank" rel="noopener noreferrer" class="work-action-btn primary">Launch Interactive Build &rarr;</a>
+                                <button type="button" class="work-action-btn secondary case-study-trigger" data-project="nhm">Case Study</button>
+                            </div>
+                        </div>
+                        <div class="work-meta-row">
+                            <h3 class="work-project-title">Bone x Epoch — Natural History Museum</h3>
+                            <p class="work-project-desc">Culture &amp; heritage · Concept build</p>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: ELAVEA -->
+                    <div class="work-modern-card" data-project="elavea">
+                        <div class="work-visual-frame">
+                            <img src="images/elavea-desktop.png?v=5" alt="ELAVEA Beauty Lounge" class="work-mockup-img" loading="lazy">
+                            <div class="work-card-overlay">
+                                <a href="clients/elavea-beauty-lounge/index.html" target="_blank" rel="noopener noreferrer" class="work-action-btn primary">View Live Site &rarr;</a>
+                                <button type="button" class="work-action-btn secondary case-study-trigger" data-project="elavea">Case Study</button>
+                            </div>
+                        </div>
+                        <div class="work-meta-row">
+                            <h3 class="work-project-title">ELAVEA — Beauty Lounge</h3>
+                            <p class="work-project-desc">Beauty &amp; wellness · Concept build</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Stellar Flight Dashboard (Wide Row) -->
+                <div class="work-featured-wide" data-project="stellar">
+                    <div class="work-wide-visual">
+                        <img src="images/stellar-desktop.jpg" alt="Stellar Flight Dashboard" class="work-wide-img" loading="lazy">
+                        <div class="work-card-overlay">
+                            <a href="clients/stellar-flight/index.html" target="_blank" rel="noopener noreferrer" class="work-action-btn primary">Launch Interactive Build &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="work-wide-content">
+                        <h3 class="work-wide-title">Stellar Flight — Dashboard</h3>
+                        <p class="work-wide-desc">Immersive 3D booking dashboard. Technology · Concept build</p>
+                        <div class="work-wide-actions">
+                            <button type="button" class="hero-btn secondary-btn case-study-trigger" data-project="stellar">View case study</button>
+                            <a href="clients/stellar-flight/index.html" target="_blank" rel="noopener noreferrer" class="hero-btn primary-btn" style="margin-left: 12px; font-size: 0.85rem; padding: 12px 24px;">Launch Live &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="work.html" class="section-view-all-btn">
+                        <span>Explore All Featured &amp; Interactive Builds</span>
+                        <span class="btn-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                                <polyline points="12 5 19 12 12 19" />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: MEET THE FOUNDER -->
+        <section id="founder" class="section founder-modern-section">
+            <div class="section-modern-container">
+                <div class="section-eyebrow">MEET THE FOUNDER</div>
+                <h2 class="section-modern-title">
+                    Direct <em class="accent-serif">collaboration.</em>
+                </h2>
+
+                <div class="founder-modern-grid">
+                    <!-- Left: Portrait Photo -->
+                    <div class="founder-photo-col">
+                        <div class="founder-photo-frame">
+                            <img src="images/founder.jpg" alt="Michael, Founder & Lead Web Engineer at M1Creative" class="founder-modern-img" loading="lazy">
+                            <div class="founder-photo-tag">
+                                <span class="founder-status-indicator"></span>
+                                <span class="founder-tag-label">FOUNDER &amp; LEAD ENGINEER</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="founder-info">
-                        <div class="founder-subtitle">// TRANSPARENCY & CRAFTSMANSHIP</div>
-                        <h3 class="founder-title">Hi, I'm Michael.</h3>
-                        <p class="founder-quote">
-                            I started <span>M1Creative</span> with a simple goal: to help growing businesses build a professional online presence without the complexity and cost of traditional agencies. When you work with M1Creative, you work directly with me — from the first conversation to the final website.
+                    <!-- Right: Info & 3 Pill Cards -->
+                    <div class="founder-content-col">
+                        <p class="founder-lead-quote">
+                            When you work with M1Creative, you work directly with Michael, from first conversation to final website.
                         </p>
 
-                        <div class="founder-highlights">
-                            <div class="founder-highlight-item">
-                                <span class="founder-highlight-num">01</span>
-                                <div class="founder-highlight-content">
-                                    <h4 class="founder-highlight-title">Direct Collaboration</h4>
-                                    <p class="founder-highlight-desc">You speak directly with the person designing and building your website.</p>
-                                </div>
+                        <div class="founder-pill-list">
+                            <div class="founder-pill-item">
+                                <span class="pill-prefix">01 ·</span>
+                                <span class="pill-text">Direct collaboration</span>
                             </div>
-
-                            <div class="founder-highlight-item">
-                                <span class="founder-highlight-num">02</span>
-                                <div class="founder-highlight-content">
-                                    <h4 class="founder-highlight-title">Custom Websites</h4>
-                                    <p class="founder-highlight-desc">Every project is designed around your business, not forced into a template.</p>
-                                </div>
+                            <div class="founder-pill-item">
+                                <span class="pill-prefix">02 ·</span>
+                                <span class="pill-text">Custom websites</span>
                             </div>
-
-                            <div class="founder-highlight-item">
-                                <span class="founder-highlight-num">03</span>
-                                <div class="founder-highlight-content">
-                                    <h4 class="founder-highlight-title">Built For Growth</h4>
-                                    <p class="founder-highlight-desc">Your website isn't just there to look good — it's designed to turn visitors into customers.</p>
-                                </div>
+                            <div class="founder-pill-item">
+                                <span class="pill-prefix">03 ·</span>
+                                <span class="pill-text">Built for growth</span>
                             </div>
                         </div>
 
-                        <div class="founder-actions">
-                            <a href="#contact" class="hero-btn primary-btn" style="padding: 12px 28px; font-size: 0.95rem;">Work Directly With Me &rarr;</a>
+                        <div class="founder-action-row">
+                            <a href="#contact" class="hero-btn primary-btn">Work directly with me</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section: Built On — Technology Strip & Looping Logos (White Theme Matching Booking Form) -->
-        <section id="built-on" class="section section-light built-on-section">
-            <div class="section-content">
-                <div class="built-on-card">
-                    <div class="section-tag dark" style="margin-bottom: 8px;">TECHNOLOGIES & PAYMENT PARTNERS</div>
-                    <h2 class="big-text animate-text dark-text" style="margin-bottom: 20px;">
-                        <span class="word">built</span>
-                        <span class="word"><em>on</em></span>
-                    </h2>
-
-                    <!-- React Bits LogoLoop Component Integration - Pure White Card Theme -->
-                    <div class="logoloop-wrapper">
-                        <div class="logoloop logoloop--horizontal light-card-theme" id="brandLogoLoop" role="region" aria-label="Technologies and payment partners" data-draggable="" style="--logoloop-gap: 28px; --logoloop-logoHeight: 24px;">
-                            <div class="logoloop__track" id="logoLoopTrack">
-                                <!-- Copy 1 -->
-                                <ul class="logoloop__list" role="list">
-                                    <!-- 1. Shopify (Official Brand Green) -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://www.shopify.com" target="_blank" rel="noopener noreferrer" aria-label="Shopify E-Commerce">
-                                            <svg class="logoloop__node" role="img" viewBox="0 0 24 24" width="24" height="24" fill="#95BF47">
-                                                <title>Shopify</title>
-                                                <path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"/>
-                                            </svg>
-                                            <span class="logoloop__label">Shopify</span>
-                                        </a>
-                                        <span class="logoloop__tip">E-Commerce</span>
-                                    </li>
-
-                                    <!-- 2. WordPress (Official Brand Blue) -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://wordpress.org" target="_blank" rel="noopener noreferrer" aria-label="WordPress CMS">
-                                            <svg class="logoloop__node" role="img" viewBox="0 0 24 24" width="24" height="24" fill="#21759B">
-                                                <title>WordPress</title>
-                                                <path d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.15-2.85-.15-.585-.03-.661.855-.075.885 0 0 .54.061 1.125.09l1.68 4.605-2.37 7.08L5.354 6.9c.649-.03 1.234-.105 1.234-.105.585-.075.516-.93-.065-.896 0 0-1.746.138-2.874.138-.2 0-.438-.008-.69-.015C4.911 3.15 8.235 1.215 12 1.215c2.809 0 5.365 1.072 7.286 2.833-.046-.003-.091-.009-.141-.009-1.06 0-1.812.923-1.812 1.914 0 .89.513 1.643 1.06 2.531.411.72.89 1.643.89 2.977 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.61.001.014zM12 22.784c-1.059 0-2.081-.153-3.048-.437l3.237-9.406 3.315 9.087c.024.053.05.101.078.149-1.12.393-2.325.609-3.582.609M1.211 12c0-1.564.336-3.05.935-4.39L7.29 21.709C3.694 19.96 1.212 16.271 1.211 12M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0"/>
-                                            </svg>
-                                            <span class="logoloop__label">WordPress</span>
-                                        </a>
-                                        <span class="logoloop__tip">Custom Builds</span>
-                                    </li>
-
-                                    <!-- 3. Yoco (100% Official Vector in Yoco Electric Blue #005BFF) -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://www.yoco.com/za/" target="_blank" rel="noopener noreferrer" aria-label="Yoco Verified Payments">
-                                            <svg class="logoloop__node" viewBox="0 0 110 42" height="24" width="62" role="img" aria-label="Yoco logo">
-                                                <title>Yoco</title>
-                                                <path fill="#005BFF" fill-rule="evenodd" clip-rule="evenodd" d="M36.0501 20.859C36.0501 24.1834 38.0228 25.8 41.3299 25.8C44.6371 25.8 46.6677 24.3665 46.6677 20.859C46.6677 17.26 44.6371 15.7044 41.3588 15.7044C38.0516 15.7044 36.0501 17.3516 36.0501 20.8286V20.859ZM41.4202 8.52521C43.9892 8.52521 46.2829 9.01106 48.2403 9.9504C52.2163 11.8936 54.5714 15.5539 54.5714 20.7686V20.898C54.5714 23.6187 54.0209 25.8536 52.9197 27.6676C50.7179 31.2627 46.6806 32.9796 41.3588 32.9796C38.6676 32.9796 36.3431 32.5584 34.3244 31.6838C30.3484 29.9348 28.1463 26.4368 28.1463 20.8659V20.8009C28.1463 18.2096 28.7275 16.0071 29.8285 14.1934C32.0918 10.501 36.1596 8.52521 41.4202 8.52521ZM16.8328 17.8134L22.1056 9.10827H30.861L20.706 25.7573V32.3318H12.6667V25.7247L3 9.10827H11.7877L16.8328 17.8134ZM92.7579 25.8C89.4505 25.8 87.478 24.1834 87.478 20.859V20.8286C87.478 17.3516 89.4796 15.7044 92.7867 15.7044C96.0648 15.7044 98.0957 17.26 98.0957 20.859C98.0957 24.3665 96.0648 25.8 92.7579 25.8ZM99.6684 9.9504C97.711 9.01106 95.4171 8.52521 92.8481 8.52521C87.5877 8.52521 83.5199 10.501 81.2566 14.1934C80.1554 16.0071 79.5744 18.2096 79.5744 20.8009V20.8659C79.5744 26.4368 81.7763 29.9348 85.7525 31.6838C87.7709 32.5584 90.0955 32.9796 92.7869 32.9796C98.1085 32.9796 102.146 31.2627 104.348 27.6676C105.449 25.8536 106 23.6187 106 20.898V20.7686C106 15.5539 103.644 11.8936 99.6684 9.9504ZM57.8257 14.1934C60.089 10.501 64.1567 8.52521 69.4173 8.52521C71.9863 8.52521 74.2802 9.01106 76.2374 9.9504C76.871 10.26 77.4629 10.6136 78.0111 11.0098V18.3596C78.0111 18.3596 73.997 15.7045 70.4496 15.7045C67.1422 15.7045 64.4844 17.3516 64.4844 20.8287V20.8593C64.4844 24.1837 67.1133 25.8 70.4205 25.8C74.051 25.8 78.0111 23.1453 78.0111 23.1453V30.7119C75.781 32.2355 72.8475 32.9796 69.3561 32.9796C66.6646 32.9796 64.3401 32.5587 62.3217 31.684C58.3457 29.935 56.1436 26.4368 56.1436 20.8659V20.8009C56.1436 18.2099 56.7248 16.0074 57.8257 14.1934Z"/>
-                                            </svg>
-                                        </a>
-                                        <span class="logoloop__tip">50% Deposit</span>
-                                    </li>
-
-                                    <!-- 4. PayFast (100% Official Multi-Color Vector: Red Chevron & Blue Wordmark) -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://payfast.io" target="_blank" rel="noopener noreferrer" aria-label="Payfast Verified Payments">
-                                            <svg class="logoloop__node" viewBox="0 0 112.17 40" height="24" width="67" role="img" aria-label="Payfast logo">
-                                                <title>Payfast</title>
-                                                <path fill="#e54360" d="M105.59,6.14h-3.81l6.58,7.82-6.51,7.76h3.81l6.51-7.76-6.58-7.82Z"/>
-                                                <path fill="#0069b1" d="M15.91,13.83c0,1.32-.2,2.43-.59,3.42-.39.99-.92,1.84-1.58,2.56-.66.66-1.45,1.18-2.3,1.58-.85.33-1.71.53-2.63.53s-2.3-.26-3.16-.79-1.51-1.18-2.1-1.91v7.04H0V6.14h3.55v2.56c.59-.79,1.25-1.51,2.1-2.04.85-.59,1.91-.85,3.16-.85s1.78.2,2.63.53,1.64.85,2.3,1.58c.66.66,1.25,1.51,1.64,2.5s.53,2.1.53,3.42h0ZM12.3,13.83c0-.79-.13-1.45-.33-2.04-.26-.59-.53-1.12-.99-1.58-.39-.46-.85-.79-1.38-.99-.53-.26-1.12-.33-1.71-.33s-1.18.13-1.71.33c-.53.26-1.05.59-1.45,1.05-.39.46-.72.92-.99,1.58-.26.59-.33,1.32-.33,2.04s.13,1.45.33,2.04c.26.59.59,1.12.99,1.58s.85.79,1.45.99c.53.26,1.12.33,1.71.33s1.18-.13,1.71-.33c.53-.26.99-.59,1.38-.99.39-.46.72-.92.99-1.58.26-.59.33-1.32.33-2.1ZM31.49,21.52h-3.48v-1.91c-.53.59-1.18,1.12-2.04,1.58-.79.46-1.84.66-2.96.66s-1.45-.13-2.1-.33-1.25-.46-1.78-.85c-.46-.39-.85-.92-1.18-1.51-.26-.59-.46-1.32-.46-2.1h0c0-.92.13-1.64.46-2.24s.72-1.12,1.32-1.58c.59-.39,1.25-.72,1.97-.92.79-.2,1.64-.33,2.5-.33s1.71,0,2.37.2c.66.13,1.32.26,1.91.46v-.39c0-1.05-.33-1.91-.99-2.43-.66-.59-1.58-.85-2.83-.85s-1.64.07-2.37.26c-.66.2-1.38.39-2.1.72l-.99-2.83c.85-.39,1.71-.72,2.63-.92.92-.26,1.97-.33,3.22-.33,2.3,0,4.01.59,5.13,1.71,1.12,1.12,1.64,2.7,1.64,4.8v9.14h.13ZM28.08,15.94v-.99c-.46-.2-.99-.33-1.58-.46s-1.25-.2-1.91-.2c-1.12,0-1.97.2-2.63.66-.59.46-.92,1.05-.92,1.84h0c0,.79.26,1.38.85,1.78.59.39,1.32.59,2.1.59s1.12-.07,1.58-.26c.53-.13.92-.39,1.32-.66s.66-.66.85-1.05.33-.85.33-1.32v.07ZM48.92,6.14l-6.11,15.85c-.33.79-.66,1.45-.99,2.04-.33.53-.72.99-1.12,1.32s-.85.59-1.32.79c-.46.13-1.05.26-1.64.26s-1.38-.07-1.97-.26c-.59-.13-1.12-.39-1.64-.66l1.18-2.63c.33.2.66.33.99.39.33.13.72.2,1.05.2s.92-.13,1.25-.39c.33-.26.66-.72.92-1.38l-6.44-15.39h3.75l4.41,11.44,4.01-11.44h3.68s0-.13,0-.13ZM74.5,21.52h-3.48v-1.91c-.53.59-1.18,1.12-2.04,1.58-.79.46-1.84.66-2.96.66s-1.45-.13-2.1-.33-1.25-.46-1.78-.85c-.46-.39-.85-.92-1.18-1.51-.26-.59-.46-1.32-.46-2.1h0c0-.92.13-1.64.46-2.24s.72-1.12,1.32-1.58c.59-.39,1.25-.72,1.97-.92.79-.2,1.64-.33,2.5-.33s1.71,0,2.37.2c.66.13,1.32.26,1.91.46v-.39c0-1.05-.33-1.91-.99-2.43-.66-.59-1.58-.85-2.83-.85s-1.64.07-2.37.26c-.66.2-1.38.39-2.1.72l-.99-2.83c.85-.39,1.71-.72,2.63-.92.92-.26,1.97-.33,3.22-.33,2.3,0,4.01.59,5.13,1.71,1.12,1.12,1.64,2.7,1.64,4.8v9.14h.13ZM71.08,15.94v-.99c-.46-.2-.99-.33-1.58-.46s-1.25-.2-1.91-.2c-1.12,0-1.97.2-2.63.66s-.92,1.05-.92,1.84h0c0,.79.26,1.38.85,1.78.59.39,1.32.59,2.1.59s1.12-.07,1.58-.26c.53-.13.92-.39,1.32-.66s.66-.66.85-1.05.33-.85.33-1.32v.07ZM88.57,16.99c0,.79-.13,1.51-.46,2.1-.26.59-.72,1.12-1.25,1.51-.53.39-1.12.72-1.84.92-.72.2-1.45.26-2.24.26s-2.24-.2-3.42-.59c-1.12-.39-2.17-.99-3.16-1.71l1.58-2.37c.85.59,1.71,1.12,2.56,1.45.85.33,1.71.46,2.5.46s1.32-.13,1.78-.46.66-.72.66-1.25h0c0-.33-.07-.59-.26-.79-.2-.2-.46-.39-.79-.53-.33-.2-.66-.33-1.12-.46-.39-.13-.85-.26-1.32-.39-.59-.2-1.12-.39-1.71-.59-.59-.2-1.05-.46-1.58-.79-.46-.33-.79-.79-1.12-1.25-.26-.53-.46-1.12-.46-1.84h0c0-.79.13-1.45.39-2.04.26-.59.66-1.05,1.18-1.51.53-.39,1.12-.72,1.78-.92.66-.2,1.38-.33,2.17-.33s1.97.13,2.96.46,1.91.72,2.7,1.32l-1.38,2.5c-.72-.46-1.51-.79-2.24-1.05-.79-.26-1.45-.39-2.1-.39s-1.25.13-1.58.46c-.39.26-.53.66-.53,1.12h0c0,.33.07.59.26.79.2.2.46.39.79.53s.72.33,1.12.46c.46.13.85.26,1.32.39.59.2,1.12.39,1.71.59.59.26,1.05.53,1.51.85s.85.72,1.12,1.25c.26.46.46,1.05.46,1.78h0v.07h0ZM94.15,9.16v7.56c0,.66.2,1.18.53,1.51.33.26.79.46,1.38.46s1.51-.2,2.17-.53v2.89c-.46.26-.92.46-1.45.59s-1.12.2-1.78.2-1.25-.07-1.78-.26c-.53-.13-1.05-.39-1.45-.79-.39-.33-.72-.79-.92-1.38-.2-.59-.33-1.32-.33-2.17v-8.09h0v-3.02h0V1.93h3.55v4.21h4.14v3.02h-4.14.07,0Z"/>
-                                                <path fill="#0069b1" d="M55.85,6.18h4.08v2.92h-4.02v12.36h-3.53v-12.36h-1.95v-2.94h1.95v-1.11c0-1.71.41-2.97,1.22-3.79.82-.84,1.98-1.25,3.5-1.25.62,0,1.16.04,1.6.12.45.08.86.17,1.25.29v2.97c-.35-.12-.69-.2-1.02-.26-.31-.08-.66-.12-1.05-.12-1.36,0-2.04.78-2.04,2.33v.85Z"/>
-                                            </svg>
-                                        </a>
-                                        <span class="logoloop__tip">Final 50% & Retainers</span>
-                                    </li>
-
-                                    <!-- 5. HostAfrica -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://www.hostafrica.co.za" target="_blank" rel="noopener noreferrer" aria-label="HostAfrica Cloud Hosting">
-                                            <svg class="logoloop__node" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
-                                                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
-                                                <line x1="6" y1="6" x2="6.01" y2="6"/>
-                                                <line x1="6" y1="18" x2="6.01" y2="18"/>
-                                            </svg>
-                                            <span class="logoloop__label" style="font-weight: 800; letter-spacing: 0.8px;">HOSTAFRICA</span>
-                                        </a>
-                                        <span class="logoloop__tip">SA Cloud Hosting</span>
-                                    </li>
-
-                                    <!-- 6. Three.js -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://threejs.org" target="_blank" rel="noopener noreferrer" aria-label="Three.js 3D Graphics">
-                                            <svg class="logoloop__node" width="24" height="24" viewBox="0 0 24 24" fill="#111827">
-                                                <path d="M12 1.5L2 20.5h20L12 1.5zm0 4.2l6.5 12.3H5.5L12 5.7z"/>
-                                            </svg>
-                                            <span class="logoloop__label">Three.js</span>
-                                        </a>
-                                        <span class="logoloop__tip">3D Graphics</span>
-                                    </li>
-
-                                    <!-- 7. GSAP (Official GreenSock Accent) -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://gsap.com" target="_blank" rel="noopener noreferrer" aria-label="GSAP Animation">
-                                            <svg class="logoloop__node" width="24" height="24" viewBox="0 0 24 24" fill="#0ae448" stroke="#0ae448" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                                            </svg>
-                                            <span class="logoloop__label" style="font-weight: 800;">GSAP</span>
-                                        </a>
-                                        <span class="logoloop__tip">Web Motion</span>
-                                    </li>
-
-                                    <!-- 8. Lenis -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://lenis.darkroom.engineering" target="_blank" rel="noopener noreferrer" aria-label="Lenis Smooth Scroll">
-                                            <svg class="logoloop__node" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M2 12c4-8 8-8 12 0s8 8 12 0"/>
-                                            </svg>
-                                            <span class="logoloop__label">Lenis</span>
-                                        </a>
-                                        <span class="logoloop__tip">Smooth Scroll</span>
-                                    </li>
-                                </ul>
-
-                                <!-- Copy 2 (Identical duplicate for seamless continuous infinite loop) -->
-                                <ul class="logoloop__list" role="list" aria-hidden="true">
-                                    <!-- 1. Shopify -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://www.shopify.com" target="_blank" rel="noopener noreferrer" tabindex="-1">
-                                            <svg class="logoloop__node" role="img" viewBox="0 0 24 24" width="24" height="24" fill="#95BF47">
-                                                <path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"/>
-                                            </svg>
-                                            <span class="logoloop__label">Shopify</span>
-                                        </a>
-                                        <span class="logoloop__tip">E-Commerce</span>
-                                    </li>
-
-                                    <!-- 2. WordPress -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://wordpress.org" target="_blank" rel="noopener noreferrer" tabindex="-1">
-                                            <svg class="logoloop__node" role="img" viewBox="0 0 24 24" width="24" height="24" fill="#21759B">
-                                                <path d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.15-2.85-.15-.585-.03-.661.855-.075.885 0 0 .54.061 1.125.09l1.68 4.605-2.37 7.08L5.354 6.9c.649-.03 1.234-.105 1.234-.105.585-.075.516-.93-.065-.896 0 0-1.746.138-2.874.138-.2 0-.438-.008-.69-.015C4.911 3.15 8.235 1.215 12 1.215c2.809 0 5.365 1.072 7.286 2.833-.046-.003-.091-.009-.141-.009-1.06 0-1.812.923-1.812 1.914 0 .89.513 1.643 1.06 2.531.411.72.89 1.643.89 2.977 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.61.001.014zM12 22.784c-1.059 0-2.081-.153-3.048-.437l3.237-9.406 3.315 9.087c.024.053.05.101.078.149-1.12.393-2.325.609-3.582.609M1.211 12c0-1.564.336-3.05.935-4.39L7.29 21.709C3.694 19.96 1.212 16.271 1.211 12M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0"/>
-                                            </svg>
-                                            <span class="logoloop__label">WordPress</span>
-                                        </a>
-                                        <span class="logoloop__tip">Custom Builds</span>
-                                    </li>
-
-                                    <!-- 3. Yoco -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://www.yoco.com/za/" target="_blank" rel="noopener noreferrer" tabindex="-1">
-                                            <svg class="logoloop__node" viewBox="0 0 110 42" height="24" width="62" role="img" aria-label="Yoco logo">
-                                                <path fill="#005BFF" fill-rule="evenodd" clip-rule="evenodd" d="M36.0501 20.859C36.0501 24.1834 38.0228 25.8 41.3299 25.8C44.6371 25.8 46.6677 24.3665 46.6677 20.859C46.6677 17.26 44.6371 15.7044 41.3588 15.7044C38.0516 15.7044 36.0501 17.3516 36.0501 20.8286V20.859ZM41.4202 8.52521C43.9892 8.52521 46.2829 9.01106 48.2403 9.9504C52.2163 11.8936 54.5714 15.5539 54.5714 20.7686V20.898C54.5714 23.6187 54.0209 25.8536 52.9197 27.6676C50.7179 31.2627 46.6806 32.9796 41.3588 32.9796C38.6676 32.9796 36.3431 32.5584 34.3244 31.6838C30.3484 29.9348 28.1463 26.4368 28.1463 20.8659V20.8009C28.1463 18.2096 28.7275 16.0071 29.8285 14.1934C32.0918 10.501 36.1596 8.52521 41.4202 8.52521ZM16.8328 17.8134L22.1056 9.10827H30.861L20.706 25.7573V32.3318H12.6667V25.7247L3 9.10827H11.7877L16.8328 17.8134ZM92.7579 25.8C89.4505 25.8 87.478 24.1834 87.478 20.859V20.8286C87.478 17.3516 89.4796 15.7044 92.7867 15.7044C96.0648 15.7044 98.0957 17.26 98.0957 20.859C98.0957 24.3665 96.0648 25.8 92.7579 25.8ZM99.6684 9.9504C97.711 9.01106 95.4171 8.52521 92.8481 8.52521C87.5877 8.52521 83.5199 10.501 81.2566 14.1934C80.1554 16.0071 79.5744 18.2096 79.5744 20.8009V20.8659C79.5744 26.4368 81.7763 29.9348 85.7525 31.6838C87.7709 32.5584 90.0955 32.9796 92.7869 32.9796C98.1085 32.9796 102.146 31.2627 104.348 27.6676C105.449 25.8536 106 23.6187 106 20.898V20.7686C106 15.5539 103.644 11.8936 99.6684 9.9504ZM57.8257 14.1934C60.089 10.501 64.1567 8.52521 69.4173 8.52521C71.9863 8.52521 74.2802 9.01106 76.2374 9.9504C76.871 10.26 77.4629 10.6136 78.0111 11.0098V18.3596C78.0111 18.3596 73.997 15.7045 70.4496 15.7045C67.1422 15.7045 64.4844 17.3516 64.4844 20.8287V20.8593C64.4844 24.1837 67.1133 25.8 70.4205 25.8C74.051 25.8 78.0111 23.1453 78.0111 23.1453V30.7119C75.781 32.2355 72.8475 32.9796 69.3561 32.9796C66.6646 32.9796 64.3401 32.5587 62.3217 31.684C58.3457 29.935 56.1436 26.4368 56.1436 20.8659V20.8009C56.1436 18.2099 56.7248 16.0074 57.8257 14.1934Z"/>
-                                            </svg>
-                                        </a>
-                                        <span class="logoloop__tip">50% Deposit</span>
-                                    </li>
-
-                                    <!-- 4. PayFast -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://payfast.io" target="_blank" rel="noopener noreferrer" tabindex="-1">
-                                            <svg class="logoloop__node" viewBox="0 0 112.17 40" height="24" width="67" role="img" aria-label="Payfast logo">
-                                                <path fill="#e54360" d="M105.59,6.14h-3.81l6.58,7.82-6.51,7.76h3.81l6.51-7.76-6.58-7.82Z"/>
-                                                <path fill="#0069b1" d="M15.91,13.83c0,1.32-.2,2.43-.59,3.42-.39.99-.92,1.84-1.58,2.56-.66.66-1.45,1.18-2.3,1.58-.85.33-1.71.53-2.63.53s-2.3-.26-3.16-.79-1.51-1.18-2.1-1.91v7.04H0V6.14h3.55v2.56c.59-.79,1.25-1.51,2.1-2.04.85-.59,1.91-.85,3.16-.85s1.78.2,2.63.53,1.64.85,2.3,1.58c.66.66,1.25,1.51,1.64,2.5s.53,2.1.53,3.42h0ZM12.3,13.83c0-.79-.13-1.45-.33-2.04-.26-.59-.53-1.12-.99-1.58-.39-.46-.85-.79-1.38-.99-.53-.26-1.12-.33-1.71-.33s-1.18.13-1.71.33c-.53.26-1.05.59-1.45,1.05-.39.46-.72.92-.99,1.58-.26.59-.33,1.32-.33,2.04s.13,1.45.33,2.04c.26.59.59,1.12.99,1.58s.85.79,1.45.99c.53.26,1.12.33,1.71.33s1.18-.13,1.71-.33c.53-.26.99-.59,1.38-.99.39-.46.72-.92.99-1.58.26-.59.33-1.32.33-2.1ZM31.49,21.52h-3.48v-1.91c-.53.59-1.18,1.12-2.04,1.58-.79.46-1.84.66-2.96.66s-1.45-.13-2.1-.33-1.25-.46-1.78-.85c-.46-.39-.85-.92-1.18-1.51-.26-.59-.46-1.32-.46-2.1h0c0-.92.13-1.64.46-2.24s.72-1.12,1.32-1.58c.59-.39,1.25-.72,1.97-.92.79-.2,1.64-.33,2.5-.33s1.71,0,2.37.2c.66.13,1.32.26,1.91.46v-.39c0-1.05-.33-1.91-.99-2.43-.66-.59-1.58-.85-2.83-.85s-1.64.07-2.37.26c-.66.2-1.38.39-2.1.72l-.99-2.83c.85-.39,1.71-.72,2.63-.92.92-.26,1.97-.33,3.22-.33,2.3,0,4.01.59,5.13,1.71,1.12,1.12,1.64,2.7,1.64,4.8v9.14h.13ZM28.08,15.94v-.99c-.46-.2-.99-.33-1.58-.46s-1.25-.2-1.91-.2c-1.12,0-1.97.2-2.63.66-.59.46-.92,1.05-.92,1.84h0c0,.79.26,1.38.85,1.78.59.39,1.32.59,2.1.59s1.12-.07,1.58-.26c.53-.13.92-.39,1.32-.66s.66-.66.85-1.05.33-.85.33-1.32v.07ZM48.92,6.14l-6.11,15.85c-.33.79-.66,1.45-.99,2.04-.33.53-.72.99-1.12,1.32s-.85.59-1.32.79c-.46.13-1.05.26-1.64.26s-1.38-.07-1.97-.26c-.59-.13-1.12-.39-1.64-.66l1.18-2.63c.33.2.66.33.99.39.33.13.72.2,1.05.2s.92-.13,1.25-.39c.33-.26.66-.72.92-1.38l-6.44-15.39h3.75l4.41,11.44,4.01-11.44h3.68s0-.13,0-.13ZM74.5,21.52h-3.48v-1.91c-.53.59-1.18,1.12-2.04,1.58-.79.46-1.84.66-2.96.66s-1.45-.13-2.1-.33-1.25-.46-1.78-.85c-.46-.39-.85-.92-1.18-1.51-.26-.59-.46-1.32-.46-2.1h0c0-.92.13-1.64.46-2.24s.72-1.12,1.32-1.58c.59-.39,1.25-.72,1.97-.92.79-.2,1.64-.33,2.5-.33s1.71,0,2.37.2c.66.13,1.32.26,1.91.46v-.39c0-1.05-.33-1.91-.99-2.43-.66-.59-1.58-.85-2.83-.85s-1.64.07-2.37.26c-.66.2-1.38.39-2.1.72l-.99-2.83c.85-.39,1.71-.72,2.63-.92.92-.26,1.97-.33,3.22-.33,2.3,0,4.01.59,5.13,1.71,1.12,1.12,1.64,2.7,1.64,4.8v9.14h.13ZM71.08,15.94v-.99c-.46-.2-.99-.33-1.58-.46s-1.25-.2-1.91-.2c-1.12,0-1.97.2-2.63.66s-.92,1.05-.92,1.84h0c0,.79.26,1.38.85,1.78.59.39,1.32.59,2.1.59s1.12-.07,1.58-.26c.53-.13.92-.39,1.32-.66s.66-.66.85-1.05.33-.85.33-1.32v.07ZM88.57,16.99c0,.79-.13,1.51-.46,2.1-.26.59-.72,1.12-1.25,1.51-.53.39-1.12.72-1.84.92-.72.2-1.45.26-2.24.26s-2.24-.2-3.42-.59c-1.12-.39-2.17-.99-3.16-1.71l1.58-2.37c.85.59,1.71,1.12,2.56,1.45.85.33,1.71.46,2.5.46s1.32-.13,1.78-.46.66-.72.66-1.25h0c0-.33-.07-.59-.26-.79-.2-.2-.46-.39-.79-.53-.33-.2-.66-.33-1.12-.46-.39-.13-.85-.26-1.32-.39-.59-.2-1.12-.39-1.71-.59-.59-.2-1.05-.46-1.58-.79-.46-.33-.79-.79-1.12-1.25-.26-.53-.46-1.12-.46-1.84h0c0-.79.13-1.45.39-2.04.26-.59.66-1.05,1.18-1.51.53-.39,1.12-.72,1.78-.92.66-.2,1.38-.33,2.17-.33s1.97.13,2.96.46,1.91.72,2.7,1.32l-1.38,2.5c-.72-.46-1.51-.79-2.24-1.05-.79-.26-1.45-.39-2.1-.39s-1.25.13-1.58.46c-.39.26-.53.66-.53,1.12h0c0,.33.07.59.26.79.2.2.46.39.79.53s.72.33,1.12.46c.46.13.85.26,1.32.39.59.2,1.12.39,1.71.59.59.26,1.05.53,1.51.85s.85.72,1.12,1.25c.26.46.46,1.05.46,1.78h0v.07h0ZM94.15,9.16v7.56c0,.66.2,1.18.53,1.51.33.26.79.46,1.38.46s1.51-.2,2.17-.53v2.89c-.46.26-.92.46-1.45.59s-1.12.2-1.78.2-1.25-.07-1.78-.26c-.53-.13-1.05-.39-1.45-.79-.39-.33-.72-.79-.92-1.38-.2-.59-.33-1.32-.33-2.17v-8.09h0v-3.02h0V1.93h3.55v4.21h4.14v3.02h-4.14.07,0Z"/>
-                                                <path fill="#0069b1" d="M55.85,6.18h4.08v2.92h-4.02v12.36h-3.53v-12.36h-1.95v-2.94h1.95v-1.11c0-1.71.41-2.97,1.22-3.79.82-.84,1.98-1.25,3.5-1.25.62,0,1.16.04,1.6.12.45.08.86.17,1.25.29v2.97c-.35-.12-.69-.2-1.02-.26-.31-.08-.66-.12-1.05-.12-1.36,0-2.04.78-2.04,2.33v.85Z"/>
-                                            </svg>
-                                        </a>
-                                        <span class="logoloop__tip">Final 50% & Retainers</span>
-                                    </li>
-
-                                    <!-- 5. HostAfrica -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://www.hostafrica.co.za" target="_blank" rel="noopener noreferrer" tabindex="-1">
-                                            <svg class="logoloop__node" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
-                                                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
-                                                <line x1="6" y1="6" x2="6.01" y2="6"/>
-                                                <line x1="6" y1="18" x2="6.01" y2="18"/>
-                                            </svg>
-                                            <span class="logoloop__label" style="font-weight: 800; letter-spacing: 0.8px;">HOSTAFRICA</span>
-                                        </a>
-                                        <span class="logoloop__tip">SA Cloud Hosting</span>
-                                    </li>
-
-                                    <!-- 6. Three.js -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://threejs.org" target="_blank" rel="noopener noreferrer" tabindex="-1">
-                                            <svg class="logoloop__node" width="24" height="24" viewBox="0 0 24 24" fill="#111827">
-                                                <path d="M12 1.5L2 20.5h20L12 1.5zm0 4.2l6.5 12.3H5.5L12 5.7z"/>
-                                            </svg>
-                                            <span class="logoloop__label">Three.js</span>
-                                        </a>
-                                        <span class="logoloop__tip">3D Graphics</span>
-                                    </li>
-
-                                    <!-- 7. GSAP -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://gsap.com" target="_blank" rel="noopener noreferrer" tabindex="-1">
-                                            <svg class="logoloop__node" width="24" height="24" viewBox="0 0 24 24" fill="#0ae448" stroke="#0ae448" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                                            </svg>
-                                            <span class="logoloop__label" style="font-weight: 800;">GSAP</span>
-                                        </a>
-                                        <span class="logoloop__tip">Web Motion</span>
-                                    </li>
-
-                                    <!-- 8. Lenis -->
-                                    <li class="logoloop__item" role="listitem">
-                                        <a class="logoloop__content" href="https://lenis.darkroom.engineering" target="_blank" rel="noopener noreferrer" tabindex="-1">
-                                            <svg class="logoloop__node" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M2 12c4-8 8-8 12 0s8 8 12 0"/>
-                                            </svg>
-                                            <span class="logoloop__label">Lenis</span>
-                                        </a>
-                                        <span class="logoloop__tip">Smooth Scroll</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p class="built-on-caption">Engineered with high-performance web tech. E-commerce on Shopify, custom systems on WordPress, hosted locally on HostAfrica, secured with verified South African payments via Yoco & PayFast.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 4: Pricing Teaser -->
-        <section id="pricing" class="section">
-            <div class="section-content">
-                <div class="section-tag">CHOOSE YOUR PLAN</div>
-                <h2 class="big-text animate-text">
-                    <span class="word">transparent</span>
-                    <span class="word"><em>pricing</em></span>
+        <!-- Section 5: HOW IT WORKS & CALENDAR BOOKING -->
+        <section id="contact" class="section process-modern-section">
+            <div class="section-modern-container">
+                <div class="section-eyebrow">HOW IT WORKS</div>
+                <h2 class="section-modern-title">
+                    Three steps to <em class="accent-serif">launch.</em>
                 </h2>
-                <p class="pricing-subtitle">Transparent pricing, no hidden fees. 50% setup fee upfront via Yoco, 50% on completion via PayFast.</p>
 
-                <div class="pricing-teaser-grid">
-                    <!-- Bronze Teaser -->
-                    <div class="pricing-teaser-card">
-                        <div>
-                            <div class="pricing-teaser-tier">BRONZE</div>
-                            <div class="pricing-teaser-price">R3,499 <span>setup</span></div>
-                            <p class="pricing-teaser-desc">+ R699/month · Starter presence for local businesses</p>
-                        </div>
+                <div class="process-steps-grid">
+                    <div class="process-step-card">
+                        <span class="step-card-num">01</span>
+                        <h3 class="step-card-title">Pick a time</h3>
+                        <p class="step-card-desc">Choose a 15-minute slot on the live calendar.</p>
                     </div>
-
-                    <!-- Silver Teaser -->
-                    <div class="pricing-teaser-card">
-                        <div>
-                            <div class="pricing-teaser-tier">SILVER</div>
-                            <div class="pricing-teaser-price">R6,499 <span>setup</span></div>
-                            <p class="pricing-teaser-desc">+ R1,199/month · Growth Machine for expanding brands</p>
-                        </div>
+                    <div class="process-step-card">
+                        <span class="step-card-num">02</span>
+                        <h3 class="step-card-title">Share your goals</h3>
+                        <p class="step-card-desc">Tell us your business goals and launch date.</p>
                     </div>
-
-                    <!-- Gold Teaser (Featured) -->
-                    <div class="pricing-teaser-card featured">
-                        <div class="pricing-teaser-badge">MOST POPULAR</div>
-                        <div>
-                            <div class="pricing-teaser-tier">GOLD</div>
-                            <div class="pricing-teaser-price">R7,999 <span>setup</span></div>
-                            <p class="pricing-teaser-desc">+ R1,499/month · Full authority platform for leaders</p>
-                        </div>
+                    <div class="process-step-card">
+                        <span class="step-card-num">03</span>
+                        <h3 class="step-card-title">Alignment call</h3>
+                        <p class="step-card-desc">Review your strategy and quote with Michael.</p>
                     </div>
                 </div>
 
-                <!-- Payment Trust Pill -->
+                <!-- Interactive Calendar Booking Interface (Preserving All Original IDs & Form Fields) -->
+                <div class="booking-card-modern">
+                    <form id="contact-form" class="booking-form">
+                        <div class="booking-step-title">
+                            <span class="step-number">1</span>
+                            <span>Select Date &amp; Time</span>
+                        </div>
+                        
+                        <!-- Month Navigation Header -->
+                        <div class="calendar-header">
+                            <button type="button" id="cal-prev" class="cal-nav-btn" aria-label="Previous month">&lsaquo;</button>
+                            <div id="cal-month-year" class="cal-month-title">August 2026</div>
+                            <button type="button" id="cal-next" class="cal-nav-btn" aria-label="Next month">&rsaquo;</button>
+                        </div>
+
+                        <!-- Weekdays -->
+                        <div class="calendar-weekdays">
+                            <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+                        </div>
+
+                        <!-- Calendar Days Grid -->
+                        <div id="calendar-days" class="calendar-days-grid">
+                            <!-- JS populates dates -->
+                        </div>
+
+                        <!-- Time Slot Selector -->
+                        <div id="time-slots-wrapper" class="time-slots-wrapper" style="display: none;">
+                            <div class="time-slots-label">Available Slots for <strong id="selected-date-display">Select a date</strong>:</div>
+                            <div id="time-slots-grid" class="time-slots-grid">
+                                <button type="button" class="time-slot-btn" data-time="09:30 AM">09:30 AM</button>
+                                <button type="button" class="time-slot-btn" data-time="11:00 AM">11:00 AM</button>
+                                <button type="button" class="time-slot-btn" data-time="02:00 PM">02:00 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="03:30 PM">03:30 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="05:00 PM">05:00 PM</button>
+                            </div>
+                        </div>
+
+                        <div class="booking-step-title" style="margin-top: 36px;">
+                            <span class="step-number">2</span>
+                            <span>Your Contact Details</span>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" required placeholder=" ">
+                                <label for="name">Your Name</label>
+                                <div class="form-line"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" required placeholder=" ">
+                                <label for="email">Email Address</label>
+                                <div class="form-line"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" id="phone" name="phone" required placeholder=" ">
+                                <label for="phone">Phone / WhatsApp</label>
+                                <div class="form-line"></div>
+                            </div>
+                            <div class="form-group">
+                                <select id="project-type" name="project_type" required>
+                                    <option value="" disabled selected hidden></option>
+                                    <option value="Gold Tier: Premium Authority Framework (5-Day Express Track)">🥇 Gold Tier: Premium Authority Framework (5-Day Express Track)</option>
+                                    <option value="Silver Tier: Growth Machine Architecture (7-10 Days)">🥈 Silver Tier: Growth Machine Architecture (7-10 Days)</option>
+                                    <option value="Bronze Tier: Starter Presence Profile (3-5 Days)">🥉 Bronze Tier: Starter Presence Profile (3-5 Days)</option>
+                                </select>
+                                <label for="project-type">Project Tier / Scope</label>
+                                <div class="form-line"></div>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <textarea id="message" name="message" rows="2" placeholder=" "></textarea>
+                            <label for="message">What is your business industry &amp; target monthly lead goal?</label>
+                            <div class="form-line"></div>
+                        </div>
+
+                        <input type="hidden" id="selected-date-input" name="selected_date">
+                        <input type="hidden" id="selected-time-input" name="selected_time">
+
+                        <button type="submit" class="submit-btn" id="submit-btn">
+                            <span class="btn-text">Confirm &amp; Book Call</span>
+                            <span class="btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                    <polyline points="12 5 19 12 12 19" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="form-success" id="formSuccess">
+                            <div class="success-icon">✓</div>
+                            <h3>Call Scheduled!</h3>
+                            <p id="booking-success-detail">Your 15-minute alignment call is booked. A calendar invitation has been sent to your email.</p>
+                            <button type="button" id="booking-reset-btn" class="secondary-btn" style="margin-top: 20px; font-size: 0.85rem; padding: 10px 24px; cursor: pointer;">Book Another Slot</button>
+                        </div>
+                    </form>
+
+                    <div class="booking-direct-contact">
+                        <span>Prefer to connect directly?</span>
+                        <a href="tel:0720733092" class="direct-link">072 073 3092</a>
+                        <span class="direct-sep">·</span>
+                        <a href="mailto:create@m1creativeweb.co.za" class="direct-link">create@m1creativeweb.co.za</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: PRICING -->
+        <section id="pricing" class="section pricing-modern-section">
+            <div class="section-modern-container">
+                <div class="section-eyebrow">PRICING</div>
+                <h2 class="section-modern-title">
+                    Transparent <em class="accent-serif">pricing.</em>
+                </h2>
+
+                <div class="pricing-modern-grid">
+                    <!-- Bronze Card -->
+                    <div class="pricing-modern-card" data-tier="bronze">
+                        <div class="pricing-card-header">
+                            <div class="pricing-tier-tag">BRONZE</div>
+                            <div class="pricing-tier-price">R3,499</div>
+                            <div class="pricing-tier-recur">setup + R699/month</div>
+                        </div>
+                        <p class="pricing-tier-desc">Starter presence for local businesses.</p>
+                    </div>
+
+                    <!-- Silver Card -->
+                    <div class="pricing-modern-card" data-tier="silver">
+                        <div class="pricing-card-header">
+                            <div class="pricing-tier-tag">SILVER</div>
+                            <div class="pricing-tier-price">R6,499</div>
+                            <div class="pricing-tier-recur">setup + R1,199/month</div>
+                        </div>
+                        <p class="pricing-tier-desc">Growth machine for expanding brands.</p>
+                    </div>
+
+                    <!-- Gold Card (Featured) -->
+                    <div class="pricing-modern-card featured-gold" data-tier="gold">
+                        <div class="pricing-card-header">
+                            <div class="pricing-tier-tag gold-badge">GOLD · MOST POPULAR</div>
+                            <div class="pricing-tier-price">R7,999</div>
+                            <div class="pricing-tier-recur">setup + R1,499/month</div>
+                        </div>
+                        <p class="pricing-tier-desc">Full authority platform for leaders.</p>
+                    </div>
+                </div>
+
+                <!-- Payment Trust Strip -->
                 <div class="pricing-payment-trust">
                     <span class="trust-pill-label">Secured Payment Partners:</span>
                     <span class="trust-pill yoco-pill"><img src="images/yoco-badge.svg" alt="Yoco" width="70" height="20"> 50% Upfront Deposit</span>
-                    <span class="trust-pill payfast-pill"><img src="images/payfast-badge.svg" alt="PayFast" width="70" height="20"> 50% Final & Monthly Retainer</span>
+                    <span class="trust-pill payfast-pill"><img src="images/payfast-badge.svg" alt="PayFast" width="70" height="20"> 50% Final &amp; Monthly Retainer</span>
                 </div>
 
                 <div style="text-align: center; margin-top: 36px;">
                     <a href="pricing.html" class="section-view-all-btn">
-                        <span>View Full Pricing & Packages</span>
+                        <span>View Full Pricing &amp; Packages</span>
                         <span class="btn-arrow">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
                                 <line x1="5" y1="12" x2="19" y2="12" />
@@ -707,481 +616,89 @@
             </div>
         </section>
 
-        <!-- Section 5: Portfolio Teaser (3 Strongest Projects) -->
-        <section id="work" class="section">
-            <div class="section-content">
-                <div class="section-tag">FEATURED WORK</div>
-                <h2 class="big-text animate-text">
-                    <span class="word">crafted with</span>
-                    <span class="word"><em>precision</em></span>
+        <!-- Section 7: Final Call to Action Banner -->
+        <section id="cta-banner" class="section cta-modern-section">
+            <div class="section-modern-container" style="text-align: center;">
+                <div class="section-eyebrow">LIMITED CAPACITY · 3 ACTIVE BUILDS</div>
+                <h2 class="cta-modern-title">
+                    Ready to look as good as <em class="accent-serif">you are?</em>
                 </h2>
-                <p class="work-subtitle">Explore a snapshot of our concept builds & design demos.</p>
-
-                <div class="work-showcase">
-                    <!-- PROJECT 1: BONE X EPOCH -->
-                    <div class="work-item" data-niche="culture" data-project="nhm">
-                        <div class="work-card-inner">
-                            <div class="dual-mockup">
-                                <div class="concept-ribbon">CONCEPT BUILD</div>
-                                <div class="macbook-container">
-                                    <div class="macbook-screen">
-                                        <div class="macbook-notch">
-                                            <span class="macbook-camera"></span>
-                                            <span class="macbook-led"></span>
-                                        </div>
-                                        <div class="macbook-viewport">
-                                            <img src="images/nhm-desktop.png" alt="Bone x Epoch Natural History Museum Desktop" class="macbook-img" />
-                                        </div>
-                                        <div class="macbook-reflection"></div>
-                                    </div>
-                                    <div class="macbook-base">
-                                        <div class="macbook-thumb-indent"></div>
-                                    </div>
-                                </div>
-                                <div class="iphone-container">
-                                    <div class="iphone-screen">
-                                        <div class="iphone-island"></div>
-                                        <div class="iphone-viewport">
-                                            <img src="images/nhm-mobile.png" alt="Bone x Epoch Natural History Museum Mobile" class="iphone-img" />
-                                        </div>
-                                        <div class="iphone-reflection"></div>
-                                        <div class="iphone-home-bar"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="work-preview-badge">BONE X EPOCH</div>
-                            <div class="work-overlay">
-                                <span class="work-category">Culture & Heritage <span class="concept-badge">CONCEPT BUILD</span></span>
-                                <h3>Bone x Epoch — Natural History Museum</h3>
-                                <p class="work-desc">Exploring the story of life on earth through science, discovery, and prehistoric wonders.</p>
-                                <div class="work-actions">
-                                    <a href="clients/nhm-museum/index.html" target="_blank" rel="noopener noreferrer" class="work-cta live-site-link">View Demo Site →</a>
-                                    <button class="work-cta-secondary case-study-trigger" data-project="nhm">Case Study</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PROJECT 2: ELAVEA BEAUTY LOUNGE -->
-                    <div class="work-item" data-niche="beauty" data-project="elavea">
-                        <div class="work-card-inner">
-                            <div class="dual-mockup">
-                                <div class="concept-ribbon">CONCEPT BUILD</div>
-                                <div class="macbook-container">
-                                    <div class="macbook-screen">
-                                        <div class="macbook-notch">
-                                            <span class="macbook-camera"></span>
-                                            <span class="macbook-led"></span>
-                                        </div>
-                                        <div class="macbook-viewport">
-                                            <img src="images/elavea-desktop.png?v=5" alt="Elavea Beauty Lounge Desktop" class="macbook-img" />
-                                        </div>
-                                        <div class="macbook-reflection"></div>
-                                    </div>
-                                    <div class="macbook-base">
-                                        <div class="macbook-thumb-indent"></div>
-                                    </div>
-                                </div>
-                                <div class="iphone-container">
-                                    <div class="iphone-screen">
-                                        <div class="iphone-island"></div>
-                                        <div class="iphone-viewport">
-                                            <img src="images/elavea-mobile.png?v=5" alt="Elavea Beauty Lounge Mobile" class="iphone-img" />
-                                        </div>
-                                        <div class="iphone-reflection"></div>
-                                        <div class="iphone-home-bar"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="work-preview-badge">ELAVEA</div>
-                            <div class="work-overlay">
-                                <span class="work-category">Beauty & Wellness <span class="concept-badge">CONCEPT BUILD</span></span>
-                                <h3>ELAVEA — Beauty Lounge</h3>
-                                <p class="work-desc">Luxury beauty and nail salon landing page featuring custom typography and elegant mauve aesthetics.</p>
-                                <div class="work-actions">
-                                    <a href="clients/elavea-beauty-lounge/index.html" target="_blank" rel="noopener noreferrer" class="work-cta live-site-link">View Demo Site →</a>
-                                    <button class="work-cta-secondary case-study-trigger" data-project="elavea">Case Study</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PROJECT 3: STELLAR FLIGHT -->
-                    <div class="work-item" data-niche="tech" data-project="stellar">
-                        <div class="work-card-inner">
-                            <div class="dual-mockup">
-                                <div class="concept-ribbon">CONCEPT BUILD</div>
-                                <div class="macbook-container">
-                                    <div class="macbook-screen">
-                                        <div class="macbook-notch">
-                                            <span class="macbook-camera"></span>
-                                            <span class="macbook-led"></span>
-                                        </div>
-                                        <div class="macbook-viewport">
-                                            <img src="images/stellar-desktop.jpg" alt="Stellar Flight Space Travel Desktop" class="macbook-img" />
-                                        </div>
-                                        <div class="macbook-reflection"></div>
-                                    </div>
-                                    <div class="macbook-base">
-                                        <div class="macbook-thumb-indent"></div>
-                                    </div>
-                                </div>
-                                <div class="iphone-container">
-                                    <div class="iphone-screen">
-                                        <div class="iphone-island"></div>
-                                        <div class="iphone-viewport">
-                                            <img src="images/stellar-mobile.jpg" alt="Stellar Flight Space Travel Mobile" class="iphone-img" />
-                                        </div>
-                                        <div class="iphone-reflection"></div>
-                                        <div class="iphone-home-bar"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="work-preview-badge">STELLAR</div>
-                            <div class="work-overlay">
-                                <span class="work-category">Technology <span class="concept-badge">CONCEPT BUILD</span></span>
-                                <h3>Stellar Flight — Dashboard</h3>
-                                <p class="work-desc">Futuristic space travel and rocket booking dashboard with immersive 3D canvas and starry particle backgrounds.</p>
-                                <div class="work-actions">
-                                    <a href="clients/stellar-flight/index.html" target="_blank" rel="noopener noreferrer" class="work-cta live-site-link">View Demo Site →</a>
-                                    <button class="work-cta-secondary case-study-trigger" data-project="stellar">Case Study</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="text-align: center; margin-top: 36px;">
-                    <a href="work.html" class="section-view-all-btn">
-                        <span>View All Concept Projects</span>
-                        <span class="btn-arrow">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
-                                <line x1="5" y1="12" x2="19" y2="12" />
-                                <polyline points="12 5 19 12 12 19" />
-                            </svg>
-                        </span>
-                    </a>
+                <div style="margin-top: 36px;">
+                    <a href="#contact" class="hero-btn primary-btn cta-build-btn">Secure your build slot</a>
                 </div>
             </div>
         </section>
 
-        <!-- Section 6: Honest Trust & Transparency -->
-        <section id="reviews" class="section">
-            <div class="section-content">
-                <div class="section-tag">WHY WORK WITH US</div>
-                <h2 class="big-text animate-text">
-                    <span class="word">built on</span>
-                    <span class="word"><em>transparency</em></span>
-                </h2>
-                <p class="trust-section-subtitle">No hidden fees, no lock-in contracts, and direct 24hr access to the founder.</p>
-
-                <div class="trust-guarantee-grid">
-                    <!-- Card 1 -->
-                    <div class="trust-guarantee-card">
-                        <div class="trust-card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        </div>
-                        <h3>50/50 Payment Terms (Yoco & PayFast)</h3>
-                        <p>50% upfront deposit secured via <strong>Yoco</strong>, and remaining 50% balance upon delivery with monthly retainers managed securely via <strong>PayFast</strong>. Zero surprise invoices, zero hidden extra costs.</p>
-                        <div class="payment-badge-row">
-                            <span class="trust-mini-tag yoco"><span class="tag-dot"></span> 50% Deposit via Yoco</span>
-                            <span class="trust-mini-tag payfast"><span class="tag-dot"></span> Final 50% & Monthly via PayFast</span>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="trust-guarantee-card">
-                        <div class="trust-card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                        </div>
-                        <h3>5–10 Day Turnaround</h3>
-                        <p>Streamlined, focused engineering. Your custom, fully responsive website designed, built, and launched in 5 to 10 business days (with 5-day express track on Gold).</p>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="trust-guarantee-card">
-                        <div class="trust-card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                        </div>
-                        <h3>No Lock-In Contracts</h3>
-                        <p>Complete flexibility. All monthly hosting & retainer maintenance packages operate on 30-day rolling cancellation with zero penalties.</p>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="trust-guarantee-card">
-                        <div class="trust-card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        </div>
-                        <h3>24hr Founder Access</h3>
-                        <p>Direct communication. You work straight with our lead developer & designer with a guaranteed 24-hour response time.</p>
-                    </div>
-                </div>
-
-                <div class="founding-client-callout">
-                    <div class="founding-slot-badge">
-                        <span class="slot-dot"></span> FOUNDING CLIENT SLOTS
-                    </div>
-                    <h3 class="founding-title">Direct founder access before our active roster fills up.</h3>
-                    <p class="founding-subtext">
-                        We are a highly focused, boutique digital studio. To maintain our elite engineering standards, we intentionally limit our capacity to <strong>only 3 active premium builds at a time</strong>. This ensures you don’t get passed down to low-paid juniors or slow account managers. You deal 1-on-1 directly with our founder—guaranteeing zero communication delays, lightning-fast deployment, and absolute focus on your business revenue.
-                    </p>
-                    <div class="founding-actions">
-                        <a href="contact.html" class="hero-btn primary-btn founding-btn">
-                            <span>Secure Your Build Slot &rarr;</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Case Study Modal -->
-        <div class="case-study-overlay" id="caseStudyOverlay">
-            <div class="case-study-modal">
-                <button class="case-study-close" id="caseStudyClose" aria-label="Close Case Study">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                </button>
-                <div class="case-study-header">
-                    <div class="case-study-badge" id="caseStudyBadge">Category</div>
-                    <h3 class="case-study-title" id="caseStudyTitle">Project Title</h3>
-                </div>
-                <div class="case-study-layout">
-                    <div class="case-study-col-main">
-                        <div class="case-study-section">
-                            <h4>The Problem</h4>
-                            <p id="caseStudyProblem">Problem statement...</p>
-                        </div>
-                        <div class="case-study-section">
-                            <h4>The Solution & What We Engineered</h4>
-                            <p id="caseStudySolution">Solution statement...</p>
-                        </div>
-                    </div>
-                    <div class="case-study-col-sidebar">
-                        <div class="case-study-meta-box">
-                            <h5>Key Implementations</h5>
-                            <ul id="caseStudyFeatures" class="case-study-feature-list"></ul>
-                        </div>
-                        <div class="case-study-meta-box">
-                            <h5>Tech Stack</h5>
-                            <p id="caseStudyTech">Vanilla HTML5, CSS3, ES6 Javascript</p>
-                        </div>
-                        <a target="_blank" rel="noopener noreferrer" class="case-study-launch-btn" id="caseStudyLaunchBtn">
-                            <span>Launch Demo Website</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 7: Condensed Contact CTA -->
-        <section id="contact" class="section section-light">
-            <div class="section-content">
-                <div class="contact-wrapper">
-                    <div class="contact-info">
-                        <div class="section-tag dark">1-ON-1 STRATEGY CALL</div>
-                        <h2 class="big-text animate-text dark-text">
-                            <span class="word">secure your 1-on-1</span>
-                            <span class="word">strategy call with</span>
-                            <span class="word"><em>our founder.</em></span>
-                        </h2>
-                        <p class="contact-info-subtitle dark-text" style="font-size: 1rem; line-height: 1.65; margin-bottom: 24px;">
-                            We intentionally limit our intake to 3 active client builds at a time to ensure maximum quality and conversion engineering. Book a 15-minute alignment slot below to map out your digital infrastructure directly with Michael.
-                        </p>
-                        <h3 class="contact-info-title dark-text">What happens next?</h3>
-                        <p class="contact-info-subtitle dark-text">Three simple steps to launch your new digital presence.</p>
-                        
-                        <div class="process-timeline">
-                            <div class="process-step">
-                                <div class="step-badge">1</div>
-                                <div class="step-details">
-                                    <h4 class="dark-text">Pick Date & Time</h4>
-                                    <p class="dark-text">Select an available 15-minute slot on our live calendar that fits your schedule.</p>
-                                </div>
-                            </div>
-                            <div class="process-step">
-                                <div class="step-badge">2</div>
-                                <div class="step-details">
-                                    <h4 class="dark-text">Share Project Notes</h4>
-                                    <p class="dark-text">Tell us your core business goals, target launch date, and preferences.</p>
-                                </div>
-                            </div>
-                            <div class="process-step">
-                                <div class="step-badge">3</div>
-                                <div class="step-details">
-                                    <h4 class="dark-text">15-Min Alignment Call</h4>
-                                    <p class="dark-text">Meet with Michael directly to review your custom website strategy & quote.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="direct-contact">
-                            <p class="dark-text">Prefer email or phone? Reach us directly:</p>
-                            <a href="tel:0720733092" class="direct-email-link" style="margin-right: 15px;">072 073 3092</a>
-                            <a href="mailto:create@m1creativeweb.co.za" class="direct-email-link">create@m1creativeweb.co.za</a>
-                        </div>
-                    </div>
-
-                    <!-- Interactive Calendar Booking Form -->
-                    <div class="booking-card">
-                        <form id="contact-form" class="booking-form">
-                            <div class="booking-step-title">
-                                <span class="step-number">1</span>
-                                <span>Select Date & Time</span>
-                            </div>
-                            
-                            <!-- Month Navigation Header -->
-                            <div class="calendar-header">
-                                <button type="button" id="cal-prev" class="cal-nav-btn" aria-label="Previous month">&lsaquo;</button>
-                                <div id="cal-month-year" class="cal-month-title">August 2026</div>
-                                <button type="button" id="cal-next" class="cal-nav-btn" aria-label="Next month">&rsaquo;</button>
-                            </div>
-
-                            <!-- Weekdays -->
-                            <div class="calendar-weekdays">
-                                <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
-                            </div>
-
-                            <!-- Calendar Days Grid -->
-                            <div id="calendar-days" class="calendar-days-grid">
-                                <!-- JS populates dates -->
-                            </div>
-
-                            <!-- Time Slot Selector -->
-                            <div id="time-slots-wrapper" class="time-slots-wrapper" style="display: none;">
-                                <div class="time-slots-label">Available Slots for <strong id="selected-date-display">Select a date</strong>:</div>
-                                <div id="time-slots-grid" class="time-slots-grid">
-                                    <button type="button" class="time-slot-btn" data-time="09:30 AM">09:30 AM</button>
-                                    <button type="button" class="time-slot-btn" data-time="11:00 AM">11:00 AM</button>
-                                    <button type="button" class="time-slot-btn" data-time="02:00 PM">02:00 PM</button>
-                                    <button type="button" class="time-slot-btn" data-time="03:30 PM">03:30 PM</button>
-                                    <button type="button" class="time-slot-btn" data-time="05:00 PM">05:00 PM</button>
-                                </div>
-                            </div>
-
-                            <div class="booking-step-title" style="margin-top: 28px;">
-                                <span class="step-number">2</span>
-                                <span>Your Contact Details</span>
-                            </div>
-
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <input type="text" id="name" name="name" required placeholder=" ">
-                                    <label for="name">Your Name</label>
-                                    <div class="form-line"></div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" id="email" name="email" required placeholder=" ">
-                                    <label for="email">Email Address</label>
-                                    <div class="form-line"></div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="tel" id="phone" name="phone" required placeholder=" ">
-                                    <label for="phone">Phone / WhatsApp</label>
-                                    <div class="form-line"></div>
-                                </div>
-                                <div class="form-group">
-                                    <select id="project-type" name="project_type" required>
-                                        <option value="" disabled selected hidden></option>
-                                        <option value="Gold Tier: Premium Authority Framework (5-Day Express Track)">🥇 Gold Tier: Premium Authority Framework (5-Day Express Track)</option>
-                                        <option value="Silver Tier: Growth Machine Architecture (7-10 Days)">🥈 Silver Tier: Growth Machine Architecture (7-10 Days)</option>
-                                        <option value="Bronze Tier: Starter Presence Profile (3-5 Days)">🥉 Bronze Tier: Starter Presence Profile (3-5 Days)</option>
-                                    </select>
-                                    <label for="project-type">Project Tier / Scope</label>
-                                    <div class="form-line"></div>
-                                </div>
-                            </div>
-                            <div class="form-group full-width">
-                                <textarea id="message" name="message" rows="2" placeholder=" "></textarea>
-                                <label for="message">What is your business industry &amp; target monthly lead goal?</label>
-                                <div class="form-line"></div>
-                            </div>
-
-                            <input type="hidden" id="selected-date-input" name="selected_date">
-                            <input type="hidden" id="selected-time-input" name="selected_time">
-
-                            <button type="submit" class="submit-btn" id="submit-btn">
-                                <span class="btn-text">Confirm & Book Call</span>
-                                <span class="btn-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <line x1="5" y1="12" x2="19" y2="12" />
-                                        <polyline points="12 5 19 12 12 19" />
-                                    </svg>
-                                </span>
-                            </button>
-                            <div class="form-success" id="formSuccess">
-                                <div class="success-icon">✓</div>
-                                <h3>Call Scheduled!</h3>
-                                <p id="booking-success-detail">Your 15-minute alignment call is booked. A calendar invitation has been sent to your email.</p>
-                                <button type="button" id="booking-reset-btn" class="secondary-btn" style="margin-top: 20px; font-size: 0.85rem; padding: 10px 24px; cursor: pointer;">Book Another Slot</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-                <!-- Footer -->
-        <footer id="footer">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="footer-logo">M<span class="logo-one">1</span><span>CREATIVE.</span></div>
-                    <p>Crafting exceptional digital experiences.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-col">
-                        <h4>Navigation</h4>
-                        <a href="index.html">Home</a>
-                        <a href="about.html">About</a>
-                        <a href="services.html">Services</a>
-                        <a href="pricing.html">Pricing</a>
-                        <a href="work.html">Work</a>
-                        <a href="contact.html">Contact</a>
-                        <a href="faq.html">FAQ</a>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Services</h4>
-                        <a href="services.html">Web Design</a>
-                        <a href="services.html">E-Commerce</a>
-                        <a href="services.html">Brand Identity</a>
-                        <a href="seo.html">SEO & Growth</a>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Legal</h4>
-                        <a href="privacy-policy.html">Privacy Policy</a>
-                        <a href="terms-of-service.html">Terms of Service</a>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Connect</h4>
-                        <a href="tel:0720733092">072 073 3092</a>
+        <!-- Footer -->
+        <footer id="footer" class="footer-modern">
+            <div class="footer-modern-container">
+                <div class="footer-main-bar">
+                    <div class="footer-brand-text">M1CREATIVE. &copy; 2026</div>
+                    <div class="footer-contact-text">
                         <a href="mailto:create@m1creativeweb.co.za">create@m1creativeweb.co.za</a>
-                        <a href="https://www.instagram.com/m1creative.web/?hl=en" target="_blank" rel="noopener noreferrer" class="social-link">Instagram</a>
-                        <a href="https://www.tiktok.com/@m1creative.web" target="_blank" rel="noopener noreferrer" class="social-link">TikTok</a>
-                        <a href="https://www.linkedin.com/in/michael-james-335111406" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a>
+                        <span class="footer-sep">·</span>
+                        <a href="tel:0720733092">072 073 3092</a>
                     </div>
                 </div>
-                <div class="footer-payment-trust">
-                    <span class="footer-trust-text">Bank-Grade Secure Payments Powered by</span>
-                    <div class="footer-payment-badges">
-                        <img src="images/yoco-badge.svg" alt="Yoco" width="75" height="22" loading="lazy">
-                        <img src="images/payfast-badge.svg" alt="PayFast" width="75" height="22" loading="lazy">
-                        <span class="footer-pay-method">Visa</span>
-                        <span class="footer-pay-method">Mastercard</span>
-                        <span class="footer-pay-method">Instant EFT</span>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2026 M1CREATIVE. All rights reserved.</p>
-                    <div class="footer-legal-links">
-                        <a href="privacy-policy.html">Privacy Policy</a>
-                        <span class="sep">&middot;</span>
-                        <a href="terms-of-service.html">Terms of Service</a>
-                    </div>
+
+                <div class="footer-sub-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="work.html">Work</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                    <a href="https://www.instagram.com/m1creative.web/?hl=en" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <a href="https://www.tiktok.com/@m1creative.web" target="_blank" rel="noopener noreferrer">TikTok</a>
+                    <a href="https://www.linkedin.com/in/michael-james-335111406" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </div>
             </div>
         </footer>
+
     </div>
 
-    <!-- Leave a Review Modal -->
+    <!-- Case Study Modal (Preserved 100% Functionality) -->
+    <div class="case-study-overlay" id="caseStudyOverlay">
+        <div class="case-study-modal">
+            <button class="case-study-close" id="caseStudyClose" aria-label="Close Case Study">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="case-study-header">
+                <div class="case-study-badge" id="caseStudyBadge">Category</div>
+                <h3 class="case-study-title" id="caseStudyTitle">Project Title</h3>
+            </div>
+            <div class="case-study-layout">
+                <div class="case-study-col-main">
+                    <div class="case-study-section">
+                        <h4>The Problem</h4>
+                        <p id="caseStudyProblem">Problem statement...</p>
+                    </div>
+                    <div class="case-study-section">
+                        <h4>The Solution &amp; What We Engineered</h4>
+                        <p id="caseStudySolution">Solution statement...</p>
+                    </div>
+                </div>
+                <div class="case-study-col-sidebar">
+                    <div class="case-study-meta-box">
+                        <h5>Key Implementations</h5>
+                        <ul id="caseStudyFeatures" class="case-study-feature-list"></ul>
+                    </div>
+                    <div class="case-study-meta-box">
+                        <h5>Tech Stack</h5>
+                        <p id="caseStudyTech">Vanilla HTML5, CSS3, ES6 Javascript</p>
+                    </div>
+                    <a target="_blank" rel="noopener noreferrer" class="case-study-launch-btn" id="caseStudyLaunchBtn">
+                        <span>Launch Live Website</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leave a Review Modal (Preserved 100% Functionality) -->
     <div id="reviewModal" class="review-modal" aria-hidden="true">
         <div class="modal-overlay" id="modalOverlay"></div>
         <div class="modal-content glass-card">
