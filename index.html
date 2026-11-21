@@ -129,31 +129,11 @@
     <!-- Blueprint Sitewide Background Canvas -->
     <canvas id="three-canvas"></canvas>
 
-    <!-- Blueprint Intro Sequence -->
-    <div id="loader">
-        <!-- Dynamic grid construction canvas -->
-        <canvas id="intro-canvas"></canvas>
-        <div class="blueprint-corner tl">+</div>
-        <div class="blueprint-corner tr">+</div>
-        <div class="blueprint-corner bl">+</div>
-        <div class="blueprint-corner br">+</div>
-
-        <!-- Centered brand logo + compilation status -->
-        <div class="intro-center-logo" id="introCta">
-            <div class="blueprint-tag" id="introTag">[ SYSTEM // ENGINEERING CANVAS ]</div>
-            <div class="intro-logo" id="introLogo">
-                <span class="intro-char" data-char="M">M</span><span class="intro-char logo-one" data-char="1">1</span><span class="intro-char intro-creative" data-char="C">C</span><span class="intro-char intro-creative" data-char="R">R</span><span class="intro-char intro-creative" data-char="E">E</span><span class="intro-char intro-creative" data-char="A">A</span><span class="intro-char intro-creative" data-char="T">T</span><span class="intro-char intro-creative" data-char="I">I</span><span class="intro-char intro-creative" data-char="V">V</span><span class="intro-char intro-creative" data-char="E">E</span><span class="intro-char intro-creative" data-char=".">.</span>
-            </div>
-            <div class="blueprint-status" id="blueprintStatus">
-                <span class="status-pulse"></span>
-                <span id="blueprintStatusText">INITIALISING...</span>
-            </div>
-        </div>
-    </div>
-
     <!-- Navigation -->
     <nav id="navbar">
-        <a href="index.html" class="nav-logo">M1CREATIVE.</a>
+        <a href="index.html" class="nav-logo" aria-label="M1Creative Home">
+            <img src="m1creative-wordmark-white.png" alt="M1Creative" class="nav-logo-img">
+        </a>
         <div class="nav-links">
             <a href="#services">Services</a>
             <a href="#work">Work</a>
@@ -633,7 +613,10 @@
         <footer id="footer" class="footer-modern">
             <div class="footer-modern-container">
                 <div class="footer-main-bar">
-                    <div class="footer-brand-text">M1CREATIVE. &copy; 2026</div>
+                    <div class="footer-brand-text">
+                        <img src="m1creative-wordmark-white.png" alt="M1Creative" class="footer-logo-img">
+                        <span class="footer-copyright">&copy; 2026</span>
+                    </div>
                     <div class="footer-contact-text">
                         <a href="mailto:create@m1creativeweb.co.za">create@m1creativeweb.co.za</a>
                         <span class="footer-sep">·</span>

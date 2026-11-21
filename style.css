@@ -8026,3 +8026,70 @@ body, #scroll-container {
         text-align: center;
     }
 }
+
+
+/* ==========================================================================
+   NEW LOGO WORDMARK & INTRO REMOVAL OVERRIDES
+   ========================================================================== */
+.nav-logo {
+    display: inline-flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+}
+
+.nav-logo-img {
+    height: 24px !important;
+    width: auto !important;
+    max-width: 220px !important;
+    display: block !important;
+    object-fit: contain !important;
+    transition: opacity 0.25s ease, transform 0.25s ease !important;
+}
+
+.nav-logo:hover .nav-logo-img {
+    opacity: 0.88 !important;
+    transform: scale(1.02) !important;
+}
+
+.footer-logo-img {
+    height: 22px !important;
+    width: auto !important;
+    max-width: 200px !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    object-fit: contain !important;
+}
+
+.footer-brand-text {
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+}
+
+.footer-copyright {
+    font-size: 0.85rem !important;
+    color: #8E8E93 !important;
+    font-weight: 500 !important;
+}
+
+/* Ensure intro/loader is completely disabled/hidden */
+#loader,
+#intro-canvas,
+.intro-center-logo,
+.blueprint-corner {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+@media (max-width: 768px) {
+    .nav-logo-img {
+        height: 20px !important;
+    }
+    .footer-logo-img {
+        height: 18px !important;
+    }
+}

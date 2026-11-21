@@ -2275,10 +2275,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     gsap.ticker.lagSmoothing(0);
 
-    // Lock scroll immediately for intro
-    lenis.stop();
-
-    // Start intro — Three.js scene + GSAP both start inside initIntro
+    // Start animations and background canvas immediately (intro removed)
     initIntro();
 
     // Event listeners
