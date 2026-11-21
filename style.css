@@ -1484,15 +1484,20 @@ body {
 /* ===========================
    CALENDAR BOOKING FORM
    =========================== */
-.booking-card {
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 24px;
-    padding: 36px 32px;
-    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.06);
+.booking-card,
+.booking-card-modern {
+    background: rgba(14, 14, 14, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    padding: 38px 34px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
     position: relative;
     width: 100%;
     box-sizing: border-box;
+    text-align: left;
+    color: #ffffff !important;
 }
 
 .booking-form {
@@ -1506,7 +1511,7 @@ body {
     gap: 12px;
     font-size: 1.05rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: #ffffff !important;
     margin-bottom: 20px;
 }
 
@@ -1514,14 +1519,14 @@ body {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: var(--text-dark);
-    color: var(--accent);
+    background: var(--accent) !important;
+    color: #000000 !important;
     font-size: 0.85rem;
     font-weight: 800;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 /* Calendar Month Header */
@@ -1534,18 +1539,19 @@ body {
 }
 
 .cal-month-title {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: #ffffff !important;
+    letter-spacing: -0.01em;
 }
 
 .cal-nav-btn {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    border: 1px solid #e0e0e0;
-    background: #f8f9fa;
-    color: var(--text-dark);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #ffffff !important;
     font-size: 1.2rem;
     cursor: pointer;
     display: flex;
@@ -1555,14 +1561,16 @@ body {
 }
 
 .cal-nav-btn:hover:not(:disabled) {
-    background: var(--text-dark);
-    color: var(--text-white);
-    border-color: var(--text-dark);
+    background: var(--accent) !important;
+    color: #000000 !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 12px rgba(204, 255, 0, 0.35);
 }
 
 .cal-nav-btn:disabled {
-    opacity: 0.3;
+    opacity: 0.25;
     cursor: not-allowed;
+    border-color: rgba(255, 255, 255, 0.05) !important;
 }
 
 /* Weekdays */
@@ -1572,17 +1580,17 @@ body {
     text-align: center;
     font-size: 0.75rem;
     font-weight: 700;
-    color: #888;
+    color: #8E8E93 !important;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 /* Days Grid */
 .calendar-days-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 6px;
+    gap: 8px;
     margin-bottom: 24px;
 }
 
@@ -1591,58 +1599,60 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    border-radius: 12px;
-    border: 1px solid transparent;
-    background: #f8f9fa;
-    color: var(--text-dark);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    color: #ffffff !important;
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.2s ease;
 }
 
 .cal-day-cell:hover:not(.disabled):not(.selected) {
-    background: #eef8d5;
-    border-color: var(--accent);
-    color: #000;
+    background: rgba(204, 255, 0, 0.15) !important;
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
     transform: translateY(-2px);
 }
 
 .cal-day-cell.selected {
-    background: var(--text-dark);
-    color: var(--accent);
-    font-weight: 800;
-    border-color: var(--text-dark);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    background: var(--accent) !important;
+    color: #000000 !important;
+    font-weight: 800 !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 16px rgba(204, 255, 0, 0.45);
 }
 
 .cal-day-cell.disabled {
-    opacity: 0.25;
+    opacity: 0.18;
     cursor: not-allowed;
-    background: transparent;
+    background: transparent !important;
+    border-color: transparent !important;
+    color: rgba(255, 255, 255, 0.2) !important;
 }
 
 .cal-day-cell.today {
-    border-color: var(--text-dark);
+    border-color: rgba(204, 255, 0, 0.5) !important;
 }
 
 /* Time Slots */
 .time-slots-wrapper {
-    background: #f8f9fa;
-    border-radius: 16px;
-    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-radius: 14px;
+    padding: 20px;
     margin-bottom: 24px;
-    border: 1px solid #eaeaea;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 .time-slots-label {
-    font-size: 0.85rem;
-    color: #555;
-    margin-bottom: 12px;
+    font-size: 0.88rem;
+    color: #8E8E93 !important;
+    margin-bottom: 14px;
 }
 
 .time-slots-label strong {
-    color: var(--text-dark);
+    color: var(--accent) !important;
 }
 
 .time-slots-grid {
@@ -1652,12 +1662,12 @@ body {
 }
 
 .time-slot-btn {
-    padding: 10px 18px;
-    border-radius: 100px;
-    border: 1px solid #dcdcdc;
-    background: #ffffff;
-    color: var(--text-dark);
-    font-size: 0.85rem;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #ffffff !important;
+    font-size: 0.86rem;
     font-weight: 600;
     font-family: inherit;
     cursor: pointer;
@@ -1665,20 +1675,40 @@ body {
 }
 
 .time-slot-btn:hover:not(.selected) {
-    border-color: var(--accent);
-    background: #eef8d5;
+    border-color: var(--accent) !important;
+    background: rgba(204, 255, 0, 0.12) !important;
+    color: var(--accent) !important;
 }
 
 .time-slot-btn.selected {
-    background: var(--text-dark);
-    color: var(--accent);
-    border-color: var(--text-dark);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: var(--accent) !important;
+    color: #000000 !important;
+    border-color: var(--accent) !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0 14px rgba(204, 255, 0, 0.4);
 }
 
 .cal-error-glow {
-    border-color: #ff3333 !important;
-    box-shadow: 0 0 12px rgba(255, 51, 51, 0.3) !important;
+    border-color: #ff4d4d !important;
+    box-shadow: 0 0 16px rgba(255, 77, 77, 0.45) !important;
+}
+
+.booking-error-msg {
+    display: none;
+    background: rgba(255, 77, 77, 0.12);
+    border: 1px solid rgba(255, 77, 77, 0.4);
+    color: #ff6b6b;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.booking-error-msg.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
 }
 
 .form-services {
@@ -1699,30 +1729,30 @@ body {
 .service-pill {
     display: inline-block;
     padding: 12px 24px;
-    border: 2px solid #ddd;
+    border: 2px solid rgba(255, 255, 255, 0.15);
     border-radius: 50px;
     font-size: 0.9rem;
     font-weight: 500;
-    color: var(--text-dark);
+    color: #ffffff;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     user-select: none;
 }
 
 .service-pill:hover {
-    border-color: #999;
+    border-color: var(--accent);
 }
 
 .form-service-option input:checked+.service-pill {
-    background: var(--text-dark);
-    color: var(--text-white);
-    border-color: var(--text-dark);
+    background: var(--accent);
+    color: #000000;
+    border-color: var(--accent);
     transform: scale(1.04);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 15px rgba(204, 255, 0, 0.3);
 }
 
 .form-service-option input:checked+.service-pill::before {
     content: '✓ ';
-    color: var(--accent);
+    color: #000000;
     font-weight: 700;
 }
 
@@ -1738,7 +1768,7 @@ body {
 }
 
 .form-group.full-width {
-    margin-bottom: 40px;
+    margin-bottom: 36px;
 }
 
 .form-group input,
@@ -1750,10 +1780,16 @@ body {
     font-family: var(--font-body);
     background: transparent;
     border: none;
-    border-bottom: 2px solid #ddd;
-    color: var(--text-dark);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
     outline: none;
     transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-bottom-color: var(--accent) !important;
 }
 
 .form-group select {
@@ -1762,8 +1798,8 @@ body {
 }
 
 .form-group select option {
-    background: #ffffff;
-    color: #1a1a1a;
+    background: #141414;
+    color: #ffffff;
 }
 
 .form-group textarea {
@@ -1775,7 +1811,7 @@ body {
     top: 15px;
     left: 0;
     font-size: 1rem;
-    color: #999;
+    color: #8E8E93 !important;
     pointer-events: none;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1786,9 +1822,9 @@ body {
 .form-group select:valid~label,
 .form-group textarea:focus~label,
 .form-group textarea:not(:placeholder-shown)~label {
-    top: -10px;
+    top: -12px;
     font-size: 0.75rem;
-    color: var(--text-dark);
+    color: var(--accent) !important;
     font-weight: 700;
     letter-spacing: 0.5px;
 }
@@ -1919,8 +1955,8 @@ body {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: var(--text-dark);
-    color: var(--accent);
+    background: var(--accent);
+    color: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7715,7 +7751,8 @@ a.service-modern-card {
    SECTION 6: PRICING
    =========================== */
 .pricing-modern-section {
-    padding: 90px 0 !important;
+    min-height: auto !important;
+    padding: 70px 0 20px 0 !important;
 }
 
 .pricing-modern-grid {
@@ -7799,7 +7836,8 @@ a.pricing-modern-card {
    SECTION 7: FINAL CTA BANNER
    =========================== */
 .cta-modern-section {
-    padding: 100px 0 80px 0 !important;
+    min-height: auto !important;
+    padding: 40px 0 30px 0 !important;
     text-align: center;
 }
 
@@ -7818,9 +7856,9 @@ a.pricing-modern-card {
    FOOTER (MODERN MINIMAL)
    =========================== */
 .footer-modern {
-    padding: 50px 0 40px 0;
+    padding: 36px 0 28px 0 !important;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
-    margin-top: 60px;
+    margin-top: 20px !important;
 }
 
 .footer-modern-container {
