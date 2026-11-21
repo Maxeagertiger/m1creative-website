@@ -45,7 +45,7 @@
     <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Knewave&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -53,35 +53,37 @@
     <!-- Three.js Canvas -->
     <canvas id="three-canvas"></canvas>
 
-        <!-- Navigation -->
-    <nav id="navbar" class="scrolled">
-        <a href="index.html" class="nav-logo" aria-label="M1Creative Home"><img src="m1creative-wordmark-white.png" alt="M1Creative" class="nav-logo-img"></a>
+            <!-- Navigation -->
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo" aria-label="M1Creative Home">
+            <img src="m1creative-wordmark-white.png" alt="M1Creative" class="nav-logo-img">
+        </a>
         <div class="nav-links">
-            <a href="about.html">About</a>
             <a href="services.html">Services</a>
-            <a href="pricing.html">Pricing</a>
             <a href="work.html" class="active">Work</a>
-            <a href="contact.html">Contact</a>
-            <a href="contact.html" class="nav-cta">Get Started</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="about.html">About</a>
             <a href="faq.html">FAQ</a>
         </div>
+        <a href="contact.html" class="nav-cta-btn">Book a call</a>
         <div class="nav-hamburger" id="hamburger" aria-label="Toggle navigation menu">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span class="hamburger-label">MENU</span>
+            <span class="hamburger-bars">
+                <span></span>
+                <span></span>
+            </span>
         </div>
     </nav>
 
-        <!-- Mobile Menu / Dropdown Menu -->
+            <!-- Mobile Menu / Dropdown Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="index.html" class="mobile-link">Home</a>
-        <a href="about.html" class="mobile-link">About</a>
         <a href="services.html" class="mobile-link">Services</a>
-        <a href="pricing.html" class="mobile-link">Pricing</a>
         <a href="work.html" class="mobile-link active">Work</a>
-        <a href="contact.html" class="mobile-link">Contact</a>
+        <a href="pricing.html" class="mobile-link">Pricing</a>
+        <a href="about.html" class="mobile-link">About</a>
         <a href="faq.html" class="mobile-link">FAQ</a>
-        <a href="contact.html" class="mobile-link nav-cta">Get Started</a>
+        <a href="contact.html" class="mobile-link nav-cta">Book a call</a>
     </div>
 
     <!-- Scroll Container -->
@@ -484,61 +486,32 @@
         </section>
 
                 <!-- Footer -->
-        <footer id="footer">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="footer-logo"><img src="m1creative-wordmark-white.png" alt="M1Creative" class="footer-logo-img"></div>
-                    <p>Crafting exceptional digital experiences.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-col">
-                        <h4>Navigation</h4>
-                        <a href="index.html">Home</a>
-                        <a href="about.html">About</a>
-                        <a href="services.html">Services</a>
-                        <a href="pricing.html">Pricing</a>
-                        <a href="work.html">Work</a>
-                        <a href="contact.html">Contact</a>
-                        <a href="faq.html">FAQ</a>
+                <footer id="footer" class="footer-modern">
+            <div class="footer-modern-container">
+                <div class="footer-main-bar">
+                    <div class="footer-brand-text">
+                        <img src="m1creative-wordmark-white.png" alt="M1Creative" class="footer-logo-img">
+                        <span class="footer-copyright">&copy; 2026</span>
                     </div>
-                    <div class="footer-col">
-                        <h4>Services</h4>
-                        <a href="services.html">Web Design</a>
-                        <a href="services.html">E-Commerce</a>
-                        <a href="services.html">Brand Identity</a>
-                        <a href="seo.html">SEO & Growth</a>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Legal</h4>
-                        <a href="privacy-policy.html">Privacy Policy</a>
-                        <a href="terms-of-service.html">Terms of Service</a>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Connect</h4>
-                        <a href="tel:0720733092">072 073 3092</a>
+                    <div class="footer-contact-text">
                         <a href="mailto:create@m1creativeweb.co.za">create@m1creativeweb.co.za</a>
-                        <a href="https://www.instagram.com/m1creative.web/?hl=en" target="_blank" rel="noopener noreferrer" class="social-link">Instagram</a>
-                        <a href="https://www.tiktok.com/@m1creative.web" target="_blank" rel="noopener noreferrer" class="social-link">TikTok</a>
-                        <a href="https://www.linkedin.com/in/michael-james-335111406" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a>
+                        <span class="footer-sep">·</span>
+                        <a href="tel:0720733092">072 073 3092</a>
                     </div>
                 </div>
-                <div class="footer-payment-trust">
-                    <span class="footer-trust-text">Bank-Grade Secure Payments Powered by</span>
-                    <div class="footer-payment-badges">
-                        <img src="images/yoco-badge.svg" alt="Yoco" width="75" height="22" loading="lazy">
-                        <img src="images/payfast-badge.svg" alt="PayFast" width="75" height="22" loading="lazy">
-                        <span class="footer-pay-method">Visa</span>
-                        <span class="footer-pay-method">Mastercard</span>
-                        <span class="footer-pay-method">Instant EFT</span>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2026 M1CREATIVE. All rights reserved.</p>
-                    <div class="footer-legal-links">
-                        <a href="privacy-policy.html">Privacy Policy</a>
-                        <span class="sep">&middot;</span>
-                        <a href="terms-of-service.html">Terms of Service</a>
-                    </div>
+
+                <div class="footer-sub-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="work.html">Work</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                    <a href="https://www.instagram.com/m1creative.web/?hl=en" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <a href="https://www.tiktok.com/@m1creative.web" target="_blank" rel="noopener noreferrer">TikTok</a>
+                    <a href="https://www.linkedin.com/in/michael-james-335111406" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </div>
             </div>
         </footer>
