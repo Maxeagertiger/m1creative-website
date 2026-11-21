@@ -7149,6 +7149,14 @@ body, #scroll-container {
     justify-content: flex-start;
     text-align: left;
     transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+a.service-modern-card {
+    text-decoration: none;
+    color: inherit;
 }
 
 .service-modern-card:hover {
@@ -7726,6 +7734,14 @@ body, #scroll-container {
     justify-content: space-between;
     text-align: left;
     transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+a.pricing-modern-card {
+    text-decoration: none;
+    color: inherit;
 }
 
 .pricing-modern-card:hover {
