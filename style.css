@@ -7928,6 +7928,28 @@ a.pricing-modern-card {
     color: #ffffff;
 }
 
+/* Social icon links in footer */
+.footer-social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    color: #6E6E73;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+}
+
+.footer-social-icon:hover {
+    color: #ccff00;
+    background: rgba(204,255,0,0.1);
+    border-color: rgba(204,255,0,0.3);
+    transform: translateY(-2px);
+}
+
 /* ===========================
    MOBILE RESPONSIVE RULES (EXACT MATCHING MOBILE HOMEPAGE.PNG)
    =========================== */
