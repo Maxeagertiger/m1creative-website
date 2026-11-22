@@ -1,4 +1,4 @@
-/* ===========================
+﻿/* ===========================
    M1CREATIVE. — Global Reset & Variables
    =========================== */
 *,
@@ -7928,26 +7928,39 @@ a.pricing-modern-card {
     color: #ffffff;
 }
 
-/* Social icon links in footer */
+/* Dedicated social links row in footer */
+.footer-social-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 22px auto 0 auto;
+}
+
 .footer-social-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    color: #6E6E73;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
-    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #8E8E93;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     text-decoration: none;
 }
 
 .footer-social-icon:hover {
-    color: #ccff00;
-    background: rgba(204,255,0,0.1);
-    border-color: rgba(204,255,0,0.3);
-    transform: translateY(-2px);
+    color: #000000;
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(204, 255, 0, 0.35);
+}
+
+.footer-sub-links {
+    margin-top: 18px !important;
 }
 
 /* ===========================
