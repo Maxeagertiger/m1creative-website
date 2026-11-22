@@ -7165,7 +7165,8 @@ body, #scroll-container {
    SECTION 2: WHAT WE DO
    =========================== */
 .services-modern-section {
-    padding: 90px 0 !important;
+    min-height: auto !important;
+    padding: 60px 0 !important;
 }
 
 .services-modern-grid {
@@ -7245,12 +7246,13 @@ a.service-modern-card {
    SECTION 3: SELECTED WORK
    =========================== */
 .work-modern-section {
-    padding: 90px 0 !important;
+    min-height: auto !important;
+    padding: 60px 0 !important;
 }
 
 .work-modern-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
@@ -7422,7 +7424,8 @@ a.service-modern-card {
    SECTION 4: MEET THE FOUNDER
    =========================== */
 .founder-modern-section {
-    padding: 90px 0 !important;
+    min-height: auto !important;
+    padding: 60px 0 !important;
 }
 
 .founder-modern-grid {
@@ -7525,7 +7528,8 @@ a.service-modern-card {
    SECTION 5: HOW IT WORKS & CALENDAR
    =========================== */
 .process-modern-section {
-    padding: 90px 0 !important;
+    min-height: auto !important;
+    padding: 60px 0 !important;
 }
 
 .process-steps-grid {
@@ -7753,7 +7757,7 @@ a.service-modern-card {
    =========================== */
 .pricing-modern-section {
     min-height: auto !important;
-    padding: 70px 0 20px 0 !important;
+    padding: 60px 0 20px 0 !important;
 }
 
 .pricing-modern-grid {
@@ -7939,6 +7943,7 @@ a.pricing-modern-card {
 
     .work-modern-grid {
         grid-template-columns: 1fr;
+        gap: 24px;
     }
 
     .work-featured-wide {
@@ -8096,9 +8101,9 @@ a.pricing-modern-card {
 }
 
 .nav-logo-img {
-    height: 24px !important;
+    height: 18px !important;
     width: auto !important;
-    max-width: 220px !important;
+    max-width: 180px !important;
     display: block !important;
     object-fit: contain !important;
     transition: opacity 0.25s ease, transform 0.25s ease !important;
@@ -8110,9 +8115,9 @@ a.pricing-modern-card {
 }
 
 .footer-logo-img {
-    height: 22px !important;
+    height: 17px !important;
     width: auto !important;
-    max-width: 200px !important;
+    max-width: 170px !important;
     display: inline-block !important;
     vertical-align: middle !important;
     object-fit: contain !important;
@@ -8143,9 +8148,9 @@ a.pricing-modern-card {
 
 @media (max-width: 768px) {
     .nav-logo-img {
-        height: 20px !important;
+        height: 16px !important;
     }
     .footer-logo-img {
-        height: 18px !important;
+        height: 15px !important;
     }
 }

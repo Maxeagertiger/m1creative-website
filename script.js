@@ -2056,7 +2056,7 @@ function initCaseStudies() {
         }
     };
     
-    document.querySelectorAll('.work-item').forEach(item => {
+    document.querySelectorAll('.work-item, .work-modern-card').forEach(item => {
         const liveLink = item.querySelector('.live-site-link');
         const triggerBtn = item.querySelector('.case-study-trigger');
         const projectKey = item.getAttribute('data-project');
