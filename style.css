@@ -188,21 +188,26 @@ body {
     width: 100%;
     padding: 22px 48px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: clamp(36px, 4.5vw, 64px);
     z-index: 1000;
-    transition: all 0.4s ease;
-    background: rgba(7, 7, 7, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.35s ease;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: none;
+    box-shadow: none;
+    box-sizing: border-box;
 }
 
 #navbar.scrolled {
     padding: 14px 48px;
-    background: rgba(7, 7, 7, 0.92);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    background: rgba(5, 5, 5, 0.5);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .nav-logo {
@@ -2696,6 +2701,8 @@ body {
 
     #navbar {
         padding: 15px 20px;
+        justify-content: space-between !important;
+        gap: 0 !important;
     }
 
     .contact-wrapper {
@@ -7952,6 +7959,8 @@ a.pricing-modern-card {
 @media (max-width: 768px) {
     #navbar {
         padding: 16px 20px;
+        justify-content: space-between !important;
+        gap: 0 !important;
     }
 
     .nav-links,
