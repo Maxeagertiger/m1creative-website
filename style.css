@@ -29,6 +29,7 @@
 }
 
 html {
+    background-color: #050505 !important;
     overflow-x: hidden;
 }
 
@@ -61,65 +62,16 @@ body {
 }
 
 /* ===========================
-   BLUEPRINT INTRO & SITEWIDE BACKGROUND SYSTEM
+   SITEWIDE BACKGROUND ARCHITECTURE
    =========================== */
-#loader {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 10000;
-    overflow: hidden;
-    background: #050505;
-    cursor: default;
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
-}
-
-#loader.exit {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-/* Dynamic intro construction canvas */
-#intro-canvas {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    display: block;
-    z-index: 1;
-}
-
-/* Structural corner tick crosshairs */
+#three-canvas,
+#loader,
+#intro-canvas,
 .blueprint-corner {
-    position: absolute;
-    font-family: var(--font-body);
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.3);
-    font-weight: 300;
-    z-index: 3;
-    pointer-events: none;
-    user-select: none;
-    opacity: 0;
-    transition: opacity 0.4s ease 0.3s;
-}
-#loader.corners-in .blueprint-corner { opacity: 1; }
-.blueprint-corner.tl { top: 24px; left: 24px; }
-.blueprint-corner.tr { top: 24px; right: 24px; }
-.blueprint-corner.bl { bottom: 24px; left: 24px; }
-.blueprint-corner.br { bottom: 24px; right: 24px; }
-
-/* Canvas — Fixed behind all content across website */
-#three-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    pointer-events: none;
-    display: block;
-    background: #050505;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
 /* Centered Brand Logo + Blueprint compilation status */
