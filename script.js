@@ -1264,7 +1264,7 @@ function initCaseStudies() {
             title: "Ambrelle House — Fine Dining (Featured Project)",
             category: "Food & Dining · FEATURED PROJECT",
             problem: "Strategic Objective: Engineered to convert website visitors into confirmed fine-dining table reservations through sensory visual storytelling. Solves common mobile menu crashes and disjointed brand presentation.",
-            solution: "What We Engineered: We built a theatrical split-curtain preloader featuring a self-drawing gold crescent moon. Includes tabbed menu filters, high-resolution interior galleries, and custom table reservation workflows.",
+            solution: "What We Engineered: We engineered a theatrical split-curtain preloader featuring a self-drawing gold crescent moon. Includes tabbed menu filters, high-resolution interior galleries, and custom table reservation workflows.",
             features: [
                 "Theatrical top/bottom curtain panels with SVG moon drawing preloader",
                 "Deduplicated tabbed category filters for both menus and photo galleries",
@@ -1273,48 +1273,6 @@ function initCaseStudies() {
             ],
             tech: "HTML5, Vanilla CSS, Vanilla ES6 JS, SVG Animations, Leaflet Map integration",
             url: "clients/ambrelle-house/index.html"
-        },
-        stellar: {
-            title: "Stellar Flight — Space Dashboard (Interactive Build)",
-            category: "Technology · INTERACTIVE BUILD",
-            problem: "Interactive Engineering Goal: Pushing browser capabilities to create deep visual engagement for aerospace and high-tech platforms without sacrificing 60fps performance or responsive usability.",
-            solution: "What We Engineered: We engineered a futuristic space travel dashboard featuring an interactive WebGL space particle field, scroll-tied telemetry panels, glassmorphic cards, and orbital flight booking forms.",
-            features: [
-                "Dynamic WebGL Three.js space particle simulation",
-                "Futuristic glassmorphic panels displaying orbital telemetry",
-                "Neon glow design token styling with sci-fi layouts",
-                "Orbit simulation loader paths and interactive forms"
-            ],
-            tech: "HTML5, CSS Grid, Three.js WebGL, ES6 JS, GSAP Animations",
-            url: "clients/stellar-flight/index.html"
-        },
-        prisma: {
-            title: "Prisma — Cinematic Studio (Interactive Build)",
-            category: "Film & Creative · INTERACTIVE BUILD",
-            problem: "Creative Engineering Goal: Providing an avant-garde digital canvas for film directors and creative production houses that showcases motion and video work through cutting-edge interactive WebGL shaders.",
-            solution: "What We Engineered: We created a minimalist, high-contrast creative studio centered on a rotating WebGL 3D glass prism. Built fluid scroll-tied animation triggers and fullscreen video lightboxes.",
-            features: [
-                "Custom 3D WebGL rotating glass prism lens rendering",
-                "High-contrast, brutalist design token typography",
-                "Seamless fullscreen HTML5 video lightbox overlay",
-                "Fluid page transitions with scroll-tied reveal triggers"
-            ],
-            tech: "HTML5, Custom CSS, WebGL, Three.js, ES6 JS, Parallax layouts",
-            url: "clients/warm-clean-visions/index.html"
-        },
-        nhm: {
-            title: "Bone x Epoch — Natural History Museum (Interactive Build)",
-            category: "Culture & Heritage · INTERACTIVE BUILD",
-            problem: "Interactive Experience Goal: Modernizing cultural institutions and heritage museums to capture younger digital audiences and drive international ticket reservations through immersive 3D digital archival vaults.",
-            solution: "What We Engineered: We engineered a deep dark-velvet and gold museum portal featuring a self-drawing crest preloader, 3D digital artifact vaults, interactive exhibit filters, and online ticket booking UI.",
-            features: [
-                "Deep obsidian & gold heritage aesthetic design system",
-                "Self-drawing SVG museum crest entrance preloader",
-                "3D digital vault archive with high-resolution artifact scans",
-                "Online ZAR ticket reservation portal for Cape Town visitors"
-            ],
-            tech: "HTML5, CSS Custom Variables, Vanilla ES6 JS, SVG Path Animations",
-            url: "clients/nhm-museum/index.html"
         }
     };
     

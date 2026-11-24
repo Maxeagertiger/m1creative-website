@@ -7319,65 +7319,6 @@ a.service-modern-card {
     margin: 0;
 }
 
-/* Stellar Flight Wide Row */
-.work-featured-wide {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 36px;
-    align-items: center;
-    background: rgba(14, 14, 14, 0.65);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 24px;
-    margin-top: 24px;
-    text-align: left;
-    transition: border-color 0.3s ease;
-}
-
-.work-featured-wide:hover {
-    border-color: rgba(204, 255, 0, 0.3);
-}
-
-.work-wide-visual {
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    aspect-ratio: 16/10;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.work-wide-visual:hover .work-card-overlay {
-    opacity: 1;
-}
-
-.work-wide-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.work-wide-title {
-    font-family: var(--font-body);
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0 0 10px 0;
-}
-
-.work-wide-desc {
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    line-height: 1.55;
-    color: #8E8E93;
-    margin: 0 0 24px 0;
-}
-
-.work-wide-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
 
 /* ===========================
    SECTION 4: MEET THE FOUNDER
