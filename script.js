@@ -1458,6 +1458,65 @@ function initLogoLoop() {
 }
 
 // ======= INIT =======
+
+// ─── VIDEO CARD PLAY/PAUSE ────────────────────────────────────────────────────
+function initVideoCards() {
+    const playSVG = '<polygon points="5,3 19,12 5,21"/>';
+    const pauseSVG = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+
+    document.querySelectorAll('.work-video-frame').forEach(function(frame) {
+        var video = frame.querySelector('.work-video');
+        var btn = frame.querySelector('.work-video-play-btn');
+        var label = btn ? btn.querySelector('.play-label') : null;
+        var svgIcon = btn ? btn.querySelector('svg') : null;
+
+        if (!video || !btn) return;
+
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (video.paused) {
+                // Pause all other videos first
+                document.querySelectorAll('.work-video').forEach(function(v) {
+                    if (v !== video && !v.paused) {
+                        v.pause();
+                        var otherFrame = v.closest('.work-video-frame');
+                        var otherBtn = otherFrame ? otherFrame.querySelector('.work-video-play-btn') : null;
+                        if (otherBtn) {
+                            var otherLabel = otherBtn.querySelector('.play-label');
+                            var otherSvg = otherBtn.querySelector('svg');
+                            if (otherLabel) otherLabel.textContent = 'Play';
+                            if (otherSvg) otherSvg.innerHTML = playSVG;
+                            otherBtn.classList.remove('playing');
+                        }
+                    }
+                });
+                video.play();
+                if (label) label.textContent = 'Pause';
+                if (svgIcon) svgIcon.innerHTML = pauseSVG;
+                btn.classList.add('playing');
+            } else {
+                video.pause();
+                if (label) label.textContent = 'Play';
+                if (svgIcon) svgIcon.innerHTML = playSVG;
+                btn.classList.remove('playing');
+            }
+        });
+
+        // Click anywhere on the video frame also toggles play/pause
+        frame.addEventListener('click', function(e) {
+            if (e.target !== btn && !btn.contains(e.target)) {
+                btn.click();
+            }
+        });
+
+        video.addEventListener('ended', function() {
+            if (label) label.textContent = 'Play';
+            if (svgIcon) svgIcon.innerHTML = playSVG;
+            btn.classList.remove('playing');
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Init UI interactions immediately (they don't need Three.js)
     initNavigation();
@@ -1502,4 +1561,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('resize', handleResize);
+
+    initVideoCards();
 });
