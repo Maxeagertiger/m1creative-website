@@ -8182,3 +8182,457 @@ a.pricing-modern-card {
         align-items: flex-start;
     }
 }
+
+/* ==========================================================================
+   BRAND ALIGNMENT & HARMONIZATION (MATCHING M1CREATIVE WORDMARK LOGO)
+   ========================================================================== */
+
+/* 1. Navbar Book a Call CTA - Elevated White Pill matching Logo */
+.nav-cta-btn,
+.nav-cta {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 9px 22px !important;
+    border-radius: 9999px !important;
+    font-size: 0.84rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15) !important;
+}
+
+.nav-cta-btn:hover,
+.nav-cta:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.35) !important;
+    background: #f0f0f0 !important;
+    color: #000000 !important;
+}
+
+.mobile-menu .nav-cta {
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2) !important;
+}
+
+.mobile-menu .nav-cta:hover {
+    background: #f0f0f0 !important;
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.3) !important;
+}
+
+.nav-links a.active {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+/* 2. Hero & Section Primary Buttons */
+.hero-btn.primary-btn,
+.cta-build-btn,
+.section-view-all-btn {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: none !important;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.18) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.2s ease !important;
+}
+
+.hero-btn.primary-btn:hover,
+.cta-build-btn:hover,
+.section-view-all-btn:hover {
+    background: #f2f2f2 !important;
+    color: #000000 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 3. Services Page - Luxury Frosted & Monochromatic Refinement */
+.service-full-card:hover {
+    border-color: rgba(255, 255, 255, 0.24) !important;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5) !important;
+}
+
+.service-full-icon {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+}
+
+.service-feature-item::before {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.service-card-btn {
+    color: #ffffff !important;
+}
+
+.service-card-btn:hover {
+    color: #ffffff !important;
+    opacity: 0.8 !important;
+}
+
+.process-card:hover {
+    border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+.process-step-num {
+    color: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* 4. Contact Page & Booking Calendar - Clean High-End Contrast */
+.contact-channel-card:hover {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45) !important;
+}
+
+.contact-channel-icon {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+}
+
+.contact-channel-detail {
+    color: #ffffff !important;
+}
+
+.booking-step-title .step-number,
+.booking-card-modern .step-number {
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+
+.cal-nav-btn:hover:not(:disabled) {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.3) !important;
+}
+
+.cal-day-cell:hover:not(.disabled):not(.selected),
+.booking-card-modern .calendar-day-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+}
+
+.cal-day-cell.selected,
+.booking-card-modern .calendar-day-btn.selected {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.35) !important;
+}
+
+.cal-day-cell.today {
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.time-slots-label strong {
+    color: #ffffff !important;
+}
+
+.time-slot-btn:hover:not(.selected) {
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+
+.time-slot-btn.selected,
+.booking-card-modern .time-slot-btn.selected {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.3) !important;
+}
+
+.submit-btn,
+.booking-card-modern .submit-btn {
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15) !important;
+}
+
+.submit-btn:hover,
+.booking-card-modern .submit-btn:hover {
+    background: #f0f0f0 !important;
+    color: #000000 !important;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 5. Pricing Page - Prestigious Champagne Gold & Platinum Tier */
+.pricing-card.featured,
+.pricing-card[data-tier="gold"].featured,
+.pricing-modern-card.featured-gold {
+    border: 1.5px solid rgba(255, 215, 0, 0.4) !important;
+    background: linear-gradient(180deg, rgba(255, 215, 0, 0.04) 0%, rgba(14, 14, 14, 0.85) 100%) !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.08) !important;
+}
+
+.pricing-card.featured:hover,
+.pricing-card[data-tier="gold"].featured:hover,
+.pricing-modern-card.featured-gold:hover {
+    border-color: rgba(255, 215, 0, 0.65) !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 45px rgba(255, 215, 0, 0.16) !important;
+}
+
+.pricing-badge {
+    background: linear-gradient(135deg, #FFD700, #FFA500) !important;
+    color: #000000 !important;
+    animation: none !important;
+    box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3) !important;
+}
+
+.pricing-tier-tag.gold-badge {
+    color: #FFD700 !important;
+}
+
+.pricing-timeline.gold-timeline {
+    background: rgba(255, 215, 0, 0.06) !important;
+    border-color: rgba(255, 215, 0, 0.25) !important;
+    box-shadow: none !important;
+}
+
+.pricing-timeline.gold-timeline .timeline-icon {
+    filter: none !important;
+}
+
+.pricing-card[data-tier="gold"] .pricing-cta.featured-cta,
+.pricing-cta.featured-cta {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #ffffff !important;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2) !important;
+}
+
+.pricing-card[data-tier="gold"] .pricing-cta.featured-cta:hover,
+.pricing-cta.featured-cta:hover {
+    background: #f0f0f0 !important;
+    color: #000000 !important;
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.35) !important;
+}
+
+.pricing-features li svg {
+    color: #ffffff !important;
+}
+
+.pricing-monthly {
+    color: #8E8E93 !important;
+}
+
+.founding-client-callout {
+    background: rgba(18, 18, 18, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+.founding-slot-badge {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    color: #ffffff !important;
+}
+
+.founding-btn {
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2) !important;
+}
+
+.founding-btn:hover {
+    background: #f0f0f0 !important;
+    color: #000000 !important;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.35) !important;
+}
+
+/* 6. About Page - Monochromatic Stats & Comparison */
+.about-stat-icon-wrap {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.about-stat-icon-wrap svg {
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+}
+
+.about-stat-number {
+    color: #ffffff !important;
+}
+
+.about-stat-card:hover {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45) !important;
+}
+
+.comparison-col.m1-col {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+}
+
+.m1-col .comparison-title {
+    color: #ffffff !important;
+}
+
+.m1-col .comparison-item .icon {
+    color: #ffffff !important;
+}
+
+.founder-image-container {
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* 7. Work Page Filtering & Buttons */
+.niche-pill.active {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 4px 18px rgba(255, 255, 255, 0.25) !important;
+}
+
+.work-action-btn.primary {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+}
+
+.work-action-btn.primary:hover {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.35) !important;
+    background: #f0f0f0 !important;
+    color: #000000 !important;
+}
+
+.project-badge, .featured-badge {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+}
+
+/* 8. SEO & FAQ Pages */
+.seo-card-icon,
+.seo-analogy-icon {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+}
+
+.seo-analogy-box {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.faq-item.active {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* ==========================================================================
+   FLOATING WHATSAPP BUTTON (GLOBAL)
+   ========================================================================== */
+.floating-whatsapp-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    color: #ffffff !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4), 0 3px 10px rgba(0, 0, 0, 0.35);
+    z-index: 9999;
+    text-decoration: none !important;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, background-color 0.2s ease;
+}
+
+.floating-whatsapp-btn:hover {
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: 0 12px 35px rgba(37, 211, 102, 0.55), 0 5px 14px rgba(0, 0, 0, 0.4);
+    background: #22bf5b;
+}
+
+.floating-whatsapp-btn svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.floating-whatsapp-btn:hover svg {
+    transform: rotate(-5deg) scale(1.05);
+}
+
+.floating-whatsapp-btn .whatsapp-pulse {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(37, 211, 102, 0.6);
+    animation: whatsappPulseAnim 2.4s infinite;
+    pointer-events: none;
+}
+
+@keyframes whatsappPulseAnim {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+    70% {
+        transform: scale(1.35);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1.35);
+        opacity: 0;
+    }
+}
+
+.floating-whatsapp-btn .whatsapp-tooltip {
+    position: absolute;
+    right: 72px;
+    background: rgba(14, 14, 14, 0.95);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    white-space: nowrap;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(10px);
+    transition: all 0.25s ease;
+    pointer-events: none;
+}
+
+.floating-whatsapp-btn:hover .whatsapp-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+    .floating-whatsapp-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 52px;
+        height: 52px;
+    }
+    .floating-whatsapp-btn svg {
+        width: 28px;
+        height: 28px;
+    }
+    .floating-whatsapp-btn .whatsapp-tooltip {
+        display: none;
+    }
+}
