@@ -8198,12 +8198,25 @@ a.pricing-modern-card {
     font-weight: 700 !important;
     letter-spacing: 0 !important;
     text-decoration: none !important;
-    display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease !important;
     border: none !important;
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15) !important;
+}
+
+@media (min-width: 901px) {
+    #navbar .nav-cta-btn {
+        display: inline-flex !important;
+    }
+}
+
+@media (max-width: 900px) {
+    #navbar .nav-cta-btn,
+    #navbar > .nav-cta-btn,
+    #navbar > .nav-cta {
+        display: none !important;
+    }
 }
 
 .nav-cta-btn:hover,
