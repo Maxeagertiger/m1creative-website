@@ -8147,6 +8147,47 @@ a.pricing-modern-card {
     transform: translateY(-1px);
 }
 
+.work-video-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(10, 10, 10, 0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 9999px;
+    padding: 6px 14px;
+    font-family: var(--font-body);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.work-video-badge::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ccff00;
+    box-shadow: 0 0 8px #ccff00;
+}
+
+.work-video-frame img.work-video {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work-video-frame:hover img.work-video {
+    transform: scale(1.04);
+}
+
 .work-card-btns {
     display: flex;
     align-items: center;

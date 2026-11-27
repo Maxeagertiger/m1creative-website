@@ -1271,8 +1271,50 @@ function initCaseStudies() {
                 "Fluid full-screen lightbox modal for culinary exploration",
                 "Automated reservation forms with custom success animations"
             ],
-            tech: "HTML5, Vanilla CSS, Vanilla ES6 JS, SVG Animations, Leaflet Map integration",
+                        tech: "HTML5, Vanilla CSS, Vanilla ES6 JS, SVG Animations, Leaflet Map integration",
             url: "clients/ambrelle-house/index.html"
+        },
+        kopano: {
+            title: "Kopano Construction — Building South Africa's Future",
+            category: "Construction & Engineering · FEATURED PROJECT",
+            problem: "Strategic Objective: Engineered to establish immediate digital credibility, showcase high-scale commercial and residential builds across South Africa, and capture high-intent structural quote requests. Overcomes generic construction template clutter, missing compliance proof (CIDB, NHBRC), and lack of transparent project estimation.",
+            solution: "What We Engineered: We architected a powerful, high-contrast digital presence featuring a real-time 3D interactive architectural tower scene, categorized structural project galleries, client testimonial proof, and an integrated multi-step quote calculator for residential and commercial tenders.",
+            features: [
+                "Interactive 3D isometric building tower with crane animation",
+                "Dynamic architectural project showcase with category chips",
+                "Comprehensive CIDB, NHBRC, and B-BBEE compliance badge architecture",
+                "Streamlined fixed-price site visit & quote estimation system"
+            ],
+            tech: "HTML5, CSS 3D Transforms, Vanilla ES6 JavaScript, Google Web Fonts (Archivo & Inter)",
+            url: "clients/kopano-construction/index.html"
+        },
+        sonkrag: {
+            title: "Sonkrag Solar — Renewable Energy & Battery Systems",
+            category: "Solar & Clean Energy · FEATURED PROJECT",
+            problem: "Strategic Objective: Engineered to solve South African loadshedding anxiety and convert residential and commercial energy consumers into qualified solar installation leads. Eliminates confusing technical jargon and hidden cost ambiguity.",
+            solution: "What We Engineered: We designed and engineered a clean, sun-inspired modern solar platform featuring an interactive savings estimator, tier-based backup & hybrid system comparison cards, real-time power generation data visualizers, and an intuitive site assessment request funnel.",
+            features: [
+                "Interactive load-shedding survival & solar savings calculator",
+                "Tiered inverter, battery storage, and panel package visualizer",
+                "Trust architecture featuring CoC electrical certification and Tier-1 hardware warranties",
+                "Frictionless free site assessment quote booking workflow"
+            ],
+            tech: "HTML5, CSS Custom Variables, Modern ES6 JS, Embedded SVG System Architecture",
+            url: "clients/sonkrag-solar/index.html"
+        },
+        tessera: {
+            title: "Tessera Pools — Bespoke Pool Builders",
+            category: "Luxury Living & Architecture · FEATURED PROJECT",
+            problem: "Strategic Objective: Engineered for high-end South African architectural estates, boutique hotels, and luxury homeowners seeking bespoke pool construction. Solves the disconnect between standard pool catalogs and ultra-luxury architectural craftsmanship.",
+            solution: "What We Engineered: We crafted a lavish, fluid-inspired luxury showcase featuring an ambient interactive water surface canvas simulation, 3D perspective card tilt physics, a masonry portfolio grid of custom rim-flow and lap pools, and an executive consultation intake system.",
+            features: [
+                "Interactive WebGL/Canvas fluid water wave simulation on hero",
+                "3D mouse-tracking card perspective tilt physics across gallery items",
+                "Masonry architectural portfolio with dynamic filter tags",
+                "Exclusive bespoke site consultation and architectural spec workflow"
+            ],
+            tech: "HTML5, Canvas API / Fluid Dynamics, CSS 3D Perspective, ES6 JS, Cormorant Garamond & Manrope Typography",
+            url: "clients/tessera-pools/index.html"
         }
     };
     
@@ -1465,12 +1507,24 @@ function initVideoCards() {
     const pauseSVG = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
 
     document.querySelectorAll('.work-video-frame').forEach(function(frame) {
-        var video = frame.querySelector('.work-video');
+        var video = frame.querySelector('video');
         var btn = frame.querySelector('.work-video-play-btn');
         var label = btn ? btn.querySelector('.play-label') : null;
         var svgIcon = btn ? btn.querySelector('svg') : null;
 
-        if (!video || !btn) return;
+        if (!video || !btn) {
+            // For static preview image cards, clicking frame launches project
+            var primaryLink = frame.closest('.work-item, .work-modern-card')?.querySelector('a.work-action-btn.primary');
+            if (primaryLink) {
+                frame.style.cursor = 'pointer';
+                frame.addEventListener('click', function(e) {
+                    if (e.target.tagName !== 'A' && !e.target.closest('a') && !e.target.closest('button')) {
+                        window.open(primaryLink.href, '_blank', 'noopener,noreferrer');
+                    }
+                });
+            }
+            return;
+        }
 
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
